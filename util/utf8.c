@@ -23,26 +23,6 @@ static PyTypeObject *_PyGObject_Type;
 /* ----------- functions ----------- */
 
 static PyObject *
-_wrap_utf8_string_remove_controls(PyObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "str", "max_len", "end", NULL };
-    char *str, *end;
-    int max_len;
-    gchar *ret;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:utf8_string_remove_controls", kwlist, &str, &max_len, &end))
-        return NULL;
-    ret = utf8_string_remove_controls(str, max_len, end);
-    if (ret) {
-        PyObject *py_ret = PyString_FromString(ret);
-        g_free(ret);
-        return py_ret;
-    }
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
-static PyObject *
 _wrap_xfce_utf8_remove_controls(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "str", "max_len", "end", NULL };
@@ -63,7 +43,6 @@ _wrap_xfce_utf8_remove_controls(PyObject *self, PyObject *args, PyObject *kwargs
 }
 
 PyMethodDef pyutf8_functions[] = {
-    { "utf8_string_remove_controls", (PyCFunction)_wrap_utf8_string_remove_controls, METH_VARARGS|METH_KEYWORDS },
     { "xfce_utf8_remove_controls", (PyCFunction)_wrap_xfce_utf8_remove_controls, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
@@ -90,5 +69,5 @@ pyutf8_register_classes(PyObject *d)
     }
 
 
-#line 94 "utf8.c"
+#line 73 "utf8.c"
 }

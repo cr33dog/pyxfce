@@ -49,6 +49,8 @@ nodist__util_la_SOURCES =
 	 && $(PYTHON) $(CODEGEN_PATH)/codegen.py \
 	   $(PYGTK_CODEGEN_DEFINES) \
 	     --override $*.override \
+	     --register resource.defs \
+	     --register rc.defs \
 	     --prefix py$* $*.defs) > gen-$*.c \
 	 && cp gen-$*.c $*.c \
 	 && rm -f gen-$*.c

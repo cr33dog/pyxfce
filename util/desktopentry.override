@@ -17,6 +17,7 @@ import gobject.GObject as PyGObject_Type
 ignore
 %%
 ignore-glob
+  print_desktop_entry_info
 %%
 ignore-win32
 %%
@@ -24,3 +25,46 @@ ignore-glob
   _*
   *_get_type
 %%
+override xfce_desktop_entry_get_string kwargs
+static PyObject *
+_wrap_xfce_desktop_entry_get_string(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    gchar *value;
+    PyObject *ret;
+    gchar *key;
+    int translated;
+    static char *kwlist[] = { "key", "translated", NULL };
+
+    translated = TRUE;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s|i:xfce_desktop_entry_get_string", kwlist, &key, &translated))
+        return NULL;
+
+    if (xfce_desktop_entry_get_string (XFCE_DESKTOP_ENTRY(self->obj), key, translated, &value)) {
+        ret = PyString_FromString (value);
+        g_free (value);
+        return ret;
+    }
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override xfce_desktop_entry_get_int kwargs
+static PyObject *
+_wrap_xfce_desktop_entry_get_int(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    int value;
+    gchar *key;
+    static char *kwlist[] = { "key", NULL };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_desktop_entry_get_int", kwlist, &key))
+        return NULL;
+
+    if (xfce_desktop_entry_get_int (XFCE_DESKTOP_ENTRY(self->obj), key, &value)) {
+        return PyInt_FromLong((long) value);
+    }
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}

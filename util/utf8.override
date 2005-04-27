@@ -17,6 +17,7 @@ import gobject.GObject as PyGObject_Type
 ignore
 %%
 ignore-glob
+  utf8_string_remove_controls
 %%
 ignore-win32
 %%

@@ -804,6 +804,8 @@ uninstall-am: uninstall-defsDATA uninstall-info-am \
 	 && $(PYTHON) $(CODEGEN_PATH)/codegen.py \
 	   $(PYGTK_CODEGEN_DEFINES) \
 	     --override $*.override \
+	     --register resource.defs \
+	     --register rc.defs \
 	     --prefix py$* $*.defs) > gen-$*.c \
 	 && cp gen-$*.c $*.c \
 	 && rm -f gen-$*.c
