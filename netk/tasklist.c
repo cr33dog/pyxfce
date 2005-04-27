@@ -9,7 +9,7 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-extern PyTypeObject PyNetkScreen_Type;
+/*extern PyTypeObject PyNetkScreen_Type;*/
 
 #line 15 "tasklist.c"
 
@@ -57,6 +57,28 @@ _wrap_netk_tasklist_set_screen(PyGObject *self, PyObject *args, PyObject *kwargs
     Py_INCREF(Py_None);
     return Py_None;
 }
+
+#line 29 "tasklist.override"
+static PyObject *
+_wrap_netk_tasklist_get_size_hint_list(PyGObject *self)
+{
+    int n_items;
+    PyObject *py_tuple;
+    int i;
+
+    const int *arr;
+
+    arr = netk_tasklist_get_size_hint_list (NETK_TASKLIST(self->obj), &n_items);
+
+    py_tuple = PyTuple_New(n_items);
+
+    for (i = 0; i < n_items; i++)
+	PyTuple_SetItem(py_tuple, i, PyInt_FromLong( (long)arr[i]));
+
+    return py_tuple;
+}
+#line 81 "tasklist.c"
+
 
 static PyObject *
 _wrap_netk_tasklist_set_grouping(PyGObject *self, PyObject *args, PyObject *kwargs)
@@ -172,6 +194,7 @@ _wrap_netk_tasklist_get_minimum_height(PyGObject *self)
 
 static PyMethodDef _PyNetkTasklist_methods[] = {
     { "set_screen", (PyCFunction)_wrap_netk_tasklist_set_screen, METH_VARARGS|METH_KEYWORDS },
+    { "get_size_hint_list", (PyCFunction)_wrap_netk_tasklist_get_size_hint_list, METH_NOARGS },
     { "set_grouping", (PyCFunction)_wrap_netk_tasklist_set_grouping, METH_VARARGS|METH_KEYWORDS },
     { "set_switch_workspace_on_unminimize", (PyCFunction)_wrap_netk_tasklist_set_switch_workspace_on_unminimize, METH_VARARGS|METH_KEYWORDS },
     { "set_grouping_limit", (PyCFunction)_wrap_netk_tasklist_set_grouping_limit, METH_VARARGS|METH_KEYWORDS },
@@ -285,6 +308,6 @@ pytasklist_register_classes(PyObject *d)
     }
 
 
-#line 289 "tasklist.c"
+#line 312 "tasklist.c"
     pygobject_register_class(d, "NetkTasklist", NETK_TYPE_TASKLIST, &PyNetkTasklist_Type, Py_BuildValue("(O)", &PyGtkContainer_Type));
 }

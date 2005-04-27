@@ -10,10 +10,8 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 extern PyTypeObject PyNetkWorkspace_Type;
-extern PyTypeObject NetkApplication_Type;
-extern PyTypeObject NetkClassGroup_Type;
 
-#line 17 "window.c"
+#line 15 "window.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -529,7 +527,7 @@ _wrap_netk_window_get_state(PyGObject *self)
     return pyg_flags_from_gtype(NETK_TYPE_WINDOW_STATE, ret);
 }
 
-#line 34 "window.override"
+#line 32 "window.override"
 static PyObject *
 _wrap_netk_window_get_geometry(PyGObject *self)
 {
@@ -538,7 +536,7 @@ _wrap_netk_window_get_geometry(PyGObject *self)
     netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
     return Py_BuildValue("(iiii)", x, y, width, height);
 }
-#line 542 "window.c"
+#line 540 "window.c"
 
 
 static PyObject *
@@ -763,6 +761,6 @@ pywindow_register_classes(PyObject *d)
     }
 
 
-#line 767 "window.c"
+#line 765 "window.c"
     pygobject_register_class(d, "NetkWindow", NETK_TYPE_WINDOW, &PyNetkWindow_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

@@ -32,8 +32,6 @@ _wrap_netk_tasklist_get_size_hint_list(PyGObject *self)
     int n_items;
     PyObject *py_tuple;
     int i;
-    GList *list;
-    GList *item;
 
     const int *arr;
 
