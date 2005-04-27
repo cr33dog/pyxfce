@@ -533,10 +533,10 @@ _wrap_netk_window_get_state(PyGObject *self)
 static PyObject *
 _wrap_netk_window_get_geometry(PyGObject *self)
 {
-    gint x, y, width, height, depth;
+    gint x, y, width, height;
 
     netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
-    return Py_BuildValue("(iiiii)", x, y, width, height, depth);
+    return Py_BuildValue("(iiii)", x, y, width, height);
 }
 #line 542 "window.c"
 
