@@ -7,12 +7,15 @@ headers
 #include <gtk/gtk.h>
 #include <panel/xfce_support.h>
 
+extern PyTypeObject PyGtkWidget_Type;
+
 %%
 include
 %%
 modulename support
 %%
 import gobject.GObject as PyGObject_Type
+import gtk.Widget as PyGtkWidget_Type
 %%
 ignore
 %%

@@ -9,7 +9,10 @@
 #include <gtk/gtk.h>
 #include <panel/icons.h>
 
-#line 13 "icons.c"
+extern PyTypeObject PyGtkWidget_Type;
+extern PyTypeObject PyGdkPixbuf_Type;
+
+#line 16 "icons.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -26,7 +29,64 @@ static PyTypeObject *_PyGtkWidget_Type;
 
 /* ----------- functions ----------- */
 
+static PyObject *
+_wrap_get_panel_pixbuf(PyObject *self)
+{
+    GdkPixbuf *ret;
+
+    ret = get_panel_pixbuf();
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_get_pixbuf_from_file(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "path", NULL };
+    char *path;
+    GdkPixbuf *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:get_pixbuf_from_file", kwlist, &path))
+        return NULL;
+    ret = get_pixbuf_from_file(path);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_get_scaled_pixbuf(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "pixbuf", "size", NULL };
+    PyGObject *pixbuf;
+    int size;
+    GdkPixbuf *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i:get_scaled_pixbuf", kwlist, &PyGdkPixbuf_Type, &pixbuf, &size))
+        return NULL;
+    ret = get_scaled_pixbuf(GDK_PIXBUF(pixbuf->obj), size);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_get_themed_pixbuf(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "name", NULL };
+    char *name;
+    GdkPixbuf *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:get_themed_pixbuf", kwlist, &name))
+        return NULL;
+    ret = get_themed_pixbuf(name);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 PyMethodDef pyicons_functions[] = {
+    { "get_panel_pixbuf", (PyCFunction)_wrap_get_panel_pixbuf, METH_NOARGS },
+    { "get_pixbuf_from_file", (PyCFunction)_wrap_get_pixbuf_from_file, METH_VARARGS|METH_KEYWORDS },
+    { "get_scaled_pixbuf", (PyCFunction)_wrap_get_scaled_pixbuf, METH_VARARGS|METH_KEYWORDS },
+    { "get_themed_pixbuf", (PyCFunction)_wrap_get_themed_pixbuf, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -105,5 +165,5 @@ pyicons_register_classes(PyObject *d)
     }
 
 
-#line 109 "icons.c"
+#line 169 "icons.c"
 }

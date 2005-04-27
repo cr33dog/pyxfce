@@ -30,3 +30,12 @@ ignore-glob
 %%
 ignore-win32
 %%
+override netk_window_get_geometry noargs
+static PyObject *
+_wrap_netk_window_get_geometry(PyGObject *self)
+{
+    gint x, y, width, height, depth;
+
+    netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
+    return Py_BuildValue("(iiiii)", x, y, width, height, depth);
+}

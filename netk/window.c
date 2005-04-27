@@ -529,6 +529,18 @@ _wrap_netk_window_get_state(PyGObject *self)
     return pyg_flags_from_gtype(NETK_TYPE_WINDOW_STATE, ret);
 }
 
+#line 34 "window.override"
+static PyObject *
+_wrap_netk_window_get_geometry(PyGObject *self)
+{
+    gint x, y, width, height, depth;
+
+    netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
+    return Py_BuildValue("(iiiii)", x, y, width, height, depth);
+}
+#line 542 "window.c"
+
+
 static PyObject *
 _wrap_netk_window_is_visible_on_workspace(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -624,6 +636,7 @@ static PyMethodDef _PyNetkWindow_methods[] = {
     { "set_icon_geometry", (PyCFunction)_wrap_netk_window_set_icon_geometry, METH_VARARGS|METH_KEYWORDS },
     { "get_actions", (PyCFunction)_wrap_netk_window_get_actions, METH_NOARGS },
     { "get_state", (PyCFunction)_wrap_netk_window_get_state, METH_NOARGS },
+    { "get_geometry", (PyCFunction)_wrap_netk_window_get_geometry, METH_NOARGS },
     { "is_visible_on_workspace", (PyCFunction)_wrap_netk_window_is_visible_on_workspace, METH_VARARGS|METH_KEYWORDS },
     { "is_on_workspace", (PyCFunction)_wrap_netk_window_is_on_workspace, METH_VARARGS|METH_KEYWORDS },
     { "is_in_viewport", (PyCFunction)_wrap_netk_window_is_in_viewport, METH_VARARGS|METH_KEYWORDS },
@@ -750,6 +763,6 @@ pywindow_register_classes(PyObject *d)
     }
 
 
-#line 754 "window.c"
+#line 767 "window.c"
     pygobject_register_class(d, "NetkWindow", NETK_TYPE_WINDOW, &PyNetkWindow_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
