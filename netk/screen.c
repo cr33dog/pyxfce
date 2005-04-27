@@ -23,6 +23,40 @@ PyTypeObject PyNetkScreen_Type;
 
 /* ----------- NetkScreen ----------- */
 
+static PyObject *
+_wrap_netk_screen_get_workspace(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "workspace", NULL };
+    int workspace;
+    NetkWorkspace *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:NetkScreen.get_workspace", kwlist, &workspace))
+        return NULL;
+    ret = netk_screen_get_workspace(NETK_SCREEN(self->obj), workspace);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_netk_screen_get_active_workspace(PyGObject *self)
+{
+    NetkWorkspace *ret;
+
+    ret = netk_screen_get_active_workspace(NETK_SCREEN(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_netk_screen_get_active_window(PyGObject *self)
+{
+    NetkWindow *ret;
+
+    ret = netk_screen_get_active_window(NETK_SCREEN(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 #line 27 "screen.override"
 static PyObject *
 _wrap_netk_screen_get_windows(PyGObject *self)
@@ -55,7 +89,7 @@ _wrap_netk_screen_get_windows(PyGObject *self)
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 59 "screen.c"
+#line 93 "screen.c"
 
 
 #line 60 "screen.override"
@@ -90,7 +124,7 @@ _wrap_netk_screen_get_windows_stacked(PyGObject *self)
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 94 "screen.c"
+#line 128 "screen.c"
 
 
 static PyObject *
@@ -226,6 +260,9 @@ _wrap_netk_screen_release_workspace_layout(PyGObject *self, PyObject *args, PyOb
 }
 
 static PyMethodDef _PyNetkScreen_methods[] = {
+    { "get_workspace", (PyCFunction)_wrap_netk_screen_get_workspace, METH_VARARGS|METH_KEYWORDS },
+    { "get_active_workspace", (PyCFunction)_wrap_netk_screen_get_active_workspace, METH_NOARGS },
+    { "get_active_window", (PyCFunction)_wrap_netk_screen_get_active_window, METH_NOARGS },
     { "get_windows", (PyCFunction)_wrap_netk_screen_get_windows, METH_NOARGS },
     { "get_windows_stacked", (PyCFunction)_wrap_netk_screen_get_windows_stacked, METH_NOARGS },
     { "force_update", (PyCFunction)_wrap_netk_screen_force_update, METH_NOARGS },
@@ -361,6 +398,6 @@ pyscreen_register_classes(PyObject *d)
     }
 
 
-#line 365 "screen.c"
+#line 402 "screen.c"
     pygobject_register_class(d, "NetkScreen", NETK_TYPE_SCREEN, &PyNetkScreen_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

@@ -51,11 +51,18 @@ netk_overrides =
 EXTRA_DIST = $(netk_overrides)
 nodist__netk_la_SOURCES =
 
+PYGTK_DEFS="`pkg-config --variable=defsdir pygtk-2.0`"
+
 .defs.c:
 	(cd $(srcdir) \
 	 && $(PYTHON) $(CODEGEN_PATH)/codegen.py \
 	   $(PYGTK_CODEGEN_DEFINES) \
 	     --override $*.override \
+	     --register workspace.defs \
+	     --register window.defs \
+	     --register screen.defs \
+	     --register $(PYGTK_DEFS)/gtk-types.defs \
+	     --register $(PYGTK_DEFS)/gdk-types.defs \
 	     --prefix py$* $*.defs) > gen-$*.c \
 	 && cp gen-$*.c $*.c \
 	 && rm -f gen-$*.c

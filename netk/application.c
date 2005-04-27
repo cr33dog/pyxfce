@@ -75,6 +75,26 @@ _wrap_netk_application_get_pid(PyGObject *self)
 }
 
 static PyObject *
+_wrap_netk_application_get_icon(PyGObject *self)
+{
+    GdkPixbuf *ret;
+
+    ret = netk_application_get_icon(NETK_APPLICATION(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_netk_application_get_mini_icon(PyGObject *self)
+{
+    GdkPixbuf *ret;
+
+    ret = netk_application_get_mini_icon(NETK_APPLICATION(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
 _wrap_netk_application_get_icon_is_fallback(PyGObject *self)
 {
     int ret;
@@ -90,6 +110,8 @@ static PyMethodDef _PyNetkApplication_methods[] = {
     { "get_name", (PyCFunction)_wrap_netk_application_get_name, METH_NOARGS },
     { "get_icon_name", (PyCFunction)_wrap_netk_application_get_icon_name, METH_NOARGS },
     { "get_pid", (PyCFunction)_wrap_netk_application_get_pid, METH_NOARGS },
+    { "get_icon", (PyCFunction)_wrap_netk_application_get_icon, METH_NOARGS },
+    { "get_mini_icon", (PyCFunction)_wrap_netk_application_get_mini_icon, METH_NOARGS },
     { "get_icon_is_fallback", (PyCFunction)_wrap_netk_application_get_icon_is_fallback, METH_NOARGS },
     { NULL, NULL, 0 }
 };
@@ -186,6 +208,6 @@ pyapplication_register_classes(PyObject *d)
     }
 
 
-#line 190 "application.c"
+#line 212 "application.c"
     pygobject_register_class(d, "NetkApplication", NETK_TYPE_APPLICATION, &PyNetkApplication_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

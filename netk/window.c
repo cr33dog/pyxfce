@@ -26,6 +26,16 @@ PyTypeObject PyNetkWindow_Type;
 /* ----------- NetkWindow ----------- */
 
 static PyObject *
+_wrap_netk_window_get_screen(PyGObject *self)
+{
+    NetkScreen *ret;
+
+    ret = netk_window_get_screen(NETK_WINDOW(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
 _wrap_netk_window_get_name(PyGObject *self)
 {
     const gchar *ret;
@@ -360,6 +370,29 @@ _wrap_netk_window_keyboard_size(PyGObject *self)
 }
 
 static PyObject *
+_wrap_netk_window_get_workspace(PyGObject *self)
+{
+    NetkWorkspace *ret;
+
+    ret = netk_window_get_workspace(NETK_WINDOW(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_netk_window_move_to_workspace(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "space", NULL };
+    PyGObject *space;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkWindow.move_to_workspace", kwlist, &PyNetkWorkspace_Type, &space))
+        return NULL;
+    netk_window_move_to_workspace(NETK_WINDOW(self->obj), NETK_WORKSPACE(space->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
 _wrap_netk_window_is_pinned(PyGObject *self)
 {
     int ret;
@@ -452,7 +485,50 @@ _wrap_netk_window_get_state(PyGObject *self)
     return pyg_flags_from_gtype(NETK_TYPE_WINDOW_STATE, ret);
 }
 
+static PyObject *
+_wrap_netk_window_is_visible_on_workspace(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "workspace", NULL };
+    PyGObject *workspace;
+    int ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkWindow.is_visible_on_workspace", kwlist, &PyNetkWorkspace_Type, &workspace))
+        return NULL;
+    ret = netk_window_is_visible_on_workspace(NETK_WINDOW(self->obj), NETK_WORKSPACE(workspace->obj));
+    return PyBool_FromLong(ret);
+
+}
+
+static PyObject *
+_wrap_netk_window_is_on_workspace(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "workspace", NULL };
+    PyGObject *workspace;
+    int ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkWindow.is_on_workspace", kwlist, &PyNetkWorkspace_Type, &workspace))
+        return NULL;
+    ret = netk_window_is_on_workspace(NETK_WINDOW(self->obj), NETK_WORKSPACE(workspace->obj));
+    return PyBool_FromLong(ret);
+
+}
+
+static PyObject *
+_wrap_netk_window_is_in_viewport(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "workspace", NULL };
+    PyGObject *workspace;
+    int ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkWindow.is_in_viewport", kwlist, &PyNetkWorkspace_Type, &workspace))
+        return NULL;
+    ret = netk_window_is_in_viewport(NETK_WINDOW(self->obj), NETK_WORKSPACE(workspace->obj));
+    return PyBool_FromLong(ret);
+
+}
+
 static PyMethodDef _PyNetkWindow_methods[] = {
+    { "get_screen", (PyCFunction)_wrap_netk_window_get_screen, METH_NOARGS },
     { "get_name", (PyCFunction)_wrap_netk_window_get_name, METH_NOARGS },
     { "get_icon_name", (PyCFunction)_wrap_netk_window_get_icon_name, METH_NOARGS },
     { "get_group_leader", (PyCFunction)_wrap_netk_window_get_group_leader, METH_NOARGS },
@@ -488,6 +564,8 @@ static PyMethodDef _PyNetkWindow_methods[] = {
     { "unstick", (PyCFunction)_wrap_netk_window_unstick, METH_NOARGS },
     { "keyboard_move", (PyCFunction)_wrap_netk_window_keyboard_move, METH_NOARGS },
     { "keyboard_size", (PyCFunction)_wrap_netk_window_keyboard_size, METH_NOARGS },
+    { "get_workspace", (PyCFunction)_wrap_netk_window_get_workspace, METH_NOARGS },
+    { "move_to_workspace", (PyCFunction)_wrap_netk_window_move_to_workspace, METH_VARARGS|METH_KEYWORDS },
     { "is_pinned", (PyCFunction)_wrap_netk_window_is_pinned, METH_NOARGS },
     { "pin", (PyCFunction)_wrap_netk_window_pin, METH_NOARGS },
     { "unpin", (PyCFunction)_wrap_netk_window_unpin, METH_NOARGS },
@@ -498,6 +576,9 @@ static PyMethodDef _PyNetkWindow_methods[] = {
     { "set_icon_geometry", (PyCFunction)_wrap_netk_window_set_icon_geometry, METH_VARARGS|METH_KEYWORDS },
     { "get_actions", (PyCFunction)_wrap_netk_window_get_actions, METH_NOARGS },
     { "get_state", (PyCFunction)_wrap_netk_window_get_state, METH_NOARGS },
+    { "is_visible_on_workspace", (PyCFunction)_wrap_netk_window_is_visible_on_workspace, METH_VARARGS|METH_KEYWORDS },
+    { "is_on_workspace", (PyCFunction)_wrap_netk_window_is_on_workspace, METH_VARARGS|METH_KEYWORDS },
+    { "is_in_viewport", (PyCFunction)_wrap_netk_window_is_in_viewport, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -621,6 +702,6 @@ pywindow_register_classes(PyObject *d)
     }
 
 
-#line 625 "window.c"
+#line 706 "window.c"
     pygobject_register_class(d, "NetkWindow", NETK_TYPE_WINDOW, &PyNetkWindow_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
