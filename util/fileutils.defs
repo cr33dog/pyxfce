@@ -5,7 +5,7 @@
 
 ;; From /usr/include/xfce4/libxfce4util/xfce-fileutils.h
 
-(define-function mkdirhier
+(define-function xfce_mkdirhier
   (c-name "xfce_mkdirhier")
   (return-type "gboolean")
   (parameters

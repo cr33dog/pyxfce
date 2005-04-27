@@ -18,13 +18,26 @@
   (return-type "gboolean")
 )
 
+(define-function print_desktop_entry_info
+  (c-name "print_desktop_entry_info")
+  (return-type "none")
+  (parameters
+    '("XfceDesktopEntry*" "desktop_entry")
+  )
+)
+
+(define-function xfce_desktop_entry_get_type
+  (c-name "xfce_desktop_entry_get_type")
+  (return-type "GType")
+)
+
 (define-method get_file
   (of-object "XfceDesktopEntry")
   (c-name "xfce_desktop_entry_get_file")
   (return-type "const-char*")
 )
 
-(define-function new_from_data
+(define-function xfce_desktop_entry_new_from_data
   (c-name "xfce_desktop_entry_new_from_data")
   (return-type "XfceDesktopEntry*")
   (parameters
@@ -34,7 +47,7 @@
   )
 )
 
-(define-function new
+(define-function xfce_desktop_entry_new
   (c-name "xfce_desktop_entry_new")
   (is-constructor-of "XfceDesktopEntry")
   (return-type "XfceDesktopEntry*")

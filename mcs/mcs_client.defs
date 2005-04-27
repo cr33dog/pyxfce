@@ -5,6 +5,7 @@
 (define-enum Action
   (in-module "Mcs")
   (c-name "McsAction")
+  (gtype-id "MCS_TYPE_ACTION")
   (values
     '("new" "MCS_ACTION_NEW")
     '("changed" "MCS_ACTION_CHANGED")

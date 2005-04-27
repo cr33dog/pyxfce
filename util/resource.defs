@@ -5,6 +5,7 @@
 (define-enum ResourceType
   (in-module "Xfce")
   (c-name "XfceResourceType")
+  (gtype-id "XFCE_TYPE_RESOURCE_TYPE")
   (values
     '("data" "XFCE_RESOURCE_DATA")
     '("config" "XFCE_RESOURCE_CONFIG")
@@ -17,7 +18,7 @@
 
 ;; From /usr/include/xfce4/libxfce4util/xfce-resource.h
 
-(define-function resource_dirs
+(define-function xfce_resource_dirs
   (c-name "xfce_resource_dirs")
   (return-type "gchar**")
   (parameters
@@ -25,7 +26,7 @@
   )
 )
 
-(define-function resource_lookup
+(define-function xfce_resource_lookup
   (c-name "xfce_resource_lookup")
   (return-type "gchar*")
   (parameters
@@ -34,7 +35,7 @@
   )
 )
 
-(define-function resource_lookup_all
+(define-function xfce_resource_lookup_all
   (c-name "xfce_resource_lookup_all")
   (return-type "gchar**")
   (parameters
@@ -43,7 +44,7 @@
   )
 )
 
-(define-function resource_match
+(define-function xfce_resource_match
   (c-name "xfce_resource_match")
   (return-type "gchar**")
   (parameters
@@ -53,7 +54,7 @@
   )
 )
 
-(define-function resource_match_custom
+(define-function xfce_resource_match_custom
   (c-name "xfce_resource_match_custom")
   (return-type "gchar**")
   (parameters
@@ -64,7 +65,7 @@
   )
 )
 
-(define-function resource_push_path
+(define-function xfce_resource_push_path
   (c-name "xfce_resource_push_path")
   (return-type "none")
   (parameters
@@ -73,7 +74,7 @@
   )
 )
 
-(define-function resource_pop_path
+(define-function xfce_resource_pop_path
   (c-name "xfce_resource_pop_path")
   (return-type "none")
   (parameters
@@ -81,7 +82,7 @@
   )
 )
 
-(define-function resource_save_location
+(define-function xfce_resource_save_location
   (c-name "xfce_resource_save_location")
   (return-type "gchar*")
   (parameters

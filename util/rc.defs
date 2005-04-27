@@ -5,7 +5,7 @@
 
 ;; From /usr/include/xfce4/libxfce4util/xfce-rc.h
 
-(define-function simple_open
+(define-function xfce_rc_simple_open
   (c-name "xfce_rc_simple_open")
   (return-type "XfceRc*")
   (parameters
@@ -14,7 +14,7 @@
   )
 )
 
-(define-function config_open
+(define-function xfce_rc_config_open
   (c-name "xfce_rc_config_open")
   (return-type "XfceRc*")
   (parameters

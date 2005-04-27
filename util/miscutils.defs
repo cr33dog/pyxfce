@@ -5,17 +5,17 @@
 
 ;; From /usr/include/xfce4/libxfce4util/xfce-miscutils.h
 
-(define-function version_string
+(define-function xfce_version_string
   (c-name "xfce_version_string")
   (return-type "const-gchar*")
 )
 
-(define-function get_homedir
+(define-function xfce_get_homedir
   (c-name "xfce_get_homedir")
   (return-type "const-gchar*")
 )
 
-(define-function get_homefile_r
+(define-function xfce_get_homefile_r
   (c-name "xfce_get_homefile_r")
   (return-type "gchar*")
   (parameters
@@ -26,12 +26,12 @@
   (varargs #t)
 )
 
-(define-function get_userdir
+(define-function xfce_get_userdir
   (c-name "xfce_get_userdir")
   (return-type "const-gchar*")
 )
 
-(define-function get_userfile_r
+(define-function xfce_get_userfile_r
   (c-name "xfce_get_userfile_r")
   (return-type "gchar*")
   (parameters
@@ -42,7 +42,12 @@
   (varargs #t)
 )
 
-(define-function putenv
+(define-function xfce_gethostname
+  (c-name "xfce_gethostname")
+  (return-type "gchar*")
+)
+
+(define-function xfce_putenv
   (c-name "xfce_putenv")
   (return-type "gint")
   (parameters
@@ -50,7 +55,7 @@
   )
 )
 
-(define-function setenv
+(define-function xfce_setenv
   (c-name "xfce_setenv")
   (return-type "gint")
   (parameters
@@ -60,7 +65,7 @@
   )
 )
 
-(define-function unsetenv
+(define-function xfce_unsetenv
   (c-name "xfce_unsetenv")
   (return-type "none")
   (parameters
@@ -68,7 +73,7 @@
   )
 )
 
-(define-function expand_variables
+(define-function xfce_expand_variables
   (c-name "xfce_expand_variables")
   (return-type "gchar*")
   (parameters
