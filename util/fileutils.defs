@@ -1,0 +1,18 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfce4util/xfce-fileutils.h
+
+(define-function mkdirhier
+  (c-name "xfce_mkdirhier")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "whole_path")
+    '("unsigned-long" "mode")
+    '("GError**" "error")
+  )
+)
+
+

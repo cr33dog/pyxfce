@@ -1,0 +1,27 @@
+#!/bin/bash
+
+for s in /usr/include/xfce4/libxfcegui4/*.h
+do
+	t="${s##*/}"
+	
+	t="${t%.h}"
+	
+	if [ "${t#netk-}" != "$t" ]
+	then
+		defs="${t/-/_}.defs"
+		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
+	fi
+done
+rm -f util.defs
+
+for s in netk_*.defs
+do
+	t="${s#netk_}"
+	mv "$s" "$t"
+done
+
+#mmv -o 'xfce-*.defs' '#1.defs'
+#rm -f libxfce4util.defs
+#rm -f libxfce4util-config.defs
+#rm -f generics.defs
+#rm -f debug.defs

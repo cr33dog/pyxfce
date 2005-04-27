@@ -1,0 +1,28 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfcegui4/libxfcegui4.h>
+
+#ifndef XFCE_TYPE_MENUBUTTON
+#define XFCE_TYPE_MENUBUTTON (xfce_menubutton_get_type ())
+#endif
+
+%%
+include
+%%
+modulename menubutton
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.Button as PyGtkButton_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%

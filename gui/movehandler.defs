@@ -1,0 +1,47 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Movehandler
+  (in-module "Xfce")
+  (parent "GtkWidget")
+  (c-name "XfceMovehandler")
+  (gtype-id "XFCE_TYPE_MOVEHANDLER")
+)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfcegui4/xfce_movehandler.h
+
+(define-function void
+  (c-name "void")
+  (return-type "typedef")
+  (parameters
+    '("*" "XfceMoveFunc")
+  )
+)
+
+(define-function xfce_movehandler_get_type
+  (c-name "xfce_movehandler_get_type")
+  (return-type "GtkType")
+)
+
+(define-function xfce_movehandler_new
+  (c-name "xfce_movehandler_new")
+  (is-constructor-of "XfceMovehandler")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWidget*" "window")
+  )
+)
+
+(define-method set_move_func
+  (of-object "XfceMovehandler")
+  (c-name "xfce_movehandler_set_move_func")
+  (return-type "none")
+  (parameters
+    '("XfceMoveFunc" "move")
+    '("gpointer" "data")
+  )
+)
+
+

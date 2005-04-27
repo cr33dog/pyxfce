@@ -1,0 +1,15 @@
+
+skip:
+*_get_type
+xfce_mkdirhier
+xfce_putenv
+xfce_setenv?
+
+gtk x11 eventfilter
+mcs stuff
+panel
+
+netk stuff has many undefineds
+
+NotImplementedError: aboutdialog.AboutDialog is an abstract widget
+

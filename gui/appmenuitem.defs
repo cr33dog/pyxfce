@@ -1,0 +1,167 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object AppMenuItem
+  (in-module "Xfce")
+  (parent "GtkImageMenuItem")
+  (c-name "XfceAppMenuItem")
+  (gtype-id "XFCE_TYPE_APP_MENU_ITEM")
+)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfcegui4/xfce-appmenuitem.h
+
+(define-function xfce_app_menu_item_get_type
+  (c-name "xfce_app_menu_item_get_type")
+  (return-type "GType")
+  (parameters
+  )
+)
+
+(define-function xfce_app_menu_item_new
+  (c-name "xfce_app_menu_item_new")
+  (is-constructor-of "XfceAppMenuItem")
+  (return-type "GtkWidget*")
+  (parameters
+  )
+)
+
+(define-function xfce_app_menu_item_new_with_label
+  (c-name "xfce_app_menu_item_new_with_label")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+  )
+)
+
+(define-function xfce_app_menu_item_new_with_mnemonic
+  (c-name "xfce_app_menu_item_new_with_mnemonic")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+  )
+)
+
+(define-function xfce_app_menu_item_new_with_command
+  (c-name "xfce_app_menu_item_new_with_command")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+    '("const-gchar*" "command")
+  )
+)
+
+(define-function xfce_app_menu_item_new_full
+  (c-name "xfce_app_menu_item_new_full")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+    '("const-gchar*" "command")
+    '("const-gchar*" "icon_filename")
+    '("gboolean" "needs_term")
+    '("gboolean" "snotify")
+  )
+)
+
+(define-function xfce_app_menu_item_new_from_desktop_entry
+  (c-name "xfce_app_menu_item_new_from_desktop_entry")
+  (return-type "GtkWidget*")
+  (parameters
+    '("XfceDesktopEntry*" "entry")
+    '("gboolean" "show_icon")
+  )
+)
+
+(define-method set_name
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_set_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method set_icon_name
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_set_icon_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method set_command
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_set_command")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "command")
+  )
+)
+
+(define-method set_needs_term
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_set_needs_term")
+  (return-type "none")
+  (parameters
+    '("gboolean" "needs_term")
+  )
+)
+
+(define-method set_startup_notification
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_set_startup_notification")
+  (return-type "none")
+  (parameters
+    '("gboolean" "snotify")
+  )
+)
+
+(define-method get_name
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_icon_name
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_get_icon_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_command
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_get_command")
+  (return-type "const-gchar*")
+)
+
+(define-method get_needs_term
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_get_needs_term")
+  (return-type "gboolean")
+)
+
+(define-method get_startup_notification
+  (of-object "XfceAppMenuItem")
+  (c-name "xfce_app_menu_item_get_startup_notification")
+  (return-type "gboolean")
+)
+
+(define-function app_menu_item_set_icon_size
+  (c-name "xfce_app_menu_item_set_icon_size")
+  (return-type "none")
+  (parameters
+    '("guint" "icon_size")
+  )
+)
+
+(define-function app_menu_item_set_icon_theme_name
+  (c-name "xfce_app_menu_item_set_icon_theme_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "theme_name")
+  )
+)
+
+

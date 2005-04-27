@@ -1,0 +1,82 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfcegui4/icons.h
+
+(define-function xfce_inline_icon_at_size
+  (c-name "xfce_inline_icon_at_size")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("const-guint8*" "data")
+    '("int" "width")
+    '("int" "height")
+  )
+)
+
+(define-function themed_icon_set_icon_theme
+  (c-name "xfce_set_icon_theme")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "theme_name")
+  )
+)
+
+(define-function themed_icon_lookup
+  (c-name "xfce_themed_icon_lookup")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "name")
+    '("gint" "size")
+  )
+)
+
+(define-function xfce_themed_icon_load
+  (c-name "xfce_themed_icon_load")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("const-gchar*" "name")
+    '("gint" "size")
+  )
+)
+
+(define-function themed_icon_add_search_path
+  (c-name "xfce_themed_icon_add_search_path")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "path")
+  )
+)
+
+(define-function xfce_pixbuf_new_from_file_at_size
+  (c-name "xfce_pixbuf_new_from_file_at_size")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("const-gchar*" "filename")
+    '("gint" "width")
+    '("gint" "height")
+    '("GError**" "error")
+  )
+)
+
+(define-function inline_icon_at_size
+  (c-name "inline_icon_at_size")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("const-guint8*" "data")
+    '("int" "width")
+    '("int" "height")
+  )
+)
+
+(define-function xfce_load_themed_icon
+  (c-name "xfce_load_themed_icon")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("const-gchar*" "name")
+    '("gint" "size")
+  )
+)
+
+

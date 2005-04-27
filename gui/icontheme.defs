@@ -1,0 +1,180 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object IconTheme
+  (in-module "Xfce")
+  (parent "GObject")
+  (c-name "XfceIconTheme")
+  (gtype-id "XFCE_TYPE_ICON_THEME")
+)
+
+;; Enumerations and flags ...
+
+(define-enum IconThemeCategory
+  (in-module "Xfce")
+  (c-name "XfceIconThemeCategory")
+  (values
+    '("unknown" "XFCE_ICON_CATEGORY_UNKNOWN")
+    '("editor" "XFCE_ICON_CATEGORY_EDITOR")
+    '("fileman" "XFCE_ICON_CATEGORY_FILEMAN")
+    '("utility" "XFCE_ICON_CATEGORY_UTILITY")
+    '("game" "XFCE_ICON_CATEGORY_GAME")
+    '("help" "XFCE_ICON_CATEGORY_HELP")
+    '("multimedia" "XFCE_ICON_CATEGORY_MULTIMEDIA")
+    '("network" "XFCE_ICON_CATEGORY_NETWORK")
+    '("graphics" "XFCE_ICON_CATEGORY_GRAPHICS")
+    '("printer" "XFCE_ICON_CATEGORY_PRINTER")
+    '("productivity" "XFCE_ICON_CATEGORY_PRODUCTIVITY")
+    '("sound" "XFCE_ICON_CATEGORY_SOUND")
+    '("terminal" "XFCE_ICON_CATEGORY_TERMINAL")
+    '("development" "XFCE_ICON_CATEGORY_DEVELOPMENT")
+    '("settings" "XFCE_ICON_CATEGORY_SETTINGS")
+    '("system" "XFCE_ICON_CATEGORY_SYSTEM")
+    '("wine" "XFCE_ICON_CATEGORY_WINE")
+  )
+)
+
+
+;; From /usr/include/xfce4/libxfcegui4/xfce-icontheme.h
+
+(define-function xfce_icon_theme_get_type
+  (c-name "xfce_icon_theme_get_type")
+  (return-type "GType")
+  (parameters
+  )
+)
+
+(define-function xfce_icon_theme_get_for_screen
+  (c-name "xfce_icon_theme_get_for_screen")
+  (return-type "XfceIconTheme*")
+  (parameters
+    '("GdkScreen*" "screen")
+  )
+)
+
+(define-method lookup
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_lookup")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "icon_name")
+    '("gint" "icon_size")
+  )
+)
+
+(define-method lookup_list
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_lookup_list")
+  (return-type "gchar*")
+  (parameters
+    '("GList*" "icon_names")
+    '("gint" "icon_size")
+  )
+)
+
+(define-method lookup_category
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_lookup_category")
+  (return-type "gchar*")
+  (parameters
+    '("XfceIconThemeCategory" "category")
+    '("gint" "icon_size")
+  )
+)
+
+(define-method load
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_load")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("const-gchar*" "icon_name")
+    '("gint" "icon_size")
+  )
+)
+
+(define-method load_list
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_load_list")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("GList*" "icon_names")
+    '("gint" "icon_size")
+  )
+)
+
+(define-method load_category
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_load_category")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("XfceIconThemeCategory" "category")
+    '("gint" "icon_size")
+  )
+)
+
+(define-method get_search_path
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_get_search_path")
+  (return-type "GList*")
+)
+
+(define-method set_search_path
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_set_search_path")
+  (return-type "none")
+  (parameters
+    '("GList*" "search_paths")
+  )
+)
+
+(define-method prepend_search_path
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_prepend_search_path")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "search_path")
+  )
+)
+
+(define-method append_search_path
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_append_search_path")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "search_path")
+  )
+)
+
+(define-method register_category
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_register_category")
+  (return-type "XfceIconThemeCategory")
+  (parameters
+    '("GList*" "icon_names")
+  )
+)
+
+(define-method unregister_category
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_unregister_category")
+  (return-type "none")
+  (parameters
+    '("XfceIconThemeCategory" "category")
+  )
+)
+
+(define-method set_use_svg
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_set_use_svg")
+  (return-type "none")
+  (parameters
+    '("gboolean" "use_svg")
+  )
+)
+
+(define-method get_use_svg
+  (of-object "XfceIconTheme")
+  (c-name "xfce_icon_theme_get_use_svg")
+  (return-type "gboolean")
+)
+
+

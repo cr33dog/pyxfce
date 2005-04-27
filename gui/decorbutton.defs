@@ -1,0 +1,38 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Decorbutton
+  (in-module "Xfce")
+  (parent "GtkMisc")
+  (c-name "XfceDecorbutton")
+  (gtype-id "XFCE_TYPE_DECORBUTTON")
+)
+
+;; Enumerations and flags ...
+
+(define-enum DecorbuttonType
+  (in-module "Xfce")
+  (c-name "XfceDecorbuttonType")
+  (values
+    '("close" "XFCE_DECORBUTTON_CLOSE")
+    '("hide" "XFCE_DECORBUTTON_HIDE")
+  )
+)
+
+
+;; From /usr/include/xfce4/libxfcegui4/xfce_decorbutton.h
+
+(define-function xfce_decorbutton_get_type
+  (c-name "xfce_decorbutton_get_type")
+  (return-type "GtkType")
+)
+
+(define-function xfce_decorbutton_new
+  (c-name "xfce_decorbutton_new")
+  (is-constructor-of "XfceDecorbutton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("XfceDecorbuttonType" "type")
+  )
+)
+
+

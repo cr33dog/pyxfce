@@ -1,0 +1,59 @@
+#!/bin/bash
+
+for s in /usr/include/xfce4/libxfcegui4/*.h
+do
+	t="${s##*/}"
+	
+	t="${t%.h}"
+	
+	if [ "${t#netk-}" = "$t" ]
+	then
+		defs="${t/-/_}.defs"
+		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
+	fi
+done
+rm -f util.defs
+
+for s in xfce_*.defs
+do
+	t="${s#xfce_}"
+	mv "$s" "$t"
+done
+
+#mmv -o 'xfce-*.defs' '#1.defs'
+#rm -f libxfce4util.defs
+#rm -f libxfce4util-config.defs
+#rm -f generics.defs
+#rm -f debug.defs
+
+rm -f libnetk.defs
+rm -f marshal.defs
+rm -f preview_filesel.* # totally weird
+rm -f xinerama* # obsolete
+
+# fix up the enums:
+
+egrep -v '(gtype-id "(XFCE_TYPE_CLOCK_LED_SIZE|XFCE_TYPE_CLOCK_MODE)")' clock.defs >clock.defs.new && mv clock.defs.new clock.defs
+egrep -v '(gtype-id "XFCE_TYPE_DECORBUTTON_TYPE")' decorbutton.defs >decorbutton.defs.new && mv decorbutton.defs.new decorbutton.defs
+egrep -v '(gtype-id "XFCE_TYPE_FILE_CHOOSER_ACTION")' filechooser.defs >filechooser.defs.new && mv filechooser.defs.new filechooser.defs
+egrep -v '(gtype-id "XFCE_TYPE_FILTER_STATUS")' gtktoxevent.defs >gtktoxevent.defs.new && mv gtktoxevent.defs.new gtktoxevent.defs
+egrep -v '(gtype-id "XFCE_TYPE_ICON_THEME_CATEGORY")' icontheme.defs \
+ |sed -e 's;"icon-category-;";' \
+ |grep -v "n-builtin-icon-categories" \
+ >icontheme.defs.new && mv icontheme.defs.new icontheme.defs
+egrep -v '(gtype-id "(SESSION_TYPE_INTERACT_STYLE|SESSION_TYPE_RESTART_STYLE|SESSION_TYPE_CLIENT_STATE)")' \
+  session_client.defs >session_client.defs.new && mv session_client.defs.new session_client.defs
+sed -e 's;(define-function xfce_themed_icon_lookup;(define-function themed_icon_lookup;' \
+  -e 's;(define-function xfce_themed_icon_add_search_path;(define-function themed_icon_add_search_path;' \
+  -e 's;(define-function xfce_set_icon_theme;(define-function themed_icon_set_icon_theme;' \
+  icons.defs >icons.defs.new && mv icons.defs.new icons.defs
+
+sed \
+  -e 's;(define-function xfce_confirm;(define-function confirm;' \
+  dialogs.defs > dialogs.defs.new && mv dialogs.defs.new dialogs.defs
+
+sed \
+  -e 's;(define-function xfce_app_menu_item_set_icon_size;(define-function app_menu_item_set_icon_size;' \
+  -e 's;(define-function xfce_app_menu_item_set_icon_theme_name;(define-function app_menu_item_set_icon_theme_name;' \
+  appmenuitem.defs >appmenuitem.defs.new && mv appmenuitem.defs.new appmenuitem.defs
+  

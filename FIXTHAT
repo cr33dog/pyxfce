@@ -1,0 +1,19 @@
+libxfce4util.h doesnt include xfce-desktopentry.h
+utf8.c:35: Warnung: >>utf8_string_remove_controls<< ist veraltet (deklariert 
+bei /usr/include/xfce4/libxfce4util/utf8.h:38)
+<dannym> xfce_scaledimage.h is not included in libxfcegui4.h
+<dannym> xinerama.h is not included in libxfcegui4.h
+<dannym> preview_file_selection_* has no prefix xfce_*
+<dannym> uhm...btw
+<dannym> const char* netk_window_get_resource_class (NetkWindow *window); 
+<dannym> const char* netk_window_get_resource_class (NetkWindow *window);
+<dannym> twice in netk-window.h
+<dannym> #ifndef XFCE_TYPE_CLOCK
+<dannym> #define XFCE_TYPE_CLOCK (xfce_clock_get_type ())
+<dannym> #endif
+<dannym> should be defensive enough
+<dannym> why the heck are some files still called xfce_ and not xfce- ^^
+<dannym> another workaround...
+<dannym> *puts in*
+desktopentry.c:121: Warnung: implizite Deklaration der Funktion
+remove print_desktop_entry_info from defs

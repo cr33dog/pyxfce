@@ -1,0 +1,87 @@
+Warning: generating old-style constructor for netk_pager_new
+Could not write constructor for NetkPager: No ArgType for 'NetkScreen*'
+Could not write method NetkPager.set_screen: No ArgType for 'NetkScreen*'
+Could not write method NetkPager.set_orientation: No ArgType for 'GtkOrientation'
+Could not write method NetkPager.set_shadow_type: No ArgType for 'GtkShadowType'
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 50.00% (3/6)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write method NetkScreen.get_workspace: No ArgType for 'NetkWorkspace*'
+Could not write method NetkScreen.get_active_workspace: No ArgType for 'NetkWorkspace*'
+Could not write method NetkScreen.get_active_window: No ArgType for 'NetkWindow*'
+Could not write method NetkScreen.get_windows: No ArgType for 'GList*'
+Could not write method NetkScreen.get_windows_stacked: No ArgType for 'GList*'
+***INFO*** The coverage of global functions is 100.00% (3/3)
+***INFO*** The coverage of methods is 70.59% (12/17)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for netk_tasklist_new
+Could not write constructor for NetkTasklist: No ArgType for 'NetkScreen*'
+Could not write method NetkTasklist.set_screen: No ArgType for 'NetkScreen*'
+Could not write method NetkTasklist.get_size_hint_list: No ArgType for 'int*'
+Could not write method NetkTasklist.set_icon_loader: No ArgType for 'NetkLoadIconFunction'
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 75.00% (9/12)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function netk_gtk_window_set_type: No ArgType for 'GtkWindow*'
+Could not write function netk_gtk_window_avoid_input: No ArgType for 'GtkWindow*'
+Could not write function netk_get_cardinal: No ArgType for 'Window'
+Could not write function netk_get_wm_state: No ArgType for 'Window'
+Could not write function netk_get_window: No ArgType for 'Window'
+Could not write function netk_get_pixmap: No ArgType for 'Window'
+Could not write function netk_get_atom: No ArgType for 'Window'
+Could not write function netk_get_text_property: No ArgType for 'Window'
+Could not write function netk_get_utf8_property: No ArgType for 'Window'
+Could not write function netk_get_window_list: No ArgType for 'Window'
+Could not write function netk_get_atom_list: No ArgType for 'Window'
+Could not write function netk_get_cardinal_list: No ArgType for 'Window'
+Could not write function netk_get_utf8_list: No ArgType for 'Window'
+Could not write function netk_close: No ArgType for 'Screen*'
+Could not write function netk_change_state: No ArgType for 'Screen*'
+Could not write function netk_change_workspace: No ArgType for 'Screen*'
+Could not write function netk_activate: No ArgType for 'Screen*'
+Could not write function netk_activate_workspace: No ArgType for 'Screen*'
+Could not write function netk_get_group_leader: No ArgType for 'Window'
+Could not write function netk_get_session_id: No ArgType for 'Window'
+Could not write function netk_get_pid: No ArgType for 'Window'
+Could not write function netk_get_name: No ArgType for 'Window'
+Could not write function netk_get_res_class_utf8: No ArgType for 'Window'
+Could not write function netk_set_desktop_layout: No ArgType for 'Screen*'
+Could not write function netk_get_desktop_margins: No ArgType for 'Screen*'
+Could not write function netk_set_desktop_margins: No ArgType for 'Window'
+***INFO*** The coverage of global functions is 0.00% (0/26)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write method NetkWindow.get_screen: No ArgType for 'NetkScreen*'
+Could not write method NetkWindow.get_application: No ArgType for 'NetkApplication*'
+Could not write method NetkWindow.get_class_group: No ArgType for 'NetkClassGroup*'
+Could not write method NetkWindow.get_workspace: No ArgType for 'NetkWorkspace*'
+Could not write method NetkWindow.move_to_workspace: No ArgType for 'NetkWorkspace*'
+Could not write method NetkWindow.get_icon: No ArgType for 'GdkPixbuf*'
+Could not write method NetkWindow.get_mini_icon: No ArgType for 'GdkPixbuf*'
+Could not write method NetkWindow.get_geometry: No ArgType for 'int*'
+Could not write method NetkWindow.is_visible_on_workspace: No ArgType for 'NetkWorkspace*'
+Could not write method NetkWindow.is_on_workspace: No ArgType for 'NetkWorkspace*'
+Could not write method NetkWindow.is_in_viewport: No ArgType for 'NetkWorkspace*'
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** The coverage of methods is 80.36% (45/56)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 100.00% (9/9)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.

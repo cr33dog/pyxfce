@@ -1,0 +1,92 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ClassGroup
+  (in-module "Netk")
+  (parent "GObject")
+  (c-name "NetkClassGroup")
+  (gtype-id "NETK_TYPE_CLASS_GROUP")
+)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfcegui4/netk-class-group.h
+
+(define-function netk_class_group_get_type
+  (c-name "netk_class_group_get_type")
+  (return-type "GType")
+)
+
+(define-function netk_class_group_get
+  (c-name "netk_class_group_get")
+  (return-type "NetkClassGroup*")
+  (parameters
+    '("const-char*" "res_class")
+  )
+)
+
+(define-method get_windows
+  (of-object "NetkClassGroup")
+  (c-name "netk_class_group_get_windows")
+  (return-type "GList*")
+)
+
+(define-method get_res_class
+  (of-object "NetkClassGroup")
+  (c-name "netk_class_group_get_res_class")
+  (return-type "const-char*")
+)
+
+(define-method get_name
+  (of-object "NetkClassGroup")
+  (c-name "netk_class_group_get_name")
+  (return-type "const-char*")
+)
+
+(define-method get_icon
+  (of-object "NetkClassGroup")
+  (c-name "netk_class_group_get_icon")
+  (return-type "GdkPixbuf*")
+)
+
+(define-method get_mini_icon
+  (of-object "NetkClassGroup")
+  (c-name "netk_class_group_get_mini_icon")
+  (return-type "GdkPixbuf*")
+)
+
+(define-function p_netk_class_group_create
+  (c-name "p_netk_class_group_create")
+  (return-type "NetkClassGroup*")
+  (parameters
+    '("const-char*" "res_class")
+  )
+)
+
+(define-function p_netk_class_group_destroy
+  (c-name "p_netk_class_group_destroy")
+  (return-type "none")
+  (parameters
+    '("NetkClassGroup*" "class_group")
+  )
+)
+
+(define-function p_netk_class_group_add_window
+  (c-name "p_netk_class_group_add_window")
+  (return-type "none")
+  (parameters
+    '("NetkClassGroup*" "class_group")
+    '("NetkWindow*" "window")
+  )
+)
+
+(define-function p_netk_class_group_remove_window
+  (c-name "p_netk_class_group_remove_window")
+  (return-type "none")
+  (parameters
+    '("NetkClassGroup*" "class_group")
+    '("NetkWindow*" "window")
+  )
+)
+
+

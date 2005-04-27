@@ -1,0 +1,15 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object SystemTray
+  (in-module "Xfce")
+  (parent "GObject")
+  (c-name "XfceSystemTray")
+  (gtype-id "XFCE_TYPE_SYSTEM_TRAY")
+)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfcegui4/xfce_systemtray.h
+
+

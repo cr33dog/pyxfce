@@ -1,0 +1,24 @@
+#!/bin/sh
+
+for s in /usr/include/xfce4/libxfce4util/*.h
+do
+	t="${s##*/}"
+	
+	t="${t%.h}"
+
+	defs="${t}.defs"
+	python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
+done
+rm -f util.defs
+
+for s in xfce-*.defs
+do
+	t="${s#xfce-}"
+	mv "$s" "$t"
+done
+
+#mmv -o 'xfce-*.defs' '#1.defs'
+rm -f libxfce4util.defs
+rm -f libxfce4util-config.defs
+rm -f generics.defs
+rm -f debug.defs

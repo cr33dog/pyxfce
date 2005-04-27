@@ -1,0 +1,69 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object DesktopEntry
+  (in-module "Xfce")
+  (parent "GObject")
+  (c-name "XfceDesktopEntry")
+  (gtype-id "XFCE_TYPE_DESKTOP_ENTRY")
+)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfce4util/xfce-desktopentry.h
+
+(define-method parse
+  (of-object "XfceDesktopEntry")
+  (c-name "xfce_desktop_entry_parse")
+  (return-type "gboolean")
+)
+
+(define-method get_file
+  (of-object "XfceDesktopEntry")
+  (c-name "xfce_desktop_entry_get_file")
+  (return-type "const-char*")
+)
+
+(define-function new_from_data
+  (c-name "xfce_desktop_entry_new_from_data")
+  (return-type "XfceDesktopEntry*")
+  (parameters
+    '("const-char*" "data")
+    '("const-char**" "categories")
+    '("int" "num_categories")
+  )
+)
+
+(define-function new
+  (c-name "xfce_desktop_entry_new")
+  (is-constructor-of "XfceDesktopEntry")
+  (return-type "XfceDesktopEntry*")
+  (parameters
+    '("const-char*" "file")
+    '("const-char**" "categories")
+    '("int" "num_categories")
+  )
+)
+
+(define-method get_string
+  (of-object "XfceDesktopEntry")
+  (c-name "xfce_desktop_entry_get_string")
+  (return-type "gboolean")
+  (parameters
+    '("const-char*" "key")
+    '("gboolean" "translated")
+    '("char**" "value")
+  )
+)
+
+(define-method get_int
+  (of-object "XfceDesktopEntry")
+  (c-name "xfce_desktop_entry_get_int")
+  (return-type "gboolean")
+  (parameters
+    '("const-char*" "key")
+    '("int*" "value")
+  )
+)
+
+

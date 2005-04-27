@@ -1,0 +1,39 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Framebox
+  (in-module "Xfce")
+  (parent "GtkFrame")
+  (c-name "XfceFramebox")
+  (gtype-id "XFCE_TYPE_FRAMEBOX")
+)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfcegui4/xfce_framebox.h
+
+(define-function xfce_framebox_get_type
+  (c-name "xfce_framebox_get_type")
+  (return-type "GtkType")
+)
+
+(define-function xfce_framebox_new
+  (c-name "xfce_framebox_new")
+  (is-constructor-of "XfceFramebox")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "text")
+    '("gboolean" "indent")
+  )
+)
+
+(define-method add
+  (of-object "XfceFramebox")
+  (c-name "xfce_framebox_add")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+  )
+)
+
+

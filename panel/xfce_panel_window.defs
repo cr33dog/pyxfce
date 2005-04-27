@@ -1,0 +1,127 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object PanelWindow
+  (in-module "Xfce")
+  (parent "GtkWindow")
+  (c-name "XfcePanelWindow")
+  (gtype-id "XFCE_TYPE_PANEL_WINDOW")
+)
+
+;; Enumerations and flags ...
+
+(define-enum HandleStyle
+  (in-module "Xfce")
+  (c-name "XfceHandleStyle")
+  (gtype-id "XFCE_TYPE_HANDLE_STYLE")
+  (values
+    '("none" "XFCE_HANDLE_STYLE_NONE")
+    '("both" "XFCE_HANDLE_STYLE_BOTH")
+    '("start" "XFCE_HANDLE_STYLE_START")
+    '("end" "XFCE_HANDLE_STYLE_END")
+  )
+)
+
+
+;; From /usr/include/xfce4/panel/xfce-panel-window.h
+
+(define-function xfce_panel_window_get_type
+  (c-name "xfce_panel_window_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_panel_window_new
+  (c-name "xfce_panel_window_new")
+  (is-constructor-of "XfcePanelWindow")
+  (return-type "GtkWidget*")
+)
+
+(define-method get_orientation
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_get_orientation")
+  (return-type "GtkOrientation")
+)
+
+(define-method set_orientation
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_set_orientation")
+  (return-type "none")
+  (parameters
+    '("GtkOrientation" "orientation")
+  )
+)
+
+(define-method get_handle_style
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_get_handle_style")
+  (return-type "XfceHandleStyle")
+)
+
+(define-method set_handle_style
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_set_handle_style")
+  (return-type "none")
+  (parameters
+    '("XfceHandleStyle" "style")
+  )
+)
+
+(define-method get_show_border
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_get_show_border")
+  (return-type "none")
+  (parameters
+    '("gboolean*" "top")
+    '("gboolean*" "bottom")
+    '("gboolean*" "left")
+    '("gboolean*" "right")
+  )
+)
+
+(define-method set_show_border
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_set_show_border")
+  (return-type "none")
+  (parameters
+    '("gboolean" "top")
+    '("gboolean" "bottom")
+    '("gboolean" "left")
+    '("gboolean" "right")
+  )
+)
+
+(define-method set_move_function
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_set_move_function")
+  (return-type "none")
+  (parameters
+    '("XfcePanelWindowMoveFunc" "function")
+    '("gpointer" "data")
+  )
+)
+
+(define-method set_resize_function
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_set_resize_function")
+  (return-type "none")
+  (parameters
+    '("XfcePanelWindowResizeFunc" "function")
+    '("gpointer" "data")
+  )
+)
+
+(define-method get_moveable
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_get_moveable")
+  (return-type "gboolean")
+)
+
+(define-method set_moveable
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_set_moveable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "moveable")
+  )
+)
+
+

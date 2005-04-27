@@ -1,0 +1,173 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Clock
+  (in-module "Xfce")
+  (parent "GtkWidget")
+  (c-name "XfceClock")
+  (gtype-id "XFCE_TYPE_CLOCK")
+)
+
+;; Enumerations and flags ...
+
+(define-enum ClockMode
+  (in-module "Xfce")
+  (c-name "XfceClockMode")
+  (values
+    '("analog" "XFCE_CLOCK_ANALOG")
+    '("digital" "XFCE_CLOCK_DIGITAL")
+    '("leds" "XFCE_CLOCK_LEDS")
+  )
+)
+
+(define-enum ClockLedSize
+  (in-module "Xfce")
+  (c-name "XfceClockLedSize")
+  (values
+    '("small" "DIGIT_SMALL")
+    '("medium" "DIGIT_MEDIUM")
+    '("large" "DIGIT_LARGE")
+    '("huge" "DIGIT_HUGE")
+  )
+)
+
+
+;; From /usr/include/xfce4/libxfcegui4/xfce_clock.h
+
+(define-function xfce_clock_get_type
+  (c-name "xfce_clock_get_type")
+  (return-type "GtkType")
+)
+
+(define-function xfce_clock_new
+  (c-name "xfce_clock_new")
+  (is-constructor-of "XfceClock")
+  (return-type "GtkWidget*")
+)
+
+(define-method show_ampm
+  (of-object "XfceClock")
+  (c-name "xfce_clock_show_ampm")
+  (return-type "none")
+  (parameters
+    '("gboolean" "show")
+  )
+)
+
+(define-method ampm_toggle
+  (of-object "XfceClock")
+  (c-name "xfce_clock_ampm_toggle")
+  (return-type "none")
+)
+
+(define-method ampm_shown
+  (of-object "XfceClock")
+  (c-name "xfce_clock_ampm_shown")
+  (return-type "gboolean")
+)
+
+(define-method show_secs
+  (of-object "XfceClock")
+  (c-name "xfce_clock_show_secs")
+  (return-type "none")
+  (parameters
+    '("gboolean" "show")
+  )
+)
+
+(define-method secs_toggle
+  (of-object "XfceClock")
+  (c-name "xfce_clock_secs_toggle")
+  (return-type "none")
+)
+
+(define-method secs_shown
+  (of-object "XfceClock")
+  (c-name "xfce_clock_secs_shown")
+  (return-type "gboolean")
+)
+
+(define-method show_military
+  (of-object "XfceClock")
+  (c-name "xfce_clock_show_military")
+  (return-type "none")
+  (parameters
+    '("gboolean" "show")
+  )
+)
+
+(define-method military_toggle
+  (of-object "XfceClock")
+  (c-name "xfce_clock_military_toggle")
+  (return-type "none")
+)
+
+(define-method military_shown
+  (of-object "XfceClock")
+  (c-name "xfce_clock_military_shown")
+  (return-type "gboolean")
+)
+
+(define-method set_interval
+  (of-object "XfceClock")
+  (c-name "xfce_clock_set_interval")
+  (return-type "none")
+  (parameters
+    '("guint" "interval")
+  )
+)
+
+(define-method get_interval
+  (of-object "XfceClock")
+  (c-name "xfce_clock_get_interval")
+  (return-type "guint")
+)
+
+(define-method set_led_size
+  (of-object "XfceClock")
+  (c-name "xfce_clock_set_led_size")
+  (return-type "none")
+  (parameters
+    '("XfceClockLedSize" "size")
+  )
+)
+
+(define-method get_led_size
+  (of-object "XfceClock")
+  (c-name "xfce_clock_get_led_size")
+  (return-type "XfceClockLedSize")
+)
+
+(define-method suspend
+  (of-object "XfceClock")
+  (c-name "xfce_clock_suspend")
+  (return-type "none")
+)
+
+(define-method resume
+  (of-object "XfceClock")
+  (c-name "xfce_clock_resume")
+  (return-type "none")
+)
+
+(define-method set_mode
+  (of-object "XfceClock")
+  (c-name "xfce_clock_set_mode")
+  (return-type "none")
+  (parameters
+    '("XfceClockMode" "mode")
+  )
+)
+
+(define-method toggle_mode
+  (of-object "XfceClock")
+  (c-name "xfce_clock_toggle_mode")
+  (return-type "none")
+)
+
+(define-method get_mode
+  (of-object "XfceClock")
+  (c-name "xfce_clock_get_mode")
+  (return-type "XfceClockMode")
+)
+
+

@@ -1,0 +1,74 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfce4util/i18n.h
+
+(define-function strip_context
+  (c-name "xfce_strip_context")
+  (return-type "const-gchar*")
+  (parameters
+    '("const-gchar*" "msgid")
+    '("const-gchar*" "msgval")
+  )
+)
+
+(define-function localized_file
+  (c-name "xfce_get_file_localized")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-function localized_dir
+  (c-name "xfce_get_dir_localized")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "directory")
+  )
+)
+
+(define-function localized_file_r
+  (c-name "xfce_get_file_localized_r")
+  (return-type "gchar*")
+  (parameters
+    '("gchar*" "buffer")
+    '("gsize" "length")
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-function localized_dir_r
+  (c-name "xfce_get_dir_localized_r")
+  (return-type "gchar*")
+  (parameters
+    '("gchar*" "buffer")
+    '("gsize" "length")
+    '("const-gchar*" "directory")
+  )
+)
+
+(define-function localized_path
+  (c-name "xfce_get_path_localized")
+  (return-type "gchar*")
+  (parameters
+    '("gchar*" "dst")
+    '("gsize" "size")
+    '("const-gchar*" "paths")
+    '("const-gchar*" "filename")
+    '("GFileTest" "test")
+  )
+)
+
+(define-function locale_match
+  (c-name "xfce_locale_match")
+  (return-type "guint")
+  (parameters
+    '("const-gchar*" "locale1")
+    '("const-gchar*" "locale2")
+  )
+)
+
+

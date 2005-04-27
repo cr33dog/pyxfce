@@ -1,0 +1,28 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfcegui4/libxfcegui4.h>
+
+#ifndef XFCE_TYPE_DECORBUTTON
+#define XFCE_TYPE_DECORBUTTON (xfce_decorbutton_get_type ())
+#endif
+
+%%
+include
+%%
+modulename clock
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.Misc as PyGtkMisc_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%

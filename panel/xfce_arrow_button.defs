@@ -1,0 +1,44 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ArrowButton
+  (in-module "Xfce")
+  (parent "GtkToggleButton")
+  (c-name "XfceArrowButton")
+  (gtype-id "XFCE_TYPE_ARROW_BUTTON")
+)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/panel/xfce-arrow-button.h
+
+(define-function xfce_arrow_button_get_type
+  (c-name "xfce_arrow_button_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_arrow_button_new
+  (c-name "xfce_arrow_button_new")
+  (is-constructor-of "XfceArrowButton")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkArrowType" "type")
+  )
+)
+
+(define-method get_arrow_type
+  (of-object "XfceArrowButton")
+  (c-name "xfce_arrow_button_get_arrow_type")
+  (return-type "GtkArrowType")
+)
+
+(define-method set_arrow_type
+  (of-object "XfceArrowButton")
+  (c-name "xfce_arrow_button_set_arrow_type")
+  (return-type "none")
+  (parameters
+    '("GtkArrowType" "type")
+  )
+)
+
+

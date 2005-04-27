@@ -1,0 +1,32 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/include/xfce4/libxfce4util/xfce-kiosk.h
+
+(define-function new
+  (c-name "xfce_kiosk_new")
+  (is-constructor-of "XfceKiosk")
+  (return-type "XfceKiosk*")
+  (parameters
+    '("const-gchar*" "module")
+  )
+)
+
+(define-method query
+  (of-object "XfceKiosk")
+  (c-name "xfce_kiosk_query")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "capability")
+  )
+)
+
+(define-method free
+  (of-object "XfceKiosk")
+  (c-name "xfce_kiosk_free")
+  (return-type "none")
+)
+
+
