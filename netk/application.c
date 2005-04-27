@@ -32,6 +32,41 @@ _wrap_netk_application_get_xid(PyGObject *self)
     return PyLong_FromUnsignedLong(ret);
 }
 
+#line 25 "application.override"
+static PyObject *
+_wrap_netk_application_get_windows(PyGObject *self)
+{
+    GList *icon_list = NULL;
+    PyObject *pywindow;
+
+    if ((icon_list = netk_application_get_windows(NETK_APPLICATION(self->obj)))) {
+        PyObject *py_list;
+        GList *tmp;
+
+        if ((py_list = PyList_New(0)) == NULL) {
+            g_list_free(icon_list);
+            return NULL;
+        }
+        for (tmp = icon_list; tmp != NULL; tmp = tmp->next) {
+            pywindow = pygobject_new(G_OBJECT(tmp->data));
+
+            if (pywindow == NULL) {
+                g_list_free(icon_list);
+                Py_DECREF(py_list);
+                return NULL;
+            }
+            PyList_Append(py_list, pywindow);
+            Py_DECREF(pywindow);
+        }
+        g_list_free(icon_list);
+        return py_list;
+    }
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+#line 68 "application.c"
+
+
 static PyObject *
 _wrap_netk_application_get_n_windows(PyGObject *self)
 {
@@ -106,6 +141,7 @@ _wrap_netk_application_get_icon_is_fallback(PyGObject *self)
 
 static PyMethodDef _PyNetkApplication_methods[] = {
     { "get_xid", (PyCFunction)_wrap_netk_application_get_xid, METH_NOARGS },
+    { "get_windows", (PyCFunction)_wrap_netk_application_get_windows, METH_NOARGS },
     { "get_n_windows", (PyCFunction)_wrap_netk_application_get_n_windows, METH_NOARGS },
     { "get_name", (PyCFunction)_wrap_netk_application_get_name, METH_NOARGS },
     { "get_icon_name", (PyCFunction)_wrap_netk_application_get_icon_name, METH_NOARGS },
@@ -208,6 +244,6 @@ pyapplication_register_classes(PyObject *d)
     }
 
 
-#line 212 "application.c"
+#line 248 "application.c"
     pygobject_register_class(d, "NetkApplication", NETK_TYPE_APPLICATION, &PyNetkApplication_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
