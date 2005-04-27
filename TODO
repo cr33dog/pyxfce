@@ -19,3 +19,5 @@ util: strip xfce_
 util: test desktopentry
 
 fix mcs stuff
+
+mask exec_command and friends ?
