@@ -41,10 +41,75 @@ Could not write function void: No ArgType for '*'
 Could not write function void: No ArgType for '*'
 Could not write function mcs_client_show: No ArgType for 'Display*'
 Could not write function mcs_client_check_manager: No ArgType for 'Display*'
-mcs_client.c: In function `pymcs_client_add_constants':
-mcs_client.c:35: Fehler: >>MCS_TYPE_ACTION<< nicht deklariert (erste Benutzung in dieser Funktion)
-mcs_client.c:35: Fehler: (Jeder nicht deklarierte Bezeichner wird nur einmal aufgef?hrt
-mcs_client.c:35: Fehler: f?r jede Funktion in der er auftritt.)
-make[2]: *** [_mcs_la-mcs_client.lo] Fehler 1
+Could not write function mcs_manager_check_running: No ArgType for 'Display*'
+Could not write function mcs_list_insert: No ArgType for 'McsList**'
+Could not write function mcs_list_delete: No ArgType for 'McsList**'
+Could not write method NetkApplication.get_windows: No ArgType for 'GList*'
+Warning: generating old-style constructor for netk_pager_new
+Warning: generating old-style constructor for netk_tasklist_new
+Could not write method NetkTasklist.get_size_hint_list: No ArgType for 'int*'
+Could not write method NetkTasklist.set_icon_loader: No ArgType for 'NetkLoadIconFunction'
+Could not write function netk_get_cardinal: No ArgType for 'Window'
+Could not write function netk_get_wm_state: No ArgType for 'Window'
+Could not write function netk_get_window: No ArgType for 'Window'
+Could not write function netk_get_pixmap: No ArgType for 'Window'
+Could not write function netk_get_atom: No ArgType for 'Window'
+Could not write function netk_get_text_property: No ArgType for 'Window'
+Could not write function netk_get_utf8_property: No ArgType for 'Window'
+Could not write function netk_get_window_list: No ArgType for 'Window'
+Could not write function netk_get_atom_list: No ArgType for 'Window'
+Could not write function netk_get_cardinal_list: No ArgType for 'Window'
+Could not write function netk_get_utf8_list: No ArgType for 'Window'
+Could not write function netk_close: No ArgType for 'Screen*'
+Could not write function netk_change_state: No ArgType for 'Screen*'
+Could not write function netk_change_workspace: No ArgType for 'Screen*'
+Could not write function netk_activate: No ArgType for 'Screen*'
+Could not write function netk_activate_workspace: No ArgType for 'Screen*'
+Could not write function netk_get_group_leader: No ArgType for 'Window'
+Could not write function netk_get_session_id: No ArgType for 'Window'
+Could not write function netk_get_pid: No ArgType for 'Window'
+Could not write function netk_get_name: No ArgType for 'Window'
+Could not write function netk_get_res_class_utf8: No ArgType for 'Window'
+Could not write function netk_set_desktop_layout: No ArgType for 'Screen*'
+Could not write function netk_get_desktop_margins: No ArgType for 'Screen*'
+Could not write function netk_set_desktop_margins: No ArgType for 'Window'
+Could not write method NetkWindow.get_geometry: No ArgType for 'int*'
+Could not write function get_pixbuf_by_id: No ArgType for 'PanelIcon'
+Could not write function get_panel_pixbuf: No ArgType for 'GdkPixbuf*'
+Could not write function get_pixbuf_from_file: No ArgType for 'GdkPixbuf*'
+Could not write function get_scaled_pixbuf: No ArgType for 'GdkPixbuf*'
+Could not write function get_themed_pixbuf: No ArgType for 'GdkPixbuf*'
+Could not write function select_file_with_preview: No ArgType for 'GtkWidget*'
+Warning: generating old-style constructor for xfce_desktop_entry_new
+Could not write constructor for XfceDesktopEntry: No ArgType for 'const-char**'
+Could not write method XfceDesktopEntry.get_string: No ArgType for 'char**'
+Could not write method XfceDesktopEntry.get_int: No ArgType for 'int*'
+Could not write function xfce_desktop_entry_new_from_data: No ArgType for 'const-char**'
+desktopentry.c: In function `_wrap_print_desktop_entry_info':
+desktopentry.c:121: Warnung: implizite Deklaration der Funktion >>print_desktop_entry_info<<
+Could not write function xfce_mkdirhier: No ArgType for 'unsigned-long'
+Could not write function xfce_get_path_localized: No ArgType for 'GFileTest'
+Could not write function xfce_get_homefile_r: varargs functions not supported
+Could not write function xfce_get_userfile_r: varargs functions not supported
+Could not write function xfce_expand_variables: No ArgType for 'gchar**'
+Could not write function xfce_rc_simple_open: No ArgType for 'XfceRc*'
+Could not write function xfce_rc_config_open: No ArgType for 'XfceResourceType'
+Could not write function xfce_resource_dirs: No ArgType for 'gchar**'
+Could not write function xfce_resource_lookup_all: No ArgType for 'gchar**'
+Could not write function xfce_resource_match: No ArgType for 'gchar**'
+Could not write function xfce_resource_match_custom: No ArgType for 'XfceMatchFunc'
+resource.c: In function `_wrap_xfce_resource_lookup':
+resource.c:36: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
+resource.c:36: Fehler: (Jeder nicht deklarierte Bezeichner wird nur einmal aufgef?hrt
+resource.c:36: Fehler: f?r jede Funktion in der er auftritt.)
+resource.c: In function `_wrap_xfce_resource_push_path':
+resource.c:58: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
+resource.c: In function `_wrap_xfce_resource_pop_path':
+resource.c:74: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
+resource.c: In function `_wrap_xfce_resource_save_location':
+resource.c:93: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
+resource.c: In function `pyresource_add_constants':
+resource.c:119: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
+make[2]: *** [_util_la-resource.lo] Fehler 1
 make[1]: *** [all-recursive] Fehler 1
 make: *** [all] Fehler 2

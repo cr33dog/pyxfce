@@ -110,7 +110,21 @@ PyTypeObject PyXfceDesktopEntry_Type = {
 
 /* ----------- functions ----------- */
 
+static PyObject *
+_wrap_print_desktop_entry_info(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "desktop_entry", NULL };
+    PyGObject *desktop_entry;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:print_desktop_entry_info", kwlist, &PyXfceDesktopEntry_Type, &desktop_entry))
+        return NULL;
+    print_desktop_entry_info(XFCE_DESKTOP_ENTRY(desktop_entry->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
 PyMethodDef pydesktopentry_functions[] = {
+    { "print_desktop_entry_info", (PyCFunction)_wrap_print_desktop_entry_info, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -136,6 +150,6 @@ pydesktopentry_register_classes(PyObject *d)
     }
 
 
-#line 140 "desktopentry.c"
+#line 154 "desktopentry.c"
     pygobject_register_class(d, "XfceDesktopEntry", XFCE_TYPE_DESKTOP_ENTRY, &PyXfceDesktopEntry_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

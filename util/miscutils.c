@@ -59,9 +59,9 @@ _wrap_xfce_get_userdir(PyObject *self)
 }
 
 PyMethodDef pymiscutils_functions[] = {
-    { "version_string", (PyCFunction)_wrap_xfce_version_string, METH_NOARGS },
-    { "get_homedir", (PyCFunction)_wrap_xfce_get_homedir, METH_NOARGS },
-    { "get_userdir", (PyCFunction)_wrap_xfce_get_userdir, METH_NOARGS },
+    { "xfce_version_string", (PyCFunction)_wrap_xfce_version_string, METH_NOARGS },
+    { "xfce_get_homedir", (PyCFunction)_wrap_xfce_get_homedir, METH_NOARGS },
+    { "xfce_get_userdir", (PyCFunction)_wrap_xfce_get_userdir, METH_NOARGS },
     { NULL, NULL, 0 }
 };
 
