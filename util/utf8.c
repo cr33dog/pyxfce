@@ -30,7 +30,7 @@ _wrap_xfce_utf8_remove_controls(PyObject *self, PyObject *args, PyObject *kwargs
     int max_len;
     gchar *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:xfce_utf8_remove_controls", kwlist, &str, &max_len, &end))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:utf8_remove_controls", kwlist, &str, &max_len, &end))
         return NULL;
     ret = xfce_utf8_remove_controls(str, max_len, end);
     if (ret) {
@@ -43,7 +43,7 @@ _wrap_xfce_utf8_remove_controls(PyObject *self, PyObject *args, PyObject *kwargs
 }
 
 PyMethodDef pyutf8_functions[] = {
-    { "xfce_utf8_remove_controls", (PyCFunction)_wrap_xfce_utf8_remove_controls, METH_VARARGS|METH_KEYWORDS },
+    { "utf8_remove_controls", (PyCFunction)_wrap_xfce_utf8_remove_controls, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

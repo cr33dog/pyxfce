@@ -31,7 +31,7 @@ _wrap_xfce_resource_lookup(PyObject *self, PyObject *args, PyObject *kwargs)
     gchar *ret;
     XfceResourceType type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Os:xfce_resource_lookup", kwlist, &py_type, &filename))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Os:resource_lookup", kwlist, &py_type, &filename))
         return NULL;
     if (pyg_enum_get_value(G_TYPE_NONE, py_type, (gint *)&type))
         return NULL;
@@ -53,7 +53,7 @@ _wrap_xfce_resource_push_path(PyObject *self, PyObject *args, PyObject *kwargs)
     char *path;
     XfceResourceType type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Os:xfce_resource_push_path", kwlist, &py_type, &path))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Os:resource_push_path", kwlist, &py_type, &path))
         return NULL;
     if (pyg_enum_get_value(G_TYPE_NONE, py_type, (gint *)&type))
         return NULL;
@@ -69,7 +69,7 @@ _wrap_xfce_resource_pop_path(PyObject *self, PyObject *args, PyObject *kwargs)
     PyObject *py_type = NULL;
     XfceResourceType type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:xfce_resource_pop_path", kwlist, &py_type))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:resource_pop_path", kwlist, &py_type))
         return NULL;
     if (pyg_enum_get_value(G_TYPE_NONE, py_type, (gint *)&type))
         return NULL;
@@ -88,7 +88,7 @@ _wrap_xfce_resource_save_location(PyObject *self, PyObject *args, PyObject *kwar
     gchar *ret;
     XfceResourceType type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Osi:xfce_resource_save_location", kwlist, &py_type, &relpath, &create))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Osi:resource_save_location", kwlist, &py_type, &relpath, &create))
         return NULL;
     if (pyg_enum_get_value(G_TYPE_NONE, py_type, (gint *)&type))
         return NULL;
@@ -103,10 +103,10 @@ _wrap_xfce_resource_save_location(PyObject *self, PyObject *args, PyObject *kwar
 }
 
 PyMethodDef pyresource_functions[] = {
-    { "xfce_resource_lookup", (PyCFunction)_wrap_xfce_resource_lookup, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_resource_push_path", (PyCFunction)_wrap_xfce_resource_push_path, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_resource_pop_path", (PyCFunction)_wrap_xfce_resource_pop_path, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_resource_save_location", (PyCFunction)_wrap_xfce_resource_save_location, METH_VARARGS|METH_KEYWORDS },
+    { "resource_lookup", (PyCFunction)_wrap_xfce_resource_lookup, METH_VARARGS|METH_KEYWORDS },
+    { "resource_push_path", (PyCFunction)_wrap_xfce_resource_push_path, METH_VARARGS|METH_KEYWORDS },
+    { "resource_pop_path", (PyCFunction)_wrap_xfce_resource_pop_path, METH_VARARGS|METH_KEYWORDS },
+    { "resource_save_location", (PyCFunction)_wrap_xfce_resource_save_location, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

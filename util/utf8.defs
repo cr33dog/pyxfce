@@ -15,7 +15,7 @@
   )
 )
 
-(define-function xfce_utf8_remove_controls
+(define-function utf8_remove_controls
   (c-name "xfce_utf8_remove_controls")
   (return-type "gchar*")
   (parameters

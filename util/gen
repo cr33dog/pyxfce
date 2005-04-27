@@ -25,4 +25,9 @@ rm -f debug.defs
 
 cat resource.defs |grep -v '(gtype-id "XFCE_TYPE_RESOURCE_TYPE")' >resource.defs.new && mv resource.defs.new resource.defs
 
-  
+for s in *.defs
+do
+  sed -e 's;(define-function xfce_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
+done
+    
+    

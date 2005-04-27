@@ -5,7 +5,7 @@
 
 ;; From /usr/include/xfce4/libxfce4util/i18n.h
 
-(define-function xfce_strip_context
+(define-function strip_context
   (c-name "xfce_strip_context")
   (return-type "const-gchar*")
   (parameters
@@ -14,7 +14,7 @@
   )
 )
 
-(define-function xfce_get_file_localized
+(define-function get_file_localized
   (c-name "xfce_get_file_localized")
   (return-type "gchar*")
   (parameters
@@ -22,7 +22,7 @@
   )
 )
 
-(define-function xfce_get_dir_localized
+(define-function get_dir_localized
   (c-name "xfce_get_dir_localized")
   (return-type "gchar*")
   (parameters
@@ -30,7 +30,7 @@
   )
 )
 
-(define-function xfce_get_file_localized_r
+(define-function get_file_localized_r
   (c-name "xfce_get_file_localized_r")
   (return-type "gchar*")
   (parameters
@@ -40,7 +40,7 @@
   )
 )
 
-(define-function xfce_get_dir_localized_r
+(define-function get_dir_localized_r
   (c-name "xfce_get_dir_localized_r")
   (return-type "gchar*")
   (parameters
@@ -50,7 +50,7 @@
   )
 )
 
-(define-function xfce_get_path_localized
+(define-function get_path_localized
   (c-name "xfce_get_path_localized")
   (return-type "gchar*")
   (parameters
@@ -62,7 +62,7 @@
   )
 )
 
-(define-function xfce_locale_match
+(define-function locale_match
   (c-name "xfce_locale_match")
   (return-type "guint")
   (parameters

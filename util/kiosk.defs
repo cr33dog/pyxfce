@@ -5,7 +5,7 @@
 
 ;; From /usr/include/xfce4/libxfce4util/xfce-kiosk.h
 
-(define-function xfce_kiosk_new
+(define-function kiosk_new
   (c-name "xfce_kiosk_new")
   (is-constructor-of "XfceKiosk")
   (return-type "XfceKiosk*")

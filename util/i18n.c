@@ -29,7 +29,7 @@ _wrap_xfce_strip_context(PyObject *self, PyObject *args, PyObject *kwargs)
     char *msgid, *msgval;
     const gchar *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:xfce_strip_context", kwlist, &msgid, &msgval))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:strip_context", kwlist, &msgid, &msgval))
         return NULL;
     ret = xfce_strip_context(msgid, msgval);
     if (ret)
@@ -45,7 +45,7 @@ _wrap_xfce_get_file_localized(PyObject *self, PyObject *args, PyObject *kwargs)
     char *filename;
     gchar *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_get_file_localized", kwlist, &filename))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:get_file_localized", kwlist, &filename))
         return NULL;
     ret = xfce_get_file_localized(filename);
     if (ret) {
@@ -64,7 +64,7 @@ _wrap_xfce_get_dir_localized(PyObject *self, PyObject *args, PyObject *kwargs)
     char *directory;
     gchar *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_get_dir_localized", kwlist, &directory))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:get_dir_localized", kwlist, &directory))
         return NULL;
     ret = xfce_get_dir_localized(directory);
     if (ret) {
@@ -84,7 +84,7 @@ _wrap_xfce_get_file_localized_r(PyObject *self, PyObject *args, PyObject *kwargs
     int length;
     gchar *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:xfce_get_file_localized_r", kwlist, &buffer, &length, &filename))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:get_file_localized_r", kwlist, &buffer, &length, &filename))
         return NULL;
     ret = xfce_get_file_localized_r(buffer, length, filename);
     if (ret) {
@@ -104,7 +104,7 @@ _wrap_xfce_get_dir_localized_r(PyObject *self, PyObject *args, PyObject *kwargs)
     int length;
     gchar *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:xfce_get_dir_localized_r", kwlist, &buffer, &length, &directory))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:get_dir_localized_r", kwlist, &buffer, &length, &directory))
         return NULL;
     ret = xfce_get_dir_localized_r(buffer, length, directory);
     if (ret) {
@@ -123,19 +123,19 @@ _wrap_xfce_locale_match(PyObject *self, PyObject *args, PyObject *kwargs)
     char *locale1, *locale2;
     int ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:xfce_locale_match", kwlist, &locale1, &locale2))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:locale_match", kwlist, &locale1, &locale2))
         return NULL;
     ret = xfce_locale_match(locale1, locale2);
     return PyInt_FromLong(ret);
 }
 
 PyMethodDef pyi18n_functions[] = {
-    { "xfce_strip_context", (PyCFunction)_wrap_xfce_strip_context, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_get_file_localized", (PyCFunction)_wrap_xfce_get_file_localized, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_get_dir_localized", (PyCFunction)_wrap_xfce_get_dir_localized, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_get_file_localized_r", (PyCFunction)_wrap_xfce_get_file_localized_r, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_get_dir_localized_r", (PyCFunction)_wrap_xfce_get_dir_localized_r, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_locale_match", (PyCFunction)_wrap_xfce_locale_match, METH_VARARGS|METH_KEYWORDS },
+    { "strip_context", (PyCFunction)_wrap_xfce_strip_context, METH_VARARGS|METH_KEYWORDS },
+    { "get_file_localized", (PyCFunction)_wrap_xfce_get_file_localized, METH_VARARGS|METH_KEYWORDS },
+    { "get_dir_localized", (PyCFunction)_wrap_xfce_get_dir_localized, METH_VARARGS|METH_KEYWORDS },
+    { "get_file_localized_r", (PyCFunction)_wrap_xfce_get_file_localized_r, METH_VARARGS|METH_KEYWORDS },
+    { "get_dir_localized_r", (PyCFunction)_wrap_xfce_get_dir_localized_r, METH_VARARGS|METH_KEYWORDS },
+    { "locale_match", (PyCFunction)_wrap_xfce_locale_match, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
