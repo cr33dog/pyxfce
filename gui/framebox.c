@@ -13,7 +13,11 @@
 #define XFCE_TYPE_FRAMEBOX (xfce_framebox_get_type ())
 #endif
 
-#line 17 "framebox.c"
+extern PyTypeObject PyGtkWidget_Type;
+extern PyTypeObject PyGtkFrame_Type;
+extern PyTypeObject PyGObject_Type;
+
+#line 21 "framebox.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -21,6 +25,8 @@ static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
 static PyTypeObject *_PyGtkFrame_Type;
 #define PyGtkFrame_Type (*_PyGtkFrame_Type)
+static PyTypeObject *_PyGtkWidget_Type;
+#define PyGtkWidget_Type (*_PyGtkWidget_Type)
 
 
 /* ---------- forward type declarations ---------- */
@@ -47,6 +53,24 @@ _wrap_xfce_framebox_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
+
+static PyObject *
+_wrap_xfce_framebox_add(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "widget", NULL };
+    PyGObject *widget;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceFramebox.add", kwlist, &PyGtkWidget_Type, &widget))
+        return NULL;
+    xfce_framebox_add(XFCE_FRAMEBOX(self->obj), GTK_WIDGET(widget->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyMethodDef _PyXfceFramebox_methods[] = {
+    { "add", (PyCFunction)_wrap_xfce_framebox_add, METH_VARARGS|METH_KEYWORDS },
+    { NULL, NULL, 0 }
+};
 
 PyTypeObject PyXfceFramebox_Type = {
     PyObject_HEAD_INIT(NULL)
@@ -78,7 +102,7 @@ PyTypeObject PyXfceFramebox_Type = {
     offsetof(PyGObject, weakreflist),             /* tp_weaklistoffset */
     (getiterfunc)0,		/* tp_iter */
     (iternextfunc)0,	/* tp_iternext */
-    NULL,			/* tp_methods */
+    _PyXfceFramebox_methods,			/* tp_methods */
     0,					/* tp_members */
     0,		       	/* tp_getset */
     NULL,				/* tp_base */
@@ -130,6 +154,12 @@ pyframebox_register_classes(PyObject *d)
                 "cannot import name Frame from gtk");
             return;
         }
+        _PyGtkWidget_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Widget");
+        if (_PyGtkWidget_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Widget from gtk");
+            return;
+        }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gtk");
@@ -137,6 +167,6 @@ pyframebox_register_classes(PyObject *d)
     }
 
 
-#line 141 "framebox.c"
+#line 171 "framebox.c"
     pygobject_register_class(d, "XfceFramebox", XFCE_TYPE_FRAMEBOX, &PyXfceFramebox_Type, Py_BuildValue("(O)", &PyGtkFrame_Type));
 }

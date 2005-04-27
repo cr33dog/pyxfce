@@ -11,6 +11,10 @@ headers
 #define XFCE_TYPE_FRAMEBOX (xfce_framebox_get_type ())
 #endif
 
+extern PyTypeObject PyGtkWidget_Type;
+extern PyTypeObject PyGtkFrame_Type;
+extern PyTypeObject PyGObject_Type;
+
 %%
 include
 %%
@@ -18,6 +22,7 @@ modulename framebox
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.Frame as PyGtkFrame_Type
+import gtk.Widget as PyGtkWidget_Type
 %%
 ignore
 %%

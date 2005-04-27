@@ -32,13 +32,24 @@ PyTypeObject PyXfceDecortoggle_Type;
 /* ----------- XfceDecortoggle ----------- */
 
 static int
-pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
+_wrap_xfce_decortoggle_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    gchar buf[512];
+    static char *kwlist[] = { "arrow_type", NULL };
+    PyObject *py_arrow_type = NULL;
+    GtkArrowType arrow_type;
 
-    g_snprintf(buf, sizeof(buf), "%s is an abstract widget", self->ob_type->tp_name);
-    PyErr_SetString(PyExc_NotImplementedError, buf);
-    return -1;
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:XfceDecortoggle.__init__", kwlist, &py_arrow_type))
+        return -1;
+    if (pyg_enum_get_value(GTK_TYPE_ARROW_TYPE, py_arrow_type, (gint *)&arrow_type))
+        return -1;
+    self->obj = (GObject *)xfce_decortoggle_new(arrow_type);
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceDecortoggle object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
 }
 
 static PyObject *
@@ -62,9 +73,36 @@ _wrap_xfce_decortoggle_set_active(PyGObject *self, PyObject *args, PyObject *kwa
     return Py_None;
 }
 
+static PyObject *
+_wrap_xfce_decortoggle_set_arrow_type(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "arrow_type", NULL };
+    PyObject *py_arrow_type = NULL;
+    GtkArrowType arrow_type;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:XfceDecortoggle.set_arrow_type", kwlist, &py_arrow_type))
+        return NULL;
+    if (pyg_enum_get_value(GTK_TYPE_ARROW_TYPE, py_arrow_type, (gint *)&arrow_type))
+        return NULL;
+    xfce_decortoggle_set_arrow_type(XFCE_DECORTOGGLE(self->obj), arrow_type);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_decortoggle_get_arrow_type(PyGObject *self)
+{
+    gint ret;
+
+    ret = xfce_decortoggle_get_arrow_type(XFCE_DECORTOGGLE(self->obj));
+    return pyg_enum_from_gtype(GTK_TYPE_ARROW_TYPE, ret);
+}
+
 static PyMethodDef _PyXfceDecortoggle_methods[] = {
     { "toggled", (PyCFunction)_wrap_xfce_decortoggle_toggled, METH_NOARGS },
     { "set_active", (PyCFunction)_wrap_xfce_decortoggle_set_active, METH_VARARGS|METH_KEYWORDS },
+    { "set_arrow_type", (PyCFunction)_wrap_xfce_decortoggle_set_arrow_type, METH_VARARGS|METH_KEYWORDS },
+    { "get_arrow_type", (PyCFunction)_wrap_xfce_decortoggle_get_arrow_type, METH_NOARGS },
     { NULL, NULL, 0 }
 };
 
@@ -106,7 +144,7 @@ PyTypeObject PyXfceDecortoggle_Type = {
     (descrgetfunc)0,	/* tp_descr_get */
     (descrsetfunc)0,	/* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)pygobject_no_constructor,		/* tp_init */
+    (initproc)_wrap_xfce_decortoggle_new,		/* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -163,6 +201,6 @@ pydecortoggle_register_classes(PyObject *d)
     }
 
 
-#line 167 "decortoggle.c"
+#line 205 "decortoggle.c"
     pygobject_register_class(d, "XfceDecortoggle", XFCE_TYPE_DECORTOGGLE, &PyXfceDecortoggle_Type, Py_BuildValue("(O)", &PyGtkMisc_Type));
 }

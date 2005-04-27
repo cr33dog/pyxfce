@@ -22,7 +22,29 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ----------- functions ----------- */
 
+static PyObject *
+_wrap_xfce_color_button_new_with_color(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "color", NULL };
+    PyObject *py_color;
+    GdkColor *color = NULL;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:xfce_color_button_new_with_color", kwlist, &py_color))
+        return NULL;
+    if (pyg_boxed_check(py_color, GDK_TYPE_COLOR))
+        color = pyg_boxed_get(py_color, GdkColor);
+    else {
+        PyErr_SetString(PyExc_TypeError, "color should be a GdkColor");
+        return NULL;
+    }
+    ret = xfce_color_button_new_with_color(color);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 PyMethodDef pycolorbutton_functions[] = {
+    { "xfce_color_button_new_with_color", (PyCFunction)_wrap_xfce_color_button_new_with_color, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -48,5 +70,5 @@ pycolorbutton_register_classes(PyObject *d)
     }
 
 
-#line 52 "colorbutton.c"
+#line 74 "colorbutton.c"
 }

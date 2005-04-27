@@ -231,6 +231,63 @@ PyTypeObject PyXfceAppMenuItem_Type = {
 /* ----------- functions ----------- */
 
 static PyObject *
+_wrap_xfce_app_menu_item_new_with_label(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "label", NULL };
+    char *label;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_app_menu_item_new_with_label", kwlist, &label))
+        return NULL;
+    ret = xfce_app_menu_item_new_with_label(label);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_xfce_app_menu_item_new_with_mnemonic(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "label", NULL };
+    char *label;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_app_menu_item_new_with_mnemonic", kwlist, &label))
+        return NULL;
+    ret = xfce_app_menu_item_new_with_mnemonic(label);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_xfce_app_menu_item_new_with_command(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "label", "command", NULL };
+    char *label, *command;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:xfce_app_menu_item_new_with_command", kwlist, &label, &command))
+        return NULL;
+    ret = xfce_app_menu_item_new_with_command(label, command);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_xfce_app_menu_item_new_full(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "label", "command", "icon_filename", "needs_term", "snotify", NULL };
+    char *label, *command, *icon_filename;
+    int needs_term, snotify;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sssii:xfce_app_menu_item_new_full", kwlist, &label, &command, &icon_filename, &needs_term, &snotify))
+        return NULL;
+    ret = xfce_app_menu_item_new_full(label, command, icon_filename, needs_term, snotify);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
 _wrap_xfce_app_menu_item_set_icon_size(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "icon_size", NULL };
@@ -257,6 +314,10 @@ _wrap_xfce_app_menu_item_set_icon_theme_name(PyObject *self, PyObject *args, PyO
 }
 
 PyMethodDef pyappmenuitem_functions[] = {
+    { "xfce_app_menu_item_new_with_label", (PyCFunction)_wrap_xfce_app_menu_item_new_with_label, METH_VARARGS|METH_KEYWORDS },
+    { "xfce_app_menu_item_new_with_mnemonic", (PyCFunction)_wrap_xfce_app_menu_item_new_with_mnemonic, METH_VARARGS|METH_KEYWORDS },
+    { "xfce_app_menu_item_new_with_command", (PyCFunction)_wrap_xfce_app_menu_item_new_with_command, METH_VARARGS|METH_KEYWORDS },
+    { "xfce_app_menu_item_new_full", (PyCFunction)_wrap_xfce_app_menu_item_new_full, METH_VARARGS|METH_KEYWORDS },
     { "app_menu_item_set_icon_size", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_size, METH_VARARGS|METH_KEYWORDS },
     { "app_menu_item_set_icon_theme_name", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_theme_name, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
@@ -298,6 +359,6 @@ pyappmenuitem_register_classes(PyObject *d)
     }
 
 
-#line 302 "appmenuitem.c"
+#line 363 "appmenuitem.c"
     pygobject_register_class(d, "XfceAppMenuItem", XFCE_TYPE_APP_MENU_ITEM, &PyXfceAppMenuItem_Type, Py_BuildValue("(O)", &PyGtkImageMenuItem_Type));
 }

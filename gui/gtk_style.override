@@ -7,12 +7,15 @@ headers
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+extern PyTypeObject PyGtkWidget_Type;
+
 %%
 include
 %%
 modulename gtkstyle
 %%
 import gobject.GObject as PyGObject_Type
+import gtk.Widget as PyGtkWidget_Type
 %%
 ignore
 %%

@@ -75,11 +75,15 @@ EXTRA_DIST = $(gui_overrides)
 
 nodist__gui_la_SOURCES = 
 
+PYGTK_DEFS="`pkg-config --variable=defsdir pygtk-2.0`"
+
 .defs.c:
 	(cd $(srcdir) \
 	 && $(PYTHON) $(CODEGEN_PATH)/codegen.py \
 	   $(PYGTK_CODEGEN_DEFINES) \
 	     --override $*.override \
+	     --register $(PYGTK_DEFS)/gtk-types.defs \
+	     --register $(PYGTK_DEFS)/gdk-types.defs \
 	     --prefix py$* $*.defs) > gen-$*.c \
 	 && cp gen-$*.c $*.c \
 	 && rm -f gen-$*.c

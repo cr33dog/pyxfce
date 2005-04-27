@@ -13,3 +13,4 @@ netk stuff has many undefineds
 
 NotImplementedError: aboutdialog.AboutDialog is an abstract widget
 
+get rid of gtk_style.defs ?
