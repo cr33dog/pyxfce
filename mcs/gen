@@ -19,3 +19,6 @@ rm -f util.defs
 #rm -f libxfce4util-config.defs
 #rm -f generics.defs
 #rm -f debug.defs
+cat mcs_client.defs | grep -v '(gtype-id "MCS_TYPE_ACTION")' >mcs_client.defs.new && mv mcs_client.defs.new mcs_client.defs
+
+
