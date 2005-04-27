@@ -21,4 +21,5 @@ rm -f util.defs
 #rm -f debug.defs
 cat mcs_client.defs | grep -v '(gtype-id "MCS_TYPE_ACTION")' >mcs_client.defs.new && mv mcs_client.defs.new mcs_client.defs
 
+cat mcs_common.defs | egrep -v '\(gtype-id "(MCS_TYPE_RESULT|MCS_TYPE_TYPE|MCS_TYPE_MANAGER_CHECK)"\)' >mcs_common.defs.new && mv mcs_common.defs.new mcs_common.defs
 

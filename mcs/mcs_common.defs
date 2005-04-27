@@ -5,7 +5,6 @@
 (define-enum Type
   (in-module "Mcs")
   (c-name "McsType")
-  (gtype-id "MCS_TYPE_TYPE")
   (values
     '("int" "MCS_TYPE_INT")
     '("string" "MCS_TYPE_STRING")
@@ -16,7 +15,6 @@
 (define-enum Result
   (in-module "Mcs")
   (c-name "McsResult")
-  (gtype-id "MCS_TYPE_RESULT")
   (values
     '("success" "MCS_SUCCESS")
     '("no-mem" "MCS_NO_MEM")
@@ -31,7 +29,6 @@
 (define-enum ManagerCheck
   (in-module "Mcs")
   (c-name "McsManagerCheck")
-  (gtype-id "MCS_TYPE_MANAGER_CHECK")
   (values
     '("none" "MCS_MANAGER_NONE")
     '("std" "MCS_MANAGER_STD")

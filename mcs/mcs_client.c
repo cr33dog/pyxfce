@@ -32,7 +32,9 @@ PyMethodDef pymcs_client_functions[] = {
 void
 pymcs_client_add_constants(PyObject *module, const gchar *strip_prefix)
 {
-  pyg_enum_add(module, "Action", strip_prefix, MCS_TYPE_ACTION);
+    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("MCS_ACTION_NEW", strip_prefix), MCS_ACTION_NEW);
+    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("MCS_ACTION_CHANGED", strip_prefix), MCS_ACTION_CHANGED);
+    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("MCS_ACTION_DELETED", strip_prefix), MCS_ACTION_DELETED);
 
   if (PyErr_Occurred())
     PyErr_Print();
@@ -60,5 +62,5 @@ pymcs_client_register_classes(PyObject *d)
     }
 
 
-#line 64 "mcs_client.c"
+#line 66 "mcs_client.c"
 }
