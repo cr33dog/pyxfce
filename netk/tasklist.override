@@ -25,3 +25,24 @@ ignore-glob
 %%
 ignore-win32
 %%
+override netk_tasklist_get_size_hint_list noargs
+static PyObject *
+_wrap_netk_tasklist_get_size_hint_list(PyGObject *self)
+{
+    int n_items;
+    PyObject *py_tuple;
+    int i;
+    GList *list;
+    GList *item;
+
+    const int *arr;
+
+    arr = netk_tasklist_get_size_hint_list (NETK_TASKLIST(self->obj), &n_items);
+
+    py_tuple = PyTuple_New(n_items);
+
+    for (i = 0; i < n_items; i++)
+	PyTuple_SetItem(py_tuple, i, PyInt_FromLong( (long)arr[i]));
+
+    return py_tuple;
+}
