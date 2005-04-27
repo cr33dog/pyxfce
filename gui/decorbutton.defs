@@ -21,12 +21,12 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce_decorbutton.h
 
-(define-function xfce_decorbutton_get_type
+(define-function decorbutton_get_type
   (c-name "xfce_decorbutton_get_type")
   (return-type "GtkType")
 )
 
-(define-function xfce_decorbutton_new
+(define-function decorbutton_new
   (c-name "xfce_decorbutton_new")
   (is-constructor-of "XfceDecorbutton")
   (return-type "GtkWidget*")

@@ -12,12 +12,12 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce_togglebutton.h
 
-(define-function xfce_togglebutton_get_type
+(define-function togglebutton_get_type
   (c-name "xfce_togglebutton_get_type")
   (return-type "GtkType")
 )
 
-(define-function xfce_togglebutton_new
+(define-function togglebutton_new
   (c-name "xfce_togglebutton_new")
   (is-constructor-of "XfceTogglebutton")
   (return-type "GtkWidget*")

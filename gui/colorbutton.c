@@ -30,7 +30,7 @@ _wrap_xfce_color_button_new_with_color(PyObject *self, PyObject *args, PyObject 
     GdkColor *color = NULL;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:xfce_color_button_new_with_color", kwlist, &py_color))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:color_button_new_with_color", kwlist, &py_color))
         return NULL;
     if (pyg_boxed_check(py_color, GDK_TYPE_COLOR))
         color = pyg_boxed_get(py_color, GdkColor);
@@ -44,7 +44,7 @@ _wrap_xfce_color_button_new_with_color(PyObject *self, PyObject *args, PyObject 
 }
 
 PyMethodDef pycolorbutton_functions[] = {
-    { "xfce_color_button_new_with_color", (PyCFunction)_wrap_xfce_color_button_new_with_color, METH_VARARGS|METH_KEYWORDS },
+    { "color_button_new_with_color", (PyCFunction)_wrap_xfce_color_button_new_with_color, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

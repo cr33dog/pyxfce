@@ -5,7 +5,7 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce-colorbutton.h
 
-(define-function xfce_color_button_new
+(define-function color_button_new
   (c-name "xfce_color_button_new")
   (is-constructor-of "XfceColorButton")
   (return-type "GtkWidget*")
@@ -13,7 +13,7 @@
   )
 )
 
-(define-function xfce_color_button_new_with_color
+(define-function color_button_new_with_color
   (c-name "xfce_color_button_new_with_color")
   (return-type "GtkWidget*")
   (parameters

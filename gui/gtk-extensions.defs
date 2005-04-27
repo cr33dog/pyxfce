@@ -5,7 +5,7 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce-gtk-extensions.h
 
-(define-function xfce_gtk_window_center_on_monitor
+(define-function gtk_window_center_on_monitor
   (c-name "xfce_gtk_window_center_on_monitor")
   (return-type "none")
   (parameters
@@ -15,7 +15,7 @@
   )
 )
 
-(define-function xfce_gtk_window_center_on_monitor_with_pointer
+(define-function gtk_window_center_on_monitor_with_pointer
   (c-name "xfce_gtk_window_center_on_monitor_with_pointer")
   (return-type "none")
   (parameters

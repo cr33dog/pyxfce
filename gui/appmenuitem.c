@@ -239,7 +239,7 @@ _wrap_xfce_app_menu_item_new_with_label(PyObject *self, PyObject *args, PyObject
     char *label;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_app_menu_item_new_with_label", kwlist, &label))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:app_menu_item_new_with_label", kwlist, &label))
         return NULL;
     ret = xfce_app_menu_item_new_with_label(label);
     /* pygobject_new handles NULL checking */
@@ -253,7 +253,7 @@ _wrap_xfce_app_menu_item_new_with_mnemonic(PyObject *self, PyObject *args, PyObj
     char *label;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_app_menu_item_new_with_mnemonic", kwlist, &label))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:app_menu_item_new_with_mnemonic", kwlist, &label))
         return NULL;
     ret = xfce_app_menu_item_new_with_mnemonic(label);
     /* pygobject_new handles NULL checking */
@@ -267,7 +267,7 @@ _wrap_xfce_app_menu_item_new_with_command(PyObject *self, PyObject *args, PyObje
     char *label, *command;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:xfce_app_menu_item_new_with_command", kwlist, &label, &command))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:app_menu_item_new_with_command", kwlist, &label, &command))
         return NULL;
     ret = xfce_app_menu_item_new_with_command(label, command);
     /* pygobject_new handles NULL checking */
@@ -282,7 +282,7 @@ _wrap_xfce_app_menu_item_new_full(PyObject *self, PyObject *args, PyObject *kwar
     int needs_term, snotify;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sssii:xfce_app_menu_item_new_full", kwlist, &label, &command, &icon_filename, &needs_term, &snotify))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sssii:app_menu_item_new_full", kwlist, &label, &command, &icon_filename, &needs_term, &snotify))
         return NULL;
     ret = xfce_app_menu_item_new_full(label, command, icon_filename, needs_term, snotify);
     /* pygobject_new handles NULL checking */
@@ -297,7 +297,7 @@ _wrap_xfce_app_menu_item_new_from_desktop_entry(PyObject *self, PyObject *args, 
     int show_icon;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i:xfce_app_menu_item_new_from_desktop_entry", kwlist, &PyXfceDesktopEntry_Type, &entry, &show_icon))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i:app_menu_item_new_from_desktop_entry", kwlist, &PyXfceDesktopEntry_Type, &entry, &show_icon))
         return NULL;
     ret = xfce_app_menu_item_new_from_desktop_entry(XFCE_DESKTOP_ENTRY(entry->obj), show_icon);
     /* pygobject_new handles NULL checking */
@@ -331,11 +331,11 @@ _wrap_xfce_app_menu_item_set_icon_theme_name(PyObject *self, PyObject *args, PyO
 }
 
 PyMethodDef pyappmenuitem_functions[] = {
-    { "xfce_app_menu_item_new_with_label", (PyCFunction)_wrap_xfce_app_menu_item_new_with_label, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_app_menu_item_new_with_mnemonic", (PyCFunction)_wrap_xfce_app_menu_item_new_with_mnemonic, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_app_menu_item_new_with_command", (PyCFunction)_wrap_xfce_app_menu_item_new_with_command, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_app_menu_item_new_full", (PyCFunction)_wrap_xfce_app_menu_item_new_full, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_app_menu_item_new_from_desktop_entry", (PyCFunction)_wrap_xfce_app_menu_item_new_from_desktop_entry, METH_VARARGS|METH_KEYWORDS },
+    { "app_menu_item_new_with_label", (PyCFunction)_wrap_xfce_app_menu_item_new_with_label, METH_VARARGS|METH_KEYWORDS },
+    { "app_menu_item_new_with_mnemonic", (PyCFunction)_wrap_xfce_app_menu_item_new_with_mnemonic, METH_VARARGS|METH_KEYWORDS },
+    { "app_menu_item_new_with_command", (PyCFunction)_wrap_xfce_app_menu_item_new_with_command, METH_VARARGS|METH_KEYWORDS },
+    { "app_menu_item_new_full", (PyCFunction)_wrap_xfce_app_menu_item_new_full, METH_VARARGS|METH_KEYWORDS },
+    { "app_menu_item_new_from_desktop_entry", (PyCFunction)_wrap_xfce_app_menu_item_new_from_desktop_entry, METH_VARARGS|METH_KEYWORDS },
     { "app_menu_item_set_icon_size", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_size, METH_VARARGS|METH_KEYWORDS },
     { "app_menu_item_set_icon_theme_name", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_theme_name, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }

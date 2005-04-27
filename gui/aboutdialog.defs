@@ -12,7 +12,7 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce_aboutdialog.h
 
-(define-function xfce_about_info_new
+(define-function about_info_new
   (c-name "xfce_about_info_new")
   (is-constructor-of "XfceAboutInfo")
   (return-type "XfceAboutInfo*")
@@ -51,12 +51,12 @@
   )
 )
 
-(define-function xfce_about_dialog_get_type
+(define-function about_dialog_get_type
   (c-name "xfce_about_dialog_get_type")
   (return-type "GType")
 )
 
-(define-function xfce_about_dialog_new
+(define-function about_dialog_new
   (c-name "xfce_about_dialog_new")
   (is-constructor-of "XfceAboutDialog")
   (return-type "GtkWidget*")

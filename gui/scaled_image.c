@@ -126,7 +126,7 @@ _wrap_xfce_scaled_image_new_from_pixbuf(PyObject *self, PyObject *args, PyObject
     PyGObject *pb;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:xfce_scaled_image_new_from_pixbuf", kwlist, &PyGdkPixbuf_Type, &pb))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:scaled_image_new_from_pixbuf", kwlist, &PyGdkPixbuf_Type, &pb))
         return NULL;
     ret = xfce_scaled_image_new_from_pixbuf(GDK_PIXBUF(pb->obj));
     /* pygobject_new handles NULL checking */
@@ -134,7 +134,7 @@ _wrap_xfce_scaled_image_new_from_pixbuf(PyObject *self, PyObject *args, PyObject
 }
 
 PyMethodDef pyscaled_image_functions[] = {
-    { "xfce_scaled_image_new_from_pixbuf", (PyCFunction)_wrap_xfce_scaled_image_new_from_pixbuf, METH_VARARGS|METH_KEYWORDS },
+    { "scaled_image_new_from_pixbuf", (PyCFunction)_wrap_xfce_scaled_image_new_from_pixbuf, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

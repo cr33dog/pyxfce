@@ -144,7 +144,7 @@ _wrap_xfce_create_header(PyObject *self, PyObject *args, PyObject *kwargs)
     char *text;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!s:xfce_create_header", kwlist, &PyGdkPixbuf_Type, &icon, &text))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!s:create_header", kwlist, &PyGdkPixbuf_Type, &icon, &text))
         return NULL;
     ret = xfce_create_header(GDK_PIXBUF(icon->obj), text);
     /* pygobject_new handles NULL checking */
@@ -159,7 +159,7 @@ _wrap_xfce_create_header_with_image(PyObject *self, PyObject *args, PyObject *kw
     char *text;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!s:xfce_create_header_with_image", kwlist, &PyGtkWidget_Type, &image, &text))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!s:create_header_with_image", kwlist, &PyGtkWidget_Type, &image, &text))
         return NULL;
     ret = xfce_create_header_with_image(GTK_WIDGET(image->obj), text);
     /* pygobject_new handles NULL checking */
@@ -173,7 +173,7 @@ _wrap_xfce_create_small_label(PyObject *self, PyObject *args, PyObject *kwargs)
     char *text;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_create_small_label", kwlist, &text))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:create_small_label", kwlist, &text))
         return NULL;
     ret = xfce_create_small_label(text);
     /* pygobject_new handles NULL checking */
@@ -187,7 +187,7 @@ _wrap_xfce_create_mixed_button(PyObject *self, PyObject *args, PyObject *kwargs)
     char *stock, *text;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:xfce_create_mixed_button", kwlist, &stock, &text))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:create_mixed_button", kwlist, &stock, &text))
         return NULL;
     ret = xfce_create_mixed_button(stock, text);
     /* pygobject_new handles NULL checking */
@@ -203,10 +203,10 @@ PyMethodDef pydialogs_functions[] = {
     { "small_label", (PyCFunction)_wrap_small_label, METH_VARARGS|METH_KEYWORDS },
     { "exec_command", (PyCFunction)_wrap_exec_command, METH_VARARGS|METH_KEYWORDS },
     { "confirm", (PyCFunction)_wrap_xfce_confirm, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_create_header", (PyCFunction)_wrap_xfce_create_header, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_create_header_with_image", (PyCFunction)_wrap_xfce_create_header_with_image, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_create_small_label", (PyCFunction)_wrap_xfce_create_small_label, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_create_mixed_button", (PyCFunction)_wrap_xfce_create_mixed_button, METH_VARARGS|METH_KEYWORDS },
+    { "create_header", (PyCFunction)_wrap_xfce_create_header, METH_VARARGS|METH_KEYWORDS },
+    { "create_header_with_image", (PyCFunction)_wrap_xfce_create_header_with_image, METH_VARARGS|METH_KEYWORDS },
+    { "create_small_label", (PyCFunction)_wrap_xfce_create_small_label, METH_VARARGS|METH_KEYWORDS },
+    { "create_mixed_button", (PyCFunction)_wrap_xfce_create_mixed_button, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

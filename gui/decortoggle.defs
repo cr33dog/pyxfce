@@ -12,12 +12,12 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce_decortoggle.h
 
-(define-function xfce_decortoggle_get_type
+(define-function decortoggle_get_type
   (c-name "xfce_decortoggle_get_type")
   (return-type "GtkType")
 )
 
-(define-function xfce_decortoggle_new
+(define-function decortoggle_new
   (c-name "xfce_decortoggle_new")
   (is-constructor-of "XfceDecortoggle")
   (return-type "GtkWidget*")

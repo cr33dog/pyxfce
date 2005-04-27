@@ -12,18 +12,18 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce_scaled_image.h
 
-(define-function xfce_scaled_image_get_type
+(define-function scaled_image_get_type
   (c-name "xfce_scaled_image_get_type")
   (return-type "GtkType")
 )
 
-(define-function xfce_scaled_image_new
+(define-function scaled_image_new
   (c-name "xfce_scaled_image_new")
   (is-constructor-of "XfceScaledImage")
   (return-type "GtkWidget*")
 )
 
-(define-function xfce_scaled_image_new_from_pixbuf
+(define-function scaled_image_new_from_pixbuf
   (c-name "xfce_scaled_image_new_from_pixbuf")
   (return-type "GtkWidget*")
   (parameters

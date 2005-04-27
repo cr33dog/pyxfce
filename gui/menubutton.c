@@ -152,7 +152,7 @@ _wrap_xfce_menubutton_new_with_pixbuf(PyObject *self, PyObject *args, PyObject *
     PyGObject *pb;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sO!:xfce_menubutton_new_with_pixbuf", kwlist, &text, &PyGdkPixbuf_Type, &pb))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sO!:menubutton_new_with_pixbuf", kwlist, &text, &PyGdkPixbuf_Type, &pb))
         return NULL;
     ret = xfce_menubutton_new_with_pixbuf(text, GDK_PIXBUF(pb->obj));
     /* pygobject_new handles NULL checking */
@@ -166,7 +166,7 @@ _wrap_xfce_menubutton_new_with_stock_icon(PyObject *self, PyObject *args, PyObje
     char *text, *stock;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:xfce_menubutton_new_with_stock_icon", kwlist, &text, &stock))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:menubutton_new_with_stock_icon", kwlist, &text, &stock))
         return NULL;
     ret = xfce_menubutton_new_with_stock_icon(text, stock);
     /* pygobject_new handles NULL checking */
@@ -174,8 +174,8 @@ _wrap_xfce_menubutton_new_with_stock_icon(PyObject *self, PyObject *args, PyObje
 }
 
 PyMethodDef pymenubutton_functions[] = {
-    { "xfce_menubutton_new_with_pixbuf", (PyCFunction)_wrap_xfce_menubutton_new_with_pixbuf, METH_VARARGS|METH_KEYWORDS },
-    { "xfce_menubutton_new_with_stock_icon", (PyCFunction)_wrap_xfce_menubutton_new_with_stock_icon, METH_VARARGS|METH_KEYWORDS },
+    { "menubutton_new_with_pixbuf", (PyCFunction)_wrap_xfce_menubutton_new_with_pixbuf, METH_VARARGS|METH_KEYWORDS },
+    { "menubutton_new_with_stock_icon", (PyCFunction)_wrap_xfce_menubutton_new_with_stock_icon, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

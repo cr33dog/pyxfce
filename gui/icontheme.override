@@ -33,6 +33,10 @@ _wrap_xfce_icon_theme_get_search_path(PyGObject *self)
     GList *item;
 
     list = xfce_icon_theme_get_search_path(XFCE_ICON_THEME(self->obj));
+    if (list) 
+        n_items = g_list_length (list);
+    else
+        n_items = 0;
 
     py_tuple = PyTuple_New(n_items);
     item = list;

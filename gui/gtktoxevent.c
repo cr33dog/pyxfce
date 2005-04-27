@@ -32,7 +32,7 @@ _wrap_xfce_add_event_win(PyObject *self, PyObject *args, PyObject *kwargs)
     int event_mask;
     GdkWindow *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i:xfce_add_event_win", kwlist, &PyGdkScreen_Type, &gscr, &event_mask))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i:add_event_win", kwlist, &PyGdkScreen_Type, &gscr, &event_mask))
         return NULL;
     ret = xfce_add_event_win(GDK_SCREEN(gscr->obj), event_mask);
     /* pygobject_new handles NULL checking */
@@ -78,7 +78,7 @@ _wrap_getDefaultGdkWindow(PyObject *self)
 }
 
 PyMethodDef pygtktoxevent_functions[] = {
-    { "xfce_add_event_win", (PyCFunction)_wrap_xfce_add_event_win, METH_VARARGS|METH_KEYWORDS },
+    { "add_event_win", (PyCFunction)_wrap_xfce_add_event_win, METH_VARARGS|METH_KEYWORDS },
     { "closeEventFilter", (PyCFunction)_wrap_closeEventFilter, METH_NOARGS },
     { "getDefaultGtkWidget", (PyCFunction)_wrap_getDefaultGtkWidget, METH_NOARGS },
     { "getGdkEventWindow", (PyCFunction)_wrap_getGdkEventWindow, METH_NOARGS },

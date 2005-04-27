@@ -112,6 +112,10 @@ _wrap_xfce_icon_theme_get_search_path(PyGObject *self)
     GList *item;
 
     list = xfce_icon_theme_get_search_path(XFCE_ICON_THEME(self->obj));
+    if (list) 
+        n_items = g_list_length (list);
+    else
+        n_items = 0;
 
     py_tuple = PyTuple_New(n_items);
     item = list;
@@ -125,10 +129,10 @@ _wrap_xfce_icon_theme_get_search_path(PyGObject *self)
 
     return py_tuple;
 }
-#line 129 "icontheme.c"
+#line 133 "icontheme.c"
 
 
-#line 51 "icontheme.override"
+#line 55 "icontheme.override"
 static PyObject *
 _wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
 				     PyObject *kwargs)
@@ -172,7 +176,7 @@ _wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 176 "icontheme.c"
+#line 180 "icontheme.c"
 
 
 static PyObject *
@@ -311,7 +315,7 @@ _wrap_xfce_icon_theme_get_for_screen(PyObject *self, PyObject *args, PyObject *k
     PyGObject *screen;
     XfceIconTheme *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:xfce_icon_theme_get_for_screen", kwlist, &PyGdkScreen_Type, &screen))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:icon_theme_get_for_screen", kwlist, &PyGdkScreen_Type, &screen))
         return NULL;
     ret = xfce_icon_theme_get_for_screen(GDK_SCREEN(screen->obj));
     /* pygobject_new handles NULL checking */
@@ -319,7 +323,7 @@ _wrap_xfce_icon_theme_get_for_screen(PyObject *self, PyObject *args, PyObject *k
 }
 
 PyMethodDef pyicontheme_functions[] = {
-    { "xfce_icon_theme_get_for_screen", (PyCFunction)_wrap_xfce_icon_theme_get_for_screen, METH_VARARGS|METH_KEYWORDS },
+    { "icon_theme_get_for_screen", (PyCFunction)_wrap_xfce_icon_theme_get_for_screen, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -387,6 +391,6 @@ pyicontheme_register_classes(PyObject *d)
     }
 
 
-#line 391 "icontheme.c"
+#line 395 "icontheme.c"
     pygobject_register_class(d, "XfceIconTheme", XFCE_TYPE_ICON_THEME, &PyXfceIconTheme_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

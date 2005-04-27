@@ -7,12 +7,17 @@ headers
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#undef GDK_DISPLAY
+#define GDK_DISPLAY(object) (GDK_DISPLAY_OBJECT(object))
+
 %%
 include
 %%
 modulename gdkextensions
 %%
 import gobject.GObject as PyGObject_Type
+import gtk.gdk.Display as PyGdkDisplay_Type
+import gtk.gdk.Screen as PyGdkScreen_Type
 %%
 ignore
 %%

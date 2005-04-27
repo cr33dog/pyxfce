@@ -12,12 +12,12 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce_menubutton.h
 
-(define-function xfce_menubutton_get_type
+(define-function menubutton_get_type
   (c-name "xfce_menubutton_get_type")
   (return-type "GtkType")
 )
 
-(define-function xfce_menubutton_new
+(define-function menubutton_new
   (c-name "xfce_menubutton_new")
   (is-constructor-of "XfceMenubutton")
   (return-type "GtkWidget*")
@@ -26,7 +26,7 @@
   )
 )
 
-(define-function xfce_menubutton_new_with_pixbuf
+(define-function menubutton_new_with_pixbuf
   (c-name "xfce_menubutton_new_with_pixbuf")
   (return-type "GtkWidget*")
   (parameters
@@ -35,7 +35,7 @@
   )
 )
 
-(define-function xfce_menubutton_new_with_stock_icon
+(define-function menubutton_new_with_stock_icon
   (c-name "xfce_menubutton_new_with_stock_icon")
   (return-type "GtkWidget*")
   (parameters

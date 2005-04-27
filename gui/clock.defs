@@ -33,12 +33,12 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce_clock.h
 
-(define-function xfce_clock_get_type
+(define-function clock_get_type
   (c-name "xfce_clock_get_type")
   (return-type "GtkType")
 )
 
-(define-function xfce_clock_new
+(define-function clock_new
   (c-name "xfce_clock_new")
   (is-constructor-of "XfceClock")
   (return-type "GtkWidget*")

@@ -20,12 +20,12 @@
   )
 )
 
-(define-function xfce_movehandler_get_type
+(define-function movehandler_get_type
   (c-name "xfce_movehandler_get_type")
   (return-type "GtkType")
 )
 
-(define-function xfce_movehandler_new
+(define-function movehandler_new
   (c-name "xfce_movehandler_new")
   (is-constructor-of "XfceMovehandler")
   (return-type "GtkWidget*")

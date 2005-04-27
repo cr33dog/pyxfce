@@ -5,7 +5,7 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/icons.h
 
-(define-function xfce_inline_icon_at_size
+(define-function inline_icon_at_size
   (c-name "xfce_inline_icon_at_size")
   (return-type "GdkPixbuf*")
   (parameters
@@ -32,7 +32,7 @@
   )
 )
 
-(define-function xfce_themed_icon_load
+(define-function themed_icon_load
   (c-name "xfce_themed_icon_load")
   (return-type "GdkPixbuf*")
   (parameters
@@ -49,7 +49,7 @@
   )
 )
 
-(define-function xfce_pixbuf_new_from_file_at_size
+(define-function pixbuf_new_from_file_at_size
   (c-name "xfce_pixbuf_new_from_file_at_size")
   (return-type "GdkPixbuf*")
   (parameters
@@ -70,7 +70,7 @@
   )
 )
 
-(define-function xfce_load_themed_icon
+(define-function load_themed_icon
   (c-name "xfce_load_themed_icon")
   (return-type "GdkPixbuf*")
   (parameters

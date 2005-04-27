@@ -57,3 +57,7 @@ sed \
   -e 's;(define-function xfce_app_menu_item_set_icon_theme_name;(define-function app_menu_item_set_icon_theme_name;' \
   appmenuitem.defs >appmenuitem.defs.new && mv appmenuitem.defs.new appmenuitem.defs
   
+for s in *.defs
+do
+  sed -e 's;(define-function xfce_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
+done

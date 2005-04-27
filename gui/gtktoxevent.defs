@@ -14,7 +14,7 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/gtktoxevent.h
 
-(define-function xfce_push_event_filter
+(define-function push_event_filter
   (c-name "xfce_push_event_filter")
   (return-type "XfceFilterStack*")
   (parameters
@@ -24,7 +24,7 @@
   )
 )
 
-(define-function xfce_pop_event_filter
+(define-function pop_event_filter
   (c-name "xfce_pop_event_filter")
   (return-type "XfceFilterStack*")
   (parameters
@@ -32,7 +32,7 @@
   )
 )
 
-(define-function xfce_add_event_win
+(define-function add_event_win
   (c-name "xfce_add_event_win")
   (return-type "GdkWindow*")
   (parameters
@@ -41,7 +41,7 @@
   )
 )
 
-(define-function xfce_init_event_filter
+(define-function init_event_filter
   (c-name "xfce_init_event_filter")
   (return-type "XfceFilterSetup*")
   (parameters
@@ -49,7 +49,7 @@
   )
 )
 
-(define-function xfce_close_event_filter
+(define-function close_event_filter
   (c-name "xfce_close_event_filter")
   (return-type "none")
   (parameters

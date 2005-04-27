@@ -36,14 +36,14 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce-icontheme.h
 
-(define-function xfce_icon_theme_get_type
+(define-function icon_theme_get_type
   (c-name "xfce_icon_theme_get_type")
   (return-type "GType")
   (parameters
   )
 )
 
-(define-function xfce_icon_theme_get_for_screen
+(define-function icon_theme_get_for_screen
   (c-name "xfce_icon_theme_get_for_screen")
   (return-type "XfceIconTheme*")
   (parameters
