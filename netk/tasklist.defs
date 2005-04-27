@@ -23,12 +23,12 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/netk-tasklist.h
 
-(define-function netk_tasklist_get_type
+(define-function tasklist_get_type
   (c-name "netk_tasklist_get_type")
   (return-type "GType")
 )
 
-(define-function netk_tasklist_new
+(define-function tasklist_new
   (c-name "netk_tasklist_new")
   (is-constructor-of "NetkTasklist")
   (return-type "GtkWidget*")

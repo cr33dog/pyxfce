@@ -5,7 +5,7 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/netk-window-menu.h
 
-(define-function netk_create_window_menu
+(define-function create_window_menu
   (c-name "netk_create_window_menu")
   (return-type "GtkWidget*")
   (parameters

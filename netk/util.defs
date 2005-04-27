@@ -5,7 +5,7 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/netk-util.h
 
-(define-function netk_gtk_window_set_type
+(define-function gtk_window_set_type
   (c-name "netk_gtk_window_set_type")
   (return-type "none")
   (parameters
@@ -14,7 +14,7 @@
   )
 )
 
-(define-function netk_gtk_window_avoid_input
+(define-function gtk_window_avoid_input
   (c-name "netk_gtk_window_avoid_input")
   (return-type "none")
   (parameters
@@ -22,7 +22,7 @@
   )
 )
 
-(define-function netk_get_cardinal
+(define-function get_cardinal
   (c-name "netk_get_cardinal")
   (return-type "gboolean")
   (parameters
@@ -32,7 +32,7 @@
   )
 )
 
-(define-function netk_get_wm_state
+(define-function get_wm_state
   (c-name "netk_get_wm_state")
   (return-type "int")
   (parameters
@@ -40,7 +40,7 @@
   )
 )
 
-(define-function netk_get_window
+(define-function get_window
   (c-name "netk_get_window")
   (return-type "gboolean")
   (parameters
@@ -50,7 +50,7 @@
   )
 )
 
-(define-function netk_get_pixmap
+(define-function get_pixmap
   (c-name "netk_get_pixmap")
   (return-type "gboolean")
   (parameters
@@ -60,7 +60,7 @@
   )
 )
 
-(define-function netk_get_atom
+(define-function get_atom
   (c-name "netk_get_atom")
   (return-type "gboolean")
   (parameters
@@ -70,7 +70,7 @@
   )
 )
 
-(define-function netk_get_text_property
+(define-function get_text_property
   (c-name "netk_get_text_property")
   (return-type "char*")
   (parameters
@@ -79,7 +79,7 @@
   )
 )
 
-(define-function netk_get_utf8_property
+(define-function get_utf8_property
   (c-name "netk_get_utf8_property")
   (return-type "char*")
   (parameters
@@ -88,7 +88,7 @@
   )
 )
 
-(define-function netk_get_window_list
+(define-function get_window_list
   (c-name "netk_get_window_list")
   (return-type "gboolean")
   (parameters
@@ -99,7 +99,7 @@
   )
 )
 
-(define-function netk_get_atom_list
+(define-function get_atom_list
   (c-name "netk_get_atom_list")
   (return-type "gboolean")
   (parameters
@@ -110,7 +110,7 @@
   )
 )
 
-(define-function netk_get_cardinal_list
+(define-function get_cardinal_list
   (c-name "netk_get_cardinal_list")
   (return-type "gboolean")
   (parameters
@@ -121,7 +121,7 @@
   )
 )
 
-(define-function netk_get_utf8_list
+(define-function get_utf8_list
   (c-name "netk_get_utf8_list")
   (return-type "char**")
   (parameters
@@ -130,7 +130,7 @@
   )
 )
 
-(define-function netk_close
+(define-function close
   (c-name "netk_close")
   (return-type "none")
   (parameters
@@ -139,7 +139,7 @@
   )
 )
 
-(define-function netk_change_state
+(define-function change_state
   (c-name "netk_change_state")
   (return-type "none")
   (parameters
@@ -151,7 +151,7 @@
   )
 )
 
-(define-function netk_change_workspace
+(define-function change_workspace
   (c-name "netk_change_workspace")
   (return-type "none")
   (parameters
@@ -161,7 +161,7 @@
   )
 )
 
-(define-function netk_activate
+(define-function activate
   (c-name "netk_activate")
   (return-type "none")
   (parameters
@@ -170,7 +170,7 @@
   )
 )
 
-(define-function netk_activate_workspace
+(define-function activate_workspace
   (c-name "netk_activate_workspace")
   (return-type "none")
   (parameters
@@ -179,7 +179,7 @@
   )
 )
 
-(define-function netk_get_group_leader
+(define-function get_group_leader
   (c-name "netk_get_group_leader")
   (return-type "Window")
   (parameters
@@ -187,7 +187,7 @@
   )
 )
 
-(define-function netk_get_session_id
+(define-function get_session_id
   (c-name "netk_get_session_id")
   (return-type "char*")
   (parameters
@@ -195,7 +195,7 @@
   )
 )
 
-(define-function netk_get_pid
+(define-function get_pid
   (c-name "netk_get_pid")
   (return-type "int")
   (parameters
@@ -203,7 +203,7 @@
   )
 )
 
-(define-function netk_get_name
+(define-function get_name
   (c-name "netk_get_name")
   (return-type "char*")
   (parameters
@@ -211,7 +211,7 @@
   )
 )
 
-(define-function netk_get_res_class_utf8
+(define-function get_res_class_utf8
   (c-name "netk_get_res_class_utf8")
   (return-type "char*")
   (parameters
@@ -219,7 +219,7 @@
   )
 )
 
-(define-function netk_set_desktop_layout
+(define-function set_desktop_layout
   (c-name "netk_set_desktop_layout")
   (return-type "none")
   (parameters
@@ -229,7 +229,7 @@
   )
 )
 
-(define-function netk_get_desktop_margins
+(define-function get_desktop_margins
   (c-name "netk_get_desktop_margins")
   (return-type "gboolean")
   (parameters
@@ -238,7 +238,7 @@
   )
 )
 
-(define-function netk_set_desktop_margins
+(define-function set_desktop_margins
   (c-name "netk_set_desktop_margins")
   (return-type "none")
   (parameters

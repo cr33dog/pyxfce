@@ -71,12 +71,12 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/netk-window.h
 
-(define-function netk_window_get_type
+(define-function window_get_type
   (c-name "netk_window_get_type")
   (return-type "GType")
 )
 
-(define-function netk_window_get
+(define-function window_get
   (c-name "netk_window_get")
   (return-type "NetkWindow*")
   (parameters

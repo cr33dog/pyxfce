@@ -12,17 +12,17 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/netk-screen.h
 
-(define-function netk_screen_get_type
+(define-function screen_get_type
   (c-name "netk_screen_get_type")
   (return-type "GType")
 )
 
-(define-function netk_screen_get_default
+(define-function screen_get_default
   (c-name "netk_screen_get_default")
   (return-type "NetkScreen*")
 )
 
-(define-function netk_screen_get
+(define-function screen_get
   (c-name "netk_screen_get")
   (return-type "NetkScreen*")
   (parameters
@@ -30,7 +30,7 @@
   )
 )
 
-(define-function netk_screen_get_for_root
+(define-function screen_get_for_root
   (c-name "netk_screen_get_for_root")
   (return-type "NetkScreen*")
   (parameters

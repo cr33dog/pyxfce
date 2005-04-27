@@ -25,3 +25,8 @@ done
 #rm -f libxfce4util-config.defs
 #rm -f generics.defs
 #rm -f debug.defs
+
+for s in *.defs
+do
+  sed -e 's;(define-function netk_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
+done

@@ -12,12 +12,12 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/netk-application.h
 
-(define-function netk_application_get_type
+(define-function application_get_type
   (c-name "netk_application_get_type")
   (return-type "GType")
 )
 
-(define-function netk_application_get
+(define-function application_get
   (c-name "netk_application_get")
   (return-type "NetkApplication*")
   (parameters

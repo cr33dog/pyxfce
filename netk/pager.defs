@@ -22,12 +22,12 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/netk-pager.h
 
-(define-function netk_pager_get_type
+(define-function pager_get_type
   (c-name "netk_pager_get_type")
   (return-type "GType")
 )
 
-(define-function netk_pager_new
+(define-function pager_new
   (c-name "netk_pager_new")
   (is-constructor-of "NetkPager")
   (return-type "GtkWidget*")

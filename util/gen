@@ -29,5 +29,3 @@ for s in *.defs
 do
   sed -e 's;(define-function xfce_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
 done
-    
-    
