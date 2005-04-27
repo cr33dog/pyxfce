@@ -9,7 +9,11 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#line 13 "window.c"
+extern PyTypeObject PyNetkWorkspace_Type;
+extern PyTypeObject NetkApplication_Type;
+extern PyTypeObject NetkClassGroup_Type;
+
+#line 17 "window.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -60,6 +64,16 @@ _wrap_netk_window_get_icon_name(PyGObject *self)
 }
 
 static PyObject *
+_wrap_netk_window_get_application(PyGObject *self)
+{
+    NetkApplication *ret;
+
+    ret = netk_window_get_application(NETK_WINDOW(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
 _wrap_netk_window_get_group_leader(PyGObject *self)
 {
     gulong ret;
@@ -75,6 +89,16 @@ _wrap_netk_window_get_xid(PyGObject *self)
 
     ret = netk_window_get_xid(NETK_WINDOW(self->obj));
     return PyLong_FromUnsignedLong(ret);
+}
+
+static PyObject *
+_wrap_netk_window_get_class_group(PyGObject *self)
+{
+    NetkClassGroup *ret;
+
+    ret = netk_window_get_class_group(NETK_WINDOW(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
 }
 
 static PyObject *
@@ -445,6 +469,26 @@ _wrap_netk_window_activate_transient(PyGObject *self)
 }
 
 static PyObject *
+_wrap_netk_window_get_icon(PyGObject *self)
+{
+    GdkPixbuf *ret;
+
+    ret = netk_window_get_icon(NETK_WINDOW(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_netk_window_get_mini_icon(PyGObject *self)
+{
+    GdkPixbuf *ret;
+
+    ret = netk_window_get_mini_icon(NETK_WINDOW(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
 _wrap_netk_window_get_icon_is_fallback(PyGObject *self)
 {
     int ret;
@@ -531,8 +575,10 @@ static PyMethodDef _PyNetkWindow_methods[] = {
     { "get_screen", (PyCFunction)_wrap_netk_window_get_screen, METH_NOARGS },
     { "get_name", (PyCFunction)_wrap_netk_window_get_name, METH_NOARGS },
     { "get_icon_name", (PyCFunction)_wrap_netk_window_get_icon_name, METH_NOARGS },
+    { "get_application", (PyCFunction)_wrap_netk_window_get_application, METH_NOARGS },
     { "get_group_leader", (PyCFunction)_wrap_netk_window_get_group_leader, METH_NOARGS },
     { "get_xid", (PyCFunction)_wrap_netk_window_get_xid, METH_NOARGS },
+    { "get_class_group", (PyCFunction)_wrap_netk_window_get_class_group, METH_NOARGS },
     { "get_session_id", (PyCFunction)_wrap_netk_window_get_session_id, METH_NOARGS },
     { "get_session_id_utf8", (PyCFunction)_wrap_netk_window_get_session_id_utf8, METH_NOARGS },
     { "get_pid", (PyCFunction)_wrap_netk_window_get_pid, METH_NOARGS },
@@ -572,6 +618,8 @@ static PyMethodDef _PyNetkWindow_methods[] = {
     { "activate", (PyCFunction)_wrap_netk_window_activate, METH_NOARGS },
     { "is_active", (PyCFunction)_wrap_netk_window_is_active, METH_NOARGS },
     { "activate_transient", (PyCFunction)_wrap_netk_window_activate_transient, METH_NOARGS },
+    { "get_icon", (PyCFunction)_wrap_netk_window_get_icon, METH_NOARGS },
+    { "get_mini_icon", (PyCFunction)_wrap_netk_window_get_mini_icon, METH_NOARGS },
     { "get_icon_is_fallback", (PyCFunction)_wrap_netk_window_get_icon_is_fallback, METH_NOARGS },
     { "set_icon_geometry", (PyCFunction)_wrap_netk_window_set_icon_geometry, METH_VARARGS|METH_KEYWORDS },
     { "get_actions", (PyCFunction)_wrap_netk_window_get_actions, METH_NOARGS },
@@ -702,6 +750,6 @@ pywindow_register_classes(PyObject *d)
     }
 
 
-#line 706 "window.c"
+#line 754 "window.c"
     pygobject_register_class(d, "NetkWindow", NETK_TYPE_WINDOW, &PyNetkWindow_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

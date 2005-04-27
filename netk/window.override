@@ -7,6 +7,10 @@ headers
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+extern PyTypeObject PyNetkWorkspace_Type;
+extern PyTypeObject NetkApplication_Type;
+extern PyTypeObject NetkClassGroup_Type;
+
 %%
 include
 %%

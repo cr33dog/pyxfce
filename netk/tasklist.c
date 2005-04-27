@@ -9,7 +9,9 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#line 13 "tasklist.c"
+extern PyTypeObject PyNetkScreen_Type;
+
+#line 15 "tasklist.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -26,13 +28,34 @@ PyTypeObject PyNetkTasklist_Type;
 /* ----------- NetkTasklist ----------- */
 
 static int
-pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
+_wrap_netk_tasklist_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    gchar buf[512];
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *screen;
 
-    g_snprintf(buf, sizeof(buf), "%s is an abstract widget", self->ob_type->tp_name);
-    PyErr_SetString(PyExc_NotImplementedError, buf);
-    return -1;
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkTasklist.__init__", kwlist, &PyNetkScreen_Type, &screen))
+        return -1;
+    self->obj = (GObject *)netk_tasklist_new(NETK_SCREEN(screen->obj));
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create NetkTasklist object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+static PyObject *
+_wrap_netk_tasklist_set_screen(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *screen;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkTasklist.set_screen", kwlist, &PyNetkScreen_Type, &screen))
+        return NULL;
+    netk_tasklist_set_screen(NETK_TASKLIST(self->obj), NETK_SCREEN(screen->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
 }
 
 static PyObject *
@@ -148,6 +171,7 @@ _wrap_netk_tasklist_get_minimum_height(PyGObject *self)
 }
 
 static PyMethodDef _PyNetkTasklist_methods[] = {
+    { "set_screen", (PyCFunction)_wrap_netk_tasklist_set_screen, METH_VARARGS|METH_KEYWORDS },
     { "set_grouping", (PyCFunction)_wrap_netk_tasklist_set_grouping, METH_VARARGS|METH_KEYWORDS },
     { "set_switch_workspace_on_unminimize", (PyCFunction)_wrap_netk_tasklist_set_switch_workspace_on_unminimize, METH_VARARGS|METH_KEYWORDS },
     { "set_grouping_limit", (PyCFunction)_wrap_netk_tasklist_set_grouping_limit, METH_VARARGS|METH_KEYWORDS },
@@ -198,7 +222,7 @@ PyTypeObject PyNetkTasklist_Type = {
     (descrgetfunc)0,	/* tp_descr_get */
     (descrsetfunc)0,	/* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)pygobject_no_constructor,		/* tp_init */
+    (initproc)_wrap_netk_tasklist_new,		/* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -261,6 +285,6 @@ pytasklist_register_classes(PyObject *d)
     }
 
 
-#line 265 "tasklist.c"
+#line 289 "tasklist.c"
     pygobject_register_class(d, "NetkTasklist", NETK_TYPE_TASKLIST, &PyNetkTasklist_Type, Py_BuildValue("(O)", &PyGtkContainer_Type));
 }

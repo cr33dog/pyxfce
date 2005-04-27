@@ -24,7 +24,39 @@ static PyTypeObject *_PyGtkWindow_Type;
 
 /* ----------- functions ----------- */
 
+static PyObject *
+_wrap_netk_gtk_window_set_type(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "window", "type", NULL };
+    PyGObject *window;
+    PyObject *py_type = NULL;
+    NetkWindowType type;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!O:netk_gtk_window_set_type", kwlist, &PyGtkWindow_Type, &window, &py_type))
+        return NULL;
+    if (pyg_enum_get_value(NETK_TYPE_WINDOW_TYPE, py_type, (gint *)&type))
+        return NULL;
+    netk_gtk_window_set_type(GTK_WINDOW(window->obj), type);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_netk_gtk_window_avoid_input(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "window", NULL };
+    PyGObject *window;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:netk_gtk_window_avoid_input", kwlist, &PyGtkWindow_Type, &window))
+        return NULL;
+    netk_gtk_window_avoid_input(GTK_WINDOW(window->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
 PyMethodDef pyutil_functions[] = {
+    { "netk_gtk_window_set_type", (PyCFunction)_wrap_netk_gtk_window_set_type, METH_VARARGS|METH_KEYWORDS },
+    { "netk_gtk_window_avoid_input", (PyCFunction)_wrap_netk_gtk_window_avoid_input, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -64,5 +96,5 @@ pyutil_register_classes(PyObject *d)
     }
 
 
-#line 68 "util.c"
+#line 100 "util.c"
 }

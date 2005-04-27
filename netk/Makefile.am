@@ -61,6 +61,8 @@ PYGTK_DEFS="`pkg-config --variable=defsdir pygtk-2.0`"
 	     --register workspace.defs \
 	     --register window.defs \
 	     --register screen.defs \
+	     --register application.defs \
+	     --register class_group.defs \
 	     --register $(PYGTK_DEFS)/gtk-types.defs \
 	     --register $(PYGTK_DEFS)/gdk-types.defs \
 	     --prefix py$* $*.defs) > gen-$*.c \

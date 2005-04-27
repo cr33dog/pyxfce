@@ -9,7 +9,9 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#line 13 "pager.c"
+extern PyTypeObject PyNetkScreen_Type;
+
+#line 15 "pager.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -241,6 +243,6 @@ pypager_register_classes(PyObject *d)
     }
 
 
-#line 245 "pager.c"
+#line 247 "pager.c"
     pygobject_register_class(d, "NetkPager", NETK_TYPE_PAGER, &PyNetkPager_Type, Py_BuildValue("(O)", &PyGtkContainer_Type));
 }
