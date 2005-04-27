@@ -21,3 +21,13 @@ util: test desktopentry
 fix mcs stuff
 
 mask exec_command and friends ?
+
+
+   Ex: (object Widget
+         (in-module (Gtk))
+         (parent Object) ;; could say (parent Object (Gtk))
+         (abstract #t)
+         (c-name GtkWidget)
+         (field (type-and-name GdkWindow* window) (access read)))
+
+   An "object" declaration automatically implies the type definition:
