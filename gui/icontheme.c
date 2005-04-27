@@ -9,12 +9,16 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#line 13 "icontheme.c"
+extern PyTypeObject PyGdkScreen;
+
+#line 15 "icontheme.c"
 
 
 /* ---------- types from other modules ---------- */
 static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
+static PyTypeObject *_PyGdkScreen_Type;
+#define PyGdkScreen_Type (*_PyGdkScreen_Type)
 
 
 /* ---------- forward type declarations ---------- */
@@ -64,6 +68,39 @@ _wrap_xfce_icon_theme_lookup_category(PyGObject *self, PyObject *args, PyObject 
     }
     Py_INCREF(Py_None);
     return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_icon_theme_load(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "icon_name", "icon_size", NULL };
+    char *icon_name;
+    int icon_size;
+    GdkPixbuf *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "si:XfceIconTheme.load", kwlist, &icon_name, &icon_size))
+        return NULL;
+    ret = xfce_icon_theme_load(XFCE_ICON_THEME(self->obj), icon_name, icon_size);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_xfce_icon_theme_load_category(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "category", "icon_size", NULL };
+    PyObject *py_category = NULL;
+    int icon_size;
+    GdkPixbuf *ret;
+    XfceIconThemeCategory category;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Oi:XfceIconTheme.load_category", kwlist, &py_category, &icon_size))
+        return NULL;
+    if (pyg_enum_get_value(G_TYPE_NONE, py_category, (gint *)&category))
+        return NULL;
+    ret = xfce_icon_theme_load_category(XFCE_ICON_THEME(self->obj), category, icon_size);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
 }
 
 static PyObject *
@@ -134,6 +171,8 @@ _wrap_xfce_icon_theme_get_use_svg(PyGObject *self)
 static PyMethodDef _PyXfceIconTheme_methods[] = {
     { "lookup", (PyCFunction)_wrap_xfce_icon_theme_lookup, METH_VARARGS|METH_KEYWORDS },
     { "lookup_category", (PyCFunction)_wrap_xfce_icon_theme_lookup_category, METH_VARARGS|METH_KEYWORDS },
+    { "load", (PyCFunction)_wrap_xfce_icon_theme_load, METH_VARARGS|METH_KEYWORDS },
+    { "load_category", (PyCFunction)_wrap_xfce_icon_theme_load_category, METH_VARARGS|METH_KEYWORDS },
     { "prepend_search_path", (PyCFunction)_wrap_xfce_icon_theme_prepend_search_path, METH_VARARGS|METH_KEYWORDS },
     { "append_search_path", (PyCFunction)_wrap_xfce_icon_theme_append_search_path, METH_VARARGS|METH_KEYWORDS },
     { "unregister_category", (PyCFunction)_wrap_xfce_icon_theme_unregister_category, METH_VARARGS|METH_KEYWORDS },
@@ -191,7 +230,22 @@ PyTypeObject PyXfceIconTheme_Type = {
 
 /* ----------- functions ----------- */
 
+static PyObject *
+_wrap_xfce_icon_theme_get_for_screen(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *screen;
+    XfceIconTheme *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:xfce_icon_theme_get_for_screen", kwlist, &PyGdkScreen_Type, &screen))
+        return NULL;
+    ret = xfce_icon_theme_get_for_screen(GDK_SCREEN(screen->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 PyMethodDef pyicontheme_functions[] = {
+    { "xfce_icon_theme_get_for_screen", (PyCFunction)_wrap_xfce_icon_theme_get_for_screen, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -243,8 +297,22 @@ pyicontheme_register_classes(PyObject *d)
             "could not import gobject");
         return;
     }
+    if ((module = PyImport_ImportModule("gtk.gdk")) != NULL) {
+        PyObject *moddict = PyModule_GetDict(module);
+
+        _PyGdkScreen_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Screen");
+        if (_PyGdkScreen_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Screen from gtk.gdk");
+            return;
+        }
+    } else {
+        PyErr_SetString(PyExc_ImportError,
+            "could not import gtk.gdk");
+        return;
+    }
 
 
-#line 249 "icontheme.c"
+#line 317 "icontheme.c"
     pygobject_register_class(d, "XfceIconTheme", XFCE_TYPE_ICON_THEME, &PyXfceIconTheme_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

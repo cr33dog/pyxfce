@@ -9,16 +9,21 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+extern PyTypeObject PyGdkPixbuf_Type;
+extern PyTypeObject PyGtkButton_Type;
+
 #ifndef XFCE_TYPE_ICONBUTTON
 #define XFCE_TYPE_ICONBUTTON (xfce_iconbutton_get_type ())
 #endif
 
-#line 17 "iconbutton.c"
+#line 20 "iconbutton.c"
 
 
 /* ---------- types from other modules ---------- */
 static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
+static PyTypeObject *_PyGdkPixbuf_Type;
+#define PyGdkPixbuf_Type (*_PyGdkPixbuf_Type)
 static PyTypeObject *_PyGtkButton_Type;
 #define PyGtkButton_Type (*_PyGtkButton_Type)
 
@@ -48,6 +53,24 @@ _wrap_xfce_iconbutton_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     return 0;
 }
 
+
+static PyObject *
+_wrap_xfce_iconbutton_set_pixbuf(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "pixbuf", NULL };
+    PyGObject *pixbuf;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceIconbutton.set_pixbuf", kwlist, &PyGdkPixbuf_Type, &pixbuf))
+        return NULL;
+    xfce_iconbutton_set_pixbuf(XFCE_ICONBUTTON(self->obj), GDK_PIXBUF(pixbuf->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyMethodDef _PyXfceIconbutton_methods[] = {
+    { "set_pixbuf", (PyCFunction)_wrap_xfce_iconbutton_set_pixbuf, METH_VARARGS|METH_KEYWORDS },
+    { NULL, NULL, 0 }
+};
 
 PyTypeObject PyXfceIconbutton_Type = {
     PyObject_HEAD_INIT(NULL)
@@ -79,7 +102,7 @@ PyTypeObject PyXfceIconbutton_Type = {
     offsetof(PyGObject, weakreflist),             /* tp_weaklistoffset */
     (getiterfunc)0,		/* tp_iter */
     (iternextfunc)0,	/* tp_iternext */
-    NULL,			/* tp_methods */
+    _PyXfceIconbutton_methods,			/* tp_methods */
     0,					/* tp_members */
     0,		       	/* tp_getset */
     NULL,				/* tp_base */
@@ -98,7 +121,22 @@ PyTypeObject PyXfceIconbutton_Type = {
 
 /* ----------- functions ----------- */
 
+static PyObject *
+_wrap_xfce_iconbutton_new_from_pixbuf(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "pb", NULL };
+    PyGObject *pb;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:xfce_iconbutton_new_from_pixbuf", kwlist, &PyGdkPixbuf_Type, &pb))
+        return NULL;
+    ret = xfce_iconbutton_new_from_pixbuf(GDK_PIXBUF(pb->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 PyMethodDef pyiconbutton_functions[] = {
+    { "xfce_iconbutton_new_from_pixbuf", (PyCFunction)_wrap_xfce_iconbutton_new_from_pixbuf, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -136,8 +174,22 @@ pyiconbutton_register_classes(PyObject *d)
             "could not import gtk");
         return;
     }
+    if ((module = PyImport_ImportModule("gtk.gdk")) != NULL) {
+        PyObject *moddict = PyModule_GetDict(module);
+
+        _PyGdkPixbuf_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Pixbuf");
+        if (_PyGdkPixbuf_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Pixbuf from gtk.gdk");
+            return;
+        }
+    } else {
+        PyErr_SetString(PyExc_ImportError,
+            "could not import gtk.gdk");
+        return;
+    }
 
 
-#line 142 "iconbutton.c"
+#line 194 "iconbutton.c"
     pygobject_register_class(d, "XfceIconbutton", XFCE_TYPE_ICONBUTTON, &PyXfceIconbutton_Type, Py_BuildValue("(O)", &PyGtkButton_Type));
 }

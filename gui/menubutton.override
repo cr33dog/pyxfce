@@ -7,6 +7,9 @@ headers
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+extern PyTypeObject PyGdkPixbuf_Type;
+extern PyTypeObject PyGtkButton_Type;
+
 #ifndef XFCE_TYPE_MENUBUTTON
 #define XFCE_TYPE_MENUBUTTON (xfce_menubutton_get_type ())
 #endif
@@ -18,6 +21,7 @@ modulename menubutton
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.Button as PyGtkButton_Type
+import gtk.gdk.Pixbuf as PyGdkPixbuf_Type
 %%
 ignore
 %%

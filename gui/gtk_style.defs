@@ -9,9 +9,9 @@
   (c-name "get_style")
   (return-type "gchar*")
   (parameters
-    '("GtkWidget" "*")
-    '("gchar" "*")
-    '("gchar" "*")
+    '("GtkWidget*" "widget")
+    '("gchar*" "name")
+    '("gchar*" "state")
   )
 )
 
@@ -19,9 +19,9 @@
   (c-name "get_style_gc")
   (return-type "GdkGC*")
   (parameters
-    '("GtkWidget" "*")
-    '("gchar" "*")
-    '("gchar" "*")
+    '("GtkWidget*" "widget")
+    '("gchar*" "state")
+    '("gchar*" "style")
   )
 )
 
@@ -29,7 +29,7 @@
   (c-name "get_font_desc")
   (return-type "PangoFontDescription*")
   (parameters
-    '("GtkWidget" "*")
+    '("GtkWidget*" "widget")
   )
 )
 
@@ -37,7 +37,7 @@
   (c-name "pango_get_context")
   (return-type "PangoContext*")
   (parameters
-    '("GtkWidget" "*")
+    '("GtkWidget*" "widget")
   )
 )
 

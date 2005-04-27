@@ -30,13 +30,21 @@ PyTypeObject PyXfceMovehandler_Type;
 /* ----------- XfceMovehandler ----------- */
 
 static int
-pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
+_wrap_xfce_movehandler_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    gchar buf[512];
+    static char *kwlist[] = { "window", NULL };
+    PyGObject *window;
 
-    g_snprintf(buf, sizeof(buf), "%s is an abstract widget", self->ob_type->tp_name);
-    PyErr_SetString(PyExc_NotImplementedError, buf);
-    return -1;
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceMovehandler.__init__", kwlist, &PyGtkWidget_Type, &window))
+        return -1;
+    self->obj = (GObject *)xfce_movehandler_new(GTK_WIDGET(window->obj));
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceMovehandler object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
 }
 
 PyTypeObject PyXfceMovehandler_Type = {
@@ -77,7 +85,7 @@ PyTypeObject PyXfceMovehandler_Type = {
     (descrgetfunc)0,	/* tp_descr_get */
     (descrsetfunc)0,	/* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)pygobject_no_constructor,		/* tp_init */
+    (initproc)_wrap_xfce_movehandler_new,		/* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -128,6 +136,6 @@ pymovehandler_register_classes(PyObject *d)
     }
 
 
-#line 132 "movehandler.c"
+#line 140 "movehandler.c"
     pygobject_register_class(d, "XfceMovehandler", XFCE_TYPE_MOVEHANDLER, &PyXfceMovehandler_Type, Py_BuildValue("(O)", &PyGtkWidget_Type));
 }

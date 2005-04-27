@@ -29,14 +29,14 @@ static PyTypeObject *_PyGtkWidget_Type;
 static PyObject *
 _wrap_get_style(PyObject *self, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "*", "*", "*", NULL };
-    PyGObject **;
-    char *, *;
+    static char *kwlist[] = { "widget", "name", "state", NULL };
+    PyGObject *widget;
+    char *name, *state;
     gchar *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!cc:get_style", kwlist, &PyGtkWidget_Type, &*, &*, &*))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!ss:get_style", kwlist, &PyGtkWidget_Type, &widget, &name, &state))
         return NULL;
-    ret = get_style(GTK_WIDGET(*->obj), *, *);
+    ret = get_style(GTK_WIDGET(widget->obj), name, state);
     if (ret) {
         PyObject *py_ret = PyString_FromString(ret);
         g_free(ret);
@@ -49,14 +49,14 @@ _wrap_get_style(PyObject *self, PyObject *args, PyObject *kwargs)
 static PyObject *
 _wrap_get_style_gc(PyObject *self, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "*", "*", "*", NULL };
-    PyGObject **;
-    char *, *;
+    static char *kwlist[] = { "widget", "state", "style", NULL };
+    PyGObject *widget;
+    char *state, *style;
     GdkGC *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!cc:get_style_gc", kwlist, &PyGtkWidget_Type, &*, &*, &*))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!ss:get_style_gc", kwlist, &PyGtkWidget_Type, &widget, &state, &style))
         return NULL;
-    ret = get_style_gc(GTK_WIDGET(*->obj), *, *);
+    ret = get_style_gc(GTK_WIDGET(widget->obj), state, style);
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }

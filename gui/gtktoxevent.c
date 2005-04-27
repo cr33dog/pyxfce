@@ -9,7 +9,9 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#line 13 "gtktoxevent.c"
+extern PyTypeObject PyGdkScreen_Type;
+
+#line 15 "gtktoxevent.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -23,6 +25,21 @@ static PyTypeObject *_PyGObject_Type;
 /* ----------- functions ----------- */
 
 static PyObject *
+_wrap_xfce_add_event_win(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "gscr", "event_mask", NULL };
+    PyGObject *gscr;
+    int event_mask;
+    GdkWindow *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i:xfce_add_event_win", kwlist, &PyGdkScreen_Type, &gscr, &event_mask))
+        return NULL;
+    ret = xfce_add_event_win(GDK_SCREEN(gscr->obj), event_mask);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
 _wrap_closeEventFilter(PyObject *self)
 {
     closeEventFilter();
@@ -30,8 +47,42 @@ _wrap_closeEventFilter(PyObject *self)
     return Py_None;
 }
 
+static PyObject *
+_wrap_getDefaultGtkWidget(PyObject *self)
+{
+    GtkWidget *ret;
+
+    ret = getDefaultGtkWidget();
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_getGdkEventWindow(PyObject *self)
+{
+    GdkWindow *ret;
+
+    ret = getGdkEventWindow();
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_getDefaultGdkWindow(PyObject *self)
+{
+    GdkWindow *ret;
+
+    ret = getDefaultGdkWindow();
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 PyMethodDef pygtktoxevent_functions[] = {
+    { "xfce_add_event_win", (PyCFunction)_wrap_xfce_add_event_win, METH_VARARGS|METH_KEYWORDS },
     { "closeEventFilter", (PyCFunction)_wrap_closeEventFilter, METH_NOARGS },
+    { "getDefaultGtkWidget", (PyCFunction)_wrap_getDefaultGtkWidget, METH_NOARGS },
+    { "getGdkEventWindow", (PyCFunction)_wrap_getGdkEventWindow, METH_NOARGS },
+    { "getDefaultGdkWindow", (PyCFunction)_wrap_getDefaultGdkWindow, METH_NOARGS },
     { NULL, NULL, 0 }
 };
 
@@ -70,5 +121,5 @@ pygtktoxevent_register_classes(PyObject *d)
     }
 
 
-#line 74 "gtktoxevent.c"
+#line 125 "gtktoxevent.c"
 }

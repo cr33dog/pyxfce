@@ -7,12 +7,15 @@ headers
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+extern PyTypeObject PyGdkScreen_Type;
+
 %%
 include
 %%
 modulename gtktoxevent
 %%
 import gobject.GObject as PyGObject_Type
+import screen as PyGdkScreen_Type
 %%
 ignore
 %%

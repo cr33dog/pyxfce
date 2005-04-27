@@ -7,12 +7,15 @@ headers
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+extern PyTypeObject PyGdkScreen;
+
 %%
 include
 %%
 modulename icontheme
 %%
 import gobject.GObject as PyGObject_Type
+import gtk.gdk.Screen as PyGdkScreen_Type
 %%
 ignore
 %%

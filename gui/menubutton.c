@@ -9,11 +9,14 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+extern PyTypeObject PyGdkPixbuf_Type;
+extern PyTypeObject PyGtkButton_Type;
+
 #ifndef XFCE_TYPE_MENUBUTTON
 #define XFCE_TYPE_MENUBUTTON (xfce_menubutton_get_type ())
 #endif
 
-#line 17 "menubutton.c"
+#line 20 "menubutton.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -21,6 +24,8 @@ static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
 static PyTypeObject *_PyGtkButton_Type;
 #define PyGtkButton_Type (*_PyGtkButton_Type)
+static PyTypeObject *_PyGdkPixbuf_Type;
+#define PyGdkPixbuf_Type (*_PyGdkPixbuf_Type)
 
 
 /* ---------- forward type declarations ---------- */
@@ -61,6 +66,19 @@ _wrap_xfce_menubutton_set_text(PyGObject *self, PyObject *args, PyObject *kwargs
 }
 
 static PyObject *
+_wrap_xfce_menubutton_set_pixbuf(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "pixbuf", NULL };
+    PyGObject *pixbuf;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceMenubutton.set_pixbuf", kwlist, &PyGdkPixbuf_Type, &pixbuf))
+        return NULL;
+    xfce_menubutton_set_pixbuf(XFCE_MENUBUTTON(self->obj), GDK_PIXBUF(pixbuf->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
 _wrap_xfce_menubutton_set_stock_icon(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "stock", NULL };
@@ -75,6 +93,7 @@ _wrap_xfce_menubutton_set_stock_icon(PyGObject *self, PyObject *args, PyObject *
 
 static PyMethodDef _PyXfceMenubutton_methods[] = {
     { "set_text", (PyCFunction)_wrap_xfce_menubutton_set_text, METH_VARARGS|METH_KEYWORDS },
+    { "set_pixbuf", (PyCFunction)_wrap_xfce_menubutton_set_pixbuf, METH_VARARGS|METH_KEYWORDS },
     { "set_stock_icon", (PyCFunction)_wrap_xfce_menubutton_set_stock_icon, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
@@ -128,7 +147,38 @@ PyTypeObject PyXfceMenubutton_Type = {
 
 /* ----------- functions ----------- */
 
+static PyObject *
+_wrap_xfce_menubutton_new_with_pixbuf(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "text", "pb", NULL };
+    char *text;
+    PyGObject *pb;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sO!:xfce_menubutton_new_with_pixbuf", kwlist, &text, &PyGdkPixbuf_Type, &pb))
+        return NULL;
+    ret = xfce_menubutton_new_with_pixbuf(text, GDK_PIXBUF(pb->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_xfce_menubutton_new_with_stock_icon(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "text", "stock", NULL };
+    char *text, *stock;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:xfce_menubutton_new_with_stock_icon", kwlist, &text, &stock))
+        return NULL;
+    ret = xfce_menubutton_new_with_stock_icon(text, stock);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 PyMethodDef pymenubutton_functions[] = {
+    { "xfce_menubutton_new_with_pixbuf", (PyCFunction)_wrap_xfce_menubutton_new_with_pixbuf, METH_VARARGS|METH_KEYWORDS },
+    { "xfce_menubutton_new_with_stock_icon", (PyCFunction)_wrap_xfce_menubutton_new_with_stock_icon, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -166,8 +216,22 @@ pymenubutton_register_classes(PyObject *d)
             "could not import gtk");
         return;
     }
+    if ((module = PyImport_ImportModule("gtk.gdk")) != NULL) {
+        PyObject *moddict = PyModule_GetDict(module);
+
+        _PyGdkPixbuf_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Pixbuf");
+        if (_PyGdkPixbuf_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Pixbuf from gtk.gdk");
+            return;
+        }
+    } else {
+        PyErr_SetString(PyExc_ImportError,
+            "could not import gtk.gdk");
+        return;
+    }
 
 
-#line 172 "menubutton.c"
+#line 236 "menubutton.c"
     pygobject_register_class(d, "XfceMenubutton", XFCE_TYPE_MENUBUTTON, &PyXfceMenubutton_Type, Py_BuildValue("(O)", &PyGtkButton_Type));
 }

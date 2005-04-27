@@ -7,6 +7,9 @@ headers
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+extern PyTypeObject PyGdkPixbuf_Type;
+extern PyTypeObject PyGtkButton_Type;
+
 #ifndef XFCE_TYPE_ICONBUTTON
 #define XFCE_TYPE_ICONBUTTON (xfce_iconbutton_get_type ())
 #endif
@@ -17,6 +20,7 @@ include
 modulename iconbutton
 %%
 import gobject.GObject as PyGObject_Type
+import gtk.gdk.Pixbuf as PyGdkPixbuf_Type
 import gtk.Button as PyGtkButton_Type
 %%
 ignore
