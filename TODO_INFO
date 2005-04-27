@@ -33,13 +33,13 @@ Warning: generating old-style constructor for xfce_decortoggle_new
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
 Could not write function exec_command_full_with_envp: No ArgType for 'gchar**'
-Could not write function xfce_err: varargs functions not supported
-Could not write function xfce_verr: No ArgType for 'va_list'
-Could not write function xfce_warn: varargs functions not supported
-Could not write function xfce_vwarn: No ArgType for 'va_list'
-Could not write function xfce_info: varargs functions not supported
-Could not write function xfce_vinfo: No ArgType for 'va_list'
-Could not write function xfce_message_dialog: varargs functions not supported
+Could not write function err: varargs functions not supported
+Could not write function verr: No ArgType for 'va_list'
+Could not write function warn: varargs functions not supported
+Could not write function vwarn: No ArgType for 'va_list'
+Could not write function info: varargs functions not supported
+Could not write function vinfo: No ArgType for 'va_list'
+Could not write function message_dialog: varargs functions not supported
 ***INFO*** The coverage of global functions is 60.00% (12/20)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
@@ -56,6 +56,19 @@ Warning: generating old-style constructor for xfce_framebox_new
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
+Could not write function gdk_display_locate_monitor_with_pointer: No ArgType for 'gint*'
+Could not write function gdk_spawn_on_screen: No ArgType for 'gchar**'
+Could not write function gdk_spawn_on_screen_with_pipes: No ArgType for 'gchar**'
+***INFO*** The coverage of global functions is 50.00% (3/6)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (2/2)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
 Could not write function get_font_desc: No ArgType for 'PangoFontDescription*'
 Could not write function pango_get_context: No ArgType for 'PangoContext*'
 ***INFO*** The coverage of global functions is 50.00% (2/4)
@@ -63,10 +76,10 @@ Could not write function pango_get_context: No ArgType for 'PangoContext*'
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write function xfce_push_event_filter: No ArgType for 'XfceFilterSetup*'
-Could not write function xfce_pop_event_filter: No ArgType for 'XfceFilterSetup*'
-Could not write function xfce_init_event_filter: No ArgType for 'gpointer'
-Could not write function xfce_close_event_filter: No ArgType for 'XfceFilterSetup*'
+Could not write function push_event_filter: No ArgType for 'XfceFilterSetup*'
+Could not write function pop_event_filter: No ArgType for 'XfceFilterSetup*'
+Could not write function init_event_filter: No ArgType for 'gpointer'
+Could not write function close_event_filter: No ArgType for 'XfceFilterSetup*'
 Could not write function pushEventFilter: No ArgType for 'GtkToXEventFilter'
 Could not write function popEventFilter: No ArgType for 'GtkToXEventFilterStack*'
 Could not write function initEventFilter: No ArgType for 'gpointer'
@@ -95,8 +108,6 @@ Could not write method XfceIconTheme.register_category: No ArgType for 'GList*'
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-icontheme.override: In function `_wrap_xfce_icon_theme_get_search_path':
-icontheme.override:29: Warnung: >>n_items<< k?nnte in dieser Funktion uninitialisiert bleiben
 Warning: generating old-style constructor for xfce_menubutton_new
 ***INFO*** The coverage of global functions is 100.00% (2/2)
 ***INFO*** The coverage of methods is 100.00% (3/3)
@@ -163,6 +174,17 @@ Could not write function mcs_list_delete: No ArgType for 'McsList**'
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
+Could not write method NetkClassGroup.get_windows: No ArgType for 'GList*'
+***INFO*** The coverage of global functions is 100.00% (5/5)
+***INFO*** The coverage of methods is 80.00% (4/5)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
 Warning: generating old-style constructor for netk_pager_new
 ***INFO*** There are no declared global functions.
 ***INFO*** The coverage of methods is 100.00% (6/6)
@@ -186,37 +208,48 @@ Could not write method NetkTasklist.set_icon_loader: No ArgType for 'NetkLoadIco
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write function netk_get_cardinal: No ArgType for 'Window'
-Could not write function netk_get_wm_state: No ArgType for 'Window'
-Could not write function netk_get_window: No ArgType for 'Window'
-Could not write function netk_get_pixmap: No ArgType for 'Window'
-Could not write function netk_get_atom: No ArgType for 'Window'
-Could not write function netk_get_text_property: No ArgType for 'Window'
-Could not write function netk_get_utf8_property: No ArgType for 'Window'
-Could not write function netk_get_window_list: No ArgType for 'Window'
-Could not write function netk_get_atom_list: No ArgType for 'Window'
-Could not write function netk_get_cardinal_list: No ArgType for 'Window'
-Could not write function netk_get_utf8_list: No ArgType for 'Window'
-Could not write function netk_close: No ArgType for 'Screen*'
-Could not write function netk_change_state: No ArgType for 'Screen*'
-Could not write function netk_change_workspace: No ArgType for 'Screen*'
-Could not write function netk_activate: No ArgType for 'Screen*'
-Could not write function netk_activate_workspace: No ArgType for 'Screen*'
-Could not write function netk_get_group_leader: No ArgType for 'Window'
-Could not write function netk_get_session_id: No ArgType for 'Window'
-Could not write function netk_get_pid: No ArgType for 'Window'
-Could not write function netk_get_name: No ArgType for 'Window'
-Could not write function netk_get_res_class_utf8: No ArgType for 'Window'
-Could not write function netk_set_desktop_layout: No ArgType for 'Screen*'
-Could not write function netk_get_desktop_margins: No ArgType for 'Screen*'
-Could not write function netk_set_desktop_margins: No ArgType for 'Window'
+Could not write function get_cardinal: No ArgType for 'Window'
+Could not write function get_wm_state: No ArgType for 'Window'
+Could not write function get_window: No ArgType for 'Window'
+Could not write function get_pixmap: No ArgType for 'Window'
+Could not write function get_atom: No ArgType for 'Window'
+Could not write function get_text_property: No ArgType for 'Window'
+Could not write function get_utf8_property: No ArgType for 'Window'
+Could not write function get_window_list: No ArgType for 'Window'
+Could not write function get_atom_list: No ArgType for 'Window'
+Could not write function get_cardinal_list: No ArgType for 'Window'
+Could not write function get_utf8_list: No ArgType for 'Window'
+Could not write function close: No ArgType for 'Screen*'
+Could not write function change_state: No ArgType for 'Screen*'
+Could not write function change_workspace: No ArgType for 'Screen*'
+Could not write function activate: No ArgType for 'Screen*'
+Could not write function activate_workspace: No ArgType for 'Screen*'
+Could not write function get_group_leader: No ArgType for 'Window'
+Could not write function get_session_id: No ArgType for 'Window'
+Could not write function get_pid: No ArgType for 'Window'
+Could not write function get_name: No ArgType for 'Window'
+Could not write function get_res_class_utf8: No ArgType for 'Window'
+Could not write function set_desktop_layout: No ArgType for 'Screen*'
+Could not write function get_desktop_margins: No ArgType for 'Screen*'
+Could not write function set_desktop_margins: No ArgType for 'Window'
 ***INFO*** The coverage of global functions is 7.69% (2/26)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
 ***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (1/1)
 ***INFO*** The coverage of methods is 100.00% (56/56)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function create_window_menu: No ArgType for 'GList*'
+***INFO*** The coverage of global functions is 0.00% (0/1)
+***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
@@ -238,19 +271,19 @@ Could not write function get_pixbuf_by_id: No ArgType for 'PanelIcon'
 ***INFO*** There are no declared interface proxies.
 Warning: generating old-style constructor for xfce_desktop_entry_new
 Could not write constructor for XfceDesktopEntry: No ArgType for 'const-char**'
-Could not write function xfce_desktop_entry_new_from_data: No ArgType for 'const-char**'
+Could not write function desktop_entry_new_from_data: No ArgType for 'const-char**'
 ***INFO*** The coverage of global functions is 0.00% (0/1)
 ***INFO*** The coverage of methods is 100.00% (4/4)
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write function xfce_mkdirhier: No ArgType for 'unsigned-long'
+Could not write function mkdirhier: No ArgType for 'unsigned-long'
 ***INFO*** The coverage of global functions is 0.00% (0/1)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write function xfce_get_path_localized: No ArgType for 'GFileTest'
+Could not write function get_path_localized: No ArgType for 'GFileTest'
 ***INFO*** The coverage of global functions is 85.71% (6/7)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
@@ -261,25 +294,25 @@ Could not write function xfce_get_path_localized: No ArgType for 'GFileTest'
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write function xfce_get_homefile_r: varargs functions not supported
-Could not write function xfce_get_userfile_r: varargs functions not supported
-Could not write function xfce_expand_variables: No ArgType for 'gchar**'
+Could not write function get_homefile_r: varargs functions not supported
+Could not write function get_userfile_r: varargs functions not supported
+Could not write function expand_variables: No ArgType for 'gchar**'
 ***INFO*** The coverage of global functions is 50.00% (3/6)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write function xfce_rc_simple_open: No ArgType for 'XfceRc*'
-Could not write function xfce_rc_config_open: No ArgType for 'XfceRc*'
+Could not write function rc_simple_open: No ArgType for 'XfceRc*'
+Could not write function rc_config_open: No ArgType for 'XfceRc*'
 ***INFO*** The coverage of global functions is 0.00% (0/2)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write function xfce_resource_dirs: No ArgType for 'gchar**'
-Could not write function xfce_resource_lookup_all: No ArgType for 'gchar**'
-Could not write function xfce_resource_match: No ArgType for 'gchar**'
-Could not write function xfce_resource_match_custom: No ArgType for 'XfceMatchFunc'
+Could not write function resource_dirs: No ArgType for 'gchar**'
+Could not write function resource_lookup_all: No ArgType for 'gchar**'
+Could not write function resource_match: No ArgType for 'gchar**'
+Could not write function resource_match_custom: No ArgType for 'XfceMatchFunc'
 ***INFO*** The coverage of global functions is 50.00% (4/8)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
