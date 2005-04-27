@@ -9,7 +9,7 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-/*extern PyTypeObject PyNetkScreen_Type;*/
+extern PyTypeObject PyNetkScreen_Type;
 
 #line 15 "tasklist.c"
 

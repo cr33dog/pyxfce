@@ -73,12 +73,9 @@ Could not write function netk_get_res_class_utf8: No ArgType for 'Window'
 Could not write function netk_set_desktop_layout: No ArgType for 'Screen*'
 Could not write function netk_get_desktop_margins: No ArgType for 'Screen*'
 Could not write function netk_set_desktop_margins: No ArgType for 'Window'
+window.override: In function `_wrap_netk_window_get_geometry':
+window.override:37: Warnung: >>depth<< k?nnte in dieser Funktion uninitialisiert bleiben
 Could not write function get_pixbuf_by_id: No ArgType for 'PanelIcon'
-Could not write function get_panel_pixbuf: No ArgType for 'GdkPixbuf*'
-Could not write function get_pixbuf_from_file: No ArgType for 'GdkPixbuf*'
-Could not write function get_scaled_pixbuf: No ArgType for 'GdkPixbuf*'
-Could not write function get_themed_pixbuf: No ArgType for 'GdkPixbuf*'
-Could not write function select_file_with_preview: No ArgType for 'GtkWidget*'
 Warning: generating old-style constructor for xfce_desktop_entry_new
 Could not write constructor for XfceDesktopEntry: No ArgType for 'const-char**'
 Could not write method XfceDesktopEntry.get_string: No ArgType for 'char**'

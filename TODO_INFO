@@ -218,29 +218,25 @@ Could not write function netk_set_desktop_margins: No ArgType for 'Window'
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write method NetkWindow.get_geometry: No ArgType for 'int*'
 ***INFO*** The coverage of global functions is 100.00% (1/1)
-***INFO*** The coverage of methods is 98.21% (55/56)
+***INFO*** The coverage of methods is 100.00% (56/56)
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
+window.override: In function `_wrap_netk_window_get_geometry':
+window.override:37: Warnung: >>depth<< k?nnte in dieser Funktion uninitialisiert bleiben
 ***INFO*** There are no declared global functions.
 ***INFO*** The coverage of methods is 100.00% (9/9)
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
 Could not write function get_pixbuf_by_id: No ArgType for 'PanelIcon'
-Could not write function get_panel_pixbuf: No ArgType for 'GdkPixbuf*'
-Could not write function get_pixbuf_from_file: No ArgType for 'GdkPixbuf*'
-Could not write function get_scaled_pixbuf: No ArgType for 'GdkPixbuf*'
-Could not write function get_themed_pixbuf: No ArgType for 'GdkPixbuf*'
-***INFO*** The coverage of global functions is 0.00% (0/5)
+***INFO*** The coverage of global functions is 80.00% (4/5)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write function select_file_with_preview: No ArgType for 'GtkWidget*'
-***INFO*** The coverage of global functions is 0.00% (0/1)
+***INFO*** The coverage of global functions is 100.00% (1/1)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
