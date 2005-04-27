@@ -5,8 +5,7 @@ Could not write constructor for XfceAboutDialog: No ArgType for 'const-XfceAbout
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write function xfce_app_menu_item_new_from_desktop_entry: No ArgType for 'XfceDesktopEntry*'
-***INFO*** The coverage of global functions is 85.71% (6/7)
+***INFO*** The coverage of global functions is 100.00% (7/7)
 ***INFO*** The coverage of methods is 100.00% (10/10)
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
@@ -90,14 +89,14 @@ Could not write function inline_icon_at_size: No ArgType for 'const-guint8*'
 ***INFO*** There are no declared interface proxies.
 Could not write method XfceIconTheme.lookup_list: No ArgType for 'GList*'
 Could not write method XfceIconTheme.load_list: No ArgType for 'GList*'
-Could not write method XfceIconTheme.get_search_path: No ArgType for 'GList*'
-Could not write method XfceIconTheme.set_search_path: No ArgType for 'GList*'
 Could not write method XfceIconTheme.register_category: No ArgType for 'GList*'
 ***INFO*** The coverage of global functions is 100.00% (1/1)
-***INFO*** The coverage of methods is 64.29% (9/14)
+***INFO*** The coverage of methods is 78.57% (11/14)
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
+icontheme.override: In function `_wrap_xfce_icon_theme_get_search_path':
+icontheme.override:29: Warnung: >>n_items<< k?nnte in dieser Funktion uninitialisiert bleiben
 Warning: generating old-style constructor for xfce_menubutton_new
 ***INFO*** The coverage of global functions is 100.00% (2/2)
 ***INFO*** The coverage of methods is 100.00% (3/3)
@@ -159,9 +158,8 @@ Could not write function mcs_list_delete: No ArgType for 'McsList**'
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-Could not write method NetkApplication.get_windows: No ArgType for 'GList*'
 ***INFO*** The coverage of global functions is 100.00% (1/1)
-***INFO*** The coverage of methods is 88.89% (8/9)
+***INFO*** The coverage of methods is 100.00% (9/9)
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
@@ -177,10 +175,9 @@ Warning: generating old-style constructor for netk_pager_new
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
 Warning: generating old-style constructor for netk_tasklist_new
-Could not write method NetkTasklist.get_size_hint_list: No ArgType for 'int*'
 Could not write method NetkTasklist.set_icon_loader: No ArgType for 'NetkLoadIconFunction'
 ***INFO*** There are no declared global functions.
-***INFO*** The coverage of methods is 83.33% (10/12)
+***INFO*** The coverage of methods is 91.67% (11/12)
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
@@ -223,8 +220,6 @@ Could not write function netk_set_desktop_margins: No ArgType for 'Window'
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-window.override: In function `_wrap_netk_window_get_geometry':
-window.override:37: Warnung: >>depth<< k?nnte in dieser Funktion uninitialisiert bleiben
 ***INFO*** There are no declared global functions.
 ***INFO*** The coverage of methods is 100.00% (9/9)
 ***INFO*** There are no declared virtual proxies.
@@ -243,16 +238,12 @@ Could not write function get_pixbuf_by_id: No ArgType for 'PanelIcon'
 ***INFO*** There are no declared interface proxies.
 Warning: generating old-style constructor for xfce_desktop_entry_new
 Could not write constructor for XfceDesktopEntry: No ArgType for 'const-char**'
-Could not write method XfceDesktopEntry.get_string: No ArgType for 'char**'
-Could not write method XfceDesktopEntry.get_int: No ArgType for 'int*'
 Could not write function xfce_desktop_entry_new_from_data: No ArgType for 'const-char**'
-***INFO*** The coverage of global functions is 50.00% (1/2)
-***INFO*** The coverage of methods is 50.00% (2/4)
+***INFO*** The coverage of global functions is 0.00% (0/1)
+***INFO*** The coverage of methods is 100.00% (4/4)
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-desktopentry.c: In function `_wrap_print_desktop_entry_info':
-desktopentry.c:121: Warnung: implizite Deklaration der Funktion >>print_desktop_entry_info<<
 Could not write function xfce_mkdirhier: No ArgType for 'unsigned-long'
 ***INFO*** The coverage of global functions is 0.00% (0/1)
 ***INFO*** There are no declared methods.
@@ -279,7 +270,7 @@ Could not write function xfce_expand_variables: No ArgType for 'gchar**'
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
 Could not write function xfce_rc_simple_open: No ArgType for 'XfceRc*'
-Could not write function xfce_rc_config_open: No ArgType for 'XfceResourceType'
+Could not write function xfce_rc_config_open: No ArgType for 'XfceRc*'
 ***INFO*** The coverage of global functions is 0.00% (0/2)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
@@ -294,10 +285,8 @@ Could not write function xfce_resource_match_custom: No ArgType for 'XfceMatchFu
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-***INFO*** The coverage of global functions is 100.00% (2/2)
+***INFO*** The coverage of global functions is 100.00% (1/1)
 ***INFO*** There are no declared methods.
 ***INFO*** There are no declared virtual proxies.
 ***INFO*** There are no declared virtual accessors.
 ***INFO*** There are no declared interface proxies.
-utf8.c: In function `_wrap_utf8_string_remove_controls':
-utf8.c:35: Warnung: >>utf8_string_remove_controls<< ist veraltet (deklariert bei /usr/include/xfce4/libxfce4util/utf8.h:38)

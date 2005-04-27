@@ -1,6 +1,5 @@
 Warning: generating old-style constructor for xfce_about_dialog_new
 Could not write constructor for XfceAboutDialog: No ArgType for 'const-XfceAboutInfo*'
-Could not write function xfce_app_menu_item_new_from_desktop_entry: No ArgType for 'XfceDesktopEntry*'
 Warning: generating old-style constructor for xfce_decorbutton_new
 Warning: generating old-style constructor for xfce_decortoggle_new
 Could not write function exec_command_full_with_envp: No ArgType for 'gchar**'
@@ -25,9 +24,9 @@ Could not write function getDefaultXWindow: No ArgType for 'Window'
 Could not write function inline_icon_at_size: No ArgType for 'const-guint8*'
 Could not write method XfceIconTheme.lookup_list: No ArgType for 'GList*'
 Could not write method XfceIconTheme.load_list: No ArgType for 'GList*'
-Could not write method XfceIconTheme.get_search_path: No ArgType for 'GList*'
-Could not write method XfceIconTheme.set_search_path: No ArgType for 'GList*'
 Could not write method XfceIconTheme.register_category: No ArgType for 'GList*'
+icontheme.override: In function `_wrap_xfce_icon_theme_get_search_path':
+icontheme.override:29: Warnung: >>n_items<< k?nnte in dieser Funktion uninitialisiert bleiben
 Warning: generating old-style constructor for xfce_menubutton_new
 Warning: generating old-style constructor for xfce_movehandler_new
 Could not write method XfceMovehandler.set_move_func: No ArgType for 'XfceMoveFunc'
@@ -44,10 +43,8 @@ Could not write function mcs_client_check_manager: No ArgType for 'Display*'
 Could not write function mcs_manager_check_running: No ArgType for 'Display*'
 Could not write function mcs_list_insert: No ArgType for 'McsList**'
 Could not write function mcs_list_delete: No ArgType for 'McsList**'
-Could not write method NetkApplication.get_windows: No ArgType for 'GList*'
 Warning: generating old-style constructor for netk_pager_new
 Warning: generating old-style constructor for netk_tasklist_new
-Could not write method NetkTasklist.get_size_hint_list: No ArgType for 'int*'
 Could not write method NetkTasklist.set_icon_loader: No ArgType for 'NetkLoadIconFunction'
 Could not write function netk_get_cardinal: No ArgType for 'Window'
 Could not write function netk_get_wm_state: No ArgType for 'Window'
@@ -73,26 +70,18 @@ Could not write function netk_get_res_class_utf8: No ArgType for 'Window'
 Could not write function netk_set_desktop_layout: No ArgType for 'Screen*'
 Could not write function netk_get_desktop_margins: No ArgType for 'Screen*'
 Could not write function netk_set_desktop_margins: No ArgType for 'Window'
-window.override: In function `_wrap_netk_window_get_geometry':
-window.override:37: Warnung: >>depth<< k?nnte in dieser Funktion uninitialisiert bleiben
 Could not write function get_pixbuf_by_id: No ArgType for 'PanelIcon'
 Warning: generating old-style constructor for xfce_desktop_entry_new
 Could not write constructor for XfceDesktopEntry: No ArgType for 'const-char**'
-Could not write method XfceDesktopEntry.get_string: No ArgType for 'char**'
-Could not write method XfceDesktopEntry.get_int: No ArgType for 'int*'
 Could not write function xfce_desktop_entry_new_from_data: No ArgType for 'const-char**'
-desktopentry.c: In function `_wrap_print_desktop_entry_info':
-desktopentry.c:121: Warnung: implizite Deklaration der Funktion >>print_desktop_entry_info<<
 Could not write function xfce_mkdirhier: No ArgType for 'unsigned-long'
 Could not write function xfce_get_path_localized: No ArgType for 'GFileTest'
 Could not write function xfce_get_homefile_r: varargs functions not supported
 Could not write function xfce_get_userfile_r: varargs functions not supported
 Could not write function xfce_expand_variables: No ArgType for 'gchar**'
 Could not write function xfce_rc_simple_open: No ArgType for 'XfceRc*'
-Could not write function xfce_rc_config_open: No ArgType for 'XfceResourceType'
+Could not write function xfce_rc_config_open: No ArgType for 'XfceRc*'
 Could not write function xfce_resource_dirs: No ArgType for 'gchar**'
 Could not write function xfce_resource_lookup_all: No ArgType for 'gchar**'
 Could not write function xfce_resource_match: No ArgType for 'gchar**'
 Could not write function xfce_resource_match_custom: No ArgType for 'XfceMatchFunc'
-utf8.c: In function `_wrap_utf8_string_remove_controls':
-utf8.c:35: Warnung: >>utf8_string_remove_controls<< ist veraltet (deklariert bei /usr/include/xfce4/libxfce4util/utf8.h:38)
