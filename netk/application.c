@@ -209,7 +209,7 @@ _wrap_netk_application_get(PyObject *self, PyObject *args, PyObject *kwargs)
     gulong xwindow;
     NetkApplication *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:netk_application_get", kwlist, &PyLong_Type, &py_xwindow))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:application_get", kwlist, &PyLong_Type, &py_xwindow))
         return NULL;
     xwindow = PyLong_AsUnsignedLong(py_xwindow);
     ret = netk_application_get(xwindow);
@@ -218,7 +218,7 @@ _wrap_netk_application_get(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 PyMethodDef pyapplication_functions[] = {
-    { "netk_application_get", (PyCFunction)_wrap_netk_application_get, METH_VARARGS|METH_KEYWORDS },
+    { "application_get", (PyCFunction)_wrap_netk_application_get, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

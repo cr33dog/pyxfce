@@ -8,10 +8,11 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/netk-window.h> /* sigh */
 
 extern PyTypeObject PyNetkWorkspace_Type;
 
-#line 15 "window.c"
+#line 16 "window.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -527,7 +528,7 @@ _wrap_netk_window_get_state(PyGObject *self)
     return pyg_flags_from_gtype(NETK_TYPE_WINDOW_STATE, ret);
 }
 
-#line 32 "window.override"
+#line 33 "window.override"
 static PyObject *
 _wrap_netk_window_get_geometry(PyGObject *self)
 {
@@ -536,7 +537,7 @@ _wrap_netk_window_get_geometry(PyGObject *self)
     netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
     return Py_BuildValue("(iiii)", x, y, width, height);
 }
-#line 540 "window.c"
+#line 541 "window.c"
 
 
 static PyObject *
@@ -698,7 +699,7 @@ _wrap_netk_window_get(PyObject *self, PyObject *args, PyObject *kwargs)
     gulong xwindow;
     NetkWindow *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:netk_window_get", kwlist, &PyLong_Type, &py_xwindow))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:window_get", kwlist, &PyLong_Type, &py_xwindow))
         return NULL;
     xwindow = PyLong_AsUnsignedLong(py_xwindow);
     ret = netk_window_get(xwindow);
@@ -707,7 +708,7 @@ _wrap_netk_window_get(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 PyMethodDef pywindow_functions[] = {
-    { "netk_window_get", (PyCFunction)_wrap_netk_window_get, METH_VARARGS|METH_KEYWORDS },
+    { "window_get", (PyCFunction)_wrap_netk_window_get, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -761,6 +762,6 @@ pywindow_register_classes(PyObject *d)
     }
 
 
-#line 765 "window.c"
+#line 766 "window.c"
     pygobject_register_class(d, "NetkWindow", NETK_TYPE_WINDOW, &PyNetkWindow_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

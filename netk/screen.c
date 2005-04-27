@@ -346,7 +346,7 @@ _wrap_netk_screen_get(PyObject *self, PyObject *args, PyObject *kwargs)
     int index;
     NetkScreen *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:netk_screen_get", kwlist, &index))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:screen_get", kwlist, &index))
         return NULL;
     ret = netk_screen_get(index);
     /* pygobject_new handles NULL checking */
@@ -361,7 +361,7 @@ _wrap_netk_screen_get_for_root(PyObject *self, PyObject *args, PyObject *kwargs)
     gulong root_window_id;
     NetkScreen *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:netk_screen_get_for_root", kwlist, &PyLong_Type, &py_root_window_id))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:screen_get_for_root", kwlist, &PyLong_Type, &py_root_window_id))
         return NULL;
     root_window_id = PyLong_AsUnsignedLong(py_root_window_id);
     ret = netk_screen_get_for_root(root_window_id);
@@ -370,9 +370,9 @@ _wrap_netk_screen_get_for_root(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 PyMethodDef pyscreen_functions[] = {
-    { "netk_screen_get_default", (PyCFunction)_wrap_netk_screen_get_default, METH_NOARGS },
-    { "netk_screen_get", (PyCFunction)_wrap_netk_screen_get, METH_VARARGS|METH_KEYWORDS },
-    { "netk_screen_get_for_root", (PyCFunction)_wrap_netk_screen_get_for_root, METH_VARARGS|METH_KEYWORDS },
+    { "screen_get_default", (PyCFunction)_wrap_netk_screen_get_default, METH_NOARGS },
+    { "screen_get", (PyCFunction)_wrap_netk_screen_get, METH_VARARGS|METH_KEYWORDS },
+    { "screen_get_for_root", (PyCFunction)_wrap_netk_screen_get_for_root, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

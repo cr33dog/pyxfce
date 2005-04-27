@@ -8,8 +8,11 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/netk-class-group.h>
+#include <libxfcegui4/netk-window.h>
 
-#line 13 "class_group.c"
+extern PyTypeObject PyNetkWindow_Type;
+
+#line 16 "class_group.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -22,16 +25,6 @@ PyTypeObject PyNetkClassGroup_Type;
 
 
 /* ----------- NetkClassGroup ----------- */
-
-static int
-pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
-{
-    gchar buf[512];
-
-    g_snprintf(buf, sizeof(buf), "%s is an abstract widget", self->ob_type->tp_name);
-    PyErr_SetString(PyExc_NotImplementedError, buf);
-    return -1;
-}
 
 static PyObject *
 _wrap_netk_class_group_get_res_class(PyGObject *self)
@@ -57,9 +50,31 @@ _wrap_netk_class_group_get_name(PyGObject *self)
     return Py_None;
 }
 
+static PyObject *
+_wrap_netk_class_group_get_icon(PyGObject *self)
+{
+    GdkPixbuf *ret;
+
+    ret = netk_class_group_get_icon(NETK_CLASS_GROUP(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_netk_class_group_get_mini_icon(PyGObject *self)
+{
+    GdkPixbuf *ret;
+
+    ret = netk_class_group_get_mini_icon(NETK_CLASS_GROUP(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 static PyMethodDef _PyNetkClassGroup_methods[] = {
     { "get_res_class", (PyCFunction)_wrap_netk_class_group_get_res_class, METH_NOARGS },
     { "get_name", (PyCFunction)_wrap_netk_class_group_get_name, METH_NOARGS },
+    { "get_icon", (PyCFunction)_wrap_netk_class_group_get_icon, METH_NOARGS },
+    { "get_mini_icon", (PyCFunction)_wrap_netk_class_group_get_mini_icon, METH_NOARGS },
     { NULL, NULL, 0 }
 };
 
@@ -82,8 +97,8 @@ PyTypeObject PyNetkClassGroup_Type = {
     (hashfunc)0,		/* tp_hash */
     (ternaryfunc)0,		/* tp_call */
     (reprfunc)0,		/* tp_str */
-    (getattrofunc)0,			/* tp_getattro */
-    (setattrofunc)0,			/* tp_setattro */
+    (getattrofunc)0,	/* tp_getattro */
+    (setattrofunc)0,	/* tp_setattro */
     (PyBufferProcs*)0,	/* tp_as_buffer */
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,                      /* tp_flags */
     NULL, 				/* Documentation string */
@@ -101,7 +116,7 @@ PyTypeObject PyNetkClassGroup_Type = {
     (descrgetfunc)0,	/* tp_descr_get */
     (descrsetfunc)0,	/* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)pygobject_no_constructor,		/* tp_init */
+    (initproc)0,		/* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -113,22 +128,13 @@ PyTypeObject PyNetkClassGroup_Type = {
 /* ----------- functions ----------- */
 
 static PyObject *
-_wrap_netk_class_group_get_type(PyObject *self)
-{
-    GType ret;
-
-    ret = netk_class_group_get_type();
-    return pyg_type_wrapper_new(ret);
-}
-
-static PyObject *
 _wrap_netk_class_group_get(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "res_class", NULL };
     char *res_class;
     NetkClassGroup *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:netk_class_group_get", kwlist, &res_class))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:class_group_get", kwlist, &res_class))
         return NULL;
     ret = netk_class_group_get(res_class);
     /* pygobject_new handles NULL checking */
@@ -162,11 +168,38 @@ _wrap_p_netk_class_group_destroy(PyObject *self, PyObject *args, PyObject *kwarg
     return Py_None;
 }
 
+static PyObject *
+_wrap_p_netk_class_group_add_window(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "class_group", "window", NULL };
+    PyGObject *class_group, *window;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!O!:p_netk_class_group_add_window", kwlist, &PyNetkClassGroup_Type, &class_group, &PyNetkWindow_Type, &window))
+        return NULL;
+    p_netk_class_group_add_window(NETK_CLASS_GROUP(class_group->obj), NETK_WINDOW(window->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_p_netk_class_group_remove_window(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "class_group", "window", NULL };
+    PyGObject *class_group, *window;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!O!:p_netk_class_group_remove_window", kwlist, &PyNetkClassGroup_Type, &class_group, &PyNetkWindow_Type, &window))
+        return NULL;
+    p_netk_class_group_remove_window(NETK_CLASS_GROUP(class_group->obj), NETK_WINDOW(window->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
 PyMethodDef pyclass_group_functions[] = {
-    { "netk_class_group_get_type", (PyCFunction)_wrap_netk_class_group_get_type, METH_NOARGS },
-    { "netk_class_group_get", (PyCFunction)_wrap_netk_class_group_get, METH_VARARGS|METH_KEYWORDS },
+    { "class_group_get", (PyCFunction)_wrap_netk_class_group_get, METH_VARARGS|METH_KEYWORDS },
     { "p_netk_class_group_create", (PyCFunction)_wrap_p_netk_class_group_create, METH_VARARGS|METH_KEYWORDS },
     { "p_netk_class_group_destroy", (PyCFunction)_wrap_p_netk_class_group_destroy, METH_VARARGS|METH_KEYWORDS },
+    { "p_netk_class_group_add_window", (PyCFunction)_wrap_p_netk_class_group_add_window, METH_VARARGS|METH_KEYWORDS },
+    { "p_netk_class_group_remove_window", (PyCFunction)_wrap_p_netk_class_group_remove_window, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -192,6 +225,6 @@ pyclass_group_register_classes(PyObject *d)
     }
 
 
-#line 196 "class_group.c"
+#line 229 "class_group.c"
     pygobject_register_class(d, "NetkClassGroup", NETK_TYPE_CLASS_GROUP, &PyNetkClassGroup_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

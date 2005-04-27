@@ -22,57 +22,7 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ----------- functions ----------- */
 
-static PyObject *
-_wrap_netk_window_state_get_type(PyObject *self)
-{
-    GType ret;
-
-    ret = netk_window_state_get_type();
-    return pyg_type_wrapper_new(ret);
-}
-
-static PyObject *
-_wrap_netk_window_actions_get_type(PyObject *self)
-{
-    GType ret;
-
-    ret = netk_window_actions_get_type();
-    return pyg_type_wrapper_new(ret);
-}
-
-static PyObject *
-_wrap_netk_window_type_get_type(PyObject *self)
-{
-    GType ret;
-
-    ret = netk_window_type_get_type();
-    return pyg_type_wrapper_new(ret);
-}
-
-static PyObject *
-_wrap_netk_pager_display_mode_get_type(PyObject *self)
-{
-    GType ret;
-
-    ret = netk_pager_display_mode_get_type();
-    return pyg_type_wrapper_new(ret);
-}
-
-static PyObject *
-_wrap_netk_tasklist_grouping_type_get_type(PyObject *self)
-{
-    GType ret;
-
-    ret = netk_tasklist_grouping_type_get_type();
-    return pyg_type_wrapper_new(ret);
-}
-
 PyMethodDef pyenum_types_functions[] = {
-    { "netk_window_state_get_type", (PyCFunction)_wrap_netk_window_state_get_type, METH_NOARGS },
-    { "netk_window_actions_get_type", (PyCFunction)_wrap_netk_window_actions_get_type, METH_NOARGS },
-    { "netk_window_type_get_type", (PyCFunction)_wrap_netk_window_type_get_type, METH_NOARGS },
-    { "netk_pager_display_mode_get_type", (PyCFunction)_wrap_netk_pager_display_mode_get_type, METH_NOARGS },
-    { "netk_tasklist_grouping_type_get_type", (PyCFunction)_wrap_netk_tasklist_grouping_type_get_type, METH_NOARGS },
     { NULL, NULL, 0 }
 };
 
@@ -98,5 +48,5 @@ pyenum_types_register_classes(PyObject *d)
     }
 
 
-#line 102 "enum_types.c"
+#line 52 "enum_types.c"
 }

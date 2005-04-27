@@ -6,6 +6,7 @@ headers
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/netk-window.h> /* sigh */
 
 extern PyTypeObject PyNetkWorkspace_Type;
 
