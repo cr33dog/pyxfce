@@ -98,18 +98,5 @@ Could not write function xfce_resource_dirs: No ArgType for 'gchar**'
 Could not write function xfce_resource_lookup_all: No ArgType for 'gchar**'
 Could not write function xfce_resource_match: No ArgType for 'gchar**'
 Could not write function xfce_resource_match_custom: No ArgType for 'XfceMatchFunc'
-resource.c: In function `_wrap_xfce_resource_lookup':
-resource.c:36: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
-resource.c:36: Fehler: (Jeder nicht deklarierte Bezeichner wird nur einmal aufgef?hrt
-resource.c:36: Fehler: f?r jede Funktion in der er auftritt.)
-resource.c: In function `_wrap_xfce_resource_push_path':
-resource.c:58: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
-resource.c: In function `_wrap_xfce_resource_pop_path':
-resource.c:74: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
-resource.c: In function `_wrap_xfce_resource_save_location':
-resource.c:93: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
-resource.c: In function `pyresource_add_constants':
-resource.c:119: Fehler: >>XFCE_TYPE_RESOURCE_TYPE<< nicht deklariert (erste Benutzung in dieser Funktion)
-make[2]: *** [_util_la-resource.lo] Fehler 1
-make[1]: *** [all-recursive] Fehler 1
-make: *** [all] Fehler 2
+utf8.c: In function `_wrap_utf8_string_remove_controls':
+utf8.c:35: Warnung: >>utf8_string_remove_controls<< ist veraltet (deklariert bei /usr/include/xfce4/libxfce4util/utf8.h:38)
