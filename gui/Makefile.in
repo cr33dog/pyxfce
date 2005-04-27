@@ -1206,6 +1206,7 @@ uninstall-am: uninstall-defsDATA uninstall-info-am \
 	     --override $*.override \
 	     --register $(PYGTK_DEFS)/gtk-types.defs \
 	     --register $(PYGTK_DEFS)/gdk-types.defs \
+	     --register ../util/desktopentry.defs \
 	     --prefix py$* $*.defs) > gen-$*.c \
 	 && cp gen-$*.c $*.c \
 	 && rm -f gen-$*.c

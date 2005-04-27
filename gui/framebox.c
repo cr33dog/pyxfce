@@ -13,11 +13,7 @@
 #define XFCE_TYPE_FRAMEBOX (xfce_framebox_get_type ())
 #endif
 
-extern PyTypeObject PyGtkWidget_Type;
-extern PyTypeObject PyGtkFrame_Type;
-extern PyTypeObject PyGObject_Type;
-
-#line 21 "framebox.c"
+#line 17 "framebox.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -167,6 +163,6 @@ pyframebox_register_classes(PyObject *d)
     }
 
 
-#line 171 "framebox.c"
+#line 167 "framebox.c"
     pygobject_register_class(d, "XfceFramebox", XFCE_TYPE_FRAMEBOX, &PyXfceFramebox_Type, Py_BuildValue("(O)", &PyGtkFrame_Type));
 }

@@ -8,11 +8,7 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
-
-extern PyTypeObject PyGdkPixbuf_Type;
-extern PyTypeObject PyGtkWidget_Type;
-
-#line 16 "dialogs.c"
+#line 12 "dialogs.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -264,5 +260,5 @@ pydialogs_register_classes(PyObject *d)
     }
 
 
-#line 268 "dialogs.c"
+#line 264 "dialogs.c"
 }

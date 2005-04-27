@@ -9,14 +9,11 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-extern PyTypeObject PyGdkPixbuf_Type;
-extern PyTypeObject PyGtkButton_Type;
-
 #ifndef XFCE_TYPE_ICONBUTTON
 #define XFCE_TYPE_ICONBUTTON (xfce_iconbutton_get_type ())
 #endif
 
-#line 20 "iconbutton.c"
+#line 17 "iconbutton.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -190,6 +187,6 @@ pyiconbutton_register_classes(PyObject *d)
     }
 
 
-#line 194 "iconbutton.c"
+#line 191 "iconbutton.c"
     pygobject_register_class(d, "XfceIconbutton", XFCE_TYPE_ICONBUTTON, &PyXfceIconbutton_Type, Py_BuildValue("(O)", &PyGtkButton_Type));
 }

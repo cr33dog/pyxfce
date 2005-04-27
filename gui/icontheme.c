@@ -9,9 +9,7 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-extern PyTypeObject PyGdkScreen;
-
-#line 15 "icontheme.c"
+#line 13 "icontheme.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -103,6 +101,80 @@ _wrap_xfce_icon_theme_load_category(PyGObject *self, PyObject *args, PyObject *k
     return pygobject_new((GObject *)ret);
 }
 
+#line 26 "icontheme.override"
+static PyObject *
+_wrap_xfce_icon_theme_get_search_path(PyGObject *self)
+{
+    gint n_items;
+    PyObject *py_tuple;
+    int i;
+    GList *list;
+    GList *item;
+
+    list = xfce_icon_theme_get_search_path(XFCE_ICON_THEME(self->obj));
+
+    py_tuple = PyTuple_New(n_items);
+    item = list;
+    for (i = 0; item != NULL; i++)
+	PyTuple_SetItem(py_tuple, i, PyString_FromString((char *)item->data));
+
+    if (list) {
+        g_list_foreach (list, (GFunc) g_free, NULL);
+        g_list_free (list);
+    }
+
+    return py_tuple;
+}
+#line 129 "icontheme.c"
+
+
+#line 51 "icontheme.override"
+static PyObject *
+_wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
+				     PyObject *kwargs)
+{
+    static char *kwlist[] = { "path", NULL };
+    int i, len;
+    PyObject *py_seq;
+    GList *list;
+
+    if (!PyArg_ParseTupleAndKeywords(args,kwargs,
+				     "O:GtkIconTheme.set_search_path",
+                                     kwlist, &py_seq))
+        return NULL;
+
+    if (!PySequence_Check(py_seq) || (len = PySequence_Size(py_seq)) < 0) {
+	PyErr_SetString(PyExc_ValueError,
+			"path should be a sequence of strings");
+	return NULL;
+    }
+
+    list = NULL;
+
+    for (i = 0; i < len; i++) {
+	PyObject *py_path = PySequence_GetItem(py_seq, i);
+	if (!PyString_Check(py_path)) {
+	    PyErr_SetString(PyExc_ValueError, "path items must be strings");
+	    Py_DECREF(py_path);
+            if (list)
+                g_list_free (list);
+	    return NULL;
+	}
+	list = g_list_append (list, PyString_AsString(py_path));
+	Py_DECREF(py_path);
+    }
+
+    xfce_icon_theme_set_search_path(XFCE_ICON_THEME(self->obj), list);
+
+    if (list)
+       g_list_free (list); /* items are not to be freed by me */
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+#line 176 "icontheme.c"
+
+
 static PyObject *
 _wrap_xfce_icon_theme_prepend_search_path(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -173,6 +245,8 @@ static PyMethodDef _PyXfceIconTheme_methods[] = {
     { "lookup_category", (PyCFunction)_wrap_xfce_icon_theme_lookup_category, METH_VARARGS|METH_KEYWORDS },
     { "load", (PyCFunction)_wrap_xfce_icon_theme_load, METH_VARARGS|METH_KEYWORDS },
     { "load_category", (PyCFunction)_wrap_xfce_icon_theme_load_category, METH_VARARGS|METH_KEYWORDS },
+    { "get_search_path", (PyCFunction)_wrap_xfce_icon_theme_get_search_path, METH_NOARGS },
+    { "set_search_path", (PyCFunction)_wrap_xfce_icon_theme_set_search_path, METH_VARARGS|METH_KEYWORDS },
     { "prepend_search_path", (PyCFunction)_wrap_xfce_icon_theme_prepend_search_path, METH_VARARGS|METH_KEYWORDS },
     { "append_search_path", (PyCFunction)_wrap_xfce_icon_theme_append_search_path, METH_VARARGS|METH_KEYWORDS },
     { "unregister_category", (PyCFunction)_wrap_xfce_icon_theme_unregister_category, METH_VARARGS|METH_KEYWORDS },
@@ -313,6 +387,6 @@ pyicontheme_register_classes(PyObject *d)
     }
 
 
-#line 317 "icontheme.c"
+#line 391 "icontheme.c"
     pygobject_register_class(d, "XfceIconTheme", XFCE_TYPE_ICON_THEME, &PyXfceIconTheme_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

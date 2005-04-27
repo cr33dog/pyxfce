@@ -18,6 +18,8 @@ static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
 static PyTypeObject *_PyGtkImageMenuItem_Type;
 #define PyGtkImageMenuItem_Type (*_PyGtkImageMenuItem_Type)
+static PyTypeObject *_PyXfceDesktopEntry_Type;
+#define PyXfceDesktopEntry_Type (*_PyXfceDesktopEntry_Type)
 
 
 /* ---------- forward type declarations ---------- */
@@ -288,6 +290,21 @@ _wrap_xfce_app_menu_item_new_full(PyObject *self, PyObject *args, PyObject *kwar
 }
 
 static PyObject *
+_wrap_xfce_app_menu_item_new_from_desktop_entry(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "entry", "show_icon", NULL };
+    PyGObject *entry;
+    int show_icon;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i:xfce_app_menu_item_new_from_desktop_entry", kwlist, &PyXfceDesktopEntry_Type, &entry, &show_icon))
+        return NULL;
+    ret = xfce_app_menu_item_new_from_desktop_entry(XFCE_DESKTOP_ENTRY(entry->obj), show_icon);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
 _wrap_xfce_app_menu_item_set_icon_size(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "icon_size", NULL };
@@ -318,6 +335,7 @@ PyMethodDef pyappmenuitem_functions[] = {
     { "xfce_app_menu_item_new_with_mnemonic", (PyCFunction)_wrap_xfce_app_menu_item_new_with_mnemonic, METH_VARARGS|METH_KEYWORDS },
     { "xfce_app_menu_item_new_with_command", (PyCFunction)_wrap_xfce_app_menu_item_new_with_command, METH_VARARGS|METH_KEYWORDS },
     { "xfce_app_menu_item_new_full", (PyCFunction)_wrap_xfce_app_menu_item_new_full, METH_VARARGS|METH_KEYWORDS },
+    { "xfce_app_menu_item_new_from_desktop_entry", (PyCFunction)_wrap_xfce_app_menu_item_new_from_desktop_entry, METH_VARARGS|METH_KEYWORDS },
     { "app_menu_item_set_icon_size", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_size, METH_VARARGS|METH_KEYWORDS },
     { "app_menu_item_set_icon_theme_name", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_theme_name, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
@@ -343,6 +361,20 @@ pyappmenuitem_register_classes(PyObject *d)
             "could not import gobject");
         return;
     }
+    if ((module = PyImport_ImportModule("xfce4.util")) != NULL) {
+        PyObject *moddict = PyModule_GetDict(module);
+
+        _PyXfceDesktopEntry_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "DesktopEntry");
+        if (_PyXfceDesktopEntry_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name DesktopEntry from xfce4.util");
+            return;
+        }
+    } else {
+        PyErr_SetString(PyExc_ImportError,
+            "could not import xfce4.util");
+        return;
+    }
     if ((module = PyImport_ImportModule("gtk")) != NULL) {
         PyObject *moddict = PyModule_GetDict(module);
 
@@ -359,6 +391,6 @@ pyappmenuitem_register_classes(PyObject *d)
     }
 
 
-#line 363 "appmenuitem.c"
+#line 395 "appmenuitem.c"
     pygobject_register_class(d, "XfceAppMenuItem", XFCE_TYPE_APP_MENU_ITEM, &PyXfceAppMenuItem_Type, Py_BuildValue("(O)", &PyGtkImageMenuItem_Type));
 }

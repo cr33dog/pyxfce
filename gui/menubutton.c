@@ -9,14 +9,11 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-extern PyTypeObject PyGdkPixbuf_Type;
-extern PyTypeObject PyGtkButton_Type;
-
 #ifndef XFCE_TYPE_MENUBUTTON
 #define XFCE_TYPE_MENUBUTTON (xfce_menubutton_get_type ())
 #endif
 
-#line 20 "menubutton.c"
+#line 17 "menubutton.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -232,6 +229,6 @@ pymenubutton_register_classes(PyObject *d)
     }
 
 
-#line 236 "menubutton.c"
+#line 233 "menubutton.c"
     pygobject_register_class(d, "XfceMenubutton", XFCE_TYPE_MENUBUTTON, &PyXfceMenubutton_Type, Py_BuildValue("(O)", &PyGtkButton_Type));
 }

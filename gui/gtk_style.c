@@ -9,9 +9,7 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-extern PyTypeObject PyGtkWidget_Type;
-
-#line 15 "gtk_style.c"
+#line 13 "gtk_style.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -103,5 +101,5 @@ pygtk_style_register_classes(PyObject *d)
     }
 
 
-#line 107 "gtk_style.c"
+#line 105 "gtk_style.c"
 }

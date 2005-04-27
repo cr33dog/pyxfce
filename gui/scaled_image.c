@@ -10,14 +10,11 @@
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/xfce_scaled_image.h>
 
-extern PyTypeObject PyGdkPixbuf_Type;
-extern PyTypeObject PyGtkImage_Type;
-
 #ifndef XFCE_TYPE_SCALED_IMAGE
 #define XFCE_TYPE_SCALED_IMAGE (xfce_scaled_image_get_type ())
 #endif
 
-#line 21 "scaled_image.c"
+#line 18 "scaled_image.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -191,6 +188,6 @@ pyscaled_image_register_classes(PyObject *d)
     }
 
 
-#line 195 "scaled_image.c"
+#line 192 "scaled_image.c"
     pygobject_register_class(d, "XfceScaledImage", XFCE_TYPE_SCALED_IMAGE, &PyXfceScaledImage_Type, Py_BuildValue("(O)", &PyGtkImage_Type));
 }

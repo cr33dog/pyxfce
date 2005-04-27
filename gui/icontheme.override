@@ -7,8 +7,6 @@ headers
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-extern PyTypeObject PyGdkScreen;
-
 %%
 include
 %%
@@ -24,3 +22,72 @@ ignore-glob
 %%
 ignore-win32
 %%
+override xfce_icon_theme_get_search_path noargs
+static PyObject *
+_wrap_xfce_icon_theme_get_search_path(PyGObject *self)
+{
+    gint n_items;
+    PyObject *py_tuple;
+    int i;
+    GList *list;
+    GList *item;
+
+    list = xfce_icon_theme_get_search_path(XFCE_ICON_THEME(self->obj));
+
+    py_tuple = PyTuple_New(n_items);
+    item = list;
+    for (i = 0; item != NULL; i++)
+	PyTuple_SetItem(py_tuple, i, PyString_FromString((char *)item->data));
+
+    if (list) {
+        g_list_foreach (list, (GFunc) g_free, NULL);
+        g_list_free (list);
+    }
+
+    return py_tuple;
+}
+%%
+override xfce_icon_theme_set_search_path kwargs
+static PyObject *
+_wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
+				     PyObject *kwargs)
+{
+    static char *kwlist[] = { "path", NULL };
+    int i, len;
+    PyObject *py_seq;
+    GList *list;
+
+    if (!PyArg_ParseTupleAndKeywords(args,kwargs,
+				     "O:GtkIconTheme.set_search_path",
+                                     kwlist, &py_seq))
+        return NULL;
+
+    if (!PySequence_Check(py_seq) || (len = PySequence_Size(py_seq)) < 0) {
+	PyErr_SetString(PyExc_ValueError,
+			"path should be a sequence of strings");
+	return NULL;
+    }
+
+    list = NULL;
+
+    for (i = 0; i < len; i++) {
+	PyObject *py_path = PySequence_GetItem(py_seq, i);
+	if (!PyString_Check(py_path)) {
+	    PyErr_SetString(PyExc_ValueError, "path items must be strings");
+	    Py_DECREF(py_path);
+            if (list)
+                g_list_free (list);
+	    return NULL;
+	}
+	list = g_list_append (list, PyString_AsString(py_path));
+	Py_DECREF(py_path);
+    }
+
+    xfce_icon_theme_set_search_path(XFCE_ICON_THEME(self->obj), list);
+
+    if (list)
+       g_list_free (list); /* items are not to be freed by me */
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}

@@ -8,9 +8,6 @@ headers
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/xfce_scaled_image.h>
 
-extern PyTypeObject PyGdkPixbuf_Type;
-extern PyTypeObject PyGtkImage_Type;
-
 #ifndef XFCE_TYPE_SCALED_IMAGE
 #define XFCE_TYPE_SCALED_IMAGE (xfce_scaled_image_get_type ())
 #endif

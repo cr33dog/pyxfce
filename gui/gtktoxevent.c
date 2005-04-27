@@ -9,14 +9,14 @@
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-extern PyTypeObject PyGdkScreen_Type;
-
-#line 15 "gtktoxevent.c"
+#line 13 "gtktoxevent.c"
 
 
 /* ---------- types from other modules ---------- */
 static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
+static PyTypeObject *_PyGdkScreen_Type;
+#define PyGdkScreen_Type (*_PyGdkScreen_Type)
 
 
 /* ---------- forward type declarations ---------- */
@@ -119,7 +119,21 @@ pygtktoxevent_register_classes(PyObject *d)
             "could not import gobject");
         return;
     }
+    if ((module = PyImport_ImportModule("gtk.gdk")) != NULL) {
+        PyObject *moddict = PyModule_GetDict(module);
+
+        _PyGdkScreen_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Screen");
+        if (_PyGdkScreen_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Screen from gtk.gdk");
+            return;
+        }
+    } else {
+        PyErr_SetString(PyExc_ImportError,
+            "could not import gtk.gdk");
+        return;
+    }
 
 
-#line 125 "gtktoxevent.c"
+#line 139 "gtktoxevent.c"
 }

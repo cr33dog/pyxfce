@@ -15,6 +15,7 @@ modulename appmenuitem
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.ImageMenuItem as PyGtkImageMenuItem_Type
+import xfce4.util.DesktopEntry as PyXfceDesktopEntry_Type
 %%
 ignore
 %%
