@@ -73,7 +73,7 @@ _wrap_netk_screen_get_windows(PyGObject *self)
             return NULL;
         }
         for (tmp = icon_list; tmp != NULL; tmp = tmp->next) {
-            pywindow = pygobject_new(G_OBJECT(tmp->data));
+            pywindow = pygobject_new(G_OBJECT(tmp->data)); /* will g_object_ref and sink if applicable */
 
             if (pywindow == NULL) {
                 g_list_free(icon_list);
@@ -108,7 +108,7 @@ _wrap_netk_screen_get_windows_stacked(PyGObject *self)
             return NULL;
         }
         for (tmp = icon_list; tmp != NULL; tmp = tmp->next) {
-            pywindow = pygobject_new(G_OBJECT(tmp->data));
+            pywindow = pygobject_new(G_OBJECT(tmp->data)); /* will g_object_ref and sink if applicable */
 
             if (pywindow == NULL) {
                 g_list_free(icon_list);
