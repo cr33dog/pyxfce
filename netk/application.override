@@ -37,7 +37,7 @@ _wrap_netk_application_get_windows(PyGObject *self)
             return NULL;
         }
         for (tmp = icon_list; tmp != NULL; tmp = tmp->next) {
-            pywindow = pygobject_new(G_OBJECT(tmp->data));
+            pywindow = pygobject_new(G_OBJECT(tmp->data)); /* reffed+sunk automagically */
 
             if (pywindow == NULL) {
                 g_list_free(icon_list);
