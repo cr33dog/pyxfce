@@ -129,6 +129,16 @@ cpart_set_theme(Control * control, const char *theme)
 	cpart = (t_cpart *)control->data;
 }
 
+static void
+cpart_set_orientation (Control * control, int orientation)
+{
+	t_cpart		*cpart;
+
+	cpart = (t_cpart *)control->data;
+
+	/*gtk_container_add (GTK_CONTAINER (control->base), sb->box);*/
+}  
+
 /* initialization */
 G_MODULE_EXPORT void
 xfce_control_class_init(ControlClass *cc)
@@ -159,9 +169,7 @@ xfce_control_class_init(ControlClass *cc)
 	cc->set_size            = cpart_set_size;
 	cc->set_theme		= cpart_set_theme;
 
-	/* unused in the sample:
-	 * ->set_orientation
-	 */
+	cc->set_orientation     = cpart_set_orientation;
 	 
 	control_class_set_unique (cc, TRUE);
 }
