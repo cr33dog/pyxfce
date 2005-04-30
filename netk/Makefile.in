@@ -56,7 +56,7 @@ pyxfceexecLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pyxfceexec_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 _netk_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
-am__netk_la_OBJECTS = _netk_la-application.lo _netk_la-class_group.lo \
+am__netk_la_OBJECTS = _netk_la-application.lo _netk_la-class-group.lo \
 	_netk_la-enum_types.lo _netk_la-pager.lo _netk_la-screen.lo \
 	_netk_la-tasklist.lo _netk_la-trayicon.lo _netk_la-util.lo \
 	_netk_la-window_action_menu.lo _netk_la-window.lo \
@@ -68,7 +68,7 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 @AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/_netk_la-application.Plo \
-@AMDEP_TRUE@	./$(DEPDIR)/_netk_la-class_group.Plo \
+@AMDEP_TRUE@	./$(DEPDIR)/_netk_la-class-group.Plo \
 @AMDEP_TRUE@	./$(DEPDIR)/_netk_la-enum_types.Plo \
 @AMDEP_TRUE@	./$(DEPDIR)/_netk_la-netkmodule.Plo \
 @AMDEP_TRUE@	./$(DEPDIR)/_netk_la-pager.Plo \
@@ -237,7 +237,7 @@ _netk_la_LDFLAGS = $(common_ldflags)
 _netk_la_LIBADD = $(XFCE4_GUI_LIBS) $(PYTHON_LIBS)
 _netk_la_SOURCES = \
 	application.c \
-	class_group.c \
+	class-group.c \
 	enum_types.c \
 	pager.c \
 	screen.c \
@@ -253,7 +253,7 @@ _netk_la_SOURCES = \
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
 	application.defs \
-	class_group.defs \
+	class-group.defs \
 	enum_types.defs \
 	pager.defs \
 	screen.defs \
@@ -344,7 +344,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/_netk_la-application.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/_netk_la-class_group.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/_netk_la-class-group.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/_netk_la-enum_types.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/_netk_la-netkmodule.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/_netk_la-pager.Plo@am__quote@
@@ -405,29 +405,29 @@ _netk_la-application.lo: application.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -c -o _netk_la-application.lo `test -f 'application.c' || echo '$(srcdir)/'`application.c
 
-_netk_la-class_group.o: class_group.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -MT _netk_la-class_group.o -MD -MP -MF "$(DEPDIR)/_netk_la-class_group.Tpo" -c -o _netk_la-class_group.o `test -f 'class_group.c' || echo '$(srcdir)/'`class_group.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/_netk_la-class_group.Tpo" "$(DEPDIR)/_netk_la-class_group.Po"; else rm -f "$(DEPDIR)/_netk_la-class_group.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='class_group.c' object='_netk_la-class_group.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/_netk_la-class_group.Po' tmpdepfile='$(DEPDIR)/_netk_la-class_group.TPo' @AMDEPBACKSLASH@
+_netk_la-class-group.o: class-group.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -MT _netk_la-class-group.o -MD -MP -MF "$(DEPDIR)/_netk_la-class-group.Tpo" -c -o _netk_la-class-group.o `test -f 'class-group.c' || echo '$(srcdir)/'`class-group.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/_netk_la-class-group.Tpo" "$(DEPDIR)/_netk_la-class-group.Po"; else rm -f "$(DEPDIR)/_netk_la-class-group.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='class-group.c' object='_netk_la-class-group.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/_netk_la-class-group.Po' tmpdepfile='$(DEPDIR)/_netk_la-class-group.TPo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -c -o _netk_la-class_group.o `test -f 'class_group.c' || echo '$(srcdir)/'`class_group.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -c -o _netk_la-class-group.o `test -f 'class-group.c' || echo '$(srcdir)/'`class-group.c
 
-_netk_la-class_group.obj: class_group.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -MT _netk_la-class_group.obj -MD -MP -MF "$(DEPDIR)/_netk_la-class_group.Tpo" -c -o _netk_la-class_group.obj `if test -f 'class_group.c'; then $(CYGPATH_W) 'class_group.c'; else $(CYGPATH_W) '$(srcdir)/class_group.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/_netk_la-class_group.Tpo" "$(DEPDIR)/_netk_la-class_group.Po"; else rm -f "$(DEPDIR)/_netk_la-class_group.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='class_group.c' object='_netk_la-class_group.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/_netk_la-class_group.Po' tmpdepfile='$(DEPDIR)/_netk_la-class_group.TPo' @AMDEPBACKSLASH@
+_netk_la-class-group.obj: class-group.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -MT _netk_la-class-group.obj -MD -MP -MF "$(DEPDIR)/_netk_la-class-group.Tpo" -c -o _netk_la-class-group.obj `if test -f 'class-group.c'; then $(CYGPATH_W) 'class-group.c'; else $(CYGPATH_W) '$(srcdir)/class-group.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/_netk_la-class-group.Tpo" "$(DEPDIR)/_netk_la-class-group.Po"; else rm -f "$(DEPDIR)/_netk_la-class-group.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='class-group.c' object='_netk_la-class-group.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/_netk_la-class-group.Po' tmpdepfile='$(DEPDIR)/_netk_la-class-group.TPo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -c -o _netk_la-class_group.obj `if test -f 'class_group.c'; then $(CYGPATH_W) 'class_group.c'; else $(CYGPATH_W) '$(srcdir)/class_group.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -c -o _netk_la-class-group.obj `if test -f 'class-group.c'; then $(CYGPATH_W) 'class-group.c'; else $(CYGPATH_W) '$(srcdir)/class-group.c'; fi`
 
-_netk_la-class_group.lo: class_group.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -MT _netk_la-class_group.lo -MD -MP -MF "$(DEPDIR)/_netk_la-class_group.Tpo" -c -o _netk_la-class_group.lo `test -f 'class_group.c' || echo '$(srcdir)/'`class_group.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/_netk_la-class_group.Tpo" "$(DEPDIR)/_netk_la-class_group.Plo"; else rm -f "$(DEPDIR)/_netk_la-class_group.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='class_group.c' object='_netk_la-class_group.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/_netk_la-class_group.Plo' tmpdepfile='$(DEPDIR)/_netk_la-class_group.TPlo' @AMDEPBACKSLASH@
+_netk_la-class-group.lo: class-group.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -MT _netk_la-class-group.lo -MD -MP -MF "$(DEPDIR)/_netk_la-class-group.Tpo" -c -o _netk_la-class-group.lo `test -f 'class-group.c' || echo '$(srcdir)/'`class-group.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/_netk_la-class-group.Tpo" "$(DEPDIR)/_netk_la-class-group.Plo"; else rm -f "$(DEPDIR)/_netk_la-class-group.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='class-group.c' object='_netk_la-class-group.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/_netk_la-class-group.Plo' tmpdepfile='$(DEPDIR)/_netk_la-class-group.TPlo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -c -o _netk_la-class_group.lo `test -f 'class_group.c' || echo '$(srcdir)/'`class_group.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -c -o _netk_la-class-group.lo `test -f 'class-group.c' || echo '$(srcdir)/'`class-group.c
 
 _netk_la-enum_types.o: enum_types.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_netk_la_CFLAGS) $(CFLAGS) -MT _netk_la-enum_types.o -MD -MP -MF "$(DEPDIR)/_netk_la-enum_types.Tpo" -c -o _netk_la-enum_types.o `test -f 'enum_types.c' || echo '$(srcdir)/'`enum_types.c; \
@@ -930,7 +930,7 @@ uninstall-am: uninstall-defsDATA uninstall-info-am \
 	     --register window.defs \
 	     --register screen.defs \
 	     --register application.defs \
-	     --register class_group.defs \
+	     --register class-group.defs \
 	     --prefix py$* $*.defs) > gen-$*.c \
 	 && cp gen-$*.c $*.c \
 	 && rm -f gen-$*.c
