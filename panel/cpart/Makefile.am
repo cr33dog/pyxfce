@@ -1,5 +1,7 @@
 @SET_MAKE@
 
+plugindir = $(libdir)/xfce4/panel-plugins
+
 CLEANFILES = *~ *.bak core *.core *.o *.lo
 
 #INCLUDES=
