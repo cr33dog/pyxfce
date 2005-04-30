@@ -19,7 +19,7 @@ _netk_la_LDFLAGS = $(common_ldflags)
 _netk_la_LIBADD = $(XFCE4_GUI_LIBS) $(PYTHON_LIBS)
 _netk_la_SOURCES = \
 	application.c \
-	class-group.c \
+	class_group.c \
 	enum_types.c \
 	pager.c \
 	screen.c \
@@ -35,7 +35,7 @@ _netk_la_SOURCES = \
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
 	application.defs \
-	class-group.defs \
+	class_group.defs \
 	enum_types.defs \
 	pager.defs \
 	screen.defs \
@@ -48,7 +48,7 @@ defs_DATA = \
 	workspace.defs
 
 netk_overrides = application.override tasklist.override window_menu.override \
-class-group.override  template.override            window.override \
+class_group.override  template.override            window.override \
 enum_types.override   trayicon.override            workspace.override \
 pager.override        util.override \
 screen.override       window_action_menu.override
@@ -69,23 +69,8 @@ PYGTK_DEFS="`pkg-config --variable=defsdir pygtk-2.0`"
 	     --register window.defs \
 	     --register screen.defs \
 	     --register application.defs \
-	     --register class-group.defs \
+	     --register class_group.defs \
 	     --prefix py$* $*.defs) > gen-$*.c \
 	 && cp gen-$*.c $*.c \
 	 && rm -f gen-$*.c
 
-class-group.c: class-group.defs
-	(cd $(srcdir) \
-	 && $(PYTHON) $(CODEGEN_PATH)/codegen.py \
-	   $(PYGTK_CODEGEN_DEFINES) \
-	     --override $*.override \
-	     --register $(PYGTK_DEFS)/gtk-types.defs \
-	     --register $(PYGTK_DEFS)/gdk-types.defs \
-	     --register workspace.defs \
-	     --register window.defs \
-	     --register screen.defs \
-	     --register application.defs \
-	     --register class-group.defs \
-	     --prefix pyclass_group $*.defs) > gen-$*.c \
-	 && cp gen-$*.c $*.c \
-	 && rm -f gen-$*.c
