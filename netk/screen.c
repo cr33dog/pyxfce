@@ -69,21 +69,21 @@ _wrap_netk_screen_get_windows(PyGObject *self)
         GList *tmp;
 
         if ((py_list = PyList_New(0)) == NULL) {
-            g_list_free(icon_list);
+            /*g_list_free(icon_list); no */
             return NULL;
         }
         for (tmp = icon_list; tmp != NULL; tmp = tmp->next) {
             pywindow = pygobject_new(G_OBJECT(tmp->data)); /* will g_object_ref and sink if applicable */
 
             if (pywindow == NULL) {
-                g_list_free(icon_list);
+                /*g_list_free(icon_list); no */
                 Py_DECREF(py_list);
                 return NULL;
             }
             PyList_Append(py_list, pywindow);
             Py_DECREF(pywindow);
         }
-        g_list_free(icon_list);
+        /*g_list_free(icon_list); no */
         return py_list;
     }
     Py_INCREF(Py_None);
@@ -104,21 +104,21 @@ _wrap_netk_screen_get_windows_stacked(PyGObject *self)
         GList *tmp;
 
         if ((py_list = PyList_New(0)) == NULL) {
-            g_list_free(icon_list);
+            /* g_list_free(icon_list); no */
             return NULL;
         }
         for (tmp = icon_list; tmp != NULL; tmp = tmp->next) {
             pywindow = pygobject_new(G_OBJECT(tmp->data)); /* will g_object_ref and sink if applicable */
 
             if (pywindow == NULL) {
-                g_list_free(icon_list);
+                /*g_list_free(icon_list); no */
                 Py_DECREF(py_list);
                 return NULL;
             }
             PyList_Append(py_list, pywindow);
             Py_DECREF(pywindow);
         }
-        g_list_free(icon_list);
+        /*g_list_free(icon_list); no */
         return py_list;
     }
     Py_INCREF(Py_None);
