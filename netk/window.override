@@ -38,3 +38,18 @@ _wrap_netk_window_get_geometry(PyGObject *self)
     netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
     return Py_BuildValue("(iiii)", x, y, width, height);
 }
+%%
+override netk_window_get_pid noargs
+static PyObject *
+_wrap_netk_window_get_pid(PyGObject *self)
+{
+    int ret;
+
+    ret = netk_window_get_pid(NETK_WINDOW(self->obj));
+    if (ret == 0) {
+       Py_INCREF(Py_None);
+       return Py_None;
+    }
+
+    return PyInt_FromLong(ret);
+}

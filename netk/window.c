@@ -124,14 +124,22 @@ _wrap_netk_window_get_session_id_utf8(PyGObject *self)
     return Py_None;
 }
 
+#line 43 "window.override"
 static PyObject *
 _wrap_netk_window_get_pid(PyGObject *self)
 {
     int ret;
 
     ret = netk_window_get_pid(NETK_WINDOW(self->obj));
+    if (ret == 0) {
+       Py_INCREF(Py_None);
+       return Py_None;
+    }
+
     return PyInt_FromLong(ret);
 }
+#line 142 "window.c"
+
 
 static PyObject *
 _wrap_netk_window_get_window_type(PyGObject *self)
@@ -537,7 +545,7 @@ _wrap_netk_window_get_geometry(PyGObject *self)
     netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
     return Py_BuildValue("(iiii)", x, y, width, height);
 }
-#line 541 "window.c"
+#line 549 "window.c"
 
 
 static PyObject *
@@ -762,6 +770,6 @@ pywindow_register_classes(PyObject *d)
     }
 
 
-#line 766 "window.c"
+#line 774 "window.c"
     pygobject_register_class(d, "NetkWindow", NETK_TYPE_WINDOW, &PyNetkWindow_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
