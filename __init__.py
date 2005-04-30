@@ -5,4 +5,5 @@ import util
 import gui
 import netk
 import mcs
-import panel
+#import panel # doesn't work yet
+
