@@ -45,7 +45,7 @@ _gui_la_SOURCES = \
 	guimodule.c
 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
-defs_DATA =
+defs_DATA = \
 	aboutdialog.defs \
 	appmenuitem.defs \
 	clock.defs \
@@ -69,9 +69,16 @@ defs_DATA =
 	systemtray.defs \
 	togglebutton.defs
 
-gui_overrides = aboutdialog.override
+gui_overrides = aboutdialog.override framebox.override menubutton.override \
+appmenuitem.override  gdk_extensions.override  movehandler.override \
+clock.override        gtk_extensions.override  scaled_image.override \
+colorbutton.override  gtk_style.override       session_client.override \
+decorbutton.override  gtktoxevent.override     systemtray.override \
+decortoggle.override  iconbutton.override      template.override \
+dialogs.override      icons.override           togglebutton.override \
+filechooser.override  icontheme.override
 
-EXTRA_DIST = $(gui_overrides)
+EXTRA_DIST = $(defs_DATA) $(gui_overrides) gen
 
 nodist__gui_la_SOURCES = 
 

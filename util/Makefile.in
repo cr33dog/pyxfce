@@ -251,8 +251,11 @@ defs_DATA = \
 	resource.defs \
 	utf8.defs
 
-util_overrides = 
-EXTRA_DIST = $(util_overrides)
+util_overrides = desktopentry.override kiosk.override resource.override \
+fileutils.override     miscutils.override  template.override \
+i18n.override          rc.override         utf8.override
+
+EXTRA_DIST = $(defs_DATA) $(util_overrides) gen
 nodist__util_la_SOURCES = 
 all: all-am
 

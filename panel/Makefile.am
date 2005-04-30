@@ -27,8 +27,9 @@ defs_DATA = \
 	icons.defs \
 	support.defs
 
-panel_overrides =
-EXTRA_DIST = $(panel_overrides)
+panel_overrides = icons.override support.override template.override
+
+EXTRA_DIST = $(defs_DATA) $(panel_overrides) gen
 nodist__panel_la_SOURCES = 
 
 PYGTK_DEFS="`pkg-config --variable=defsdir pygtk-2.0`"

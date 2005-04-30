@@ -277,9 +277,40 @@ _gui_la_SOURCES = \
 	guimodule.c
 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
-defs_DATA = 
-gui_overrides = aboutdialog.override
-EXTRA_DIST = $(gui_overrides)
+defs_DATA = \
+	aboutdialog.defs \
+	appmenuitem.defs \
+	clock.defs \
+	colorbutton.defs \
+	decorbutton.defs \
+	decortoggle.defs \
+	dialogs.defs \
+	filechooser.defs \
+	framebox.defs \
+	gdk_extensions.defs \
+	gtk_extensions.defs \
+	gtk_style.defs \
+	gtktoxevent.defs \
+	iconbutton.defs \
+	icons.defs \
+	icontheme.defs \
+	menubutton.defs \
+	movehandler.defs \
+	scaled_image.defs \
+	session_client.defs \
+	systemtray.defs \
+	togglebutton.defs
+
+gui_overrides = aboutdialog.override framebox.override menubutton.override \
+appmenuitem.override  gdk_extensions.override  movehandler.override \
+clock.override        gtk_extensions.override  scaled_image.override \
+colorbutton.override  gtk_style.override       session_client.override \
+decorbutton.override  gtktoxevent.override     systemtray.override \
+decortoggle.override  iconbutton.override      template.override \
+dialogs.override      icons.override           togglebutton.override \
+filechooser.override  icontheme.override
+
+EXTRA_DIST = $(defs_DATA) $(gui_overrides) gen
 nodist__gui_la_SOURCES = 
 PYGTK_DEFS = "`pkg-config --variable=defsdir pygtk-2.0`"
 all: all-am
@@ -1176,28 +1207,6 @@ uninstall-am: uninstall-defsDATA uninstall-info-am \
 	uninstall-pyxfceexecPYTHON
 
 @SET_MAKE@
-	aboutdialog.defs \
-	appmenuitem.defs \
-	clock.defs \
-	colorbutton.defs \
-	decorbutton.defs \
-	decortoggle.defs \
-	dialogs.defs \
-	filechooser.defs \
-	framebox.defs \
-	gdk_extensions.defs \
-	gtk_extensions.defs \
-	gtk_style.defs \
-	gtktoxevent.defs \
-	iconbutton.defs \
-	icons.defs \
-	icontheme.defs \
-	menubutton.defs \
-	movehandler.defs \
-	scaled_image.defs \
-	session_client.defs \
-	systemtray.defs \
-	togglebutton.defs
 
 .defs.c:
 	(cd $(srcdir) \

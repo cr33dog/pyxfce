@@ -15,7 +15,7 @@ pyxfcedir = $(pyxfceexecdir)
 pyxfce_PYTHON = __init__.py
 
 CLEANFILES =
-EXTRA_DIST = $(defs_DATA)
+EXTRA_DIST = $(defs_DATA) TODO_INFO TODO_WARNINGS update-warnings
 pyexec_LTLIBRARIES = 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = 

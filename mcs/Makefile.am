@@ -31,6 +31,11 @@ defs_DATA = \
 	mcs_client.defs \
 	mcs_common.defs \
 	mcs_manager.defs
+
+mcs_overrides = mcs_client.override  mcs_manager.override \
+  mcs_common.override  template.override
+
+EXTRA_DIST = $(defs_DATA) $(mcs_overrides) gen
 	
 .defs.c:
 	(cd $(srcdir) \

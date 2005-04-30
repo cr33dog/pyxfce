@@ -265,8 +265,13 @@ defs_DATA = \
 	window_menu.defs \
 	workspace.defs
 
-netk_overrides = 
-EXTRA_DIST = $(netk_overrides)
+netk_overrides = application.override tasklist.override window_menu.override \
+class_group.override  template.override            window.override \
+enum_types.override   trayicon.override            workspace.override \
+pager.override        util.override \
+screen.override       window_action_menu.override
+
+EXTRA_DIST = $(defs_DATA) $(netk_overrides) gen
 nodist__netk_la_SOURCES = 
 PYGTK_DEFS = "`pkg-config --variable=defsdir pygtk-2.0`"
 all: all-am
