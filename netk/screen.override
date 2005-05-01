@@ -88,3 +88,29 @@ _wrap_netk_screen_get_windows_stacked(PyGObject *self)
     Py_INCREF(Py_None);
     return Py_None;
 }
+%%
+override netk_screen_get_background_pixmap noargs
+static PyObject *
+_wrap_netk_screen_get_background_pixmap(PyGObject *self)
+{
+    gulong ret;
+    GdkDrawable *drawable;
+    PyObject *obj;
+
+    ret = netk_screen_get_background_pixmap(NETK_SCREEN(self->obj));
+    if (ret) {
+       drawable = gdk_xid_table_lookup (ret);
+       if (drawable) 
+           g_object_ref (G_OBJECT (drawable));
+       else
+           drawable = gdk_pixmap_foreign_new (ret);
+
+       obj = pygobject_new (G_OBJECT (drawable));
+       if (drawable)
+           g_object_unref (G_OBJECT (drawable));
+       return obj;
+    } else {
+       Py_INCREF(Py_None);
+       return Py_None;
+    }
+}

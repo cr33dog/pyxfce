@@ -171,14 +171,33 @@ _wrap_netk_screen_net_wm_supports(PyGObject *self, PyObject *args, PyObject *kwa
 
 }
 
+#line 93 "screen.override"
 static PyObject *
 _wrap_netk_screen_get_background_pixmap(PyGObject *self)
 {
     gulong ret;
+    GdkDrawable *drawable;
+    PyObject *obj;
 
     ret = netk_screen_get_background_pixmap(NETK_SCREEN(self->obj));
-    return PyLong_FromUnsignedLong(ret);
+    if (ret) {
+       drawable = gdk_xid_table_lookup (ret);
+       if (drawable) 
+           g_object_ref (G_OBJECT (drawable));
+       else
+           drawable = gdk_pixmap_foreign_new (ret);
+
+       obj = pygobject_new (G_OBJECT (drawable));
+       if (drawable)
+           g_object_unref (G_OBJECT (drawable));
+       return obj;
+    } else {
+       Py_INCREF(Py_None);
+       return Py_None;
+    }
 }
+#line 200 "screen.c"
+
 
 static PyObject *
 _wrap_netk_screen_get_width(PyGObject *self)
@@ -398,6 +417,6 @@ pyscreen_register_classes(PyObject *d)
     }
 
 
-#line 402 "screen.c"
+#line 421 "screen.c"
     pygobject_register_class(d, "NetkScreen", NETK_TYPE_SCREEN, &PyNetkScreen_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
