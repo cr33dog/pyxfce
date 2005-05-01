@@ -1,7 +1,8 @@
 #!/usr/bin/env python
+# released under the GNU Library General Public License (c) 2005 Danny Milosavljevic
+# adapted from netk, Copyright (C) 2001 Havoc Pennington
 
 import gtk
-import xfce4
 
 def get_cmap(drawable):
 	cmap = drawable.get_colormap()
@@ -25,11 +26,12 @@ def pixbuf_from_pixmap(pixmap):
 	buf = pb.get_from_drawable(pixmap, cmap, 0, 0, 0, 0, width, height)
 	return buf
 	
-screen = xfce4.netk.screen_get_default()
-map = screen.get_background_pixmap()
-buf = pixbuf_from_pixmap(map)
 
 if __name__ == "__main__":
+	import xfce4
+	screen = xfce4.netk.screen_get_default()
+	map = screen.get_background_pixmap()
+	buf = pixbuf_from_pixmap(map)
 	pb = buf.scale_simple(buf.get_width() / 4, buf.get_height() / 4, gtk.gdk.INTERP_BILINEAR)
 	w = gtk.Window()
 	w.connect("destroy", lambda x: gtk.main_quit())
