@@ -30,4 +30,7 @@ mask exec_command and friends ?
          (c-name GtkWidget)
          (field (type-and-name GdkWindow* window) (access read)))
 
-   An "object" declaration automatically implies the type definition:
+   An "object" declaration automatically implies the type definition
+
+screen.get_background_pixmap() returns number ??
+

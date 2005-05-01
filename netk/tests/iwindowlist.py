@@ -20,8 +20,13 @@ class Tasklist(gtk.VBox):
 			self.opened_cb(screen, window)
 		
 	def opened_cb(self, screen, window):
+		pid = window.get_pid()
+		if pid == None:
+			pid = 0
+			
 		name = window.get_name()
-		w = gtk.Button(name)
+		#skiptaskbar = window.get_skip_taskbar_hint()
+		w = gtk.Button("%d: %s" % (pid, name))
 		w.show()
 		self._wmap[window] = w
 		self.pack_start(w, True, True)
