@@ -77,7 +77,6 @@
 
 (define-function about_dialog_new
   (c-name "xfce_about_dialog_new")
-  (is-constructor-of "XfceAboutDialog")
   (return-type "GtkWidget*")
   (parameters
     '("GtkWindow*" "parent")
@@ -88,6 +87,7 @@
 
 (define-function about_dialog_new_normal
   (c-name "xfce_about_dialog_new_normal")
+  (is-constructor-of "XfceAboutDialog")
   (return-type "XfceAboutDialog*")
 )
 

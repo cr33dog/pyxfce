@@ -98,3 +98,8 @@ cat >>appmenuitem.defs << EOF
 )
 EOF
 
+grep -v '(is-constructor-of "XfceAboutDialog")' aboutdialog.defs \
+  |sed -e 's;(c-name "xfce_about_dialog_new_normal");(c-name "xfce_about_dialog_new_normal")\
+  (is-constructor-of "XfceAboutDialog");' \
+  >aboutdialog.defs.new && mv aboutdialog.defs.new aboutdialog.defs
+  

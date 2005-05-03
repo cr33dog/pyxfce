@@ -5,7 +5,7 @@ ACLOCAL_AMFLAGS = -I m4
 
 m4_define(pyxfce_major_version, 4)
 m4_define(pyxfce_minor_version, 2)
-m4_define(pyxfce_micro_version, 0)
+m4_define(pyxfce_micro_version, 1)
 m4_define(pyxfce_version, pyxfce_major_version.pyxfce_minor_version.pyxfce_micro_version)
 
 m4_define(xfce_required_version, 4.1.99)
