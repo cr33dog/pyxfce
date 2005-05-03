@@ -1,7 +1,4 @@
-/* config.h.in.  Generated from configure.in by autoheader.  */
-
-/* codegen executeable directory */
-#undef CODEGEN_PATH
+/* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define for debugging support */
 #undef DEBUG
@@ -76,3 +73,4 @@
 #undef VERSION
 
 /* Define to empty if `const' does not conform to ANSI C. */
+#undef const
