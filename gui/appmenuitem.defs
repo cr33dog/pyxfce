@@ -165,3 +165,11 @@
 )
 
 
+(object AppMenuItem
+  (in-module (gui))
+  (parent Object)
+  (c-name XfceAppMenuItem)
+  (field (type-and-name gchar* needs_term) (access readwrite))
+  (field (type-and-name gchar* command) (access readwrite))
+  (field (type-and-name gchar* icon_name) (access readwrite))
+)

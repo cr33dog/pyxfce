@@ -80,3 +80,8 @@
 )
 
 
+(object DesktopEntry
+   (in-module (Xfce))
+   (parent Object)
+   (abstract #t)
+   (c-name XfceDesktopEntry))

@@ -29,3 +29,12 @@ for s in *.defs
 do
   sed -e 's;(define-function xfce_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
 done
+
+cat >>desktopentry.defs << EOF
+(object DesktopEntry
+   (in-module (Xfce))
+   (parent Object)
+   (abstract #t)
+   (c-name XfceDesktopEntry))
+EOF
+

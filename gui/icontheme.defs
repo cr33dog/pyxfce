@@ -178,3 +178,8 @@
 )
 
 
+(object IconTheme
+  (in-module (Xfce))
+  (parent Object)
+  (c-name XfceIconTheme)
+)

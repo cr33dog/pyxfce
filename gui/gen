@@ -61,3 +61,40 @@ for s in *.defs
 do
   sed -e 's;(define-function xfce_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
 done
+
+cat >>icontheme.defs << EOF
+(object IconTheme
+  (in-module (Xfce))
+  (parent Object)
+  (c-name XfceIconTheme)
+)
+EOF
+
+cat >>aboutdialog.defs << EOF
+
+(object AboutDialog
+  (in-module (Xfce))
+  (parent Dialog (Gtk))
+  (c-name XfceIconTheme)
+  (field (type-and-name gchar* program) (access readwrite))
+  (field (type-and-name gchar* version) (access readwrite))
+  (field (type-and-name GdkPixbuf* icon) (access readwrite))
+  (field (type-and-name gchar* description) (access readwrite))
+  (field (type-and-name gchar* copyright) (access readwrite))
+  (field (type-and-name gchar* license) (access readwrite))
+  (field (type-and-name gchar* homepage) (access readwrite))
+)
+EOF
+# TODO: credits
+
+cat >>appmenuitem.defs << EOF
+(object AppMenuItem
+  (in-module (gui))
+  (parent Object)
+  (c-name XfceAppMenuItem)
+  (field (type-and-name gchar* needs_term) (access readwrite))
+  (field (type-and-name gchar* command) (access readwrite))
+  (field (type-and-name gchar* icon_name) (access readwrite))
+)
+EOF
+

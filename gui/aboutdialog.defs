@@ -25,6 +25,15 @@
   )
 )
 
+(define-method copy_from
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_copy_from")
+  (return-type "none")
+  (parameters
+    '("XfceAboutInfo-const*" "from")
+  )
+)
+
 (define-method free
   (of-object "XfceAboutInfo")
   (c-name "xfce_about_info_free")
@@ -56,6 +65,16 @@
   (return-type "GType")
 )
 
+(define-function about_dialog_new_with_values
+  (c-name "xfce_about_dialog_new_with_values")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-XfceAboutInfo*" "info")
+    '("GdkPixbuf*" "icon")
+  )
+)
+
 (define-function about_dialog_new
   (c-name "xfce_about_dialog_new")
   (is-constructor-of "XfceAboutDialog")
@@ -67,4 +86,123 @@
   )
 )
 
+(define-function about_dialog_new_normal
+  (c-name "xfce_about_dialog_new_normal")
+  (return-type "XfceAboutDialog*")
+)
 
+(define-method set_program
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_set_program")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method set_version
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_set_version")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method set_description
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_set_description")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method set_copyright
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_set_copyright")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method set_license
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_set_license")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method set_homepage
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_set_homepage")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method add_credit
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_add_credit")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-gchar*" "mail")
+    '("const-gchar*" "task")
+  )
+)
+
+(define-method get_program
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_get_program")
+  (return-type "const-gchar*")
+)
+
+(define-method get_version
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_get_version")
+  (return-type "const-gchar*")
+)
+
+(define-method get_description
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_get_description")
+  (return-type "const-gchar*")
+)
+
+(define-method get_copyright
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_get_copyright")
+  (return-type "const-gchar*")
+)
+
+(define-method get_license
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_get_license")
+  (return-type "const-gchar*")
+)
+
+(define-method get_homepage
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_get_homepage")
+  (return-type "const-gchar*")
+)
+
+
+
+(object AboutDialog
+  (in-module (Xfce))
+  (parent Dialog (Gtk))
+  (c-name XfceIconTheme)
+  (field (type-and-name gchar* program) (access readwrite))
+  (field (type-and-name gchar* version) (access readwrite))
+  (field (type-and-name GdkPixbuf* icon) (access readwrite))
+  (field (type-and-name gchar* description) (access readwrite))
+  (field (type-and-name gchar* copyright) (access readwrite))
+  (field (type-and-name gchar* license) (access readwrite))
+  (field (type-and-name gchar* homepage) (access readwrite))
+)
