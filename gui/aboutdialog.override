@@ -23,34 +23,3 @@ ignore-glob
 %%
 ignore-win32
 %%
-override xfce_aboutdialog_new kwargs
-static int _wrap_xfce_aboutdialog_new(PyGObject *self, PyObject *args, PyObject *kwargs)
-{
-	XfceAboutInfo	*ainfo;
-	GType obj_type = pyg_type_from_object((PyObject *) self);
-	static char *kwlist[] = { "program", "version", "description", "copyright", "license", NULL };
-	char const *program, *version, *description, *copyright, *license;
-
-	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sssss:XfceAboutDialog.__init__", kwlist, 
-		&program, &version, &description, &copyright, &license)
-	)
-		return NULL;
-
-	ainfo = xfce_about_info_new (program, version, description, copyright, license);
-	if (!ainfo) {
-		PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
-		return -1;
-	}
-
-	self->obj = g_object_newv (obj_type, 0, NULL);
-	if (self->obj) {
-		PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
-		xfce_about_info_free (ainfo);
-		return -1;
-	}
-
-	xfce_about_info_free (ainfo);
-
-	pygobject_register_wrapper((PyObject *)self);
-	return 0;
-}

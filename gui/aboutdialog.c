@@ -26,6 +26,26 @@ PyTypeObject PyXfceAboutDialog_Type;
 
 /* ----------- XfceAboutDialog ----------- */
 
+static int
+_wrap_xfce_about_dialog_new_empty(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    GType obj_type = pyg_type_from_object((PyObject *) self);
+    static char* kwlist[] = { NULL };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":aboutdialog.AboutDialog.__init__", kwlist))
+        return -1;
+
+    self->obj = g_object_newv(obj_type, 0, NULL);
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
+        return -1;
+    }
+
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+
 static PyObject *
 _wrap_xfce_about_dialog_set_program(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -244,7 +264,7 @@ PyTypeObject PyXfceAboutDialog_Type = {
     (descrgetfunc)0,	/* tp_descr_get */
     (descrsetfunc)0,	/* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)0,		/* tp_init */
+    (initproc)_wrap_xfce_about_dialog_new_empty,		/* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -255,18 +275,7 @@ PyTypeObject PyXfceAboutDialog_Type = {
 
 /* ----------- functions ----------- */
 
-static PyObject *
-_wrap_xfce_about_dialog_new_normal(PyObject *self)
-{
-    XfceAboutDialog *ret;
-
-    ret = xfce_about_dialog_new_normal();
-    /* pygobject_new handles NULL checking */
-    return pygobject_new((GObject *)ret);
-}
-
 PyMethodDef pyaboutdialog_functions[] = {
-    { "about_dialog_new_normal", (PyCFunction)_wrap_xfce_about_dialog_new_normal, METH_NOARGS },
     { NULL, NULL, 0 }
 };
 
@@ -306,6 +315,6 @@ pyaboutdialog_register_classes(PyObject *d)
     }
 
 
-#line 310 "aboutdialog.c"
+#line 319 "aboutdialog.c"
     pygobject_register_class(d, "XfceAboutDialog", XFCE_TYPE_ABOUT_DIALOG, &PyXfceAboutDialog_Type, Py_BuildValue("(O)", &PyGtkDialog_Type));
 }

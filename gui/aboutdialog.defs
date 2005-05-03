@@ -85,8 +85,9 @@
   )
 )
 
-(define-function about_dialog_new_normal
-  (c-name "xfce_about_dialog_new_normal")
+(define-function about_dialog_new_empty
+  (c-name "xfce_about_dialog_new_empty")
+  (is-constructor-of "XfceAboutDialog")
   (return-type "XfceAboutDialog*")
 )
 
