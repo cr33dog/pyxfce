@@ -15,7 +15,6 @@ NotImplementedError: aboutdialog.AboutDialog is an abstract widget
 
 get rid of gtk_style.defs ?
 
-util: strip xfce_
 util: test desktopentry
 
 fix mcs stuff
