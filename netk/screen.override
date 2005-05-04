@@ -10,7 +10,7 @@ headers
 %%
 include
 %%
-modulename screen
+modulename netk
 %%
 import gobject.GObject as PyGObject_Type
 import workspace as PyNetkWorkspace_Type

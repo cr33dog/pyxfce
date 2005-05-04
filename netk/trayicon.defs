@@ -12,24 +12,46 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/netk-trayicon.h
 
-
-
 (define-function tray_icon_get_type
-  (c-name "tray_icon_get_type")
+  (c-name "netk_tray_icon_get_type")
   (return-type "GType")
 )
-    
+
 (define-function tray_icon_new
   (c-name "netk_tray_icon_new")
   (is-constructor-of "NetkTrayIcon")
-  (return-type "NetkTrayIcon*")
-)
-      
-(define-method tray_icon_set_screen
-  (of-object "NetkTrayIcon")
-  (c-name "netk_tray_icon_set_screen")  
-  (return-type "none")
+  (return-type "GtkWidget*")
   (parameters
-     '("GdkScreen*" "screen")
+    '("Screen*" "screen")
   )
 )
+
+(define-method set_screen
+  (of-object "NetkTrayIcon")
+  (c-name "netk_tray_icon_set_screen")
+  (return-type "none")
+  (parameters
+    '("Screen*" "screen")
+  )
+)
+
+(define-method message_new
+  (of-object "NetkTrayIcon")
+  (c-name "netk_tray_icon_message_new")
+  (return-type "glong")
+  (parameters
+    '("glong" "id")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method message_cancel
+  (of-object "NetkTrayIcon")
+  (c-name "netk_tray_icon_message_cancel")
+  (return-type "none")
+  (parameters
+    '("glong" "id")
+  )
+)
+
+

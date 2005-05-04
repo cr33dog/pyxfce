@@ -302,7 +302,7 @@ static PyMethodDef _PyNetkScreen_methods[] = {
 PyTypeObject PyNetkScreen_Type = {
     PyObject_HEAD_INIT(NULL)
     0,					/* ob_size */
-    "screen.Screen",			/* tp_name */
+    "netk.Screen",			/* tp_name */
     sizeof(PyGObject),	        /* tp_basicsize */
     0,					/* tp_itemsize */
     /* methods */
