@@ -57,3 +57,8 @@ done
 #EOF
 # message_new
 # message_cancel 
+
+cat trayicon.defs \
+| awk ' /^\(define-/ { n = 0; } /^\(define-function tray_icon_new/ { n = 1; } /^\)/ { n = 0; } /\(parameters/ { if (n) skip1 = 1; } /\("Screen\*" "screen"\)/ { if (n) skip1 = 1; } /  \)/ { if (n) skip1 = 1; } // { if (skip1 == 1) skip1 = 0; else print $_; } ' >trayicon.defs.new \
+&& mv trayicon.defs.new trayicon.defs
+
