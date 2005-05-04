@@ -2,6 +2,7 @@
 
 import pygtk
 pygtk.require("2.0")
+import gtk
 import xfce4
 
 label = gtk.Label("Boo!")
