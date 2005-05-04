@@ -14,15 +14,22 @@
 
 
 
+(define-function tray_icon_get_type
+  (c-name "tray_icon_get_type")
+  (return-type "GType")
+)
+    
 (define-function tray_icon_new
   (c-name "netk_tray_icon_new")
   (is-constructor-of "NetkTrayIcon")
   (return-type "NetkTrayIcon*")
 )
-
-(define-function tray_icon_set_screen
-  (c-name "netk_tray_icon_set_screen")
+      
+(define-method tray_icon_set_screen
+  (of-object "NetkTrayIcon")
+  (c-name "netk_tray_icon_set_screen")  
+  (return-type "none")
   (parameters
-    '("GdkScreen*" "screen")
+     '("GdkScreen*" "screen")
   )
 )
