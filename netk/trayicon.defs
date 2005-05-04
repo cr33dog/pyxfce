@@ -21,9 +21,6 @@
   (c-name "netk_tray_icon_new")
   (is-constructor-of "NetkTrayIcon")
   (return-type "GtkWidget*")
-  (parameters
-    '("Screen*" "screen")
-  )
 )
 
 (define-method set_screen

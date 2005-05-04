@@ -39,43 +39,14 @@ PyTypeObject PyNetkTrayIcon_Type;
 static int
 _wrap_netk_tray_icon_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "screen", NULL };
-    static char *kwlistdummy[] = { NULL };
     Screen *xscreen;
-    PyGObject *gscreen;
-    NetkScreen *nscreen;
-    gint i;
-    gint cnt;
 
-    nscreen = NULL;
-    gscreen = NULL;
-    xscreen = NULL;
-
-    if (PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkTrayIcon.__init__", kwlist, &PyNetkScreen_Type, &nscreen)) {
-        g_warning ("take 1");
-        cnt = ScreenCount (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()));
-        for(i = 0; i < cnt; i++) {
-            if (netk_screen_get (i) == nscreen) {
-                break;
-            }
-        }
-        if (i >= cnt) {
-            return -1;
-        }
-        xscreen = GDK_SCREEN_XSCREEN (gdk_display_get_screen (gdk_display_get_default (), i));
-    } else if (PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkTrayIcon.__init__", kwlist, &PyGdkScreen_Type, &gscreen)) {
-        g_warning ("take 2 %p", gscreen);
-        g_warning ("width %d", gdk_screen_get_width (gscreen));
-        xscreen = GDK_SCREEN_XSCREEN (GDK_SCREEN (gscreen));
-    } else if (PyArg_ParseTupleAndKeywords(args, kwargs, ":NetkTrayIcon.__init__", kwlistdummy)) {
-        g_warning ("take 3");
-        xscreen = GDK_SCREEN_XSCREEN (gdk_screen_get_default ());
-        g_warning ("xscreen %p", xscreen);
-    } else {
+    xscreen = GDK_SCREEN_XSCREEN (gdk_screen_get_default ());
+    if (!xscreen) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create NetkTrayIcon object");
         return -1;
     }
 
-    g_warning ("actual action %p", xscreen);
     self->obj = (GObject *)netk_tray_icon_new (xscreen);
 
     if (!self->obj) {
@@ -85,10 +56,10 @@ _wrap_netk_tray_icon_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
-#line 89 "trayicon.c"
+#line 60 "trayicon.c"
 
 
-#line 87 "trayicon.override"
+#line 58 "trayicon.override"
 static PyObject* _wrap_netk_tray_icon_set_screen(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "screen", NULL };
@@ -113,8 +84,6 @@ static PyObject* _wrap_netk_tray_icon_set_screen(PyGObject *self, PyObject *args
     } else if (PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkTrayIcon.__init__", kwlist, &PyGdkScreen_Type, &gscreen)) {
         g_warning ("gscreen %p", gscreen);
         xscreen = GDK_SCREEN_XSCREEN (GDK_SCREEN (gscreen));
-    } else if (PyArg_ParseTupleAndKeywords(args, kwargs, ":NetkTrayIcon.__init__", kwlist)) {
-        xscreen = GDK_SCREEN_XSCREEN (gdk_screen_get_default ());
     } else {
         return NULL;
     }
@@ -124,7 +93,7 @@ static PyObject* _wrap_netk_tray_icon_set_screen(PyGObject *self, PyObject *args
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 128 "trayicon.c"
+#line 97 "trayicon.c"
 
 
 static PyObject *
@@ -263,6 +232,6 @@ pytrayicon_register_classes(PyObject *d)
     }
 
 
-#line 267 "trayicon.c"
+#line 236 "trayicon.c"
     pygobject_register_class(d, "NetkTrayIcon", NETK_TYPE_TRAY_ICON, &PyNetkTrayIcon_Type, Py_BuildValue("(O)", &PyGtkPlug_Type));
 }

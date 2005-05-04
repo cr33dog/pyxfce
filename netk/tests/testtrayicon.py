@@ -7,7 +7,7 @@ import xfce4
 
 label = gtk.Label("Boo!")
 label.show()
-ti = xfce4.netk.TrayIcon(gtk.gdk.screen_get_default())
+ti = xfce4.netk.TrayIcon() # dependent on screen!
 ti.add(label)
 ti.show()
 
