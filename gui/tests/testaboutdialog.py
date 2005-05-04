@@ -13,6 +13,7 @@ widget.set_copyright("Danny Milosavljevic")
 widget.set_license("er... yeah... later")
 widget.set_homepage("http://what.browser.will.it.choose.today.at/")
 widget.add_credit("Danny Milosavljevic", "dannym@xfce.org", "Developer")
+widget.add_credit("Fred Mustermann", "fred@bogus.example.com", "Potential Being")
 
 def about_cb(button):
 	global widget
