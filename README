@@ -28,7 +28,7 @@ classgroups, screens, workspaces, ...
       - MoveHandler
       - ScaledImage :)
       - System Tray
-      - ToggleButton (with arrow)
+      - Togglebutton: an arrow that changes direction when clicked O_o
       - (small gtk and gdk extensions)
 
 File complaints, suggestions, ... to dannym@xfce.org
