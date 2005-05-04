@@ -21,6 +21,11 @@ def about_cb(button):
 	widget.set_transient_for(w)
 	widget.run()
 	widget.destroy()
+
+	# tests for a bug by repeating
+	widget.set_transient_for(w)
+	widget.run()
+	widget.destroy()
 	
 button = gtk.Button("About")
 button.connect("clicked", about_cb)
