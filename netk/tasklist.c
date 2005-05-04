@@ -19,6 +19,8 @@ static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
 static PyTypeObject *_PyGtkContainer_Type;
 #define PyGtkContainer_Type (*_PyGtkContainer_Type)
+static PyTypeObject *_PyNetkScreen_Type;
+#define PyNetkScreen_Type (*_PyNetkScreen_Type)
 
 
 /* ---------- forward type declarations ---------- */
@@ -77,7 +79,7 @@ _wrap_netk_tasklist_get_size_hint_list(PyGObject *self)
 
     return py_tuple;
 }
-#line 81 "tasklist.c"
+#line 83 "tasklist.c"
 
 
 static PyObject *
@@ -292,6 +294,20 @@ pytasklist_register_classes(PyObject *d)
             "could not import gobject");
         return;
     }
+    if ((module = PyImport_ImportModule("screen")) != NULL) {
+        PyObject *moddict = PyModule_GetDict(module);
+
+        _PyNetkScreen_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Screen");
+        if (_PyNetkScreen_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Screen from screen");
+            return;
+        }
+    } else {
+        PyErr_SetString(PyExc_ImportError,
+            "could not import screen");
+        return;
+    }
     if ((module = PyImport_ImportModule("gtk")) != NULL) {
         PyObject *moddict = PyModule_GetDict(module);
 
@@ -308,6 +324,6 @@ pytasklist_register_classes(PyObject *d)
     }
 
 
-#line 312 "tasklist.c"
+#line 328 "tasklist.c"
     pygobject_register_class(d, "NetkTasklist", NETK_TYPE_TASKLIST, &PyNetkTasklist_Type, Py_BuildValue("(O)", &PyGtkContainer_Type));
 }

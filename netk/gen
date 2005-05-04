@@ -32,3 +32,21 @@ for s in *.defs
 do
   sed -e 's;(define-function netk_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
 done
+
+cat >>trayicon.defs << EOF
+
+(define-function tray_icon_new
+  (c-name "netk_tray_icon_new")
+  (is-constructor-of "NetkTrayIcon")
+  (return-type "NetkTrayIcon*")
+)
+
+(define-function tray_icon_set_screen
+  (c-name "netk_tray_icon_set_screen")
+  (parameters
+    '("GdkScreen*" "screen")
+  )
+)
+EOF
+# message_new
+# message_cancel 

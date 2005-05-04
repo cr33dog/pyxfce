@@ -16,7 +16,7 @@ modulename tasklist
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.Container as PyGtkContainer_Type
-import screen as PyNetkScreen_Type
+import screen.Screen as PyNetkScreen_Type
 %%
 ignore
 %%
