@@ -20,13 +20,8 @@ def about_cb(button):
 	global w
 	widget.set_transient_for(w)
 	widget.run()
-	widget.destroy()
+	widget.hide()
 
-	# tests for a bug by repeating
-	widget.set_transient_for(w)
-	widget.run()
-	widget.destroy()
-	
 button = gtk.Button("About")
 button.connect("clicked", about_cb)
 button.show()
