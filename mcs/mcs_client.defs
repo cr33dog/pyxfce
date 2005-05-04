@@ -119,3 +119,8 @@
 )
 
 
+
+(boxed McsClient
+  (in-module Xfce)
+  (c-name McsClient)
+  (release-func mcs_client_destroy))

@@ -31,5 +31,21 @@ mask exec_command and friends ?
 
    An "object" declaration automatically implies the type definition
 
+(boxed boxed-name
+  (in-module modname)
+  (c-name c-name)
+  (ref-func func-to-increase-refcount)
+  (copy-func func-to-copy)
+  (release-func func-to-destroy-or-decrement-refcount)
+  (field (type-and-name type-alias-of-struct-field name-of-struct-field) (access access-rule)))
+
+(struct Rectangle
+   (in-module (Gdk))
+   (c-name GdkRectangle)
+   (field (type-and-name gint16 x) (access readwrite))
+   (field (type-and-name gint16 y) (access readwrite))
+   (field (type-and-name guint16 width) (access readwrite))
+   (field (type-and-name guint16 height) (access readwrite)))
+
 screen.get_background_pixmap() returns number ??
 
