@@ -5,6 +5,7 @@
 (define-enum FileChooserAction
   (in-module "Xfce")
   (c-name "XfceFileChooserAction")
+  (gtype-id "XFCE_TYPE_FILE_CHOOSER_ACTION")
   (values
     '("open" "XFCE_FILE_CHOOSER_ACTION_OPEN")
     '("save" "XFCE_FILE_CHOOSER_ACTION_SAVE")

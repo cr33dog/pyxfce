@@ -5,6 +5,7 @@
 (define-enum FilterStatus
   (in-module "Xfce")
   (c-name "XfceFilterStatus")
+  (gtype-id "XFCE_TYPE_FILTER_STATUS")
   (values
     '("stop" "XEV_FILTER_STOP")
     '("continue" "XEV_FILTER_CONTINUE")

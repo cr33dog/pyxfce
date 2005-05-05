@@ -33,16 +33,16 @@ rm -f xinerama* # obsolete
 
 # fix up the enums:
 
-egrep -v '(gtype-id "(XFCE_TYPE_CLOCK_LED_SIZE|XFCE_TYPE_CLOCK_MODE)")' clock.defs >clock.defs.new && mv clock.defs.new clock.defs
-egrep -v '(gtype-id "XFCE_TYPE_DECORBUTTON_TYPE")' decorbutton.defs >decorbutton.defs.new && mv decorbutton.defs.new decorbutton.defs
-egrep -v '(gtype-id "XFCE_TYPE_FILE_CHOOSER_ACTION")' filechooser.defs >filechooser.defs.new && mv filechooser.defs.new filechooser.defs
-egrep -v '(gtype-id "XFCE_TYPE_FILTER_STATUS")' gtktoxevent.defs >gtktoxevent.defs.new && mv gtktoxevent.defs.new gtktoxevent.defs
-egrep -v '(gtype-id "XFCE_TYPE_ICON_THEME_CATEGORY")' icontheme.defs \
- |sed -e 's;"icon-category-;";' \
- |grep -v "n-builtin-icon-categories" \
- >icontheme.defs.new && mv icontheme.defs.new icontheme.defs
-egrep -v '(gtype-id "(SESSION_TYPE_INTERACT_STYLE|SESSION_TYPE_RESTART_STYLE|SESSION_TYPE_CLIENT_STATE)")' \
-  session_client.defs >session_client.defs.new && mv session_client.defs.new session_client.defs
+#egrep -v '(gtype-id "(XFCE_TYPE_CLOCK_LED_SIZE|XFCE_TYPE_CLOCK_MODE)")' clock.defs >clock.defs.new && mv clock.defs.new clock.defs
+#egrep -v '(gtype-id "XFCE_TYPE_DECORBUTTON_TYPE")' decorbutton.defs >decorbutton.defs.new && mv decorbutton.defs.new decorbutton.defs
+#egrep -v '(gtype-id "XFCE_TYPE_FILE_CHOOSER_ACTION")' filechooser.defs >filechooser.defs.new && mv filechooser.defs.new filechooser.defs
+#egrep -v '(gtype-id "XFCE_TYPE_FILTER_STATUS")' gtktoxevent.defs >gtktoxevent.defs.new && mv gtktoxevent.defs.new gtktoxevent.defs
+#egrep -v '(gtype-id "XFCE_TYPE_ICON_THEME_CATEGORY")' icontheme.defs \
+# |sed -e 's;"icon-category-;";' \
+# |grep -v "n-builtin-icon-categories" \
+# >icontheme.defs.new && mv icontheme.defs.new icontheme.defs
+#egrep -v '(gtype-id "(SESSION_TYPE_INTERACT_STYLE|SESSION_TYPE_RESTART_STYLE|SESSION_TYPE_CLIENT_STATE)")' \
+#  session_client.defs >session_client.defs.new && mv session_client.defs.new session_client.defs
 sed -e 's;(define-function xfce_themed_icon_lookup;(define-function themed_icon_lookup;' \
   -e 's;(define-function xfce_themed_icon_add_search_path;(define-function themed_icon_add_search_path;' \
   -e 's;(define-function xfce_set_icon_theme;(define-function themed_icon_set_icon_theme;' \

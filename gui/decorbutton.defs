@@ -12,6 +12,7 @@
 (define-enum DecorbuttonType
   (in-module "Xfce")
   (c-name "XfceDecorbuttonType")
+  (gtype-id "XFCE_TYPE_DECORBUTTON_TYPE")
   (values
     '("close" "XFCE_DECORBUTTON_CLOSE")
     '("hide" "XFCE_DECORBUTTON_HIDE")

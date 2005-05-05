@@ -12,6 +12,7 @@
 (define-enum ClockMode
   (in-module "Xfce")
   (c-name "XfceClockMode")
+  (gtype-id "XFCE_TYPE_CLOCK_MODE")
   (values
     '("analog" "XFCE_CLOCK_ANALOG")
     '("digital" "XFCE_CLOCK_DIGITAL")
@@ -22,6 +23,7 @@
 (define-enum ClockLedSize
   (in-module "Xfce")
   (c-name "XfceClockLedSize")
+  (gtype-id "XFCE_TYPE_CLOCK_LED_SIZE")
   (values
     '("small" "DIGIT_SMALL")
     '("medium" "DIGIT_MEDIUM")

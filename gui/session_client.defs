@@ -5,6 +5,7 @@
 (define-enum InteractStyle
   (in-module "Session")
   (c-name "SessionInteractStyle")
+  (gtype-id "SESSION_TYPE_INTERACT_STYLE")
   (values
     '("none" "SESSION_INTERACT_NONE")
     '("errors" "SESSION_INTERACT_ERRORS")
@@ -15,6 +16,7 @@
 (define-enum RestartStyle
   (in-module "Session")
   (c-name "SessionRestartStyle")
+  (gtype-id "SESSION_TYPE_RESTART_STYLE")
   (values
     '("if-running" "SESSION_RESTART_IF_RUNNING")
     '("anyway" "SESSION_RESTART_ANYWAY")
@@ -26,6 +28,7 @@
 (define-enum ClientState
   (in-module "Session")
   (c-name "SessionClientState")
+  (gtype-id "SESSION_TYPE_CLIENT_STATE")
   (values
     '("idle" "SESSION_CLIENT_IDLE")
     '("saving-phase-1" "SESSION_CLIENT_SAVING_PHASE_1")
