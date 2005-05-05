@@ -8,8 +8,11 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
-#line 13 "filechooser.c"
+#define XFCE_TYPE_FILE_CHOOSER_ACTION GUI_TYPE_FILE_CHOOSER_ACTION
+
+#line 16 "filechooser.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -32,10 +35,7 @@ PyMethodDef pyfilechooser_functions[] = {
 void
 pyfilechooser_add_constants(PyObject *module, const gchar *strip_prefix)
 {
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_FILE_CHOOSER_ACTION_OPEN", strip_prefix), XFCE_FILE_CHOOSER_ACTION_OPEN);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_FILE_CHOOSER_ACTION_SAVE", strip_prefix), XFCE_FILE_CHOOSER_ACTION_SAVE);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_FILE_CHOOSER_ACTION_SELECT_FOLDER", strip_prefix), XFCE_FILE_CHOOSER_ACTION_SELECT_FOLDER);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_FILE_CHOOSER_ACTION_CREATE_FOLDER", strip_prefix), XFCE_FILE_CHOOSER_ACTION_CREATE_FOLDER);
+  pyg_enum_add(module, "FileChooserAction", strip_prefix, XFCE_TYPE_FILE_CHOOSER_ACTION);
 
   if (PyErr_Occurred())
     PyErr_Print();

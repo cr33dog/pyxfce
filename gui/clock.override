@@ -6,10 +6,15 @@ headers
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
 #ifndef XFCE_TYPE_CLOCK
 #define XFCE_TYPE_CLOCK (xfce_clock_get_type ())
 #endif
+
+#define XFCE_TYPE_CLOCK_MODE GUI_TYPE_CLOCK_MODE
+#define XFCE_TYPE_CLOCK_LED_SIZE GUI_TYPE_CLOCK_LED_SIZE
+
 
 %%
 include

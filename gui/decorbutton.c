@@ -8,12 +8,14 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
 #ifndef XFCE_TYPE_DECORBUTTON
 #define XFCE_TYPE_DECORBUTTON (xfce_decorbutton_get_type ())
 #endif
+#define XFCE_TYPE_DECORBUTTON_TYPE GUI_TYPE_DECORBUTTON_TYPE
 
-#line 17 "decorbutton.c"
+#line 19 "decorbutton.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -38,7 +40,7 @@ _wrap_xfce_decorbutton_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:XfceDecorbutton.__init__", kwlist, &py_type))
         return -1;
-    if (pyg_enum_get_value(G_TYPE_NONE, py_type, (gint *)&type))
+    if (pyg_enum_get_value(XFCE_TYPE_DECORBUTTON_TYPE, py_type, (gint *)&type))
         return -1;
     self->obj = (GObject *)xfce_decorbutton_new(type);
 
@@ -109,8 +111,7 @@ PyMethodDef pydecorbutton_functions[] = {
 void
 pydecorbutton_add_constants(PyObject *module, const gchar *strip_prefix)
 {
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_DECORBUTTON_CLOSE", strip_prefix), XFCE_DECORBUTTON_CLOSE);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_DECORBUTTON_HIDE", strip_prefix), XFCE_DECORBUTTON_HIDE);
+  pyg_enum_add(module, "DecorbuttonType", strip_prefix, XFCE_TYPE_DECORBUTTON_TYPE);
 
   if (PyErr_Occurred())
     PyErr_Print();
@@ -152,6 +153,6 @@ pydecorbutton_register_classes(PyObject *d)
     }
 
 
-#line 156 "decorbutton.c"
+#line 157 "decorbutton.c"
     pygobject_register_class(d, "XfceDecorbutton", XFCE_TYPE_DECORBUTTON, &PyXfceDecorbutton_Type, Py_BuildValue("(O)", &PyGtkMisc_Type));
 }

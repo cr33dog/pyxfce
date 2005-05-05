@@ -6,10 +6,12 @@ headers
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
 #ifndef XFCE_TYPE_DECORBUTTON
 #define XFCE_TYPE_DECORBUTTON (xfce_decorbutton_get_type ())
 #endif
+#define XFCE_TYPE_DECORBUTTON_TYPE GUI_TYPE_DECORBUTTON_TYPE
 
 %%
 include

@@ -8,12 +8,17 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
 #ifndef XFCE_TYPE_CLOCK
 #define XFCE_TYPE_CLOCK (xfce_clock_get_type ())
 #endif
 
-#line 17 "clock.c"
+#define XFCE_TYPE_CLOCK_MODE GUI_TYPE_CLOCK_MODE
+#define XFCE_TYPE_CLOCK_LED_SIZE GUI_TYPE_CLOCK_LED_SIZE
+
+
+#line 22 "clock.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -173,7 +178,7 @@ _wrap_xfce_clock_set_led_size(PyGObject *self, PyObject *args, PyObject *kwargs)
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:XfceClock.set_led_size", kwlist, &py_size))
         return NULL;
-    if (pyg_enum_get_value(G_TYPE_NONE, py_size, (gint *)&size))
+    if (pyg_enum_get_value(XFCE_TYPE_CLOCK_LED_SIZE, py_size, (gint *)&size))
         return NULL;
     xfce_clock_set_led_size(XFCE_CLOCK(self->obj), size);
     Py_INCREF(Py_None);
@@ -186,7 +191,7 @@ _wrap_xfce_clock_get_led_size(PyGObject *self)
     gint ret;
 
     ret = xfce_clock_get_led_size(XFCE_CLOCK(self->obj));
-    return pyg_enum_from_gtype(G_TYPE_NONE, ret);
+    return pyg_enum_from_gtype(XFCE_TYPE_CLOCK_LED_SIZE, ret);
 }
 
 static PyObject *
@@ -214,7 +219,7 @@ _wrap_xfce_clock_set_mode(PyGObject *self, PyObject *args, PyObject *kwargs)
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:XfceClock.set_mode", kwlist, &py_mode))
         return NULL;
-    if (pyg_enum_get_value(G_TYPE_NONE, py_mode, (gint *)&mode))
+    if (pyg_enum_get_value(XFCE_TYPE_CLOCK_MODE, py_mode, (gint *)&mode))
         return NULL;
     xfce_clock_set_mode(XFCE_CLOCK(self->obj), mode);
     Py_INCREF(Py_None);
@@ -235,7 +240,7 @@ _wrap_xfce_clock_get_mode(PyGObject *self)
     gint ret;
 
     ret = xfce_clock_get_mode(XFCE_CLOCK(self->obj));
-    return pyg_enum_from_gtype(G_TYPE_NONE, ret);
+    return pyg_enum_from_gtype(XFCE_TYPE_CLOCK_MODE, ret);
 }
 
 static PyMethodDef _PyXfceClock_methods[] = {
@@ -319,13 +324,8 @@ PyMethodDef pyclock_functions[] = {
 void
 pyclock_add_constants(PyObject *module, const gchar *strip_prefix)
 {
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_CLOCK_ANALOG", strip_prefix), XFCE_CLOCK_ANALOG);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_CLOCK_DIGITAL", strip_prefix), XFCE_CLOCK_DIGITAL);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_CLOCK_LEDS", strip_prefix), XFCE_CLOCK_LEDS);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("DIGIT_SMALL", strip_prefix), DIGIT_SMALL);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("DIGIT_MEDIUM", strip_prefix), DIGIT_MEDIUM);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("DIGIT_LARGE", strip_prefix), DIGIT_LARGE);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("DIGIT_HUGE", strip_prefix), DIGIT_HUGE);
+  pyg_enum_add(module, "ClockMode", strip_prefix, XFCE_TYPE_CLOCK_MODE);
+  pyg_enum_add(module, "ClockLedSize", strip_prefix, XFCE_TYPE_CLOCK_LED_SIZE);
 
   if (PyErr_Occurred())
     PyErr_Print();

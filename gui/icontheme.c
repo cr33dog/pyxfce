@@ -8,8 +8,12 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
-#line 13 "icontheme.c"
+#define XFCE_TYPE_FILE_CHOOSER_ACTION GUI_TYPE_FILE_CHOOSER_ACTION
+#define XFCE_TYPE_ICON_THEME_CATEGORY GUI_TYPE_ICON_THEME_CATEGORY
+
+#line 17 "icontheme.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -56,7 +60,7 @@ _wrap_xfce_icon_theme_lookup_category(PyGObject *self, PyObject *args, PyObject 
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Oi:XfceIconTheme.lookup_category", kwlist, &py_category, &icon_size))
         return NULL;
-    if (pyg_enum_get_value(G_TYPE_NONE, py_category, (gint *)&category))
+    if (pyg_enum_get_value(XFCE_TYPE_ICON_THEME_CATEGORY, py_category, (gint *)&category))
         return NULL;
     ret = xfce_icon_theme_lookup_category(XFCE_ICON_THEME(self->obj), category, icon_size);
     if (ret) {
@@ -94,14 +98,14 @@ _wrap_xfce_icon_theme_load_category(PyGObject *self, PyObject *args, PyObject *k
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Oi:XfceIconTheme.load_category", kwlist, &py_category, &icon_size))
         return NULL;
-    if (pyg_enum_get_value(G_TYPE_NONE, py_category, (gint *)&category))
+    if (pyg_enum_get_value(XFCE_TYPE_ICON_THEME_CATEGORY, py_category, (gint *)&category))
         return NULL;
     ret = xfce_icon_theme_load_category(XFCE_ICON_THEME(self->obj), category, icon_size);
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
 
-#line 26 "icontheme.override"
+#line 30 "icontheme.override"
 static PyObject *
 _wrap_xfce_icon_theme_get_search_path(PyGObject *self)
 {
@@ -129,10 +133,10 @@ _wrap_xfce_icon_theme_get_search_path(PyGObject *self)
 
     return py_tuple;
 }
-#line 133 "icontheme.c"
+#line 137 "icontheme.c"
 
 
-#line 55 "icontheme.override"
+#line 59 "icontheme.override"
 static PyObject *
 _wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
 				     PyObject *kwargs)
@@ -176,7 +180,7 @@ _wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 180 "icontheme.c"
+#line 184 "icontheme.c"
 
 
 static PyObject *
@@ -214,7 +218,7 @@ _wrap_xfce_icon_theme_unregister_category(PyGObject *self, PyObject *args, PyObj
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:XfceIconTheme.unregister_category", kwlist, &py_category))
         return NULL;
-    if (pyg_enum_get_value(G_TYPE_NONE, py_category, (gint *)&category))
+    if (pyg_enum_get_value(XFCE_TYPE_ICON_THEME_CATEGORY, py_category, (gint *)&category))
         return NULL;
     xfce_icon_theme_unregister_category(XFCE_ICON_THEME(self->obj), category);
     Py_INCREF(Py_None);
@@ -333,23 +337,7 @@ PyMethodDef pyicontheme_functions[] = {
 void
 pyicontheme_add_constants(PyObject *module, const gchar *strip_prefix)
 {
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_UNKNOWN", strip_prefix), XFCE_ICON_CATEGORY_UNKNOWN);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_EDITOR", strip_prefix), XFCE_ICON_CATEGORY_EDITOR);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_FILEMAN", strip_prefix), XFCE_ICON_CATEGORY_FILEMAN);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_UTILITY", strip_prefix), XFCE_ICON_CATEGORY_UTILITY);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_GAME", strip_prefix), XFCE_ICON_CATEGORY_GAME);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_HELP", strip_prefix), XFCE_ICON_CATEGORY_HELP);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_MULTIMEDIA", strip_prefix), XFCE_ICON_CATEGORY_MULTIMEDIA);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_NETWORK", strip_prefix), XFCE_ICON_CATEGORY_NETWORK);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_GRAPHICS", strip_prefix), XFCE_ICON_CATEGORY_GRAPHICS);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_PRINTER", strip_prefix), XFCE_ICON_CATEGORY_PRINTER);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_PRODUCTIVITY", strip_prefix), XFCE_ICON_CATEGORY_PRODUCTIVITY);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_SOUND", strip_prefix), XFCE_ICON_CATEGORY_SOUND);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_TERMINAL", strip_prefix), XFCE_ICON_CATEGORY_TERMINAL);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_DEVELOPMENT", strip_prefix), XFCE_ICON_CATEGORY_DEVELOPMENT);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_SETTINGS", strip_prefix), XFCE_ICON_CATEGORY_SETTINGS);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_SYSTEM", strip_prefix), XFCE_ICON_CATEGORY_SYSTEM);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XFCE_ICON_CATEGORY_WINE", strip_prefix), XFCE_ICON_CATEGORY_WINE);
+  pyg_enum_add(module, "IconThemeCategory", strip_prefix, XFCE_TYPE_ICON_THEME_CATEGORY);
 
   if (PyErr_Occurred())
     PyErr_Print();
@@ -391,6 +379,6 @@ pyicontheme_register_classes(PyObject *d)
     }
 
 
-#line 395 "icontheme.c"
+#line 383 "icontheme.c"
     pygobject_register_class(d, "XfceIconTheme", XFCE_TYPE_ICON_THEME, &PyXfceIconTheme_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

@@ -8,8 +8,11 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
-#line 13 "gtktoxevent.c"
+#define XFCE_TYPE_FILTER_STATUS GUI_TYPE_FILTER_STATUS
+
+#line 16 "gtktoxevent.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -92,8 +95,7 @@ PyMethodDef pygtktoxevent_functions[] = {
 void
 pygtktoxevent_add_constants(PyObject *module, const gchar *strip_prefix)
 {
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XEV_FILTER_STOP", strip_prefix), XEV_FILTER_STOP);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("XEV_FILTER_CONTINUE", strip_prefix), XEV_FILTER_CONTINUE);
+  pyg_enum_add(module, "FilterStatus", strip_prefix, XFCE_TYPE_FILTER_STATUS);
 
   if (PyErr_Occurred())
     PyErr_Print();
@@ -135,5 +137,5 @@ pygtktoxevent_register_classes(PyObject *d)
     }
 
 
-#line 139 "gtktoxevent.c"
+#line 141 "gtktoxevent.c"
 }

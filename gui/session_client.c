@@ -8,8 +8,13 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
-#line 13 "session_client.c"
+#define SESSION_TYPE_INTERACT_STYLE GUI_TYPE_INTERACT_STYLE
+#define SESSION_TYPE_RESTART_STYLE GUI_TYPE_RESTART_STYLE
+#define SESSION_TYPE_CLIENT_STATE GUI_TYPE_CLIENT_STATE
+
+#line 18 "session_client.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -32,22 +37,9 @@ PyMethodDef pysession_client_functions[] = {
 void
 pysession_client_add_constants(PyObject *module, const gchar *strip_prefix)
 {
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_INTERACT_NONE", strip_prefix), SESSION_INTERACT_NONE);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_INTERACT_ERRORS", strip_prefix), SESSION_INTERACT_ERRORS);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_INTERACT_ANY", strip_prefix), SESSION_INTERACT_ANY);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_RESTART_IF_RUNNING", strip_prefix), SESSION_RESTART_IF_RUNNING);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_RESTART_ANYWAY", strip_prefix), SESSION_RESTART_ANYWAY);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_RESTART_IMMEDIATELY", strip_prefix), SESSION_RESTART_IMMEDIATELY);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_RESTART_NEVER", strip_prefix), SESSION_RESTART_NEVER);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_CLIENT_IDLE", strip_prefix), SESSION_CLIENT_IDLE);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_CLIENT_SAVING_PHASE_1", strip_prefix), SESSION_CLIENT_SAVING_PHASE_1);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_CLIENT_WAITING_FOR_PHASE_2", strip_prefix), SESSION_CLIENT_WAITING_FOR_PHASE_2);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_CLIENT_SAVING_PHASE_2", strip_prefix), SESSION_CLIENT_SAVING_PHASE_2);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_CLIENT_WAITING_FOR_INTERACT", strip_prefix), SESSION_CLIENT_WAITING_FOR_INTERACT);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_CLIENT_DONE_WITH_INTERACT", strip_prefix), SESSION_CLIENT_DONE_WITH_INTERACT);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_CLIENT_FROZEN", strip_prefix), SESSION_CLIENT_FROZEN);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_CLIENT_DISCONNECTED", strip_prefix), SESSION_CLIENT_DISCONNECTED);
-    PyModule_AddIntConstant(module, pyg_constant_strip_prefix("SESSION_CLIENT_REGISTERING", strip_prefix), SESSION_CLIENT_REGISTERING);
+  pyg_enum_add(module, "InteractStyle", strip_prefix, SESSION_TYPE_INTERACT_STYLE);
+  pyg_enum_add(module, "RestartStyle", strip_prefix, SESSION_TYPE_RESTART_STYLE);
+  pyg_enum_add(module, "ClientState", strip_prefix, SESSION_TYPE_CLIENT_STATE);
 
   if (PyErr_Occurred())
     PyErr_Print();
@@ -75,5 +67,5 @@ pysession_client_register_classes(PyObject *d)
     }
 
 
-#line 79 "session_client.c"
+#line 71 "session_client.c"
 }
