@@ -14,7 +14,7 @@ Provides:
            - list windows, activate and manipulate windows, application,
 classgroups, screens, workspaces, ...
       - AboutDialog
-      - session client [done soon]
+      - SessionClient [done soon]
       - AppMenuItem
       - Clock
       - Decorbutton
