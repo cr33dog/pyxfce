@@ -5,10 +5,9 @@ pygtk.require("2.0")
 import gtk
 import xfce4
 
-widget = xfce4.gui.FrameBox()
+widget = xfce4.gui.Framebox("Hi", 0)
 
 button = gtk.Button("About")
-button.connect("clicked", about_cb)
 button.show()
 
 widget.add(button)
