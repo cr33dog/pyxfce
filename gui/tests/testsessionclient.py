@@ -5,5 +5,7 @@ pygtk.require("2.0")
 import gtk
 import xfce4
 
-# TODO xfce4.gui.sessionclient
-
+sc = xfce4.gui.SessionClient()
+#sc.init()
+#sc.shutdown()
+#sc.logout()
