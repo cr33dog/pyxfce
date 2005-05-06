@@ -16,6 +16,7 @@ image = gtk.Image()
 image.set_from_pixbuf(ic)
 image.show()
 w = gtk.Window()
+w.connect("destroy", lambda x: gtk.main_quit())
 w.add(image)
 w.show()
 
