@@ -25,7 +25,7 @@ classgroups, screens, workspaces, ...
       - Iconbutton
       - IconTheme (xfceish)
       - Menubutton
-      - MoveHandler
+      - Movehandler
       - ScaledImage :)
       - System Tray
       - Togglebutton: an arrow that changes direction when clicked O_o
