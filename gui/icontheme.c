@@ -29,6 +29,30 @@ PyTypeObject PyXfceIconTheme_Type;
 
 /* ----------- XfceIconTheme ----------- */
 
+#line 104 "icontheme.override"
+static int
+_wrap_xfce_icon_theme_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    GdkScreen *screen;
+
+    screen = gdk_screen_get_default ();
+    if (!screen) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create NetkTrayIcon object");
+        return -1;
+    }
+
+    self->obj = (GObject *)xfce_icon_theme_get_for_screen (screen);
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceIconTheme object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+#line 54 "icontheme.c"
+
+
 static PyObject *
 _wrap_xfce_icon_theme_lookup(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -133,7 +157,7 @@ _wrap_xfce_icon_theme_get_search_path(PyGObject *self)
 
     return py_tuple;
 }
-#line 137 "icontheme.c"
+#line 161 "icontheme.c"
 
 
 #line 59 "icontheme.override"
@@ -180,7 +204,7 @@ _wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 184 "icontheme.c"
+#line 208 "icontheme.c"
 
 
 static PyObject *
@@ -301,7 +325,7 @@ PyTypeObject PyXfceIconTheme_Type = {
     (descrgetfunc)0,	/* tp_descr_get */
     (descrsetfunc)0,	/* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)0,		/* tp_init */
+    (initproc)_wrap_xfce_icon_theme_new,		/* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -379,6 +403,6 @@ pyicontheme_register_classes(PyObject *d)
     }
 
 
-#line 383 "icontheme.c"
+#line 407 "icontheme.c"
     pygobject_register_class(d, "XfceIconTheme", XFCE_TYPE_ICON_THEME, &PyXfceIconTheme_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

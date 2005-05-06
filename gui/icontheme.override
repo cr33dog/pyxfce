@@ -99,3 +99,25 @@ _wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
     Py_INCREF(Py_None);
     return Py_None;
 }
+%%
+override xfce_icon_theme_new kwargs
+static int
+_wrap_xfce_icon_theme_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    GdkScreen *screen;
+
+    screen = gdk_screen_get_default ();
+    if (!screen) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create NetkTrayIcon object");
+        return -1;
+    }
+
+    self->obj = (GObject *)xfce_icon_theme_get_for_screen (screen);
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceIconTheme object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}

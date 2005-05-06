@@ -63,6 +63,13 @@ do
 done
 
 cat >>icontheme.defs << EOF
+
+(define-function icon_theme_new 
+  (c-name "xfce_icon_theme_new")
+  (is-constructor-of "XfceIconTheme")
+  (return-type "XfceIconTheme*")
+)
+
 (object IconTheme
   (in-module (Xfce))
   (parent Object)
