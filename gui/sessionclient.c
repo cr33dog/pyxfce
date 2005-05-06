@@ -68,6 +68,8 @@ static void save_yourself_cb (gpointer client_data, int save_style,
 {
 }
 
+extern void Py_GetArgcArgv(int *argc, char ***argv);
+
 static int
 _wrap_session_client_new((PyGObject *self, PyObject *args, PyObject *kwargs)
 {
