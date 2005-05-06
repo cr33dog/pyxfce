@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# doesnt work correctly
 import pygtk
 pygtk.require("2.0")
 import gtk
