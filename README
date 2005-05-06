@@ -24,7 +24,7 @@ classgroups, screens, workspaces, ...
       - Framebox
       - Iconbutton
       - IconTheme (xfceish)
-      - MenuButton
+      - Menubutton
       - MoveHandler
       - ScaledImage :)
       - System Tray
