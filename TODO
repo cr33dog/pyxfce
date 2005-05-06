@@ -47,5 +47,4 @@ mask exec_command and friends ?
    (field (type-and-name guint16 width) (access readwrite))
    (field (type-and-name guint16 height) (access readwrite)))
 
-screen.get_background_pixmap() returns number ??
 
