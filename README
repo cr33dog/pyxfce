@@ -17,7 +17,6 @@ classgroups, screens, workspaces, ...
       - session client [done soon]
       - AppMenuItem
       - Clock
-      - ColorButton
       - Decorbutton
       - Decortoggle
       - FileChooser (compat to gtk 2.0)
