@@ -8,6 +8,8 @@ import gtk
 import xfce4
 
 widget = xfce4.gui.Decortoggle("right")  # "close"
+widget.set_active(True)
+widget.toggled()
 widget.show()
 
 w = gtk.Window()
