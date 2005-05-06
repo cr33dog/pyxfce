@@ -27,7 +27,7 @@ classgroups, screens, workspaces, ...
       - Menubutton
       - Movehandler
       - ScaledImage :)
-      - System Tray
+      - SystemTray
       - Togglebutton: an arrow that changes direction when clicked O_o
       - (small gtk and gdk extensions)
 
