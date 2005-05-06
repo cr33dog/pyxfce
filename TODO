@@ -1,6 +1,5 @@
 
 skip:
-*_get_type
 xfce_mkdirhier
 xfce_putenv
 xfce_setenv?
