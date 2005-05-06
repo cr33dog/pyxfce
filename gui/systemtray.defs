@@ -12,4 +12,44 @@
 
 ;; From /usr/include/xfce4/libxfcegui4/xfce_systemtray.h
 
+(define-function system_tray_error_quark
+  (c-name "xfce_system_tray_error_quark")
+  (return-type "GQuark")
+)
+
+(define-function system_tray_get_type
+  (c-name "xfce_system_tray_get_type")
+  (return-type "GType")
+)
+
+(define-function system_tray_new
+  (c-name "xfce_system_tray_new")
+  (is-constructor-of "XfceSystemTray")
+  (return-type "XfceSystemTray*")
+)
+
+(define-method register
+  (of-object "XfceSystemTray")
+  (c-name "xfce_system_tray_register")
+  (return-type "gboolean")
+  (parameters
+    '("Screen*" "screen")
+    '("GError**" "error")
+  )
+)
+
+(define-method unregister
+  (of-object "XfceSystemTray")
+  (c-name "xfce_system_tray_unregister")
+  (return-type "none")
+)
+
+(define-function system_tray_check_running
+  (c-name "xfce_system_tray_check_running")
+  (return-type "gboolean")
+  (parameters
+    '("Screen*" "screen")
+  )
+)
+
 

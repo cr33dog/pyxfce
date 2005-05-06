@@ -27,6 +27,39 @@ PyTypeObject PyXfceSystemTray_Type;
 
 /* ----------- XfceSystemTray ----------- */
 
+static int
+_wrap_xfce_system_tray_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    GType obj_type = pyg_type_from_object((PyObject *) self);
+    static char* kwlist[] = { NULL };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":systemtray.SystemTray.__init__", kwlist))
+        return -1;
+
+    self->obj = g_object_newv(obj_type, 0, NULL);
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
+        return -1;
+    }
+
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
+
+
+static PyObject *
+_wrap_xfce_system_tray_unregister(PyGObject *self)
+{
+    xfce_system_tray_unregister(XFCE_SYSTEM_TRAY(self->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyMethodDef _PyXfceSystemTray_methods[] = {
+    { "unregister", (PyCFunction)_wrap_xfce_system_tray_unregister, METH_NOARGS },
+    { NULL, NULL, 0 }
+};
+
 PyTypeObject PyXfceSystemTray_Type = {
     PyObject_HEAD_INIT(NULL)
     0,					/* ob_size */
@@ -57,7 +90,7 @@ PyTypeObject PyXfceSystemTray_Type = {
     offsetof(PyGObject, weakreflist),             /* tp_weaklistoffset */
     (getiterfunc)0,		/* tp_iter */
     (iternextfunc)0,	/* tp_iternext */
-    NULL,			/* tp_methods */
+    _PyXfceSystemTray_methods,			/* tp_methods */
     0,					/* tp_members */
     0,		       	/* tp_getset */
     NULL,				/* tp_base */
@@ -65,7 +98,7 @@ PyTypeObject PyXfceSystemTray_Type = {
     (descrgetfunc)0,	/* tp_descr_get */
     (descrsetfunc)0,	/* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)0,		/* tp_init */
+    (initproc)_wrap_xfce_system_tray_new,		/* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -102,6 +135,6 @@ pysystemtray_register_classes(PyObject *d)
     }
 
 
-#line 106 "systemtray.c"
+#line 139 "systemtray.c"
     pygobject_register_class(d, "XfceSystemTray", XFCE_TYPE_SYSTEM_TRAY, &PyXfceSystemTray_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
