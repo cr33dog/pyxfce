@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-# doesnt work. segfault.
-# TODO: other screens?
+
 import pygtk
 pygtk.require("2.0")
 import gtk
