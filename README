@@ -21,7 +21,7 @@ classgroups, screens, workspaces, ...
       - Decorbutton
       - Decortoggle
       - FileChooser (compat to gtk 2.0)
-      - FrameBox
+      - Framebox
       - IconButton
       - IconTheme (xfceish)
       - MenuButton
