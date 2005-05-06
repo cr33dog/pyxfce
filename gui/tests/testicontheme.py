@@ -6,8 +6,10 @@ import gtk
 import xfce4
 
 widget = xfce4.gui.IconTheme()
-ic = widget.lookup("folder", 24)
+ic = widget.load("folder", 24)
 print ic
+icname = widget.lookup("folder", 24)
+print icname
 
 image = gtk.Image()
 image.set_from_pixbuf(ic)
