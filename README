@@ -22,7 +22,7 @@ classgroups, screens, workspaces, ...
       - Decortoggle
       - FileChooser (compat to gtk 2.0)
       - Framebox
-      - IconButton
+      - Iconbutton
       - IconTheme (xfceish)
       - MenuButton
       - MoveHandler
