@@ -7,9 +7,9 @@ import gtk
 import xfce4
 
 widget = xfce4.gui.IconTheme(gtk.gdk.screen_get_default())
-ic = widget.load("folder", 24)
+ic = widget.load("xfce-mail", 24)
 print ic
-icname = widget.lookup("folder", 24)
+icname = widget.lookup("xfce-mail", 24)
 print icname
 
 image = gtk.Image()
