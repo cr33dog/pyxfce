@@ -77,6 +77,10 @@ _wrap_session_client_new((PyGObject *self, PyObject *args, PyObject *kwargs)
 	gpointer	client_data;
 	gchar		prio;
 	int		prioi;
+	char**		argv;
+	int		argc;
+	
+	client_data = NULL;
 
 	prio = 30;
 	
@@ -89,6 +93,8 @@ _wrap_session_client_new((PyGObject *self, PyObject *args, PyObject *kwargs)
 	}
 	
 	prio = prioi;
+	
+	Py_GetArgcArgv(&argc, &argv);
 
 	client = client_session_new (argc, argv, client_data, 
 		SESSION_RESTART_IF_RUNNING, prio);
