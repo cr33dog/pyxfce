@@ -6,7 +6,7 @@ pygtk.require("2.0")
 import gtk
 import xfce4
 
-widget = xfce4.gui.IconTheme()
+widget = xfce4.gui.IconTheme(gtk.gdk.screen_get_default())
 ic = widget.load("folder", 24)
 print ic
 icname = widget.lookup("folder", 24)

@@ -68,6 +68,9 @@ cat >>icontheme.defs << EOF
   (c-name "xfce_icon_theme_new")
   (is-constructor-of "XfceIconTheme")
   (return-type "XfceIconTheme*")
+  (parameters
+    '("GdkScreen*" "screen")
+  )      
 )
 
 (object IconTheme

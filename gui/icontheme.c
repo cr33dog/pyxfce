@@ -33,15 +33,20 @@ PyTypeObject PyXfceIconTheme_Type;
 static int
 _wrap_xfce_icon_theme_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    GdkScreen *screen;
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *gscreen;
 
-    screen = gdk_screen_get_default ();
-    if (!screen) {
-        PyErr_SetString(PyExc_RuntimeError, "could not create NetkTrayIcon object");
+    if (!PyArg_ParseTupleAndKeywords(args,kwargs,
+				     "O!:XfceIconTheme.__init__",
+                                     kwlist, &PyGdkScreen_Type, &gscreen))
+        return -1;
+
+    if (!gscreen) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceIconTheme object");
         return -1;
     }
 
-    self->obj = (GObject *)xfce_icon_theme_get_for_screen (screen);
+    self->obj = (GObject *)xfce_icon_theme_get_for_screen (gscreen->obj);
 
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create XfceIconTheme object");
@@ -50,7 +55,7 @@ _wrap_xfce_icon_theme_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
-#line 54 "icontheme.c"
+#line 59 "icontheme.c"
 
 
 static PyObject *
@@ -157,7 +162,7 @@ _wrap_xfce_icon_theme_get_search_path(PyGObject *self)
 
     return py_tuple;
 }
-#line 161 "icontheme.c"
+#line 166 "icontheme.c"
 
 
 #line 59 "icontheme.override"
@@ -171,7 +176,7 @@ _wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
     GList *list;
 
     if (!PyArg_ParseTupleAndKeywords(args,kwargs,
-				     "O:GtkIconTheme.set_search_path",
+				     "O:XfceIconTheme.set_search_path",
                                      kwlist, &py_seq))
         return NULL;
 
@@ -204,7 +209,7 @@ _wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 208 "icontheme.c"
+#line 213 "icontheme.c"
 
 
 static PyObject *
@@ -403,6 +408,6 @@ pyicontheme_register_classes(PyObject *d)
     }
 
 
-#line 407 "icontheme.c"
+#line 412 "icontheme.c"
     pygobject_register_class(d, "XfceIconTheme", XFCE_TYPE_ICON_THEME, &PyXfceIconTheme_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
