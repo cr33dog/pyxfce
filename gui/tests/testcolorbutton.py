@@ -5,7 +5,7 @@ pygtk.require("2.0")
 import gtk
 import xfce4
 
-widget = xfce4.gui.Colorbutton()
+widget = xfce4.gui.ColorButton()
 widget.show()
 
 w = gtk.Window()
