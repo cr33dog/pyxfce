@@ -63,10 +63,10 @@ _wrap_netk_screen_get_windows(PyGObject *self)
 {
     GList *icon_list = NULL;
     PyObject *pywindow;
+    PyObject *py_list;
+    GList *tmp;
 
     if ((icon_list = netk_screen_get_windows(NETK_SCREEN(self->obj)))) {
-        PyObject *py_list;
-        GList *tmp;
 
         if ((py_list = PyList_New(0)) == NULL) {
             /*g_list_free(icon_list); no */
@@ -86,23 +86,25 @@ _wrap_netk_screen_get_windows(PyGObject *self)
         /*g_list_free(icon_list); no */
         return py_list;
     }
-    Py_INCREF(Py_None);
-    return Py_None;
+    if ((py_list = PyList_New(0)) == NULL) {
+        /* g_list_free(icon_list); no */
+        return NULL;
+    }
+    return py_list;
 }
-#line 93 "screen.c"
+#line 96 "screen.c"
 
 
-#line 60 "screen.override"
+#line 63 "screen.override"
 static PyObject *
 _wrap_netk_screen_get_windows_stacked(PyGObject *self)
 {
     GList *icon_list = NULL;
     PyObject *pywindow;
+    PyObject *py_list;
+    GList *tmp;
 
     if ((icon_list = netk_screen_get_windows_stacked(NETK_SCREEN(self->obj)))) {
-        PyObject *py_list;
-        GList *tmp;
-
         if ((py_list = PyList_New(0)) == NULL) {
             /* g_list_free(icon_list); no */
             return NULL;
@@ -121,10 +123,13 @@ _wrap_netk_screen_get_windows_stacked(PyGObject *self)
         /*g_list_free(icon_list); no */
         return py_list;
     }
-    Py_INCREF(Py_None);
-    return Py_None;
+    if ((py_list = PyList_New(0)) == NULL) {
+        /* g_list_free(icon_list); no */
+        return NULL;
+    }
+    return py_list;
 }
-#line 128 "screen.c"
+#line 133 "screen.c"
 
 
 static PyObject *
@@ -171,7 +176,7 @@ _wrap_netk_screen_net_wm_supports(PyGObject *self, PyObject *args, PyObject *kwa
 
 }
 
-#line 93 "screen.override"
+#line 98 "screen.override"
 static PyObject *
 _wrap_netk_screen_get_background_pixmap(PyGObject *self)
 {
@@ -196,7 +201,7 @@ _wrap_netk_screen_get_background_pixmap(PyGObject *self)
        return Py_None;
     }
 }
-#line 200 "screen.c"
+#line 205 "screen.c"
 
 
 static PyObject *
@@ -417,6 +422,6 @@ pyscreen_register_classes(PyObject *d)
     }
 
 
-#line 421 "screen.c"
+#line 426 "screen.c"
     pygobject_register_class(d, "NetkScreen", NETK_TYPE_SCREEN, &PyNetkScreen_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
