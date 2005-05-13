@@ -38,10 +38,10 @@ _wrap_netk_application_get_windows(PyGObject *self)
 {
     GList *icon_list = NULL;
     PyObject *pywindow;
+    PyObject *py_list;
+    GList *tmp;
 
     if ((icon_list = netk_application_get_windows(NETK_APPLICATION(self->obj)))) {
-        PyObject *py_list;
-        GList *tmp;
 
         if ((py_list = PyList_New(0)) == NULL) {
             /*g_list_free(icon_list); no */
@@ -61,10 +61,13 @@ _wrap_netk_application_get_windows(PyGObject *self)
         /*g_list_free(icon_list); no */
         return py_list;
     }
-    Py_INCREF(Py_None);
-    return Py_None;
+    if ((py_list = PyList_New(0)) == NULL) {
+        /* g_list_free(icon_list); no */
+        return NULL;
+    }
+    return py_list;
 }
-#line 68 "application.c"
+#line 71 "application.c"
 
 
 static PyObject *
@@ -244,6 +247,6 @@ pyapplication_register_classes(PyObject *d)
     }
 
 
-#line 248 "application.c"
+#line 251 "application.c"
     pygobject_register_class(d, "NetkApplication", NETK_TYPE_APPLICATION, &PyNetkApplication_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

@@ -32,10 +32,10 @@ _wrap_netk_class_group_get_windows(PyGObject *self)
 {
     GList *icon_list = NULL;
     PyObject *pywindow;
+    PyObject *py_list;
+    GList *tmp;
 
     if ((icon_list = netk_class_group_get_windows(NETK_CLASS_GROUP(self->obj)))) {
-        PyObject *py_list;
-        GList *tmp;
 
         if ((py_list = PyList_New(0)) == NULL) {
             /*g_list_free(icon_list); no */
@@ -55,10 +55,13 @@ _wrap_netk_class_group_get_windows(PyGObject *self)
         /*g_list_free(icon_list); no */
         return py_list;
     }
-    Py_INCREF(Py_None);
-    return Py_None;
+    if ((py_list = PyList_New(0)) == NULL) {
+        /* g_list_free(icon_list); no */
+        return NULL;
+    }
+    return py_list;
 }
-#line 62 "class_group.c"
+#line 65 "class_group.c"
 
 
 static PyObject *
@@ -261,6 +264,6 @@ pyclass_group_register_classes(PyObject *d)
     }
 
 
-#line 265 "class_group.c"
+#line 268 "class_group.c"
     pygobject_register_class(d, "NetkClassGroup", NETK_TYPE_CLASS_GROUP, &PyNetkClassGroup_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
