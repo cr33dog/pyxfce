@@ -45,3 +45,5 @@ mask exec_command and friends ?
    (field (type-and-name guint16 height) (access readwrite)))
 
 
+netk window_state_changed_cb: how to check mask and newvalue ? constants ? where ?
+
