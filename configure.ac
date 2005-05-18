@@ -42,7 +42,7 @@ export_dynamic=`(./libtool --config; echo eval echo \\$export_dynamic_flag_spec)
 
 BM_DEPEND([XFCE4_UTIL], [libxfce4util-1.0], [4.1.0])
 BM_DEPEND([XFCE4_GUI], [libxfcegui4-1.0], [4.4.2])
-BM_DEPEND([XFCE4_PANEL], [xfce4-panel-1.0], [4.1.0])
+#BM_DEPEND([XFCE4_PANEL], [xfce4-panel-1.0], [4.1.0])
 BM_DEPEND([XFCE4_MCS_CLIENT], [libxfce4mcs-client-1.0], [4.1.0])
 BM_DEPEND([XFCE4_MCS_MANAGER], [libxfce4mcs-manager-1.0], [4.1.0])
 BM_DEPEND([GTK], [gtk+-2.0], [2.4])
