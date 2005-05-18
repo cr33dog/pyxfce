@@ -1,5 +1,7 @@
 @SET_MAKE@
 
+ACLOCAL_AMFLAGS = -I m4
+
 AUTOMAKE_OPTIONS = 1.7
 SUBDIRS = gui mcs netk panel util
 PLATFORM_VERSION = 4.2
