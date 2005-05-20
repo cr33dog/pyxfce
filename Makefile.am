@@ -3,7 +3,7 @@
 ACLOCAL_AMFLAGS = -I m4
 
 AUTOMAKE_OPTIONS = 1.7
-SUBDIRS = gui mcs netk panel util
+SUBDIRS = gui mcs netk util
 PLATFORM_VERSION = 4.2
 PLATFORM_WIN32 =
 
