@@ -142,6 +142,18 @@ _wrap_netk_window_get_pid(PyGObject *self)
 
 
 static PyObject *
+_wrap_netk_window_get_client_machine(PyGObject *self)
+{
+    const gchar *ret;
+
+    ret = netk_window_get_client_machine(NETK_WINDOW(self->obj));
+    if (ret)
+        return PyString_FromString(ret);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
 _wrap_netk_window_get_window_type(PyGObject *self)
 {
     gint ret;
@@ -545,7 +557,7 @@ _wrap_netk_window_get_geometry(PyGObject *self)
     netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
     return Py_BuildValue("(iiii)", x, y, width, height);
 }
-#line 549 "window.c"
+#line 561 "window.c"
 
 
 static PyObject *
@@ -601,6 +613,7 @@ static PyMethodDef _PyNetkWindow_methods[] = {
     { "get_session_id", (PyCFunction)_wrap_netk_window_get_session_id, METH_NOARGS },
     { "get_session_id_utf8", (PyCFunction)_wrap_netk_window_get_session_id_utf8, METH_NOARGS },
     { "get_pid", (PyCFunction)_wrap_netk_window_get_pid, METH_NOARGS },
+    { "get_client_machine", (PyCFunction)_wrap_netk_window_get_client_machine, METH_NOARGS },
     { "get_window_type", (PyCFunction)_wrap_netk_window_get_window_type, METH_NOARGS },
     { "get_resource_class", (PyCFunction)_wrap_netk_window_get_resource_class, METH_NOARGS },
     { "get_resource_name", (PyCFunction)_wrap_netk_window_get_resource_name, METH_NOARGS },
@@ -770,6 +783,6 @@ pywindow_register_classes(PyObject *d)
     }
 
 
-#line 774 "window.c"
+#line 787 "window.c"
     pygobject_register_class(d, "NetkWindow", NETK_TYPE_WINDOW, &PyNetkWindow_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

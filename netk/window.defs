@@ -144,6 +144,12 @@
   (return-type "int")
 )
 
+(define-method get_client_machine
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_client_machine")
+  (return-type "const-char*")
+)
+
 (define-method get_window_type
   (of-object "NetkWindow")
   (c-name "netk_window_get_window_type")
