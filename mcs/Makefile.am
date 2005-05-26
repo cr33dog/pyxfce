@@ -49,6 +49,7 @@ gen-xfce_mcs-client.c: xfce_mcs-client.defs xfce_mcs-client.override
 	 && $(PYTHON) $(CODEGEN_PATH)/codegen.py \
 	   $(PYGTK_CODEGEN_DEFINES) \
 	     --override xfce_mcs-client.override \
+	     --register xfce_mcs-channel.defs \
 	     --prefix pyxfce_mcs_client xfce_mcs-client.defs) > genx-$*.c \
 	 && cp genx-$*.c $*.c \
 	 && rm -f genx-$*.c
@@ -58,6 +59,7 @@ gen-xfce_mcs-manager.c: xfce_mcs-manager.defs xfce_mcs-manager.override
 	 && $(PYTHON) $(CODEGEN_PATH)/codegen.py \
 	   $(PYGTK_CODEGEN_DEFINES) \
 	     --override xfce_mcs-manager.override \
+	     --register xfce_mcs-channel.defs \
 	     --prefix pyxfce_mcs_manager xfce_mcs-manager.defs) > genx-$*.c \
 	 && cp genx-$*.c $*.c \
 	 && rm -f genx-$*.c

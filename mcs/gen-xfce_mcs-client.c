@@ -88,6 +88,20 @@ _wrap_xfce_mcs_client_delete_channel(PyGObject *self, PyObject *args, PyObject *
 }
 
 static PyObject *
+_wrap_xfce_mcs_client_add_channel(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "name", NULL };
+    char *name;
+    XfceMcsChannel *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsClient.add_channel", kwlist, &name))
+        return NULL;
+    ret = xfce_mcs_client_add_channel(XFCE_MCS_CLIENT(self->obj), name);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
 _wrap_xfce_mcs_client_check_manager(PyGObject *self)
 {
     int ret;
@@ -115,6 +129,7 @@ static PyMethodDef _PyXfceMcsClient_methods[] = {
     { "set_screen", (PyCFunction)_wrap_xfce_mcs_client_set_screen, METH_VARARGS|METH_KEYWORDS },
     { "manager_reconnect", (PyCFunction)_wrap_xfce_mcs_client_manager_reconnect, METH_NOARGS },
     { "delete_channel", (PyCFunction)_wrap_xfce_mcs_client_delete_channel, METH_VARARGS|METH_KEYWORDS },
+    { "add_channel", (PyCFunction)_wrap_xfce_mcs_client_add_channel, METH_VARARGS|METH_KEYWORDS },
     { "check_manager", (PyCFunction)_wrap_xfce_mcs_client_check_manager, METH_NOARGS },
     { "show_dialog", (PyCFunction)_wrap_xfce_mcs_client_show_dialog, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
@@ -195,6 +210,6 @@ pyxfce_mcs_client_register_classes(PyObject *d)
     }
 
 
-#line 199 "xfce_mcs-client.c"
+#line 214 "xfce_mcs-client.c"
     pygobject_register_class(d, "XfceMcsClient", XFCE_TYPE_MCS_CLIENT, &PyXfceMcsClient_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

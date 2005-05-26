@@ -13,6 +13,7 @@ include
 modulename xfce4.mcs
 %%
 import gobject.GObject as PyGObject_Type
+import Channel as PyXfceMcsChannel_Type
 %%
 ignore
 %%

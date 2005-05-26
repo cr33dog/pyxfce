@@ -34,6 +34,20 @@ pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
+_wrap_xfce_mcs_manager_add_channel(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "name", NULL };
+    char *name;
+    XfceMcsChannel *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsManager.add_channel", kwlist, &name))
+        return NULL;
+    ret = xfce_mcs_manager_add_channel(XFCE_MCS_MANAGER(self->obj), name);
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
 _wrap_xfce_mcs_manager_delete_channel(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "name", NULL };
@@ -47,6 +61,7 @@ _wrap_xfce_mcs_manager_delete_channel(PyGObject *self, PyObject *args, PyObject 
 }
 
 static PyMethodDef _PyXfceMcsManager_methods[] = {
+    { "add_channel", (PyCFunction)_wrap_xfce_mcs_manager_add_channel, METH_VARARGS|METH_KEYWORDS },
     { "delete_channel", (PyCFunction)_wrap_xfce_mcs_manager_delete_channel, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
@@ -126,6 +141,6 @@ pyxfce_mcs_manager_register_classes(PyObject *d)
     }
 
 
-#line 130 "xfce_mcs-manager.c"
+#line 145 "xfce_mcs-manager.c"
     pygobject_register_class(d, "XfceMcsManager", XFCE_TYPE_MCS_MANAGER, &PyXfceMcsManager_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
