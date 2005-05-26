@@ -10,7 +10,7 @@ headers
 %%
 include
 %%
-modulename mcsmanager
+modulename xfce4.mcs
 %%
 import gobject.GObject as PyGObject_Type
 %%

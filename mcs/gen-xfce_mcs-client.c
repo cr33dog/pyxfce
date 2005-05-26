@@ -29,7 +29,7 @@ _wrap_xfce_mcs_client_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     GType obj_type = pyg_type_from_object((PyObject *) self);
     static char* kwlist[] = { NULL };
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":mcsclient.Client.__init__", kwlist))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":xfce4.mcs.Client.__init__", kwlist))
         return -1;
 
     self->obj = g_object_newv(obj_type, 0, NULL);
@@ -123,7 +123,7 @@ static PyMethodDef _PyXfceMcsClient_methods[] = {
 PyTypeObject PyXfceMcsClient_Type = {
     PyObject_HEAD_INIT(NULL)
     0,					/* ob_size */
-    "mcsclient.Client",			/* tp_name */
+    "xfce4.mcs.Client",			/* tp_name */
     sizeof(PyGObject),	        /* tp_basicsize */
     0,					/* tp_itemsize */
     /* methods */

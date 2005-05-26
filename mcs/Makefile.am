@@ -11,6 +11,8 @@ CODEGEN_PATH = @CODEGEN_PATH@
 
 # pyxfce_PYTHON = __init__.py
 
+EXTRA_DIST = xfce-mcs-channel.gob  xfce-mcs-client.gob  xfce-mcs-manager.gob
+
 INCLUDES = $(PYTHON_INCLUDES)
 
 pyxfceexecdir = $(pyexecdir)/xfce4

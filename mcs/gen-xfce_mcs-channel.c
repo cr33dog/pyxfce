@@ -181,7 +181,7 @@ static PyMethodDef _PyXfceMcsChannel_methods[] = {
 PyTypeObject PyXfceMcsChannel_Type = {
     PyObject_HEAD_INIT(NULL)
     0,					/* ob_size */
-    "mcschannel.Channel",			/* tp_name */
+    "xfce4.mcs.Channel",			/* tp_name */
     sizeof(PyGObject),	        /* tp_basicsize */
     0,					/* tp_itemsize */
     /* methods */
