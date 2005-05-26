@@ -83,6 +83,7 @@ class Xfce:Mcs:Client from G:Object {
 	property OBJECT screen
 		(nick = "the screen to use",
 		blurb = "The GdkScreen to use for the settings",
+		object_type = Gdk:Screen,
 		export)
 		set {
 			Display*	dpy;
