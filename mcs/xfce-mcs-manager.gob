@@ -1,5 +1,6 @@
 %{
 /* TODO!!!!!! most manager stuff */
+/* add_channel_from_file, save_channel_to_file, list_lookup */
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>

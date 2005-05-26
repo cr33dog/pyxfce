@@ -15,7 +15,7 @@ extern "C" {
 #include <libxfce4mcs/mcs-manager.h>
 #include "xfce-mcs-channel.h"
 
-#line 50 "xfce-mcs-manager.gob"
+#line 51 "xfce-mcs-manager.gob"
 #line 20 "xfce-mcs-manager-private.h"
 void 	xfce_mcs_manager_vanish_object	(XfceMcsManager * self, GObject * obj);
 McsSetting * 	xfce_mcs_manager_get_setting	(XfceMcsManager * self, gchar const * channel_name, gchar const * name);
