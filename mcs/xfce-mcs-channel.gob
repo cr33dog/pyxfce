@@ -244,5 +244,17 @@ class Xfce:Mcs:Channel from G:Object {
 		if (self->manager)
 			xfce_mcs_manager_delete_setting (self->manager, self->channel_name, name);
 	}
+	
+	public void add_channel_from_file(self, gchar const *filename)
+	{ /* only mcs manager */
+		if (self->manager)
+			xfce_mcs_manager_add_channel_from_file (self->manager, self->channel_name, filename);
+	}
+	
+	public void save_channel_to_file(self, gchar const *filename)
+	{ /* only mcs manager */
+		if (self->manager)
+			xfce_mcs_manager_save_channel_to_file (self->manager, self->channel_name, filename);
+	}
 }
 

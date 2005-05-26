@@ -106,6 +106,10 @@ void 	xfce_mcs_channel_set_setting_color	(XfceMcsChannel * self,
 					McsColor const * value);
 void 	xfce_mcs_channel_delete_setting	(XfceMcsChannel * self,
 					gchar const * name);
+void 	xfce_mcs_channel_add_channel_from_file	(XfceMcsChannel * self,
+					gchar const * filename);
+void 	xfce_mcs_channel_save_channel_to_file	(XfceMcsChannel * self,
+					gchar const * filename);
 
 /*
  * Signal connection wrapper macros

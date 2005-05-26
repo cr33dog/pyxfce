@@ -1,6 +1,5 @@
 %{
-/* TODO!!!!!! most manager stuff */
-/* add_channel_from_file, save_channel_to_file, list_lookup */
+/* TODO! list_lookup */
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
@@ -174,6 +173,24 @@ class Xfce:Mcs:Manager from G:Object {
 		if (mcs_manager_set_color (self->low, name, channel_name, (McsColor *) value) != MCS_SUCCESS) {
 			g_warning ("XfceMcsManager: set_setting: could not set color");
 		}
+	}
+	
+	protected void add_channel_from_file(self, gchar const *channel_name, gchar const *filename)
+	{
+		if (!self->low) {
+			g_warning ("XfceMcsManager: add_channel_from_file: no manager");
+			return;
+		}
+		mcs_manager_add_channel_from_file (self->low, channel_name, filename);
+	}
+	
+	protected gboolean save_channel_to_file(self, gchar const *channel_name, gchar const *filename)
+	{
+		if (!self->low) {
+			g_warning ("XfceMcsManager: save_channel_to_file: no manager");
+			return;
+		}
+		return mcs_manager_save_channel_to_file (self->low, channel_name, filename);
 	}
 }
 

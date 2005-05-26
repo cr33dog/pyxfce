@@ -15,7 +15,7 @@ extern "C" {
 #include <libxfce4mcs/mcs-manager.h>
 #include "xfce-mcs-channel.h"
 
-#line 51 "xfce-mcs-manager.gob"
+#line 50 "xfce-mcs-manager.gob"
 #line 20 "xfce-mcs-manager-private.h"
 void 	xfce_mcs_manager_vanish_object	(XfceMcsManager * self, GObject * obj);
 McsSetting * 	xfce_mcs_manager_get_setting	(XfceMcsManager * self, gchar const * channel_name, gchar const * name);
@@ -25,6 +25,8 @@ void 	xfce_mcs_manager_notify	(XfceMcsManager * self, gchar const * channel_name
 void 	xfce_mcs_manager_set_setting_string	(XfceMcsManager * self, gchar const * channel_name, gchar const * name, gchar const * value);
 void 	xfce_mcs_manager_set_setting_int	(XfceMcsManager * self, gchar const * channel_name, gchar const * name, gint value);
 void 	xfce_mcs_manager_set_setting_color	(XfceMcsManager * self, gchar const * channel_name, gchar const * name, McsColor const * value);
+void 	xfce_mcs_manager_add_channel_from_file	(XfceMcsManager * self, gchar const * channel_name, gchar const * filename);
+gboolean 	xfce_mcs_manager_save_channel_to_file	(XfceMcsManager * self, gchar const * channel_name, gchar const * filename);
 
 #ifdef __cplusplus
 }
