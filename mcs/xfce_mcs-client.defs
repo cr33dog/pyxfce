@@ -1,6 +1,6 @@
 ;; -*- scheme -*-
 ; object definitions ...
-(define-object McsClient
+(define-object Client
   (in-module "Xfce")
   (parent "GObject")
   (c-name "XfceMcsClient")

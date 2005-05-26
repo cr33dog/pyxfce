@@ -54,7 +54,7 @@ static PyMethodDef _PyXfceMcsManager_methods[] = {
 PyTypeObject PyXfceMcsManager_Type = {
     PyObject_HEAD_INIT(NULL)
     0,					/* ob_size */
-    "mcsmanager.McsManager",			/* tp_name */
+    "mcsmanager.Manager",			/* tp_name */
     sizeof(PyGObject),	        /* tp_basicsize */
     0,					/* tp_itemsize */
     /* methods */

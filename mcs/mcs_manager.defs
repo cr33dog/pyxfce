@@ -185,8 +185,3 @@
 )
 
 
-
-(boxed McsManager
-  (in-module Xfce)
-  (c-name McsManager)
-)

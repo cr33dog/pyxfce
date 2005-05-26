@@ -1,6 +1,6 @@
 ;; -*- scheme -*-
 ; object definitions ...
-(define-object McsChannel
+(define-object Channel
   (in-module "Xfce")
   (parent "GObject")
   (c-name "XfceMcsChannel")
@@ -143,6 +143,24 @@
   (return-type "none")
   (parameters
     '("gchar-const*" "name")
+  )
+)
+
+(define-method add_channel_from_file
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_add_channel_from_file")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "filename")
+  )
+)
+
+(define-method save_channel_to_file
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_save_channel_to_file")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "filename")
   )
 )
 

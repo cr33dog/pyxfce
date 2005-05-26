@@ -29,7 +29,7 @@ cat mcs_common.defs | egrep -v '\(gtype-id "(MCS_TYPE_RESULT|MCS_TYPE_TYPE|MCS_T
 
 #  (release-func mcs_manager_destroy))
 
-#sed -e 's;;;' xfce_mcs-client.defs > xfce_mcs-client.defs.new && mv xfce_mcs-client.defs.new xfce_mcs-client.defs
-#sed -e 's;;;' xfce_mcs-channel.defs > xfce_mcs-channel.defs.new && mv xfce_mcs-channel.defs.new xfce_mcs-channel.defs
-#sed -e 's;;;' xfce_mcs-manager.defs > xfce_mcs-manager.defs.new && mv xfce_mcs-manager.defs.new xfce_mcs-manager.defs
+sed -e 's;(define-object McsClient;(define-object Client;' xfce_mcs-client.defs > xfce_mcs-client.defs.new && mv xfce_mcs-client.defs.new xfce_mcs-client.defs
+sed -e 's;(define-object McsChannel;(define-object Channel;' xfce_mcs-channel.defs > xfce_mcs-channel.defs.new && mv xfce_mcs-channel.defs.new xfce_mcs-channel.defs
+sed -e 's;(define-object McsManager;(define-object Manager;' xfce_mcs-manager.defs > xfce_mcs-manager.defs.new && mv xfce_mcs-manager.defs.new xfce_mcs-manager.defs
 

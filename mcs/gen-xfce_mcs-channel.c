@@ -139,6 +139,32 @@ _wrap_xfce_mcs_channel_delete_setting(PyGObject *self, PyObject *args, PyObject 
     return Py_None;
 }
 
+static PyObject *
+_wrap_xfce_mcs_channel_add_channel_from_file(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "filename", NULL };
+    char *filename;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.add_channel_from_file", kwlist, &filename))
+        return NULL;
+    xfce_mcs_channel_add_channel_from_file(XFCE_MCS_CHANNEL(self->obj), filename);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_mcs_channel_save_channel_to_file(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "filename", NULL };
+    char *filename;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.save_channel_to_file", kwlist, &filename))
+        return NULL;
+    xfce_mcs_channel_save_channel_to_file(XFCE_MCS_CHANNEL(self->obj), filename);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
 static PyMethodDef _PyXfceMcsChannel_methods[] = {
     { "get_channel_name", (PyCFunction)_wrap_xfce_mcs_channel_get_channel_name, METH_NOARGS },
     { "get_setting", (PyCFunction)_wrap_xfce_mcs_channel_get_setting, METH_VARARGS|METH_KEYWORDS },
@@ -147,13 +173,15 @@ static PyMethodDef _PyXfceMcsChannel_methods[] = {
     { "set_setting_string", (PyCFunction)_wrap_xfce_mcs_channel_set_setting_string, METH_VARARGS|METH_KEYWORDS },
     { "set_setting_int", (PyCFunction)_wrap_xfce_mcs_channel_set_setting_int, METH_VARARGS|METH_KEYWORDS },
     { "delete_setting", (PyCFunction)_wrap_xfce_mcs_channel_delete_setting, METH_VARARGS|METH_KEYWORDS },
+    { "add_channel_from_file", (PyCFunction)_wrap_xfce_mcs_channel_add_channel_from_file, METH_VARARGS|METH_KEYWORDS },
+    { "save_channel_to_file", (PyCFunction)_wrap_xfce_mcs_channel_save_channel_to_file, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
 PyTypeObject PyXfceMcsChannel_Type = {
     PyObject_HEAD_INIT(NULL)
     0,					/* ob_size */
-    "mcschannel.McsChannel",			/* tp_name */
+    "mcschannel.Channel",			/* tp_name */
     sizeof(PyGObject),	        /* tp_basicsize */
     0,					/* tp_itemsize */
     /* methods */
@@ -237,6 +265,6 @@ pyxfce_mcs_channel_register_classes(PyObject *d)
     }
 
 
-#line 241 "xfce_mcs-channel.c"
+#line 269 "xfce_mcs-channel.c"
     pygobject_register_class(d, "XfceMcsChannel", XFCE_TYPE_MCS_CHANNEL, &PyXfceMcsChannel_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
