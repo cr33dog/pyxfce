@@ -144,6 +144,8 @@ class Xfce:Mcs:Client from G:Object {
 			g_free, NULL);
 
 		self->channels_r = g_hash_table_new (g_direct_hash, g_direct_equal);
+		
+		g_object_set ((GObject *)self, "screen", gdk_screen_get_default (), NULL);
 	}
 
 
