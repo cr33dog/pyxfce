@@ -11,8 +11,6 @@ CODEGEN_PATH = @CODEGEN_PATH@
 
 # pyxfce_PYTHON = __init__.py
 
-EXTRA_DIST = xfce-mcs-channel.gob  xfce-mcs-client.gob  xfce-mcs-manager.gob
-
 INCLUDES = $(PYTHON_INCLUDES)
 
 pyxfceexecdir = $(pyexecdir)/xfce4
@@ -44,7 +42,7 @@ defs_DATA = \
 mcs_overrides = mcs_client.override  mcs_manager.override \
   mcs_common.override  template.override
 
-EXTRA_DIST = $(defs_DATA) $(mcs_overrides) gen
+EXTRA_DIST = $(defs_DATA) $(mcs_overrides) gen gobs
 	
 gen-xfce_mcs-client.c: xfce_mcs-client.defs xfce_mcs-client.override
 	(cd $(srcdir) \
