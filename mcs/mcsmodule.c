@@ -14,9 +14,15 @@
 extern PyMethodDef pymcs_client_functions[];
 extern PyMethodDef pymcs_common_functions[];
 extern PyMethodDef pymcs_manager_functions[];
+extern PyMethodDef pyxfce_mcs_client_functions[]; /* X */
+extern PyMethodDef pyxfce_mcs_manager_functions[];
+extern PyMethodDef pyxfce_mcs_channel_functions[];
 void pymcs_client_register_classes(PyObject *d);
 void pymcs_common_register_classes(PyObject *d);
 void pymcs_manager_register_classes(PyObject *d);
+void pyxfce_mcs_client_register_classes(PyObject *d);
+void pyxfce_mcs_manager_register_classes(PyObject *d);
+void pyxfce_mcs_channel_register_classes(PyObject *d);
 
 #if 0
 static void
@@ -55,6 +61,9 @@ static PyMethodDef* each_functions[] = {
 	pymcs_client_functions,
 	pymcs_common_functions,
 	pymcs_manager_functions,
+	pyxfce_mcs_client_functions,
+	pyxfce_mcs_manager_functions,
+	pyxfce_mcs_channel_functions,
 };
 
 static void
@@ -84,6 +93,9 @@ my_register1()
 	pymcs_client_register_classes (d);
 	pymcs_common_register_classes (d);
 	pymcs_manager_register_classes (d);
+	pyxfce_mcs_client_register_classes (d);
+	pyxfce_mcs_manager_register_classes (d);
+	pyxfce_mcs_channel_register_classes (d);
 }
 
 DL_EXPORT(void)

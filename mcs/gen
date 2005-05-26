@@ -1,7 +1,11 @@
 #!/bin/sh
 
-for s in /usr/include/xfce4/libxfce4mcs/*.h
+for s in /usr/include/xfce4/libxfce4mcs/*.h xfce-mcs-*.h
 do
+	if [ "${s%-private.h}" != "${s}" ]
+	then
+		continue
+	fi
 	t="${s##*/}"
 	
 	t="${t%.h}"
@@ -23,21 +27,9 @@ cat mcs_client.defs | grep -v '(gtype-id "MCS_TYPE_ACTION")' >mcs_client.defs.ne
 
 cat mcs_common.defs | egrep -v '\(gtype-id "(MCS_TYPE_RESULT|MCS_TYPE_TYPE|MCS_TYPE_MANAGER_CHECK)"\)' >mcs_common.defs.new && mv mcs_common.defs.new mcs_common.defs
 
-
-cat >>mcs_client.defs << EOF
-
-(boxed McsClient
-  (in-module Xfce)
-  (c-name McsClient)
-  (release-func mcs_client_destroy))
-EOF
-
-cat >>mcs_manager.defs << EOF
-
-(boxed McsManager
-  (in-module Xfce)
-  (c-name McsManager)
-)
-EOF
-
 #  (release-func mcs_manager_destroy))
+
+#sed -e 's;;;' xfce_mcs-client.defs > xfce_mcs-client.defs.new && mv xfce_mcs-client.defs.new xfce_mcs-client.defs
+#sed -e 's;;;' xfce_mcs-channel.defs > xfce_mcs-channel.defs.new && mv xfce_mcs-channel.defs.new xfce_mcs-channel.defs
+#sed -e 's;;;' xfce_mcs-manager.defs > xfce_mcs-manager.defs.new && mv xfce_mcs-manager.defs.new xfce_mcs-manager.defs
+

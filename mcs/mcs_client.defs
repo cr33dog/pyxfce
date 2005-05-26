@@ -108,6 +108,15 @@
   )
 )
 
+(define-method set_callback_userdata
+  (of-object "McsClient")
+  (c-name "mcs_client_set_callback_userdata")
+  (return-type "none")
+  (parameters
+    '("void*" "cb_data")
+  )
+)
+
 (define-function mcs_client_check_manager
   (c-name "mcs_client_check_manager")
   (return-type "gboolean")

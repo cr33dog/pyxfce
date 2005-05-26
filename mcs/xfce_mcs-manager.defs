@@ -1,0 +1,47 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object McsManager
+  (in-module "Xfce")
+  (parent "GObject")
+  (c-name "XfceMcsManager")
+  (gtype-id "XFCE_TYPE_MCS_MANAGER")
+)
+
+;; Enumerations and flags ...
+
+
+;; From xfce-mcs-manager.h
+
+(define-function xfce_mcs_manager_get_type
+  (c-name "xfce_mcs_manager_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_mcs_manager_new
+  (c-name "xfce_mcs_manager_new")
+  (is-constructor-of "XfceMcsManager")
+  (return-type "XfceMcsManager*")
+  (parameters
+    '("McsManager*" "manager")
+  )
+)
+
+(define-method add_channel
+  (of-object "XfceMcsManager")
+  (c-name "xfce_mcs_manager_add_channel")
+  (return-type "XfceMcsChannel*")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method delete_channel
+  (of-object "XfceMcsManager")
+  (c-name "xfce_mcs_manager_delete_channel")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+

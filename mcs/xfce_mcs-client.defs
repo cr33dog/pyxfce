@@ -1,0 +1,80 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object McsClient
+  (in-module "Xfce")
+  (parent "GObject")
+  (c-name "XfceMcsClient")
+  (gtype-id "XFCE_TYPE_MCS_CLIENT")
+)
+
+;; Enumerations and flags ...
+
+
+;; From xfce-mcs-client.h
+
+(define-function xfce_mcs_client_get_type
+  (c-name "xfce_mcs_client_get_type")
+  (return-type "GType")
+)
+
+(define-method get_screen
+  (of-object "XfceMcsClient")
+  (c-name "xfce_mcs_client_get_screen")
+  (return-type "GObject*")
+)
+
+(define-method set_screen
+  (of-object "XfceMcsClient")
+  (c-name "xfce_mcs_client_set_screen")
+  (return-type "none")
+  (parameters
+    '("GObject*" "val")
+  )
+)
+
+(define-method manager_reconnect
+  (of-object "XfceMcsClient")
+  (c-name "xfce_mcs_client_manager_reconnect")
+  (return-type "none")
+)
+
+(define-function xfce_mcs_client_new
+  (c-name "xfce_mcs_client_new")
+  (is-constructor-of "XfceMcsClient")
+  (return-type "XfceMcsClient*")
+)
+
+(define-method delete_channel
+  (of-object "XfceMcsClient")
+  (c-name "xfce_mcs_client_delete_channel")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method add_channel
+  (of-object "XfceMcsClient")
+  (c-name "xfce_mcs_client_add_channel")
+  (return-type "XfceMcsChannel*")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method check_manager
+  (of-object "XfceMcsClient")
+  (c-name "xfce_mcs_client_check_manager")
+  (return-type "gboolean")
+)
+
+(define-method show_dialog
+  (of-object "XfceMcsClient")
+  (c-name "xfce_mcs_client_show_dialog")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "message")
+  )
+)
+
+

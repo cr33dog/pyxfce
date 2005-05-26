@@ -1,0 +1,16 @@
+#!/bin/sh
+
+for s in *.gob
+do
+	t="${s%.gob}.c"
+	if [ ! -f "$t" -o "$s" -nt "$t" ] ; then
+		gob2 "$s" || {
+			X="$?"
+
+			echo "-- in file $s">&2
+
+			exit "$X"
+		}
+	fi
+done
+exit 0

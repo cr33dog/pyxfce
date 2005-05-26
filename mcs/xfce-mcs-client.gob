@@ -1,0 +1,215 @@
+%{
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+#include <gdk/gdkx.h>
+
+static void
+weak_notify_cb(gpointer data, GObject *where_the_object_was)
+{
+	xfce_mcs_client_vanish_object (XFCE_MCS_CLIENT (data), where_the_object_was);
+}
+
+static void
+notify_cb(const gchar *name, const gchar *channel_name,
+  McsAction action, McsSetting * setting, void *cb_data)
+{
+	xfce_mcs_client_setting_changed (XFCE_MCS_CLIENT (cb_data), name, channel_name, action, setting);
+}
+
+static GdkFilterReturn
+client_event_filter (GdkXEvent * xevent, GdkEvent * event, gpointer data)
+{
+	if (mcs_client_process_event ((McsClient*) data, (XEvent *) xevent))
+		return GDK_FILTER_REMOVE;
+	else
+		return GDK_FILTER_CONTINUE;
+}
+
+static void
+watch_cb(Window window, gboolean is_start, long mask, void *data)
+{
+	GdkWindow *gdkwin;
+
+	gdkwin = gdk_window_lookup (window);
+        
+	if (is_start)
+		gdk_window_add_filter (gdkwin, client_event_filter, data);
+	else
+		gdk_window_remove_filter (gdkwin, client_event_filter, data);
+}
+
+static gboolean
+my_ascii_strcasecmp(gconstpointer a, gconstpointer b)
+{
+	return g_ascii_strcasecmp ((gchar const *)a, (gchar const *)b) == 0;
+}
+
+%}
+
+%a{
+#include <gtk/gtk.h>
+#include <libxfce4mcs/mcs-client.h>
+#include "xfce-mcs-channel.h"
+%}
+
+class Xfce:Mcs:Client from G:Object {
+	protected McsClient*	low = NULL
+		destroy {
+			mcs_client_destroy (VAR);
+			VAR = NULL;
+		};
+
+	protected GHashTable	*channels /* name -> obj */
+		destroy {
+			g_hash_table_destroy (VAR);
+		};
+
+	protected GHashTable	*channels_r /* obj -> name */
+		destroy {
+			g_hash_table_destroy (VAR);
+		};
+
+	protected GdkScreen*	screen = NULL
+		destroy {
+			g_object_unref ((GdkScreen *)VAR);
+			VAR = NULL;
+		};
+
+	property OBJECT screen
+		(nick = "the screen to use",
+		blurb = "The GdkScreen to use for the settings",
+		export)
+		set {
+			Display*	dpy;
+			GdkScreen*	screen;
+			screen = g_value_get_object (VAL);
+			if (self->screen) {
+				g_object_unref (G_OBJECT (self->screen));
+				self->screen = NULL;
+			}
+	
+			self->screen = (GdkScreen *) g_object_ref (screen);
+	
+			if (self->low) {
+				mcs_client_destroy (self->low);
+				self->low = NULL;
+			}
+	
+			dpy = GDK_DISPLAY_XDISPLAY (gdk_screen_get_display (screen));
+			self->low = mcs_client_new (dpy, gdk_screen_get_number (screen), notify_cb, watch_cb, NULL);
+			/* sigh... */
+			mcs_client_set_callback_userdata (self->low, self->low);
+	
+			/* g_signal_emit_by_name (self, "manager-reconnect", NULL); */
+			self_manager_reconnect (self); /* suffices */
+		}
+		get {
+			g_value_set_object (VAL, self->screen);
+		};
+
+	signal first NONE (NONE)
+	void manager_reconnect (self)
+	{
+		self_check_manager (self);
+	}
+
+	public Xfce:Mcs:Client *new(void)
+	{
+		XfceMcsClient *obj;
+		obj = (XfceMcsClient *)GET_NEW;
+		return obj;
+	}
+
+	protected void vanish_object(self, GObject *obj)
+	{
+		gchar*	channel_name;
+		channel_name = g_hash_table_lookup (self->channels_r, obj);
+		g_hash_table_remove (self->channels_r, obj);
+		if (channel_name) {
+			g_hash_table_remove (self->channels, channel_name);
+			/* remove also frees channel_name */
+		}
+	}
+
+	init(self)
+	{
+		self->channels = g_hash_table_new_full (g_str_hash, my_ascii_strcasecmp,
+			g_free, NULL);
+
+		self->channels_r = g_hash_table_new (g_direct_hash, g_direct_equal);
+	}
+
+
+	public void delete_channel(self, gchar const *name)
+	{
+		if (!self->low) {
+			g_warning ("XfceMcsClient: delete_channel: property screen not set.");
+			return;
+		}
+		mcs_client_delete_channel (self->low, name);
+	}
+	
+	public XfceMcsChannel *add_channel(self, gchar const *name)
+	{
+		gpointer	obj;
+		gchar*		xname;
+		obj = g_hash_table_lookup (self->channels, name);
+
+		if (obj)
+			return XFCE_MCS_CHANNEL (obj);
+
+		obj = xfce_mcs_channel_new (self, XFCE_MCS_CHANNEL_SIDE_CLIENT, name);
+		g_object_weak_ref ((GObject *)obj, weak_notify_cb, self);
+		xname = g_strdup (name);
+		g_hash_table_insert (self->channels, xname, obj);
+		g_hash_table_insert (self->channels_r, obj, xname);
+		return obj;
+	}
+
+	protected void setting_changed (self, gchar const *name, gchar const *channel_name, McsAction action, McsSetting *setting)
+	{
+		gpointer	obj;
+		obj = g_hash_table_lookup (self->channels, channel_name);
+		if (obj) 
+			xfce_mcs_channel_setting_changed (XFCE_MCS_CHANNEL (obj), name, action);
+	}
+
+	protected McsSetting* get_setting(self, gchar const *channel_name, gchar const *name)
+	{
+		McsSetting*	setting;
+		setting = NULL;
+		if (mcs_client_get_setting (self->low, name, channel_name, &setting) == MCS_SUCCESS) {
+		} else
+			setting = NULL;
+
+		return setting;
+	}
+	
+	public gboolean check_manager(self)
+	{
+		Display*	dpy;
+		
+		if (self->screen == NULL)
+			return FALSE;
+		
+		dpy = GDK_DISPLAY_XDISPLAY (gdk_screen_get_display (self->screen));
+		return mcs_client_check_manager (dpy, gdk_screen_get_number (self->screen), "xfce-mcs-manager");
+	}
+	
+	public void show_dialog(self, gchar const *message)
+	{
+		Display*	dpy;
+		if (!self->screen) {
+			g_warning ("XfceMcsClient: show_dialog: screen property is NULL, not showing dialog.");
+			return;
+		}
+			
+		dpy = GDK_DISPLAY_XDISPLAY (gdk_screen_get_display (self->screen));
+		mcs_client_show (dpy, gdk_screen_get_number (self->screen), message);
+	}
+
+}
