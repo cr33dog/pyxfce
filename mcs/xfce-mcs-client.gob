@@ -75,7 +75,8 @@ class Xfce:Mcs:Client from G:Object {
 
 	protected GdkScreen*	screen = NULL
 		destroy {
-			g_object_unref ((GdkScreen *)VAR);
+			if (VAR)
+				g_object_unref ((GdkScreen *)VAR);
 			VAR = NULL;
 		};
 
@@ -91,8 +92,9 @@ class Xfce:Mcs:Client from G:Object {
 				g_object_unref (G_OBJECT (self->screen));
 				self->screen = NULL;
 			}
-	
-			self->screen = (GdkScreen *) g_object_ref (screen);
+
+			if (screen)
+				self->screen = (GdkScreen *) g_object_ref (screen);
 	
 			if (self->low) {
 				mcs_client_destroy (self->low);
