@@ -18,6 +18,7 @@ AC_DEFINE(PYXFCE_MICRO_VERSION, pyxfce_micro_version, [pyxfce micro version])
 
 #AC_CONFIG_SRCDIR([])
 AC_CONFIG_HEADER(config.h)
+AM_MAINTAINER_MODE
 
 AM_INIT_AUTOMAKE
 AC_CHECK_FUNCS(bind_textdomain_codeset)
