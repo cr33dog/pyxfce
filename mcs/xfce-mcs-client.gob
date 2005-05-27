@@ -175,12 +175,27 @@ class Xfce:Mcs:Client from G:Object {
 		return obj;
 	}
 
+
 	protected void setting_changed (self, gchar const *name, gchar const *channel_name, McsAction action, McsSetting *setting)
 	{
 		gpointer	obj;
 		obj = g_hash_table_lookup (self->channels, channel_name);
-		if (obj) 
-			xfce_mcs_channel_setting_changed (XFCE_MCS_CHANNEL (obj), name, action);
+		if (obj) {
+			switch (action) {
+			case MCS_ACTION_NEW:
+				xfce_mcs_channel_setting_added (XFCE_MCS_CHANNEL (obj), name);
+				xfce_mcs_channel_setting_changed (XFCE_MCS_CHANNEL (obj), name); /* just in case the client monitors just one */
+				break;
+		
+			case MCS_ACTION_CHANGED:
+				xfce_mcs_channel_setting_changed (XFCE_MCS_CHANNEL (obj), name);
+				break;
+				
+			case MCS_ACTION_DELETED:
+				xfce_mcs_channel_setting_deleted (XFCE_MCS_CHANNEL (obj), name);
+				break;
+			}
+		}
 	}
 
 	protected McsSetting* get_setting(self, gchar const *channel_name, gchar const *name)

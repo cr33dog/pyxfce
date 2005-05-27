@@ -66,8 +66,18 @@ class Xfce:Mcs:Channel from G:Object {
 
 	/* TODO protected manager */
 
-	signal first NONE (STRING, ENUM)
-	void setting_changed (self, gchar const *name, McsAction action)
+	signal first NONE (STRING)
+	void setting_changed (self, gchar const *name)
+	{
+	}
+	
+	signal first NONE (STRING)
+	void setting_deleted (self, gchar const *name)
+	{
+	}
+	
+	signal first NONE (STRING)
+	void setting_added (self, gchar const *name)
 	{
 	}
 

@@ -67,7 +67,9 @@ struct _XfceMcsChannel {
 typedef struct _XfceMcsChannelClass XfceMcsChannelClass;
 struct _XfceMcsChannelClass {
 	GObjectClass __parent__;
-	/*signal*/void (* setting_changed) (XfceMcsChannel * self, gchar const * name, McsAction action);
+	/*signal*/void (* setting_changed) (XfceMcsChannel * self, gchar const * name);
+	/*signal*/void (* setting_deleted) (XfceMcsChannel * self, gchar const * name);
+	/*signal*/void (* setting_added) (XfceMcsChannel * self, gchar const * name);
 };
 
 
@@ -77,8 +79,11 @@ struct _XfceMcsChannelClass {
 GType	xfce_mcs_channel_get_type	(void);
 gchar * 	xfce_mcs_channel_get_channel_name	(XfceMcsChannel * self);
 void 	xfce_mcs_channel_setting_changed	(XfceMcsChannel * self,
-					gchar const * name,
-					McsAction action);
+					gchar const * name);
+void 	xfce_mcs_channel_setting_deleted	(XfceMcsChannel * self,
+					gchar const * name);
+void 	xfce_mcs_channel_setting_added	(XfceMcsChannel * self,
+					gchar const * name);
 XfceMcsChannel * 	xfce_mcs_channel_new	(gpointer actor,
 					XfceMcsChannelSide side,
 					gchar const * name);
@@ -115,13 +120,25 @@ void 	xfce_mcs_channel_save_channel_to_file	(XfceMcsChannel * self,
  * Signal connection wrapper macros
  */
 #if defined(__GNUC__) && !defined(__STRICT_ANSI__)
-#define xfce_mcs_channel_connect__setting_changed(object,func,data)	g_signal_connect(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_changed",(GCallback) __extension__ ({void (* ___setting_changed) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, McsAction ___fake___action, gpointer ___data ) = (func); ___setting_changed; }), (data))
-#define xfce_mcs_channel_connect_after__setting_changed(object,func,data)	g_signal_connect_after(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_changed",(GCallback) __extension__ ({void (* ___setting_changed) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, McsAction ___fake___action, gpointer ___data ) = (func); ___setting_changed; }), (data))
-#define xfce_mcs_channel_connect_data__setting_changed(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_changed",(GCallback) __extension__ ({void (* ___setting_changed) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, McsAction ___fake___action, gpointer ___data ) = (func); ___setting_changed; }), (data), (destroy_data), (GConnectFlags)(flags))
+#define xfce_mcs_channel_connect__setting_changed(object,func,data)	g_signal_connect(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_changed",(GCallback) __extension__ ({void (* ___setting_changed) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, gpointer ___data ) = (func); ___setting_changed; }), (data))
+#define xfce_mcs_channel_connect_after__setting_changed(object,func,data)	g_signal_connect_after(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_changed",(GCallback) __extension__ ({void (* ___setting_changed) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, gpointer ___data ) = (func); ___setting_changed; }), (data))
+#define xfce_mcs_channel_connect_data__setting_changed(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_changed",(GCallback) __extension__ ({void (* ___setting_changed) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, gpointer ___data ) = (func); ___setting_changed; }), (data), (destroy_data), (GConnectFlags)(flags))
+#define xfce_mcs_channel_connect__setting_deleted(object,func,data)	g_signal_connect(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_deleted",(GCallback) __extension__ ({void (* ___setting_deleted) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, gpointer ___data ) = (func); ___setting_deleted; }), (data))
+#define xfce_mcs_channel_connect_after__setting_deleted(object,func,data)	g_signal_connect_after(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_deleted",(GCallback) __extension__ ({void (* ___setting_deleted) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, gpointer ___data ) = (func); ___setting_deleted; }), (data))
+#define xfce_mcs_channel_connect_data__setting_deleted(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_deleted",(GCallback) __extension__ ({void (* ___setting_deleted) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, gpointer ___data ) = (func); ___setting_deleted; }), (data), (destroy_data), (GConnectFlags)(flags))
+#define xfce_mcs_channel_connect__setting_added(object,func,data)	g_signal_connect(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_added",(GCallback) __extension__ ({void (* ___setting_added) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, gpointer ___data ) = (func); ___setting_added; }), (data))
+#define xfce_mcs_channel_connect_after__setting_added(object,func,data)	g_signal_connect_after(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_added",(GCallback) __extension__ ({void (* ___setting_added) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, gpointer ___data ) = (func); ___setting_added; }), (data))
+#define xfce_mcs_channel_connect_data__setting_added(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CHANNEL(__extension__ ({XfceMcsChannel *___object = (object); ___object; })),"setting_added",(GCallback) __extension__ ({void (* ___setting_added) (XfceMcsChannel * ___fake___self, gchar const * ___fake___name, gpointer ___data ) = (func); ___setting_added; }), (data), (destroy_data), (GConnectFlags)(flags))
 #else /* __GNUC__ && !__STRICT_ANSI__ */
 #define xfce_mcs_channel_connect__setting_changed(object,func,data)	g_signal_connect(XFCE_MCS_CHANNEL(object),"setting_changed",(GCallback)(func),(data))
 #define xfce_mcs_channel_connect_after__setting_changed(object,func,data)	g_signal_connect_after(XFCE_MCS_CHANNEL(object),"setting_changed",(GCallback)(func),(data))
 #define xfce_mcs_channel_connect_data__setting_changed(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CHANNEL(object),"setting_changed",(GCallback)(func),(data),(destroy_data),(GConnectFlags)(flags))
+#define xfce_mcs_channel_connect__setting_deleted(object,func,data)	g_signal_connect(XFCE_MCS_CHANNEL(object),"setting_deleted",(GCallback)(func),(data))
+#define xfce_mcs_channel_connect_after__setting_deleted(object,func,data)	g_signal_connect_after(XFCE_MCS_CHANNEL(object),"setting_deleted",(GCallback)(func),(data))
+#define xfce_mcs_channel_connect_data__setting_deleted(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CHANNEL(object),"setting_deleted",(GCallback)(func),(data),(destroy_data),(GConnectFlags)(flags))
+#define xfce_mcs_channel_connect__setting_added(object,func,data)	g_signal_connect(XFCE_MCS_CHANNEL(object),"setting_added",(GCallback)(func),(data))
+#define xfce_mcs_channel_connect_after__setting_added(object,func,data)	g_signal_connect_after(XFCE_MCS_CHANNEL(object),"setting_added",(GCallback)(func),(data))
+#define xfce_mcs_channel_connect_data__setting_added(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CHANNEL(object),"setting_added",(GCallback)(func),(data),(destroy_data),(GConnectFlags)(flags))
 #endif /* __GNUC__ && !__STRICT_ANSI__ */
 
 

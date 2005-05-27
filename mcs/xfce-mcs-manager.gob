@@ -188,7 +188,7 @@ class Xfce:Mcs:Manager from G:Object {
 	{
 		if (!self->low) {
 			g_warning ("XfceMcsManager: save_channel_to_file: no manager");
-			return;
+			return FALSE;
 		}
 		return mcs_manager_save_channel_to_file (self->low, channel_name, filename);
 	}
