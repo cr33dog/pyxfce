@@ -49,6 +49,45 @@ _wrap_xfce_mcs_channel_get_channel_name(PyGObject *self)
 }
 
 static PyObject *
+_wrap_xfce_mcs_channel_setting_changed(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "name", NULL };
+    char *name;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.setting_changed", kwlist, &name))
+        return NULL;
+    xfce_mcs_channel_setting_changed(XFCE_MCS_CHANNEL(self->obj), name);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_mcs_channel_setting_deleted(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "name", NULL };
+    char *name;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.setting_deleted", kwlist, &name))
+        return NULL;
+    xfce_mcs_channel_setting_deleted(XFCE_MCS_CHANNEL(self->obj), name);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_mcs_channel_setting_added(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "name", NULL };
+    char *name;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.setting_added", kwlist, &name))
+        return NULL;
+    xfce_mcs_channel_setting_added(XFCE_MCS_CHANNEL(self->obj), name);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
 _wrap_xfce_mcs_channel_get_setting(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "name", NULL };
@@ -167,6 +206,9 @@ _wrap_xfce_mcs_channel_save_channel_to_file(PyGObject *self, PyObject *args, PyO
 
 static PyMethodDef _PyXfceMcsChannel_methods[] = {
     { "get_channel_name", (PyCFunction)_wrap_xfce_mcs_channel_get_channel_name, METH_NOARGS },
+    { "setting_changed", (PyCFunction)_wrap_xfce_mcs_channel_setting_changed, METH_VARARGS|METH_KEYWORDS },
+    { "setting_deleted", (PyCFunction)_wrap_xfce_mcs_channel_setting_deleted, METH_VARARGS|METH_KEYWORDS },
+    { "setting_added", (PyCFunction)_wrap_xfce_mcs_channel_setting_added, METH_VARARGS|METH_KEYWORDS },
     { "get_setting", (PyCFunction)_wrap_xfce_mcs_channel_get_setting, METH_VARARGS|METH_KEYWORDS },
     { "get_setting_string", (PyCFunction)_wrap_xfce_mcs_channel_get_setting_string, METH_VARARGS|METH_KEYWORDS },
     { "set_setting", (PyCFunction)_wrap_xfce_mcs_channel_set_setting, METH_VARARGS|METH_KEYWORDS },
@@ -265,6 +307,6 @@ pyxfce_mcs_channel_register_classes(PyObject *d)
     }
 
 
-#line 269 "xfce_mcs-channel.c"
+#line 311 "xfce_mcs-channel.c"
     pygobject_register_class(d, "XfceMcsChannel", XFCE_TYPE_MCS_CHANNEL, &PyXfceMcsChannel_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

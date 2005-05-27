@@ -44,7 +44,24 @@
   (return-type "none")
   (parameters
     '("gchar-const*" "name")
-    '("McsAction" "action")
+  )
+)
+
+(define-method setting_deleted
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_setting_deleted")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method setting_added
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_setting_added")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
   )
 )
 

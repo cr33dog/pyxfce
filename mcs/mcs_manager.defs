@@ -25,15 +25,6 @@
   (return-type "none")
 )
 
-(define-method force_update
-  (of-object "McsManager")
-  (c-name "mcs_manager_force_update")
-  (return-type "none")
-  (parameters
-    '("gboolean" "force_update")
-  )
-)
-
 (define-method get_std_window
   (of-object "McsManager")
   (c-name "mcs_manager_get_std_window")
