@@ -185,8 +185,6 @@ class Xfce:Mcs:Client from G:Object {
 		g_hash_table_insert (self->channels_r, obj, xname);
 
 		xfce_mcs_channel_add_to_driver (channel, XFCE_MCS_CHANNEL_SIDE_CLIENT, name);
-
-		return obj;
 	}
 
 

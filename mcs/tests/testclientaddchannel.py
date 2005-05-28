@@ -10,7 +10,7 @@ def setting_changed_cb(a,b,c):
 import xfce4
 mcsC = xfce4.mcs.Client()
 channel = xfce4.mcs.Channel("X")
-mcsC.add_channel(channel)
 channel.connect("setting-changed", setting_changed_cb)
+mcsC.add_channel(channel)
 
 gtk.main()
