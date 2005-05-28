@@ -161,6 +161,12 @@
   )
 )
 
+(define-method delete
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_delete")
+  (return-type "none")
+)
+
 (define-method add_channel_from_file
   (of-object "XfceMcsChannel")
   (c-name "xfce_mcs_channel_add_channel_from_file")

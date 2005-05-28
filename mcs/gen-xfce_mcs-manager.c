@@ -36,34 +36,34 @@ pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-_wrap_xfce_mcs_manager_add_channel(PyGObject *self, PyObject *args, PyObject *kwargs)
+_wrap_xfce_mcs_manager_register_channel(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "channel", NULL };
     PyGObject *channel;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceMcsManager.add_channel", kwlist, &PyXfceMcsChannel_Type, &channel))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceMcsManager.register_channel", kwlist, &PyXfceMcsChannel_Type, &channel))
         return NULL;
-    xfce_mcs_manager_add_channel(XFCE_MCS_MANAGER(self->obj), XFCE_MCS_CHANNEL(channel->obj));
+    xfce_mcs_manager_register_channel(XFCE_MCS_MANAGER(self->obj), XFCE_MCS_CHANNEL(channel->obj));
     Py_INCREF(Py_None);
     return Py_None;
 }
 
 static PyObject *
-_wrap_xfce_mcs_manager_delete_channel(PyGObject *self, PyObject *args, PyObject *kwargs)
+_wrap_xfce_mcs_manager_unregister_channel(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "name", NULL };
-    char *name;
+    static char *kwlist[] = { "channel", NULL };
+    PyGObject *channel;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsManager.delete_channel", kwlist, &name))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceMcsManager.unregister_channel", kwlist, &PyXfceMcsChannel_Type, &channel))
         return NULL;
-    xfce_mcs_manager_delete_channel(XFCE_MCS_MANAGER(self->obj), name);
+    xfce_mcs_manager_unregister_channel(XFCE_MCS_MANAGER(self->obj), XFCE_MCS_CHANNEL(channel->obj));
     Py_INCREF(Py_None);
     return Py_None;
 }
 
 static PyMethodDef _PyXfceMcsManager_methods[] = {
-    { "add_channel", (PyCFunction)_wrap_xfce_mcs_manager_add_channel, METH_VARARGS|METH_KEYWORDS },
-    { "delete_channel", (PyCFunction)_wrap_xfce_mcs_manager_delete_channel, METH_VARARGS|METH_KEYWORDS },
+    { "register_channel", (PyCFunction)_wrap_xfce_mcs_manager_register_channel, METH_VARARGS|METH_KEYWORDS },
+    { "unregister_channel", (PyCFunction)_wrap_xfce_mcs_manager_unregister_channel, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 

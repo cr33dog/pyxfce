@@ -100,6 +100,21 @@ class Xfce:Mcs:Channel from G:Object {
 			self->manager = (XfceMcsManager*)g_object_ref ((GObject *) actor);
 			
 	}
+	
+	protected void remove_from_driver(self, gpointer actor, XfceMcsChannelSide side)
+	{
+		if (self->client == NULL && self->manager == NULL)
+			return;
+		
+		if (self->client)
+			g_object_unref (self->client);
+			
+		if (self->manager)
+			g_object_unref (self->manager);
+			
+		self->client = NULL;
+		self->manager = NULL;
+	}
 
 	private McsSetting*	get_setting_low(self, gchar const *name)
 	{
@@ -258,6 +273,14 @@ class Xfce:Mcs:Channel from G:Object {
 	{ /* only mcs manager */
 		if (self->manager)
 			xfce_mcs_manager_delete_setting (self->manager, self->channel_name, name);
+	}
+	
+	
+	/* deletes from the mcs pool */
+	public void delete(self)
+	{
+		if (self->manager)
+			xfce_mcs_manager_delete_channel (self->manager, self->channel_name);
 	}
 	
 	public void add_channel_from_file(self, gchar const *filename)

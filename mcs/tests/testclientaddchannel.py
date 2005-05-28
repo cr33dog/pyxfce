@@ -11,6 +11,6 @@ import xfce4
 mcsC = xfce4.mcs.Client()
 channel = xfce4.mcs.Channel("X")
 channel.connect("setting-changed", setting_changed_cb)
-mcsC.add_channel(channel)
+mcsC.register_channel(channel)
 
 gtk.main()

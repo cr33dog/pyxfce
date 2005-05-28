@@ -29,6 +29,7 @@ typedef struct _XfceMcsManager XfceMcsManager;
 #line 13 "xfce-mcs-channel.gob"
 #line 31 "xfce-mcs-channel-private.h"
 void 	xfce_mcs_channel_add_to_driver	(XfceMcsChannel * self, gpointer actor, XfceMcsChannelSide side);
+void 	xfce_mcs_channel_remove_from_driver	(XfceMcsChannel * self, gpointer actor, XfceMcsChannelSide side);
 void 	xfce_mcs_channel_delay_notify	(XfceMcsChannel * self);
 
 #ifdef __cplusplus

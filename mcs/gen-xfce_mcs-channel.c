@@ -265,6 +265,14 @@ _wrap_xfce_mcs_channel_delete_setting(PyGObject *self, PyObject *args, PyObject 
 }
 
 static PyObject *
+_wrap_xfce_mcs_channel_delete(PyGObject *self)
+{
+    xfce_mcs_channel_delete(XFCE_MCS_CHANNEL(self->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
 _wrap_xfce_mcs_channel_add_channel_from_file(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "filename", NULL };
@@ -304,6 +312,7 @@ static PyMethodDef _PyXfceMcsChannel_methods[] = {
     { "set_setting_int", (PyCFunction)_wrap_xfce_mcs_channel_set_setting_int, METH_VARARGS|METH_KEYWORDS },
     { "set_setting_color", (PyCFunction)_wrap_xfce_mcs_channel_set_setting_color, METH_VARARGS|METH_KEYWORDS },
     { "delete_setting", (PyCFunction)_wrap_xfce_mcs_channel_delete_setting, METH_VARARGS|METH_KEYWORDS },
+    { "delete", (PyCFunction)_wrap_xfce_mcs_channel_delete, METH_NOARGS },
     { "add_channel_from_file", (PyCFunction)_wrap_xfce_mcs_channel_add_channel_from_file, METH_VARARGS|METH_KEYWORDS },
     { "save_channel_to_file", (PyCFunction)_wrap_xfce_mcs_channel_save_channel_to_file, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
@@ -396,6 +405,6 @@ pyxfce_mcs_channel_register_classes(PyObject *d)
     }
 
 
-#line 400 "xfce_mcs-channel.c"
+#line 409 "xfce_mcs-channel.c"
     pygobject_register_class(d, "XfceMcsChannel", XFCE_TYPE_MCS_CHANNEL, &PyXfceMcsChannel_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

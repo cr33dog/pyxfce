@@ -64,7 +64,9 @@ void 	xfce_mcs_client_manager_reconnect	(XfceMcsClient * self);
 XfceMcsClient * 	xfce_mcs_client_new	(void);
 void 	xfce_mcs_client_delete_channel	(XfceMcsClient * self,
 					gchar const * name);
-void 	xfce_mcs_client_add_channel	(XfceMcsClient * self,
+void 	xfce_mcs_client_register_channel	(XfceMcsClient * self,
+					XfceMcsChannel * channel);
+void 	xfce_mcs_client_unregister_channel	(XfceMcsClient * self,
 					XfceMcsChannel * channel);
 gboolean 	xfce_mcs_client_check_manager	(XfceMcsClient * self);
 void 	xfce_mcs_client_show_dialog	(XfceMcsClient * self,

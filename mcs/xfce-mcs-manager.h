@@ -56,10 +56,10 @@ struct _XfceMcsManagerClass {
  */
 GType	xfce_mcs_manager_get_type	(void);
 XfceMcsManager * 	xfce_mcs_manager_new	(McsManager * manager);
-void 	xfce_mcs_manager_add_channel	(XfceMcsManager * self,
+void 	xfce_mcs_manager_register_channel	(XfceMcsManager * self,
 					XfceMcsChannel * channel);
-void 	xfce_mcs_manager_delete_channel	(XfceMcsManager * self,
-					gchar const * name);
+void 	xfce_mcs_manager_unregister_channel	(XfceMcsManager * self,
+					XfceMcsChannel * channel);
 
 #ifdef __cplusplus
 }

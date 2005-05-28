@@ -53,9 +53,18 @@
   )
 )
 
-(define-method add_channel
+(define-method register_channel
   (of-object "XfceMcsClient")
-  (c-name "xfce_mcs_client_add_channel")
+  (c-name "xfce_mcs_client_register_channel")
+  (return-type "none")
+  (parameters
+    '("XfceMcsChannel*" "channel")
+  )
+)
+
+(define-method unregister_channel
+  (of-object "XfceMcsClient")
+  (c-name "xfce_mcs_client_unregister_channel")
   (return-type "none")
   (parameters
     '("XfceMcsChannel*" "channel")
