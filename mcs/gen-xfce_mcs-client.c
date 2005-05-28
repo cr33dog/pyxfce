@@ -69,9 +69,9 @@ _wrap_xfce_mcs_client_set_screen(PyGObject *self, PyObject *args, PyObject *kwar
 }
 
 static PyObject *
-_wrap_xfce_mcs_client_manager_reconnect(PyGObject *self)
+_wrap_xfce_mcs_client_manager_reconnected(PyGObject *self)
 {
-    xfce_mcs_client_manager_reconnect(XFCE_MCS_CLIENT(self->obj));
+    xfce_mcs_client_manager_reconnected(XFCE_MCS_CLIENT(self->obj));
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -141,7 +141,7 @@ _wrap_xfce_mcs_client_show_dialog(PyGObject *self, PyObject *args, PyObject *kwa
 static PyMethodDef _PyXfceMcsClient_methods[] = {
     { "get_screen", (PyCFunction)_wrap_xfce_mcs_client_get_screen, METH_NOARGS },
     { "set_screen", (PyCFunction)_wrap_xfce_mcs_client_set_screen, METH_VARARGS|METH_KEYWORDS },
-    { "manager_reconnect", (PyCFunction)_wrap_xfce_mcs_client_manager_reconnect, METH_NOARGS },
+    { "manager_reconnected", (PyCFunction)_wrap_xfce_mcs_client_manager_reconnected, METH_NOARGS },
     { "delete_channel", (PyCFunction)_wrap_xfce_mcs_client_delete_channel, METH_VARARGS|METH_KEYWORDS },
     { "register_channel", (PyCFunction)_wrap_xfce_mcs_client_register_channel, METH_VARARGS|METH_KEYWORDS },
     { "unregister_channel", (PyCFunction)_wrap_xfce_mcs_client_unregister_channel, METH_VARARGS|METH_KEYWORDS },

@@ -115,14 +115,14 @@ class Xfce:Mcs:Client from G:Object {
 			self->low = mcs_client_new (dpy, gdk_screen_get_number (screen), notify_cb, watch_cb, self);
 	
 			/* g_signal_emit_by_name (self, "manager-reconnect", NULL); */
-			self_manager_reconnect (self); /* suffices */
+			self_manager_reconnected (self); /* suffices */
 		}
 		get {
 			g_value_set_object (VAL, self->screen);
 		};
 
 	signal first NONE (NONE)
-	void manager_reconnect (self)
+	void manager_reconnected (self)
 	{
 		self_check_manager (self);
 	}

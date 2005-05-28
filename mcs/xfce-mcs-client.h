@@ -49,7 +49,7 @@ struct _XfceMcsClient {
 typedef struct _XfceMcsClientClass XfceMcsClientClass;
 struct _XfceMcsClientClass {
 	GObjectClass __parent__;
-	/*signal*/void (* manager_reconnect) (XfceMcsClient * self);
+	/*signal*/void (* manager_reconnected) (XfceMcsClient * self);
 };
 
 
@@ -60,7 +60,7 @@ GType	xfce_mcs_client_get_type	(void);
 GObject * 	xfce_mcs_client_get_screen	(XfceMcsClient * self);
 void 	xfce_mcs_client_set_screen	(XfceMcsClient * self,
 					GObject * val);
-void 	xfce_mcs_client_manager_reconnect	(XfceMcsClient * self);
+void 	xfce_mcs_client_manager_reconnected	(XfceMcsClient * self);
 XfceMcsClient * 	xfce_mcs_client_new	(void);
 void 	xfce_mcs_client_delete_channel	(XfceMcsClient * self,
 					gchar const * name);
@@ -76,13 +76,13 @@ void 	xfce_mcs_client_show_dialog	(XfceMcsClient * self,
  * Signal connection wrapper macros
  */
 #if defined(__GNUC__) && !defined(__STRICT_ANSI__)
-#define xfce_mcs_client_connect__manager_reconnect(object,func,data)	g_signal_connect(XFCE_MCS_CLIENT(__extension__ ({XfceMcsClient *___object = (object); ___object; })),"manager_reconnect",(GCallback) __extension__ ({void (* ___manager_reconnect) (XfceMcsClient * ___fake___self, gpointer ___data ) = (func); ___manager_reconnect; }), (data))
-#define xfce_mcs_client_connect_after__manager_reconnect(object,func,data)	g_signal_connect_after(XFCE_MCS_CLIENT(__extension__ ({XfceMcsClient *___object = (object); ___object; })),"manager_reconnect",(GCallback) __extension__ ({void (* ___manager_reconnect) (XfceMcsClient * ___fake___self, gpointer ___data ) = (func); ___manager_reconnect; }), (data))
-#define xfce_mcs_client_connect_data__manager_reconnect(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CLIENT(__extension__ ({XfceMcsClient *___object = (object); ___object; })),"manager_reconnect",(GCallback) __extension__ ({void (* ___manager_reconnect) (XfceMcsClient * ___fake___self, gpointer ___data ) = (func); ___manager_reconnect; }), (data), (destroy_data), (GConnectFlags)(flags))
+#define xfce_mcs_client_connect__manager_reconnected(object,func,data)	g_signal_connect(XFCE_MCS_CLIENT(__extension__ ({XfceMcsClient *___object = (object); ___object; })),"manager_reconnected",(GCallback) __extension__ ({void (* ___manager_reconnected) (XfceMcsClient * ___fake___self, gpointer ___data ) = (func); ___manager_reconnected; }), (data))
+#define xfce_mcs_client_connect_after__manager_reconnected(object,func,data)	g_signal_connect_after(XFCE_MCS_CLIENT(__extension__ ({XfceMcsClient *___object = (object); ___object; })),"manager_reconnected",(GCallback) __extension__ ({void (* ___manager_reconnected) (XfceMcsClient * ___fake___self, gpointer ___data ) = (func); ___manager_reconnected; }), (data))
+#define xfce_mcs_client_connect_data__manager_reconnected(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CLIENT(__extension__ ({XfceMcsClient *___object = (object); ___object; })),"manager_reconnected",(GCallback) __extension__ ({void (* ___manager_reconnected) (XfceMcsClient * ___fake___self, gpointer ___data ) = (func); ___manager_reconnected; }), (data), (destroy_data), (GConnectFlags)(flags))
 #else /* __GNUC__ && !__STRICT_ANSI__ */
-#define xfce_mcs_client_connect__manager_reconnect(object,func,data)	g_signal_connect(XFCE_MCS_CLIENT(object),"manager_reconnect",(GCallback)(func),(data))
-#define xfce_mcs_client_connect_after__manager_reconnect(object,func,data)	g_signal_connect_after(XFCE_MCS_CLIENT(object),"manager_reconnect",(GCallback)(func),(data))
-#define xfce_mcs_client_connect_data__manager_reconnect(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CLIENT(object),"manager_reconnect",(GCallback)(func),(data),(destroy_data),(GConnectFlags)(flags))
+#define xfce_mcs_client_connect__manager_reconnected(object,func,data)	g_signal_connect(XFCE_MCS_CLIENT(object),"manager_reconnected",(GCallback)(func),(data))
+#define xfce_mcs_client_connect_after__manager_reconnected(object,func,data)	g_signal_connect_after(XFCE_MCS_CLIENT(object),"manager_reconnected",(GCallback)(func),(data))
+#define xfce_mcs_client_connect_data__manager_reconnected(object,func,data,destroy_data,flags)	g_signal_connect_data(XFCE_MCS_CLIENT(object),"manager_reconnected",(GCallback)(func),(data),(destroy_data),(GConnectFlags)(flags))
 #endif /* __GNUC__ && !__STRICT_ANSI__ */
 
 

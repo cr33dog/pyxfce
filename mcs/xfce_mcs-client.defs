@@ -32,9 +32,9 @@
   )
 )
 
-(define-method manager_reconnect
+(define-method manager_reconnected
   (of-object "XfceMcsClient")
-  (c-name "xfce_mcs_client_manager_reconnect")
+  (c-name "xfce_mcs_client_manager_reconnected")
   (return-type "none")
 )
 
