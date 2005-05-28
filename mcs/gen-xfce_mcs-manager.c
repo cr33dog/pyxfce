@@ -17,8 +17,6 @@ extern PyTypeObject PyXfceMcsChannel_Type;
 /* ---------- types from other modules ---------- */
 static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
-static PyTypeObject *_PyXfceMcsChannel_Type;
-#define PyXfceMcsChannel_Type (*_PyXfceMcsChannel_Type)
 
 
 /* ---------- forward type declarations ---------- */
@@ -142,22 +140,8 @@ pyxfce_mcs_manager_register_classes(PyObject *d)
             "could not import gobject");
         return;
     }
-    if ((module = PyImport_ImportModule("xfce4.mcs")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyXfceMcsChannel_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Channel");
-        if (_PyXfceMcsChannel_Type == NULL) {
-            PyErr_SetString(PyExc_ImportError,
-                "cannot import name Channel from xfce4.mcs");
-            return;
-        }
-    } else {
-        PyErr_SetString(PyExc_ImportError,
-            "could not import xfce4.mcs");
-        return;
-    }
 
 
-#line 162 "xfce_mcs-manager.c"
+#line 146 "xfce_mcs-manager.c"
     pygobject_register_class(d, "XfceMcsManager", XFCE_TYPE_MCS_MANAGER, &PyXfceMcsManager_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

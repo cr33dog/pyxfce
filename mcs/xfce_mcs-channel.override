@@ -80,7 +80,7 @@ static PyObject *_wrap_xfce_mcs_channel_get_setting_int(PyGObject *self, PyObjec
 	char const *name;
 	int res;
 
-	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s(iii):XfceMcsChannel.get_setting_int", kwlist, 
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.get_setting_int", kwlist, 
 		&name)
 	)
 		return NULL;
