@@ -23,7 +23,13 @@ notify_cb(const gchar *name, const gchar *channel_name,
 static GdkFilterReturn
 client_event_filter (GdkXEvent * xevent, GdkEvent * event, gpointer data)
 {
-	if (mcs_client_process_event ((McsClient*) data, (XEvent *) xevent))
+	XfceMcsClient	*c;
+	McsClient	*m;
+	
+	c = (XfceMcsClient *)data;
+	m = c->low;
+	
+	if (mcs_client_process_event ((McsClient*) m, (XEvent *) xevent))
 		return GDK_FILTER_REMOVE;
 	else
 		return GDK_FILTER_CONTINUE;
@@ -103,9 +109,7 @@ class Xfce:Mcs:Client from G:Object {
 			}
 	
 			dpy = GDK_DISPLAY_XDISPLAY (gdk_screen_get_display (screen));
-			self->low = mcs_client_new (dpy, gdk_screen_get_number (screen), notify_cb, watch_cb, NULL);
-			/* sigh... */
-			mcs_client_set_callback_userdata (self->low, self->low);
+			self->low = mcs_client_new (dpy, gdk_screen_get_number (screen), notify_cb, watch_cb, self);
 	
 			/* g_signal_emit_by_name (self, "manager-reconnect", NULL); */
 			self_manager_reconnect (self); /* suffices */
