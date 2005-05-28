@@ -17,6 +17,7 @@ static void
 notify_cb(const gchar *name, const gchar *channel_name,
   McsAction action, McsSetting * setting, void *cb_data)
 {
+	g_warning ("NOTIFY");
 	xfce_mcs_client_setting_changed (XFCE_MCS_CLIENT (cb_data), name, channel_name, action, setting);
 }
 
@@ -28,6 +29,8 @@ client_event_filter (GdkXEvent * xevent, GdkEvent * event, gpointer data)
 	
 	c = (XfceMcsClient *)data;
 	m = c->low;
+	if (!m)
+		return GDK_FILTER_REMOVE;
 	
 	if (mcs_client_process_event ((McsClient*) m, (XEvent *) xevent))
 		return GDK_FILTER_REMOVE;

@@ -15,7 +15,7 @@ extern "C" {
 #include <libxfce4mcs/mcs-client.h>
 #include "xfce-mcs-channel.h"
 
-#line 59 "xfce-mcs-client.gob"
+#line 62 "xfce-mcs-client.gob"
 #line 20 "xfce-mcs-client-private.h"
 void 	xfce_mcs_client_vanish_object	(XfceMcsClient * self, GObject * obj);
 void 	xfce_mcs_client_setting_changed	(XfceMcsClient * self, gchar const * name, gchar const * channel_name, McsAction action, McsSetting * setting);
