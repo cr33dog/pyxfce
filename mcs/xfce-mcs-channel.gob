@@ -106,12 +106,16 @@ class Xfce:Mcs:Channel from G:Object {
 		if (self->client == NULL && self->manager == NULL)
 			return;
 		
-		if (self->client)
+		if (self->client) {
+			g_return_if_fail(self->client == actor);
 			g_object_unref (self->client);
-			
-		if (self->manager)
+		}
+					
+		if (self->manager) {
+			g_return_if_fail(self->manager == actor);
 			g_object_unref (self->manager);
-			
+		}
+					
 		self->client = NULL;
 		self->manager = NULL;
 	}
