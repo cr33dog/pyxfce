@@ -81,19 +81,24 @@ class Xfce:Mcs:Channel from G:Object {
 	{
 	}
 
-	public Xfce:Mcs:Channel *new(gpointer actor, XfceMcsChannelSide side, gchar const* name)
+	public Xfce:Mcs:Channel *new(gchar const* name)
 	{
 		XfceMcsChannel* channel;
 		channel = GET_NEW;
 
 		channel->channel_name = g_strdup (name);
 
-		if (side == XFCE_MCS_CHANNEL_SIDE_CLIENT)
-			channel->client = (XfceMcsClient*)g_object_ref ((GObject *) actor);
-		else if (side == XFCE_MCS_CHANNEL_SIDE_MANAGER)
-			channel->manager = (XfceMcsManager*)g_object_ref ((GObject *) actor);
-			
 		return channel;
+	}
+	
+	protected void add_to_driver(self, gpointer actor, XfceMcsChannelSide side)
+	{
+		g_return_if_fail(self->client == NULL && self->manager == NULL);
+		if (side == XFCE_MCS_CHANNEL_SIDE_CLIENT)
+			self->client = (XfceMcsClient*)g_object_ref ((GObject *) actor);
+		else if (side == XFCE_MCS_CHANNEL_SIDE_MANAGER)
+			self->manager = (XfceMcsManager*)g_object_ref ((GObject *) actor);
+			
 	}
 
 	private McsSetting*	get_setting_low(self, gchar const *name)

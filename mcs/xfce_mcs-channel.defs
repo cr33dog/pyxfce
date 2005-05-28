@@ -70,8 +70,6 @@
   (is-constructor-of "XfceMcsChannel")
   (return-type "XfceMcsChannel*")
   (parameters
-    '("gpointer" "actor")
-    '("XfceMcsChannelSide" "side")
     '("gchar-const*" "name")
   )
 )

@@ -84,9 +84,7 @@ void 	xfce_mcs_channel_setting_deleted	(XfceMcsChannel * self,
 					gchar const * name);
 void 	xfce_mcs_channel_setting_added	(XfceMcsChannel * self,
 					gchar const * name);
-XfceMcsChannel * 	xfce_mcs_channel_new	(gpointer actor,
-					XfceMcsChannelSide side,
-					gchar const * name);
+XfceMcsChannel * 	xfce_mcs_channel_new	(gchar const * name);
 gchar * 	xfce_mcs_channel_get_setting	(XfceMcsChannel * self,
 					gchar const * name);
 gchar * 	xfce_mcs_channel_get_setting_string	(XfceMcsChannel * self,

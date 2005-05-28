@@ -5,11 +5,12 @@
 
 
 #line 6 "xfce_mcs-channel.override"
+#include <Python.h>
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include "xfce-mcs-channel.h"
 
-#line 13 "xfce_mcs-channel.c"
+#line 14 "xfce_mcs-channel.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -24,13 +25,21 @@ PyTypeObject PyXfceMcsChannel_Type;
 /* ----------- XfceMcsChannel ----------- */
 
 static int
-pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
+_wrap_xfce_mcs_channel_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    gchar buf[512];
+    static char *kwlist[] = { "name", NULL };
+    char *name;
 
-    g_snprintf(buf, sizeof(buf), "%s is an abstract widget", self->ob_type->tp_name);
-    PyErr_SetString(PyExc_NotImplementedError, buf);
-    return -1;
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.__init__", kwlist, &name))
+        return -1;
+    self->obj = (GObject *)xfce_mcs_channel_new(name);
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceMcsChannel object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
 }
 
 static PyObject *
@@ -125,6 +134,55 @@ _wrap_xfce_mcs_channel_get_setting_string(PyGObject *self, PyObject *args, PyObj
     return Py_None;
 }
 
+#line 52 "xfce_mcs-channel.override"
+static PyObject *_wrap_xfce_mcs_channel_get_setting_color(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "name", NULL };
+	char const *name;
+	PyObject*	t;
+
+	McsColor color;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.get_setting_color", kwlist, &name))
+		return NULL;
+
+	if (xfce_mcs_channel_get_setting_color((XfceMcsChannel*)self->obj, name, &color)) {
+		t = PyTuple_New (4);
+		PyTuple_SET_ITEM (t, 0, PyInt_FromLong(color.red));
+		PyTuple_SET_ITEM (t, 0, PyInt_FromLong(color.green));
+		PyTuple_SET_ITEM (t, 0, PyInt_FromLong(color.blue));
+		PyTuple_SET_ITEM (t, 0, PyInt_FromLong(color.alpha));
+		return t;
+	}
+
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+#line 162 "xfce_mcs-channel.c"
+
+
+#line 77 "xfce_mcs-channel.override"
+static PyObject *_wrap_xfce_mcs_channel_get_setting_int(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "name", NULL };
+	char const *name;
+	int res;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s(iii):XfceMcsChannel.get_setting_int", kwlist, 
+		&name)
+	)
+		return NULL;
+
+	if (xfce_mcs_channel_get_setting_int ((XfceMcsChannel*)self->obj, name, &res)) {
+		return PyInt_FromLong (res);
+	}
+
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+#line 184 "xfce_mcs-channel.c"
+
+
 static PyObject *
 _wrap_xfce_mcs_channel_set_setting(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -164,6 +222,34 @@ _wrap_xfce_mcs_channel_set_setting_int(PyGObject *self, PyObject *args, PyObject
     Py_INCREF(Py_None);
     return Py_None;
 }
+
+#line 26 "xfce_mcs-channel.override"
+static PyObject *_wrap_xfce_mcs_channel_set_setting_color(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "name", "color", NULL };
+	char const *name;
+
+	long red;
+	long green;
+	long blue;
+	long alpha;
+	McsColor color;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s(iii):XfceMcsChannel.set_setting_color", kwlist, 
+		&name, &red, &green, &blue, &alpha)
+	)
+		return NULL;
+
+	color.red = (guint16) red;
+	color.green = (guint16) green;
+	color.blue = (guint16) blue;
+	xfce_mcs_channel_set_setting_color((XfceMcsChannel*)self->obj, name, &color);
+
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+#line 252 "xfce_mcs-channel.c"
+
 
 static PyObject *
 _wrap_xfce_mcs_channel_delete_setting(PyGObject *self, PyObject *args, PyObject *kwargs)
@@ -211,9 +297,12 @@ static PyMethodDef _PyXfceMcsChannel_methods[] = {
     { "setting_added", (PyCFunction)_wrap_xfce_mcs_channel_setting_added, METH_VARARGS|METH_KEYWORDS },
     { "get_setting", (PyCFunction)_wrap_xfce_mcs_channel_get_setting, METH_VARARGS|METH_KEYWORDS },
     { "get_setting_string", (PyCFunction)_wrap_xfce_mcs_channel_get_setting_string, METH_VARARGS|METH_KEYWORDS },
+    { "get_setting_color", (PyCFunction)_wrap_xfce_mcs_channel_get_setting_color, METH_VARARGS|METH_KEYWORDS },
+    { "get_setting_int", (PyCFunction)_wrap_xfce_mcs_channel_get_setting_int, METH_VARARGS|METH_KEYWORDS },
     { "set_setting", (PyCFunction)_wrap_xfce_mcs_channel_set_setting, METH_VARARGS|METH_KEYWORDS },
     { "set_setting_string", (PyCFunction)_wrap_xfce_mcs_channel_set_setting_string, METH_VARARGS|METH_KEYWORDS },
     { "set_setting_int", (PyCFunction)_wrap_xfce_mcs_channel_set_setting_int, METH_VARARGS|METH_KEYWORDS },
+    { "set_setting_color", (PyCFunction)_wrap_xfce_mcs_channel_set_setting_color, METH_VARARGS|METH_KEYWORDS },
     { "delete_setting", (PyCFunction)_wrap_xfce_mcs_channel_delete_setting, METH_VARARGS|METH_KEYWORDS },
     { "add_channel_from_file", (PyCFunction)_wrap_xfce_mcs_channel_add_channel_from_file, METH_VARARGS|METH_KEYWORDS },
     { "save_channel_to_file", (PyCFunction)_wrap_xfce_mcs_channel_save_channel_to_file, METH_VARARGS|METH_KEYWORDS },
@@ -258,7 +347,7 @@ PyTypeObject PyXfceMcsChannel_Type = {
     (descrgetfunc)0,	/* tp_descr_get */
     (descrsetfunc)0,	/* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)pygobject_no_constructor,		/* tp_init */
+    (initproc)_wrap_xfce_mcs_channel_new,		/* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -307,6 +396,6 @@ pyxfce_mcs_channel_register_classes(PyObject *d)
     }
 
 
-#line 311 "xfce_mcs-channel.c"
+#line 400 "xfce_mcs-channel.c"
     pygobject_register_class(d, "XfceMcsChannel", XFCE_TYPE_MCS_CHANNEL, &PyXfceMcsChannel_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

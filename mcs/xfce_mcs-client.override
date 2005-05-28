@@ -7,13 +7,15 @@ headers
 #include <gtk/gtk.h>
 #include "xfce-mcs-client.h"
 
+extern PyTypeObject PyXfceMcsChannel_Type;
+
 %%
 include
 %%
 modulename xfce4.mcs
 %%
 import gobject.GObject as PyGObject_Type
-import Channel as PyXfceMcsChannel_Type
+import xfce4.mcs.Channel as PyXfceMcsChannel_Type
 
 %%
 ignore

@@ -56,9 +56,9 @@
 (define-method add_channel
   (of-object "XfceMcsClient")
   (c-name "xfce_mcs_client_add_channel")
-  (return-type "XfceMcsChannel*")
+  (return-type "none")
   (parameters
-    '("gchar-const*" "name")
+    '("XfceMcsChannel*" "channel")
   )
 )
 

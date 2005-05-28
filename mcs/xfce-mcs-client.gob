@@ -165,20 +165,27 @@ class Xfce:Mcs:Client from G:Object {
 		mcs_client_delete_channel (self->low, name);
 	}
 	
-	public XfceMcsChannel *add_channel(self, gchar const *name)
+	/* will _weakref, not _ref */
+	public void add_channel(self, XfceMcsChannel *channel)
 	{
 		gpointer	obj;
 		gchar*		xname;
+		gchar const*	name;
+		
+		name = xfce_mcs_channel_get_channel_name (channel);
+		
 		obj = g_hash_table_lookup (self->channels, name);
 
-		if (obj)
-			return XFCE_MCS_CHANNEL (obj);
-
-		obj = xfce_mcs_channel_new (self, XFCE_MCS_CHANNEL_SIDE_CLIENT, name);
+		g_return_if_fail (obj == NULL);
+			
+		obj = channel;
 		g_object_weak_ref ((GObject *)obj, weak_notify_cb, self);
 		xname = g_strdup (name);
 		g_hash_table_insert (self->channels, xname, obj);
 		g_hash_table_insert (self->channels_r, obj, xname);
+
+		xfce_mcs_channel_add_to_driver (channel, XFCE_MCS_CHANNEL_SIDE_CLIENT, name);
+
 		return obj;
 	}
 

@@ -23,7 +23,8 @@ int main(int argc, char *argv[])
 
 	client = xfce_mcs_client_new ();
 
-	channel = xfce_mcs_client_add_channel (client, "sound");
+	channel = xfce_mcs_channel_new ("sound");
+	xfce_mcs_client_add_channel (client, channel);
 	g_signal_connect (G_OBJECT (channel), "setting-changed", G_CALLBACK (setting_changed_cb), NULL);
 	
 	gtk_main ();

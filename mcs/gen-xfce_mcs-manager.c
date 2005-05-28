@@ -9,12 +9,16 @@
 #include <gtk/gtk.h>
 #include "xfce-mcs-manager.h"
 
-#line 13 "xfce_mcs-manager.c"
+extern PyTypeObject PyXfceMcsChannel_Type;
+
+#line 15 "xfce_mcs-manager.c"
 
 
 /* ---------- types from other modules ---------- */
 static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
+static PyTypeObject *_PyXfceMcsChannel_Type;
+#define PyXfceMcsChannel_Type (*_PyXfceMcsChannel_Type)
 
 
 /* ---------- forward type declarations ---------- */
@@ -36,15 +40,14 @@ pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
 static PyObject *
 _wrap_xfce_mcs_manager_add_channel(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "name", NULL };
-    char *name;
-    XfceMcsChannel *ret;
+    static char *kwlist[] = { "channel", NULL };
+    PyGObject *channel;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsManager.add_channel", kwlist, &name))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceMcsManager.add_channel", kwlist, &PyXfceMcsChannel_Type, &channel))
         return NULL;
-    ret = xfce_mcs_manager_add_channel(XFCE_MCS_MANAGER(self->obj), name);
-    /* pygobject_new handles NULL checking */
-    return pygobject_new((GObject *)ret);
+    xfce_mcs_manager_add_channel(XFCE_MCS_MANAGER(self->obj), XFCE_MCS_CHANNEL(channel->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
 }
 
 static PyObject *
@@ -139,8 +142,22 @@ pyxfce_mcs_manager_register_classes(PyObject *d)
             "could not import gobject");
         return;
     }
+    if ((module = PyImport_ImportModule("xfce4.mcs")) != NULL) {
+        PyObject *moddict = PyModule_GetDict(module);
+
+        _PyXfceMcsChannel_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Channel");
+        if (_PyXfceMcsChannel_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Channel from xfce4.mcs");
+            return;
+        }
+    } else {
+        PyErr_SetString(PyExc_ImportError,
+            "could not import xfce4.mcs");
+        return;
+    }
 
 
-#line 145 "xfce_mcs-manager.c"
+#line 162 "xfce_mcs-manager.c"
     pygobject_register_class(d, "XfceMcsManager", XFCE_TYPE_MCS_MANAGER, &PyXfceMcsManager_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
