@@ -26,12 +26,12 @@ client_event_filter (GdkXEvent * xevent, GdkEvent * event, gpointer data)
 {
 	XfceMcsClient	*c;
 	McsClient	*m;
-	
+
 	c = (XfceMcsClient *)data;
 	m = c->low;
 	if (!m)
-		return GDK_FILTER_REMOVE;
-	
+		return GDK_FILTER_CONTINUE;
+
 	if (mcs_client_process_event ((McsClient*) m, (XEvent *) xevent))
 		return GDK_FILTER_REMOVE;
 	else
