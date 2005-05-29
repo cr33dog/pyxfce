@@ -5,6 +5,7 @@
 (define-enum ResourceType
   (in-module "Xfce")
   (c-name "XfceResourceType")
+  (gtype-id "XFCE_TYPE_RESOURCE_TYPE")
   (values
     '("data" "XFCE_RESOURCE_DATA")
     '("config" "XFCE_RESOURCE_CONFIG")
