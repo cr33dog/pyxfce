@@ -131,7 +131,6 @@ _wrap_netk_screen_get_workspaces(PyGObject *self)
     cnt = netk_screen_get_workspace_count(NETK_SCREEN(self->obj));
 
     if ((py_list = PyList_New(0)) == NULL) {
-        /*g_list_free(icon_list); no */
         return NULL;
     }
 
