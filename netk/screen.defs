@@ -165,3 +165,10 @@
 )
 
 
+(define-method get_workspaces
+  (of-object "NetkScreen")
+  (c-name "netk_screen_get_workspaces")
+  (return-type "GList*")
+  (parameters
+  )
+)

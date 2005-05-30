@@ -119,3 +119,27 @@ _wrap_netk_screen_get_background_pixmap(PyGObject *self)
        return Py_None;
     }
 }
+%%
+override netk_screen_get_workspaces noargs
+static PyObject *
+_wrap_netk_screen_get_workspaces(PyGObject *self)
+{
+    PyObject *pyworkspace;
+    PyObject *py_list;
+    int cnt, i;
+
+    cnt = netk_screen_get_workspace_count(NETK_SCREEN(self->obj));
+
+    if ((py_list = PyList_New(0)) == NULL) {
+        /*g_list_free(icon_list); no */
+        return NULL;
+    }
+
+    for(i = 0; i < cnt; i++) {
+        pyworkspace = pygobject_new(G_OBJECT(netk_screen_get_workspace(NETK_SCREEN(self->obj), i))); /* will g_object_ref and sink if applicable */
+
+        PyList_Append(py_list, pyworkspace);
+        Py_DECREF(pyworkspace);
+    }
+    return py_list;
+}

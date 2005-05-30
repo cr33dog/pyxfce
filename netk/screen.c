@@ -283,6 +283,32 @@ _wrap_netk_screen_release_workspace_layout(PyGObject *self, PyObject *args, PyOb
     return Py_None;
 }
 
+#line 124 "screen.override"
+static PyObject *
+_wrap_netk_screen_get_workspaces(PyGObject *self)
+{
+    PyObject *pyworkspace;
+    PyObject *py_list;
+    int cnt, i;
+
+    cnt = netk_screen_get_workspace_count(NETK_SCREEN(self->obj));
+
+    if ((py_list = PyList_New(0)) == NULL) {
+        /*g_list_free(icon_list); no */
+        return NULL;
+    }
+
+    for(i = 0; i < cnt; i++) {
+        pyworkspace = pygobject_new(G_OBJECT(netk_screen_get_workspace(NETK_SCREEN(self->obj), i))); /* will g_object_ref and sink if applicable */
+
+        PyList_Append(py_list, pyworkspace);
+        Py_DECREF(pyworkspace);
+    }
+    return py_list;
+}
+#line 310 "screen.c"
+
+
 static PyMethodDef _PyNetkScreen_methods[] = {
     { "get_workspace", (PyCFunction)_wrap_netk_screen_get_workspace, METH_VARARGS|METH_KEYWORDS },
     { "get_active_workspace", (PyCFunction)_wrap_netk_screen_get_active_workspace, METH_NOARGS },
@@ -301,6 +327,7 @@ static PyMethodDef _PyNetkScreen_methods[] = {
     { "move_viewport", (PyCFunction)_wrap_netk_screen_move_viewport, METH_VARARGS|METH_KEYWORDS },
     { "try_set_workspace_layout", (PyCFunction)_wrap_netk_screen_try_set_workspace_layout, METH_VARARGS|METH_KEYWORDS },
     { "release_workspace_layout", (PyCFunction)_wrap_netk_screen_release_workspace_layout, METH_VARARGS|METH_KEYWORDS },
+    { "get_workspaces", (PyCFunction)_wrap_netk_screen_get_workspaces, METH_NOARGS },
     { NULL, NULL, 0 }
 };
 
@@ -422,6 +449,6 @@ pyscreen_register_classes(PyObject *d)
     }
 
 
-#line 426 "screen.c"
+#line 453 "screen.c"
     pygobject_register_class(d, "NetkScreen", NETK_TYPE_SCREEN, &PyNetkScreen_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }
