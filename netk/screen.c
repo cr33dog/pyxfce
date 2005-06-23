@@ -294,7 +294,6 @@ _wrap_netk_screen_get_workspaces(PyGObject *self)
     cnt = netk_screen_get_workspace_count(NETK_SCREEN(self->obj));
 
     if ((py_list = PyList_New(0)) == NULL) {
-        /*g_list_free(icon_list); no */
         return NULL;
     }
 
@@ -306,7 +305,7 @@ _wrap_netk_screen_get_workspaces(PyGObject *self)
     }
     return py_list;
 }
-#line 310 "screen.c"
+#line 309 "screen.c"
 
 
 static PyMethodDef _PyNetkScreen_methods[] = {
@@ -449,6 +448,6 @@ pyscreen_register_classes(PyObject *d)
     }
 
 
-#line 453 "screen.c"
+#line 452 "screen.c"
     pygobject_register_class(d, "NetkScreen", NETK_TYPE_SCREEN, &PyNetkScreen_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

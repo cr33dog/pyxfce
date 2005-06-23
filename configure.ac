@@ -64,7 +64,10 @@ JH_ADD_CFLAG([-std=c9x])
 JH_ADD_CFLAG([-fno-strict-aliasing]) 
 
 dnl AC_DEFINE([CODEGEN_PATH], [/usr/share/pygtk/2.0/codegen], [codegen executeable directory])
-AC_SUBST([CODEGEN_PATH], [/usr/share/pygtk/2.0/codegen])
+AC_MSG_CHECKING([for codegen executeable directory])
+CODEGEN_PATH="`pkg-config --variable=codegendir pygtk-2.0`"
+AC_MSG_RESULT([$CODEGEN_PATH])
+AC_SUBST([CODEGEN_PATH])
 
 dnl  pygtk-2.0.pc
 dnl codegen/Makefile
