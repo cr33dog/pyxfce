@@ -63,6 +63,9 @@ my_register1()
 	}
 	
 	m = Py_InitModule("_util", all_functions);
+	
+	pyresource_add_constants(m, "XFCE_");
+	
 	d = PyModule_GetDict(m);
 
 	pyfileutils_register_classes (d);
