@@ -75,7 +75,9 @@ my_register1()
 	}
 	
 	m = Py_InitModule("_netk", all_functions);
-	pywindow_add_constants(m, "");
+	pywindow_add_constants(m, "NETK_");
+	pypager_add_constants(m, "NETK_");
+	pytasklist_add_constants(m, "NETK_");
 	d = PyModule_GetDict(m);
 
 	pyapplication_register_classes (d);
