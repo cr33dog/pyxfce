@@ -106,6 +106,15 @@ my_register1()
 	}
 	
 	m = Py_InitModule("_gui", all_functions);
+	
+	pyclock_add_constants(m, "XFCE_");
+	pydecorbutton_add_constants(m, "XFCE_");
+	pyfilechooser_add_constants(m, "XFCE_");
+	pygtktoxevent_add_constants(m, "XFCE_");
+	pyicontheme_add_constants(m, "XFCE_");
+	pysession_client_add_constants(m, "XFCE_");
+	
+	
 	d = PyModule_GetDict(m);
 
 	pyaboutdialog_register_classes (d);
