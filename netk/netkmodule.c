@@ -75,6 +75,7 @@ my_register1()
 	}
 	
 	m = Py_InitModule("_netk", all_functions);
+	pywindow_add_constants(m, "");
 	d = PyModule_GetDict(m);
 
 	pyapplication_register_classes (d);

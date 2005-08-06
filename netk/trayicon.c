@@ -98,22 +98,23 @@ static PyObject *
 _wrap_netk_tray_icon_message_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "id", "text", NULL };
-    int id, ret;
     char *text;
+    glong id, ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "is:NetkTrayIcon.message_new", kwlist, &id, &text))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ls:NetkTrayIcon.message_new", kwlist, &id, &text))
         return NULL;
     ret = netk_tray_icon_message_new(NETK_TRAY_ICON(self->obj), id, text);
     return PyInt_FromLong(ret);
+
 }
 
 static PyObject *
 _wrap_netk_tray_icon_message_cancel(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "id", NULL };
-    int id;
+    glong id;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:NetkTrayIcon.message_cancel", kwlist, &id))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "l:NetkTrayIcon.message_cancel", kwlist, &id))
         return NULL;
     netk_tray_icon_message_cancel(NETK_TRAY_ICON(self->obj), id);
     Py_INCREF(Py_None);
@@ -230,6 +231,6 @@ pytrayicon_register_classes(PyObject *d)
     }
 
 
-#line 234 "trayicon.c"
+#line 235 "trayicon.c"
     pygobject_register_class(d, "NetkTrayIcon", NETK_TYPE_TRAY_ICON, &PyNetkTrayIcon_Type, Py_BuildValue("(O)", &PyGtkPlug_Type));
 }
