@@ -47,3 +47,4 @@ mask exec_command and friends ?
 
 netk window_state_changed_cb: how to check mask and newvalue ? constants ? where ?
 
+deprecated (i.e. remove it): XfceFileChooser, XfceColorButton
