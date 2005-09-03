@@ -5,7 +5,7 @@ ACLOCAL_AMFLAGS = -I m4
 
 m4_define(pyxfce_major_version, 4)
 m4_define(pyxfce_minor_version, 2)
-m4_define(pyxfce_micro_version, 5)
+m4_define(pyxfce_micro_version, 6)
 m4_define(pyxfce_version, pyxfce_major_version.pyxfce_minor_version.pyxfce_micro_version)
 
 m4_define(xfce_required_version, 4.1.99)
@@ -44,7 +44,7 @@ export_dynamic=`(./libtool --config; echo eval echo \\$export_dynamic_flag_spec)
 BM_DEPEND([XFCE4_UTIL], [libxfce4util-1.0], [4.1.0])
 
 # requirement will be lowered after next xfce 4.2 release
-BM_DEPEND([XFCE4_GUI], [libxfcegui4-1.0], [4.4.3])
+BM_DEPEND([XFCE4_GUI], [libxfcegui4-1.0], [4.3.4])
 
 #BM_DEPEND([XFCE4_PANEL], [xfce4-panel-1.0], [4.1.0])
 BM_DEPEND([XFCE4_MCS_CLIENT], [libxfce4mcs-client-1.0], [4.1.0])
