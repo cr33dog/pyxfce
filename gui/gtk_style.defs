@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/gtk_style.h
+;; From /usr/local/include/xfce4/libxfcegui4/gtk_style.h
 
 (define-function get_style
   (c-name "get_style")

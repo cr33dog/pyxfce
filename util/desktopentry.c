@@ -7,7 +7,7 @@
 #line 6 "desktopentry.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <libxfce4util/xfce-desktopentry.h>
+#include <libxfce4util/libxfce4util.h>
 
 #line 13 "desktopentry.c"
 
@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceDesktopEntry_Type;
+
+#line 24 "desktopentry.c"
+
 
 
 /* ----------- XfceDesktopEntry ----------- */
@@ -79,7 +82,7 @@ _wrap_xfce_desktop_entry_get_string(PyGObject *self, PyObject *args, PyObject *k
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 83 "desktopentry.c"
+#line 86 "desktopentry.c"
 
 
 #line 54 "desktopentry.override"
@@ -100,7 +103,7 @@ _wrap_xfce_desktop_entry_get_int(PyGObject *self, PyObject *args, PyObject *kwar
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 104 "desktopentry.c"
+#line 107 "desktopentry.c"
 
 
 static PyMethodDef _PyXfceDesktopEntry_methods[] = {
@@ -186,6 +189,6 @@ pydesktopentry_register_classes(PyObject *d)
     }
 
 
-#line 190 "desktopentry.c"
+#line 193 "desktopentry.c"
     pygobject_register_class(d, "XfceDesktopEntry", XFCE_TYPE_DESKTOP_ENTRY, &PyXfceDesktopEntry_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

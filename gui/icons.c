@@ -21,6 +21,9 @@ static PyTypeObject *_PyGdkPixbuf_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 25 "icons.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -164,5 +167,5 @@ pyicons_register_classes(PyObject *d)
     }
 
 
-#line 168 "icons.c"
+#line 171 "icons.c"
 }

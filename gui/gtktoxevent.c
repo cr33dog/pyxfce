@@ -24,6 +24,9 @@ static PyTypeObject *_PyGdkScreen_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 28 "gtktoxevent.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -32,10 +35,10 @@ _wrap_xfce_add_event_win(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "gscr", "event_mask", NULL };
     PyGObject *gscr;
-    int event_mask;
     GdkWindow *ret;
+    long event_mask;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i:add_event_win", kwlist, &PyGdkScreen_Type, &gscr, &event_mask))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!l:add_event_win", kwlist, &PyGdkScreen_Type, &gscr, &event_mask))
         return NULL;
     ret = xfce_add_event_win(GDK_SCREEN(gscr->obj), event_mask);
     /* pygobject_new handles NULL checking */
@@ -137,5 +140,5 @@ pygtktoxevent_register_classes(PyObject *d)
     }
 
 
-#line 141 "gtktoxevent.c"
+#line 144 "gtktoxevent.c"
 }

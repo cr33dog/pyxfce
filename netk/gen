@@ -1,7 +1,10 @@
 #!/bin/bash
 
-for s in /usr/include/xfce4/libxfcegui4/*.h
+inc="`pkg-config --variable=includedir libxfcegui4-1.0`"/xfce4
+
+for s in "${inc}"/libxfcegui4/*.h
 do
+	#echo "XX $s"
 	t="${s##*/}"
 	
 	t="${t%.h}"
@@ -11,6 +14,9 @@ do
 		defs="${t/-/_}.defs"
 		defs="${defs/-/_}"
 		defs="${defs/-/_}"
+		
+		#echo "${defs}"
+		
 		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
 	fi
 done

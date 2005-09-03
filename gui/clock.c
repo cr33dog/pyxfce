@@ -31,25 +31,27 @@ static PyTypeObject *_PyGtkWidget_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceClock_Type;
 
+#line 35 "clock.c"
+
+
 
 /* ----------- XfceClock ----------- */
 
 static int
 _wrap_xfce_clock_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    GType obj_type = pyg_type_from_object((PyObject *) self);
     static char* kwlist[] = { NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":clock.Clock.__init__", kwlist))
         return -1;
 
-    self->obj = g_object_newv(obj_type, 0, NULL);
+    pygobject_constructv(self, 0, NULL);
+
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
         return -1;
     }
 
-    pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
 
@@ -151,10 +153,21 @@ static PyObject *
 _wrap_xfce_clock_set_interval(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "interval", NULL };
-    int interval;
+    PyObject *py_interval = NULL;
+    guint interval = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:XfceClock.set_interval", kwlist, &interval))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:XfceClock.set_interval", kwlist, &py_interval))
         return NULL;
+    if (py_interval) {
+        if (PyLong_Check(py_interval))
+            interval = PyLong_AsUnsignedLong(py_interval);
+        else if (PyInt_Check(py_interval))
+            interval = PyInt_AsLong(py_interval);
+        else
+            PyErr_SetString(PyExc_TypeError, "Parameter 'interval' must be an int or a long");
+        if (PyErr_Occurred())
+            return NULL;
+    }
     xfce_clock_set_interval(XFCE_CLOCK(self->obj), interval);
     Py_INCREF(Py_None);
     return Py_None;
@@ -163,10 +176,10 @@ _wrap_xfce_clock_set_interval(PyGObject *self, PyObject *args, PyObject *kwargs)
 static PyObject *
 _wrap_xfce_clock_get_interval(PyGObject *self)
 {
-    int ret;
+    guint ret;
 
     ret = xfce_clock_get_interval(XFCE_CLOCK(self->obj));
-    return PyInt_FromLong(ret);
+    return PyLong_FromUnsignedLong(ret);
 }
 
 static PyObject *
@@ -367,6 +380,7 @@ pyclock_register_classes(PyObject *d)
     }
 
 
-#line 371 "clock.c"
+#line 384 "clock.c"
     pygobject_register_class(d, "XfceClock", XFCE_TYPE_CLOCK, &PyXfceClock_Type, Py_BuildValue("(O)", &PyGtkWidget_Type));
+    pyg_set_object_has_new_constructor(XFCE_TYPE_CLOCK);
 }

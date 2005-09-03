@@ -16,7 +16,7 @@
 )
 
 
-;; From /usr/include/xfce4/libxfce4util/xfce-resource.h
+;; From /usr/local/include/xfce4/libxfce4util/xfce-resource.h
 
 (define-function resource_dirs
   (c-name "xfce_resource_dirs")

@@ -15,7 +15,7 @@
 )
 
 
-;; From /usr/include/xfce4/libxfcegui4/xfce-filechooser.h
+;; From /usr/local/include/xfce4/libxfcegui4/xfce-filechooser.h
 
 (define-function file_chooser_new
   (c-name "xfce_file_chooser_new")

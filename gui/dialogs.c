@@ -22,6 +22,9 @@ static PyTypeObject *_PyGtkWidget_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 26 "dialogs.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -260,5 +263,5 @@ pydialogs_register_classes(PyObject *d)
     }
 
 
-#line 264 "dialogs.c"
+#line 267 "dialogs.c"
 }

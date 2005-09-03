@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 23 "rc.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -48,5 +51,5 @@ pyrc_register_classes(PyObject *d)
     }
 
 
-#line 52 "rc.c"
+#line 55 "rc.c"
 }

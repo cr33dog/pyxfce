@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/netk-util.h
+;; From /usr/local/include/xfce4/libxfcegui4/netk-util.h
 
 (define-function gtk_window_set_type
   (c-name "netk_gtk_window_set_type")

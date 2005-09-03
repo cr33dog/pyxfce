@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/xfce_menubutton.h
+;; From /usr/local/include/xfce4/libxfcegui4/xfce_menubutton.h
 
 (define-function menubutton_get_type
   (c-name "xfce_menubutton_get_type")

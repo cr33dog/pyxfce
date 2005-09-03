@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/netk-enum-types.h
+;; From /usr/local/include/xfce4/libxfcegui4/netk-enum-types.h
 
 (define-function window_state_get_type
   (c-name "netk_window_state_get_type")

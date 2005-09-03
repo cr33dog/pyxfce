@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/netk-screen.h
+;; From /usr/local/include/xfce4/libxfcegui4/netk-screen.h
 
 (define-function screen_get_type
   (c-name "netk_screen_get_type")

@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfce4util/xfce-fileutils.h
+;; From /usr/local/include/xfce4/libxfce4util/xfce-fileutils.h
 
 (define-function mkdirhier
   (c-name "xfce_mkdirhier")

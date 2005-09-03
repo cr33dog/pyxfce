@@ -22,6 +22,9 @@ static PyTypeObject *_PyGObject_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceMcsManager_Type;
 
+#line 26 "xfce_mcs-manager.c"
+
+
 
 /* ----------- XfceMcsManager ----------- */
 
@@ -142,6 +145,6 @@ pyxfce_mcs_manager_register_classes(PyObject *d)
     }
 
 
-#line 146 "xfce_mcs-manager.c"
+#line 149 "xfce_mcs-manager.c"
     pygobject_register_class(d, "XfceMcsManager", XFCE_TYPE_MCS_MANAGER, &PyXfceMcsManager_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

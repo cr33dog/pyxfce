@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 23 "enum_types.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -48,5 +51,5 @@ pyenum_types_register_classes(PyObject *d)
     }
 
 
-#line 52 "enum_types.c"
+#line 55 "enum_types.c"
 }

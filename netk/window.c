@@ -25,6 +25,9 @@ static PyTypeObject *_PyGdkPixbuf_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyNetkWindow_Type;
 
+#line 29 "window.c"
+
+
 
 /* ----------- NetkWindow ----------- */
 
@@ -79,6 +82,7 @@ _wrap_netk_window_get_group_leader(PyGObject *self)
 
     ret = netk_window_get_group_leader(NETK_WINDOW(self->obj));
     return PyLong_FromUnsignedLong(ret);
+
 }
 
 static PyObject *
@@ -88,6 +92,7 @@ _wrap_netk_window_get_xid(PyGObject *self)
 
     ret = netk_window_get_xid(NETK_WINDOW(self->obj));
     return PyLong_FromUnsignedLong(ret);
+
 }
 
 static PyObject *
@@ -138,7 +143,7 @@ _wrap_netk_window_get_pid(PyGObject *self)
 
     return PyInt_FromLong(ret);
 }
-#line 142 "window.c"
+#line 147 "window.c"
 
 
 static PyObject *
@@ -557,7 +562,7 @@ _wrap_netk_window_get_geometry(PyGObject *self)
     netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
     return Py_BuildValue("(iiii)", x, y, width, height);
 }
-#line 561 "window.c"
+#line 566 "window.c"
 
 
 static PyObject *
@@ -716,13 +721,11 @@ static PyObject *
 _wrap_netk_window_get(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "xwindow", NULL };
-    PyObject *py_xwindow = NULL;
-    gulong xwindow;
+    unsigned long xwindow;
     NetkWindow *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:window_get", kwlist, &PyLong_Type, &py_xwindow))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "k:window_get", kwlist, &xwindow))
         return NULL;
-    xwindow = PyLong_AsUnsignedLong(py_xwindow);
     ret = netk_window_get(xwindow);
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
@@ -783,6 +786,7 @@ pywindow_register_classes(PyObject *d)
     }
 
 
-#line 787 "window.c"
+#line 790 "window.c"
     pygobject_register_class(d, "NetkWindow", NETK_TYPE_WINDOW, &PyNetkWindow_Type, Py_BuildValue("(O)", &PyGObject_Type));
+    pyg_set_object_has_new_constructor(NETK_TYPE_WINDOW);
 }

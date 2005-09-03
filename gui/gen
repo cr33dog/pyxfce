@@ -1,6 +1,8 @@
 #!/bin/bash
 
-for s in /usr/include/xfce4/libxfcegui4/*.h
+inc="`pkg-config --variable=includedir libxfcegui4-1.0`"/xfce4
+
+for s in "${inc}"/libxfcegui4/*.h
 do
 	t="${s##*/}"
 	

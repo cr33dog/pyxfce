@@ -23,6 +23,9 @@ static PyTypeObject *_PyGdkScreen_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 27 "gtk_extensions.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -109,5 +112,5 @@ pygtk_extensions_register_classes(PyObject *d)
     }
 
 
-#line 113 "gtk_extensions.c"
+#line 116 "gtk_extensions.c"
 }

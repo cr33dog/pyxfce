@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 23 "fileutils.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -48,5 +51,5 @@ pyfileutils_register_classes(PyObject *d)
     }
 
 
-#line 52 "fileutils.c"
+#line 55 "fileutils.c"
 }

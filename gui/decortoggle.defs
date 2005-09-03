@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/xfce_decortoggle.h
+;; From /usr/local/include/xfce4/libxfcegui4/xfce_decortoggle.h
 
 (define-function decortoggle_get_type
   (c-name "xfce_decortoggle_get_type")

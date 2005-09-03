@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 23 "utf8.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -27,10 +30,10 @@ _wrap_xfce_utf8_remove_controls(PyObject *self, PyObject *args, PyObject *kwargs
 {
     static char *kwlist[] = { "str", "max_len", "end", NULL };
     char *str, *end;
-    int max_len;
     gchar *ret;
+    gssize max_len;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:utf8_remove_controls", kwlist, &str, &max_len, &end))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sls:utf8_remove_controls", kwlist, &str, &max_len, &end))
         return NULL;
     ret = xfce_utf8_remove_controls(str, max_len, end);
     if (ret) {
@@ -69,5 +72,5 @@ pyutf8_register_classes(PyObject *d)
     }
 
 
-#line 73 "utf8.c"
+#line 76 "utf8.c"
 }

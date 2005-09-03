@@ -25,25 +25,27 @@ static PyTypeObject *_PyXfceDesktopEntry_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceAppMenuItem_Type;
 
+#line 29 "appmenuitem.c"
+
+
 
 /* ----------- XfceAppMenuItem ----------- */
 
 static int
 _wrap_xfce_app_menu_item_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    GType obj_type = pyg_type_from_object((PyObject *) self);
     static char* kwlist[] = { NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":appmenuitem.AppMenuItem.__init__", kwlist))
         return -1;
 
-    self->obj = g_object_newv(obj_type, 0, NULL);
+    pygobject_constructv(self, 0, NULL);
+
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
         return -1;
     }
 
-    pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
 
@@ -308,10 +310,21 @@ static PyObject *
 _wrap_xfce_app_menu_item_set_icon_size(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "icon_size", NULL };
-    int icon_size;
+    PyObject *py_icon_size = NULL;
+    guint icon_size = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:app_menu_item_set_icon_size", kwlist, &icon_size))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:app_menu_item_set_icon_size", kwlist, &py_icon_size))
         return NULL;
+    if (py_icon_size) {
+        if (PyLong_Check(py_icon_size))
+            icon_size = PyLong_AsUnsignedLong(py_icon_size);
+        else if (PyInt_Check(py_icon_size))
+            icon_size = PyInt_AsLong(py_icon_size);
+        else
+            PyErr_SetString(PyExc_TypeError, "Parameter 'icon_size' must be an int or a long");
+        if (PyErr_Occurred())
+            return NULL;
+    }
     xfce_app_menu_item_set_icon_size(icon_size);
     Py_INCREF(Py_None);
     return Py_None;
@@ -391,6 +404,7 @@ pyappmenuitem_register_classes(PyObject *d)
     }
 
 
-#line 395 "appmenuitem.c"
+#line 408 "appmenuitem.c"
     pygobject_register_class(d, "XfceAppMenuItem", XFCE_TYPE_APP_MENU_ITEM, &PyXfceAppMenuItem_Type, Py_BuildValue("(O)", &PyGtkImageMenuItem_Type));
+    pyg_set_object_has_new_constructor(XFCE_TYPE_APP_MENU_ITEM);
 }

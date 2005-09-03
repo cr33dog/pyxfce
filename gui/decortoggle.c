@@ -28,6 +28,9 @@ static PyTypeObject *_PyGtkArrow_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceDecortoggle_Type;
 
+#line 32 "decortoggle.c"
+
+
 
 /* ----------- XfceDecortoggle ----------- */
 
@@ -201,6 +204,6 @@ pydecortoggle_register_classes(PyObject *d)
     }
 
 
-#line 205 "decortoggle.c"
+#line 208 "decortoggle.c"
     pygobject_register_class(d, "XfceDecortoggle", XFCE_TYPE_DECORTOGGLE, &PyXfceDecortoggle_Type, Py_BuildValue("(O)", &PyGtkMisc_Type));
 }

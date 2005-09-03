@@ -23,6 +23,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 27 "window_action_menu.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -67,5 +70,5 @@ pywindow_action_menu_register_classes(PyObject *d)
     }
 
 
-#line 71 "window_action_menu.c"
+#line 74 "window_action_menu.c"
 }

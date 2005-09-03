@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 23 "i18n.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -81,10 +84,10 @@ _wrap_xfce_get_file_localized_r(PyObject *self, PyObject *args, PyObject *kwargs
 {
     static char *kwlist[] = { "buffer", "length", "filename", NULL };
     char *buffer, *filename;
-    int length;
+    gsize length;
     gchar *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:get_file_localized_r", kwlist, &buffer, &length, &filename))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sks:get_file_localized_r", kwlist, &buffer, &length, &filename))
         return NULL;
     ret = xfce_get_file_localized_r(buffer, length, filename);
     if (ret) {
@@ -101,10 +104,10 @@ _wrap_xfce_get_dir_localized_r(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "buffer", "length", "directory", NULL };
     char *buffer, *directory;
-    int length;
+    gsize length;
     gchar *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sis:get_dir_localized_r", kwlist, &buffer, &length, &directory))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sks:get_dir_localized_r", kwlist, &buffer, &length, &directory))
         return NULL;
     ret = xfce_get_dir_localized_r(buffer, length, directory);
     if (ret) {
@@ -121,12 +124,12 @@ _wrap_xfce_locale_match(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "locale1", "locale2", NULL };
     char *locale1, *locale2;
-    int ret;
+    guint ret;
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:locale_match", kwlist, &locale1, &locale2))
         return NULL;
     ret = xfce_locale_match(locale1, locale2);
-    return PyInt_FromLong(ret);
+    return PyLong_FromUnsignedLong(ret);
 }
 
 PyMethodDef pyi18n_functions[] = {
@@ -161,5 +164,5 @@ pyi18n_register_classes(PyObject *d)
     }
 
 
-#line 165 "i18n.c"
+#line 168 "i18n.c"
 }

@@ -36,7 +36,7 @@
 )
 
 
-;; From /usr/include/xfce4/libxfcegui4/xfce-icontheme.h
+;; From /usr/local/include/xfce4/libxfcegui4/xfce-icontheme.h
 
 (define-function icon_theme_get_type
   (c-name "xfce_icon_theme_get_type")

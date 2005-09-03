@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfce4util/xfce-rc.h
+;; From /usr/local/include/xfce4/libxfce4util/xfce-rc.h
 
 (define-function rc_simple_open
   (c-name "xfce_rc_simple_open")

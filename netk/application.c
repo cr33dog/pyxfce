@@ -20,6 +20,9 @@ static PyTypeObject *_PyGObject_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyNetkApplication_Type;
 
+#line 24 "application.c"
+
+
 
 /* ----------- NetkApplication ----------- */
 
@@ -30,6 +33,7 @@ _wrap_netk_application_get_xid(PyGObject *self)
 
     ret = netk_application_get_xid(NETK_APPLICATION(self->obj));
     return PyLong_FromUnsignedLong(ret);
+
 }
 
 #line 25 "application.override"
@@ -67,7 +71,7 @@ _wrap_netk_application_get_windows(PyGObject *self)
     }
     return py_list;
 }
-#line 71 "application.c"
+#line 75 "application.c"
 
 
 static PyObject *
@@ -208,13 +212,11 @@ static PyObject *
 _wrap_netk_application_get(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "xwindow", NULL };
-    PyObject *py_xwindow = NULL;
-    gulong xwindow;
+    unsigned long xwindow;
     NetkApplication *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:application_get", kwlist, &PyLong_Type, &py_xwindow))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "k:application_get", kwlist, &xwindow))
         return NULL;
-    xwindow = PyLong_AsUnsignedLong(py_xwindow);
     ret = netk_application_get(xwindow);
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
@@ -247,6 +249,7 @@ pyapplication_register_classes(PyObject *d)
     }
 
 
-#line 251 "application.c"
+#line 253 "application.c"
     pygobject_register_class(d, "NetkApplication", NETK_TYPE_APPLICATION, &PyNetkApplication_Type, Py_BuildValue("(O)", &PyGObject_Type));
+    pyg_set_object_has_new_constructor(NETK_TYPE_APPLICATION);
 }

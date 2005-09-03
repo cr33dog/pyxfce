@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/xfce-appmenuitem.h
+;; From /usr/local/include/xfce4/libxfcegui4/xfce-appmenuitem.h
 
 (define-function app_menu_item_get_type
   (c-name "xfce_app_menu_item_get_type")

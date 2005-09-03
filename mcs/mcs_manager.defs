@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfce4mcs/mcs-manager.h
+;; From /usr/local/include/xfce4/libxfce4mcs/mcs-manager.h
 
 (define-function mcs_manager_new
   (c-name "mcs_manager_new")

@@ -26,6 +26,9 @@ static PyTypeObject *_PyGdkScreen_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceIconTheme_Type;
 
+#line 30 "icontheme.c"
+
+
 
 /* ----------- XfceIconTheme ----------- */
 
@@ -55,7 +58,7 @@ _wrap_xfce_icon_theme_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
-#line 59 "icontheme.c"
+#line 62 "icontheme.c"
 
 
 static PyObject *
@@ -162,7 +165,7 @@ _wrap_xfce_icon_theme_get_search_path(PyGObject *self)
 
     return py_tuple;
 }
-#line 166 "icontheme.c"
+#line 169 "icontheme.c"
 
 
 #line 59 "icontheme.override"
@@ -209,7 +212,7 @@ _wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 213 "icontheme.c"
+#line 216 "icontheme.c"
 
 
 static PyObject *
@@ -408,6 +411,6 @@ pyicontheme_register_classes(PyObject *d)
     }
 
 
-#line 412 "icontheme.c"
+#line 415 "icontheme.c"
     pygobject_register_class(d, "XfceIconTheme", XFCE_TYPE_ICON_THEME, &PyXfceIconTheme_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

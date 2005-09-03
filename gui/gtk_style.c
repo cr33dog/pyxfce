@@ -21,6 +21,9 @@ static PyTypeObject *_PyGtkWidget_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 25 "gtk_style.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -101,5 +104,5 @@ pygtk_style_register_classes(PyObject *d)
     }
 
 
-#line 105 "gtk_style.c"
+#line 108 "gtk_style.c"
 }

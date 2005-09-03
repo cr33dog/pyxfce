@@ -18,10 +18,15 @@ static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
 static PyTypeObject *_PyGtkDialog_Type;
 #define PyGtkDialog_Type (*_PyGtkDialog_Type)
+static PyTypeObject *_PyGdkPixbuf_Type;
+#define PyGdkPixbuf_Type (*_PyGdkPixbuf_Type)
 
 
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceAboutDialog_Type;
+
+#line 29 "aboutdialog.c"
+
 
 
 /* ----------- XfceAboutDialog ----------- */
@@ -29,19 +34,18 @@ PyTypeObject PyXfceAboutDialog_Type;
 static int
 _wrap_xfce_about_dialog_new_empty(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    GType obj_type = pyg_type_from_object((PyObject *) self);
     static char* kwlist[] = { NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":aboutdialog.AboutDialog.__init__", kwlist))
         return -1;
 
-    self->obj = g_object_newv(obj_type, 0, NULL);
+    pygobject_constructv(self, 0, NULL);
+
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
         return -1;
     }
 
-    pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
 
@@ -120,6 +124,19 @@ _wrap_xfce_about_dialog_set_homepage(PyGObject *self, PyObject *args, PyObject *
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceAboutDialog.set_homepage", kwlist, &value))
         return NULL;
     xfce_about_dialog_set_homepage(XFCE_ABOUT_DIALOG(self->obj), value);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_about_dialog_set_icon(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "icon", NULL };
+    PyGObject *icon;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceAboutDialog.set_icon", kwlist, &PyGdkPixbuf_Type, &icon))
+        return NULL;
+    xfce_about_dialog_set_icon(XFCE_ABOUT_DIALOG(self->obj), GDK_PIXBUF(icon->obj));
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -209,6 +226,16 @@ _wrap_xfce_about_dialog_get_homepage(PyGObject *self)
     return Py_None;
 }
 
+static PyObject *
+_wrap_xfce_about_dialog_get_icon(PyGObject *self)
+{
+    GdkPixbuf *ret;
+
+    ret = xfce_about_dialog_get_icon(XFCE_ABOUT_DIALOG(self->obj));
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 static PyMethodDef _PyXfceAboutDialog_methods[] = {
     { "set_program", (PyCFunction)_wrap_xfce_about_dialog_set_program, METH_VARARGS|METH_KEYWORDS },
     { "set_version", (PyCFunction)_wrap_xfce_about_dialog_set_version, METH_VARARGS|METH_KEYWORDS },
@@ -216,6 +243,7 @@ static PyMethodDef _PyXfceAboutDialog_methods[] = {
     { "set_copyright", (PyCFunction)_wrap_xfce_about_dialog_set_copyright, METH_VARARGS|METH_KEYWORDS },
     { "set_license", (PyCFunction)_wrap_xfce_about_dialog_set_license, METH_VARARGS|METH_KEYWORDS },
     { "set_homepage", (PyCFunction)_wrap_xfce_about_dialog_set_homepage, METH_VARARGS|METH_KEYWORDS },
+    { "set_icon", (PyCFunction)_wrap_xfce_about_dialog_set_icon, METH_VARARGS|METH_KEYWORDS },
     { "add_credit", (PyCFunction)_wrap_xfce_about_dialog_add_credit, METH_VARARGS|METH_KEYWORDS },
     { "get_program", (PyCFunction)_wrap_xfce_about_dialog_get_program, METH_NOARGS },
     { "get_version", (PyCFunction)_wrap_xfce_about_dialog_get_version, METH_NOARGS },
@@ -223,6 +251,7 @@ static PyMethodDef _PyXfceAboutDialog_methods[] = {
     { "get_copyright", (PyCFunction)_wrap_xfce_about_dialog_get_copyright, METH_NOARGS },
     { "get_license", (PyCFunction)_wrap_xfce_about_dialog_get_license, METH_NOARGS },
     { "get_homepage", (PyCFunction)_wrap_xfce_about_dialog_get_homepage, METH_NOARGS },
+    { "get_icon", (PyCFunction)_wrap_xfce_about_dialog_get_icon, METH_NOARGS },
     { NULL, NULL, 0 }
 };
 
@@ -313,8 +342,23 @@ pyaboutdialog_register_classes(PyObject *d)
             "could not import gtk");
         return;
     }
+    if ((module = PyImport_ImportModule("gtk.gdk")) != NULL) {
+        PyObject *moddict = PyModule_GetDict(module);
+
+        _PyGdkPixbuf_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Pixbuf");
+        if (_PyGdkPixbuf_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Pixbuf from gtk.gdk");
+            return;
+        }
+    } else {
+        PyErr_SetString(PyExc_ImportError,
+            "could not import gtk.gdk");
+        return;
+    }
 
 
-#line 319 "aboutdialog.c"
+#line 362 "aboutdialog.c"
     pygobject_register_class(d, "XfceAboutDialog", XFCE_TYPE_ABOUT_DIALOG, &PyXfceAboutDialog_Type, Py_BuildValue("(O)", &PyGtkDialog_Type));
+    pyg_set_object_has_new_constructor(XFCE_TYPE_ABOUT_DIALOG);
 }

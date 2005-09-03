@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/icons.h
+;; From /usr/local/include/xfce4/libxfcegui4/icons.h
 
 (define-function inline_icon_at_size
   (c-name "xfce_inline_icon_at_size")

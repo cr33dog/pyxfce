@@ -26,6 +26,9 @@ static PyTypeObject *_PyGtkWidget_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceMovehandler_Type;
 
+#line 30 "movehandler.c"
+
+
 
 /* ----------- XfceMovehandler ----------- */
 
@@ -136,6 +139,6 @@ pymovehandler_register_classes(PyObject *d)
     }
 
 
-#line 140 "movehandler.c"
+#line 143 "movehandler.c"
     pygobject_register_class(d, "XfceMovehandler", XFCE_TYPE_MOVEHANDLER, &PyXfceMovehandler_Type, Py_BuildValue("(O)", &PyGtkWidget_Type));
 }

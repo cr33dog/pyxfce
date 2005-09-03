@@ -1,6 +1,13 @@
 #!/bin/sh
 
-for s in /usr/include/xfce4/libxfce4mcs/*.h xfce-mcs-*.h
+inc="`pkg-config --variable=includedir libxfce4mcs-client-1.0`"/xfce4
+
+if [ -z "${inc}" ]
+then
+	inc="`pkg-config --variable=includedir libxfcegui4-1.0`"/xfce4
+fi
+
+for s in "${inc}"/libxfce4mcs/*.h xfce-mcs-*.h
 do
 	if [ "${s%-private.h}" != "${s}" ]
 	then

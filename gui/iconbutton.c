@@ -28,25 +28,27 @@ static PyTypeObject *_PyGtkButton_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceIconbutton_Type;
 
+#line 32 "iconbutton.c"
+
+
 
 /* ----------- XfceIconbutton ----------- */
 
 static int
 _wrap_xfce_iconbutton_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    GType obj_type = pyg_type_from_object((PyObject *) self);
     static char* kwlist[] = { NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":iconbutton.Iconbutton.__init__", kwlist))
         return -1;
 
-    self->obj = g_object_newv(obj_type, 0, NULL);
+    pygobject_constructv(self, 0, NULL);
+
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
         return -1;
     }
 
-    pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
 
@@ -187,6 +189,7 @@ pyiconbutton_register_classes(PyObject *d)
     }
 
 
-#line 191 "iconbutton.c"
+#line 193 "iconbutton.c"
     pygobject_register_class(d, "XfceIconbutton", XFCE_TYPE_ICONBUTTON, &PyXfceIconbutton_Type, Py_BuildValue("(O)", &PyGtkButton_Type));
+    pyg_set_object_has_new_constructor(XFCE_TYPE_ICONBUTTON);
 }

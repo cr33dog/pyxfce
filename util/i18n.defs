@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfce4util/i18n.h
+;; From /usr/local/include/xfce4/libxfce4util/i18n.h
 
 (define-function strip_context
   (c-name "xfce_strip_context")

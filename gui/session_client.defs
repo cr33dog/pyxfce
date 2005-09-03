@@ -43,7 +43,7 @@
 )
 
 
-;; From /usr/include/xfce4/libxfcegui4/session-client.h
+;; From /usr/local/include/xfce4/libxfcegui4/session-client.h
 
 (define-function client_session_new_full
   (c-name "client_session_new_full")

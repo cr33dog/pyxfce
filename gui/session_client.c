@@ -24,6 +24,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 28 "session_client.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -67,5 +70,5 @@ pysession_client_register_classes(PyObject *d)
     }
 
 
-#line 71 "session_client.c"
+#line 74 "session_client.c"
 }

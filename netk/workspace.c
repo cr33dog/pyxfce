@@ -20,6 +20,9 @@ static PyTypeObject *_PyGObject_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyNetkWorkspace_Type;
 
+#line 24 "workspace.c"
+
+
 
 /* ----------- NetkWorkspace ----------- */
 
@@ -199,6 +202,7 @@ pyworkspace_register_classes(PyObject *d)
     }
 
 
-#line 203 "workspace.c"
+#line 206 "workspace.c"
     pygobject_register_class(d, "NetkWorkspace", NETK_TYPE_WORKSPACE, &PyNetkWorkspace_Type, Py_BuildValue("(O)", &PyGObject_Type));
+    pyg_set_object_has_new_constructor(NETK_TYPE_WORKSPACE);
 }

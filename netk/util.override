@@ -19,6 +19,8 @@ ignore
 %%
 ignore-glob
   *_get_type
+  netk_gtk_window_avoid_input
+  netk_gtk_window_set_type
 %%
 ignore-win32
 %%

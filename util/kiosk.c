@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 23 "kiosk.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -48,5 +51,5 @@ pykiosk_register_classes(PyObject *d)
     }
 
 
-#line 52 "kiosk.c"
+#line 55 "kiosk.c"
 }

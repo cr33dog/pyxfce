@@ -20,6 +20,9 @@ static PyTypeObject *_PyGObject_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyNetkScreen_Type;
 
+#line 24 "screen.c"
+
+
 
 /* ----------- NetkScreen ----------- */
 
@@ -92,7 +95,7 @@ _wrap_netk_screen_get_windows(PyGObject *self)
     }
     return py_list;
 }
-#line 96 "screen.c"
+#line 99 "screen.c"
 
 
 #line 63 "screen.override"
@@ -129,7 +132,7 @@ _wrap_netk_screen_get_windows_stacked(PyGObject *self)
     }
     return py_list;
 }
-#line 133 "screen.c"
+#line 136 "screen.c"
 
 
 static PyObject *
@@ -201,7 +204,7 @@ _wrap_netk_screen_get_background_pixmap(PyGObject *self)
        return Py_None;
     }
 }
-#line 205 "screen.c"
+#line 208 "screen.c"
 
 
 static PyObject *
@@ -305,7 +308,7 @@ _wrap_netk_screen_get_workspaces(PyGObject *self)
     }
     return py_list;
 }
-#line 309 "screen.c"
+#line 312 "screen.c"
 
 
 static PyMethodDef _PyNetkScreen_methods[] = {
@@ -407,13 +410,11 @@ static PyObject *
 _wrap_netk_screen_get_for_root(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "root_window_id", NULL };
-    PyObject *py_root_window_id = NULL;
-    gulong root_window_id;
+    unsigned long root_window_id;
     NetkScreen *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:screen_get_for_root", kwlist, &PyLong_Type, &py_root_window_id))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "k:screen_get_for_root", kwlist, &root_window_id))
         return NULL;
-    root_window_id = PyLong_AsUnsignedLong(py_root_window_id);
     ret = netk_screen_get_for_root(root_window_id);
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
@@ -448,6 +449,7 @@ pyscreen_register_classes(PyObject *d)
     }
 
 
-#line 452 "screen.c"
+#line 453 "screen.c"
     pygobject_register_class(d, "NetkScreen", NETK_TYPE_SCREEN, &PyNetkScreen_Type, Py_BuildValue("(O)", &PyGObject_Type));
+    pyg_set_object_has_new_constructor(NETK_TYPE_SCREEN);
 }

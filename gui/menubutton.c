@@ -28,6 +28,9 @@ static PyTypeObject *_PyGdkPixbuf_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceMenubutton_Type;
 
+#line 32 "menubutton.c"
+
+
 
 /* ----------- XfceMenubutton ----------- */
 
@@ -229,6 +232,6 @@ pymenubutton_register_classes(PyObject *d)
     }
 
 
-#line 233 "menubutton.c"
+#line 236 "menubutton.c"
     pygobject_register_class(d, "XfceMenubutton", XFCE_TYPE_MENUBUTTON, &PyXfceMenubutton_Type, Py_BuildValue("(O)", &PyGtkButton_Type));
 }

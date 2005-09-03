@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/netk-workspace.h
+;; From /usr/local/include/xfce4/libxfcegui4/netk-workspace.h
 
 (define-function workspace_get_type
   (c-name "netk_workspace_get_type")

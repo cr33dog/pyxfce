@@ -24,25 +24,27 @@ static PyTypeObject *_PyGObject_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceSystemTray_Type;
 
+#line 28 "systemtray.c"
+
+
 
 /* ----------- XfceSystemTray ----------- */
 
 static int
 _wrap_xfce_system_tray_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    GType obj_type = pyg_type_from_object((PyObject *) self);
     static char* kwlist[] = { NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":systemtray.SystemTray.__init__", kwlist))
         return -1;
 
-    self->obj = g_object_newv(obj_type, 0, NULL);
+    pygobject_constructv(self, 0, NULL);
+
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
         return -1;
     }
 
-    pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
 
@@ -135,6 +137,7 @@ pysystemtray_register_classes(PyObject *d)
     }
 
 
-#line 139 "systemtray.c"
+#line 141 "systemtray.c"
     pygobject_register_class(d, "XfceSystemTray", XFCE_TYPE_SYSTEM_TRAY, &PyXfceSystemTray_Type, Py_BuildValue("(O)", &PyGObject_Type));
+    pyg_set_object_has_new_constructor(XFCE_TYPE_SYSTEM_TRAY);
 }

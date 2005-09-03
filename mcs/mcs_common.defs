@@ -38,7 +38,7 @@
 )
 
 
-;; From /usr/include/xfce4/libxfce4mcs/mcs-common.h
+;; From /usr/local/include/xfce4/libxfce4mcs/mcs-common.h
 
 (define-function mcs_manager_check_running
   (c-name "mcs_manager_check_running")

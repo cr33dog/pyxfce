@@ -23,6 +23,9 @@ static PyTypeObject *_PyGObject_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyNetkClassGroup_Type;
 
+#line 27 "class_group.c"
+
+
 
 /* ----------- NetkClassGroup ----------- */
 
@@ -61,7 +64,7 @@ _wrap_netk_class_group_get_windows(PyGObject *self)
     }
     return py_list;
 }
-#line 65 "class_group.c"
+#line 68 "class_group.c"
 
 
 static PyObject *
@@ -264,6 +267,7 @@ pyclass_group_register_classes(PyObject *d)
     }
 
 
-#line 268 "class_group.c"
+#line 271 "class_group.c"
     pygobject_register_class(d, "NetkClassGroup", NETK_TYPE_CLASS_GROUP, &PyNetkClassGroup_Type, Py_BuildValue("(O)", &PyGObject_Type));
+    pyg_set_object_has_new_constructor(NETK_TYPE_CLASS_GROUP);
 }

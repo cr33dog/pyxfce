@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfce4util/utf8.h
+;; From /usr/local/include/xfce4/libxfce4util/utf8.h
 
 (define-function utf8_string_remove_controls
   (c-name "utf8_string_remove_controls")

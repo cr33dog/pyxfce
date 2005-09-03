@@ -21,6 +21,9 @@ static PyTypeObject *_PyGObject_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceMcsChannel_Type;
 
+#line 25 "xfce_mcs-channel.c"
+
+
 
 /* ----------- XfceMcsChannel ----------- */
 
@@ -158,7 +161,7 @@ static PyObject *_wrap_xfce_mcs_channel_get_setting_color(PyGObject *self, PyObj
 	Py_INCREF(Py_None);
 	return Py_None;
 }
-#line 162 "xfce_mcs-channel.c"
+#line 165 "xfce_mcs-channel.c"
 
 
 #line 77 "xfce_mcs-channel.override"
@@ -180,7 +183,7 @@ static PyObject *_wrap_xfce_mcs_channel_get_setting_int(PyGObject *self, PyObjec
 	Py_INCREF(Py_None);
 	return Py_None;
 }
-#line 184 "xfce_mcs-channel.c"
+#line 187 "xfce_mcs-channel.c"
 
 
 static PyObject *
@@ -248,7 +251,7 @@ static PyObject *_wrap_xfce_mcs_channel_set_setting_color(PyGObject *self, PyObj
 	Py_INCREF(Py_None);
 	return Py_None;
 }
-#line 252 "xfce_mcs-channel.c"
+#line 255 "xfce_mcs-channel.c"
 
 
 static PyObject *
@@ -405,6 +408,6 @@ pyxfce_mcs_channel_register_classes(PyObject *d)
     }
 
 
-#line 409 "xfce_mcs-channel.c"
+#line 412 "xfce_mcs-channel.c"
     pygobject_register_class(d, "XfceMcsChannel", XFCE_TYPE_MCS_CHANNEL, &PyXfceMcsChannel_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

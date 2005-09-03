@@ -13,7 +13,7 @@
 )
 
 
-;; From /usr/include/xfce4/libxfcegui4/gtktoxevent.h
+;; From /usr/local/include/xfce4/libxfcegui4/gtktoxevent.h
 
 (define-function push_event_filter
   (c-name "xfce_push_event_filter")

@@ -15,6 +15,7 @@ modulename aboutdialog
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.Dialog as PyGtkDialog_Type
+import gtk.gdk.Pixbuf as PyGdkPixbuf_Type
 %%
 ignore
 %%

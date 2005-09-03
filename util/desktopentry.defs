@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfce4util/xfce-desktopentry.h
+;; From /usr/local/include/xfce4/libxfce4util/xfce-desktopentry.h
 
 (define-method parse
   (of-object "XfceDesktopEntry")

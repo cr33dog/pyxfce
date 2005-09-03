@@ -67,7 +67,7 @@ static PyObject* _wrap_netk_tray_icon_set_screen(PyGObject *self, PyObject *args
     if (PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkTrayIcon.__init__", kwlist, &PyNetkScreen_Type, &nscreen)) {
         cnt = ScreenCount (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()));
         for(i = 0; i < cnt; i++) {
-            if (netk_screen_get (i) == nscreen->obj) {
+            if (netk_screen_get (i) == (NetkScreen*) nscreen->obj) {
                 break;
             }
         }

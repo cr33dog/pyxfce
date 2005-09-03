@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 23 "window_menu.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -48,5 +51,5 @@ pywindow_menu_register_classes(PyObject *d)
     }
 
 
-#line 52 "window_menu.c"
+#line 55 "window_menu.c"
 }

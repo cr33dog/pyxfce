@@ -21,7 +21,7 @@
 )
 
 
-;; From /usr/include/xfce4/libxfcegui4/netk-tasklist.h
+;; From /usr/local/include/xfce4/libxfcegui4/netk-tasklist.h
 
 (define-function tasklist_get_type
   (c-name "netk_tasklist_get_type")

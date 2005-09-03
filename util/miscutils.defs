@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfce4util/xfce-miscutils.h
+;; From /usr/local/include/xfce4/libxfce4util/xfce-miscutils.h
 
 (define-function version_string
   (c-name "xfce_version_string")

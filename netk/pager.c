@@ -24,6 +24,9 @@ static PyTypeObject *_PyGtkContainer_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyNetkPager_Type;
 
+#line 28 "pager.c"
+
+
 
 /* ----------- NetkPager ----------- */
 
@@ -243,6 +246,6 @@ pypager_register_classes(PyObject *d)
     }
 
 
-#line 247 "pager.c"
+#line 250 "pager.c"
     pygobject_register_class(d, "NetkPager", NETK_TYPE_PAGER, &PyNetkPager_Type, Py_BuildValue("(O)", &PyGtkContainer_Type));
 }

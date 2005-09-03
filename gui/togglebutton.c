@@ -26,6 +26,9 @@ static PyTypeObject *_PyGtkToggleButton_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceTogglebutton_Type;
 
+#line 30 "togglebutton.c"
+
+
 
 /* ----------- XfceTogglebutton ----------- */
 
@@ -170,6 +173,6 @@ pytogglebutton_register_classes(PyObject *d)
     }
 
 
-#line 174 "togglebutton.c"
+#line 177 "togglebutton.c"
     pygobject_register_class(d, "XfceTogglebutton", XFCE_TYPE_TOGGLEBUTTON, &PyXfceTogglebutton_Type, Py_BuildValue("(O)", &PyGtkToggleButton_Type));
 }

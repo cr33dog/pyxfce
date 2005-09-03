@@ -29,25 +29,27 @@ static PyTypeObject *_PyGdkPixbuf_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceScaledImage_Type;
 
+#line 33 "scaled_image.c"
+
+
 
 /* ----------- XfceScaledImage ----------- */
 
 static int
 _wrap_xfce_scaled_image_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    GType obj_type = pyg_type_from_object((PyObject *) self);
     static char* kwlist[] = { NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":scaledimage.ScaledImage.__init__", kwlist))
         return -1;
 
-    self->obj = g_object_newv(obj_type, 0, NULL);
+    pygobject_constructv(self, 0, NULL);
+
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
         return -1;
     }
 
-    pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
 
@@ -188,6 +190,7 @@ pyscaled_image_register_classes(PyObject *d)
     }
 
 
-#line 192 "scaled_image.c"
+#line 194 "scaled_image.c"
     pygobject_register_class(d, "XfceScaledImage", XFCE_TYPE_SCALED_IMAGE, &PyXfceScaledImage_Type, Py_BuildValue("(O)", &PyGtkImage_Type));
+    pyg_set_object_has_new_constructor(XFCE_TYPE_SCALED_IMAGE);
 }

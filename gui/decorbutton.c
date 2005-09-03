@@ -28,6 +28,9 @@ static PyTypeObject *_PyGtkMisc_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceDecorbutton_Type;
 
+#line 32 "decorbutton.c"
+
+
 
 /* ----------- XfceDecorbutton ----------- */
 
@@ -153,6 +156,6 @@ pydecorbutton_register_classes(PyObject *d)
     }
 
 
-#line 157 "decorbutton.c"
+#line 160 "decorbutton.c"
     pygobject_register_class(d, "XfceDecorbutton", XFCE_TYPE_DECORBUTTON, &PyXfceDecorbutton_Type, Py_BuildValue("(O)", &PyGtkMisc_Type));
 }

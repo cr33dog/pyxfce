@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 23 "colorbutton.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -70,5 +73,5 @@ pycolorbutton_register_classes(PyObject *d)
     }
 
 
-#line 74 "colorbutton.c"
+#line 77 "colorbutton.c"
 }

@@ -22,25 +22,27 @@ static PyTypeObject *_PyGObject_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceMcsClient_Type;
 
+#line 26 "xfce_mcs-client.c"
+
+
 
 /* ----------- XfceMcsClient ----------- */
 
 static int
 _wrap_xfce_mcs_client_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    GType obj_type = pyg_type_from_object((PyObject *) self);
     static char* kwlist[] = { NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":xfce4.mcs.Client.__init__", kwlist))
         return -1;
 
-    self->obj = g_object_newv(obj_type, 0, NULL);
+    pygobject_constructv(self, 0, NULL);
+
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
         return -1;
     }
 
-    pygobject_register_wrapper((PyObject *)self);
     return 0;
 }
 
@@ -225,6 +227,7 @@ pyxfce_mcs_client_register_classes(PyObject *d)
     }
 
 
-#line 229 "xfce_mcs-client.c"
+#line 231 "xfce_mcs-client.c"
     pygobject_register_class(d, "XfceMcsClient", XFCE_TYPE_MCS_CLIENT, &PyXfceMcsClient_Type, Py_BuildValue("(O)", &PyGObject_Type));
+    pyg_set_object_has_new_constructor(XFCE_TYPE_MCS_CLIENT);
 }

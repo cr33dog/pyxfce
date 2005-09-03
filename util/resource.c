@@ -20,6 +20,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 24 "resource.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -145,5 +148,5 @@ pyresource_register_classes(PyObject *d)
     }
 
 
-#line 149 "resource.c"
+#line 152 "resource.c"
 }

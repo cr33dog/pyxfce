@@ -19,6 +19,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 23 "miscutils.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -87,5 +90,5 @@ pymiscutils_register_classes(PyObject *d)
     }
 
 
-#line 91 "miscutils.c"
+#line 94 "miscutils.c"
 }

@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/netk-trayicon.h
+;; From /usr/local/include/xfce4/libxfcegui4/netk-trayicon.h
 
 (define-function tray_icon_get_type
   (c-name "netk_tray_icon_get_type")

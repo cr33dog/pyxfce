@@ -26,6 +26,9 @@ static PyTypeObject *_PyNetkScreen_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyNetkTasklist_Type;
 
+#line 30 "tasklist.c"
+
+
 
 /* ----------- NetkTasklist ----------- */
 
@@ -79,7 +82,7 @@ _wrap_netk_tasklist_get_size_hint_list(PyGObject *self)
 
     return py_tuple;
 }
-#line 83 "tasklist.c"
+#line 86 "tasklist.c"
 
 
 static PyObject *
@@ -324,6 +327,6 @@ pytasklist_register_classes(PyObject *d)
     }
 
 
-#line 328 "tasklist.c"
+#line 331 "tasklist.c"
     pygobject_register_class(d, "NetkTasklist", NETK_TYPE_TASKLIST, &PyNetkTasklist_Type, Py_BuildValue("(O)", &PyGtkContainer_Type));
 }

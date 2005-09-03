@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/include/xfce4/libxfcegui4/xfce_aboutdialog.h
+;; From /usr/local/include/xfce4/libxfcegui4/xfce_aboutdialog.h
 
 (define-function about_info_new
   (c-name "xfce_about_info_new")
@@ -88,7 +88,7 @@
 (define-function about_dialog_new_empty
   (c-name "xfce_about_dialog_new_empty")
   (is-constructor-of "XfceAboutDialog")
-  (return-type "XfceAboutDialog*")
+  (return-type "GtkWidget*")
 )
 
 (define-method set_program
@@ -145,6 +145,15 @@
   )
 )
 
+(define-method set_icon
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_set_icon")
+  (return-type "none")
+  (parameters
+    '("GdkPixbuf*" "icon")
+  )
+)
+
 (define-method add_credit
   (of-object "XfceAboutDialog")
   (c-name "xfce_about_dialog_add_credit")
@@ -190,6 +199,12 @@
   (of-object "XfceAboutDialog")
   (c-name "xfce_about_dialog_get_homepage")
   (return-type "const-gchar*")
+)
+
+(define-method get_icon
+  (of-object "XfceAboutDialog")
+  (c-name "xfce_about_dialog_get_icon")
+  (return-type "GdkPixbuf*")
 )
 
 

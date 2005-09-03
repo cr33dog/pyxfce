@@ -22,6 +22,9 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 26 "filechooser.c"
+
+
 
 /* ----------- functions ----------- */
 
@@ -63,5 +66,5 @@ pyfilechooser_register_classes(PyObject *d)
     }
 
 
-#line 67 "filechooser.c"
+#line 70 "filechooser.c"
 }

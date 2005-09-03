@@ -28,6 +28,9 @@ static PyTypeObject *_PyGtkWidget_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceFramebox_Type;
 
+#line 32 "framebox.c"
+
+
 
 /* ----------- XfceFramebox ----------- */
 
@@ -163,6 +166,6 @@ pyframebox_register_classes(PyObject *d)
     }
 
 
-#line 167 "framebox.c"
+#line 170 "framebox.c"
     pygobject_register_class(d, "XfceFramebox", XFCE_TYPE_FRAMEBOX, &PyXfceFramebox_Type, Py_BuildValue("(O)", &PyGtkFrame_Type));
 }
