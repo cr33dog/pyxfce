@@ -11,6 +11,31 @@ extern PyTypeObject PyGtkWidget_Type;
 
 static void plugin_construct (XfcePanelPlugin *plugin)
 {
+  PyObject* py;
+  PyGILState_STATE state;
+
+  state = pyg_gil_state_ensure();
+
+  py = pygobject_new((GObject*) plugin);
+
+  PyObject* retobj;
+
+  PyObject* py_method;
+
+  py_method = PyObject_GetAttrString(py, "do_connect_widget_destroyed");
+  if (!py_method) {
+    if (PyErr_Occurred())
+      PyErr_Print();
+  } else {
+    retobj = PyEval_CallObject(py_method, NULL); 
+    Py_DECREF(py_method);
+
+    if (retobj) {
+      Py_DECREF(retobj);
+    }
+  }
+
+  pyg_gil_state_release(state);
 }
 
 static void plugin_free_data (XfcePanelPlugin *plugin)
@@ -29,7 +54,7 @@ static void plugin_about (XfcePanelPlugin *plugin)
 {
 }
 
-static void plugin_set_size (XfcePanelPlugin *plugin)
+static void plugin_set_size (XfcePanelPlugin *plugin, int size)
 {
 }
 
@@ -42,7 +67,7 @@ static XfcePanelPluginInfo info = {
    plugin_configure, /* run configuration dialog */
    plugin_about,     /* show about dialog */
    plugin_set_size   /* adjust to new panel size */
-}
+};
 
 %%
 include
@@ -72,7 +97,7 @@ _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *
                                      kwlist, &PyGdkScreen_Type, &gscreen))
         return -1;
 */
-    self->obj = (GObject *)xfce_external_panel_plugin_new (,, &info);
+    self->obj = (GObject *)xfce_external_panel_plugin_new (NULL, NULL, &info);
 
     pygobject_register_wrapper((PyObject *)self);
 
