@@ -9,7 +9,7 @@ headers
 
 extern PyTypeObject PyGtkWidget_Type;
 
-static void plugin_construct (XfcePanelPlugin *plugin)
+static void call_helper(XfcePanelPlugin* plugin, char const* fn)
 {
   PyObject* py;
   PyGILState_STATE state;
@@ -20,7 +20,7 @@ static void plugin_construct (XfcePanelPlugin *plugin)
 
   py = pygobject_new((GObject*) plugin);
 
-  py_method = PyObject_GetAttrString(py, "do_plugin_construct");
+  py_method = PyObject_GetAttrString(py, fn);
   if (!py_method) {
     if (PyErr_Occurred())
       PyErr_Print();
@@ -32,28 +32,41 @@ static void plugin_construct (XfcePanelPlugin *plugin)
       Py_DECREF(retobj);
     }
   }
+  Py_DECREF(py);
 
   pyg_gil_state_release(state);
 }
 
+static void plugin_construct (XfcePanelPlugin *plugin)
+{
+  /* questionable */
+  call_helper(plugin, "do_construct");
+}
+
 static void plugin_free_data (XfcePanelPlugin *plugin)
 {
+  /* questionable */
+  call_helper(plugin, "do_free_data");
 }
 
 static void plugin_save (XfcePanelPlugin *plugin)
 {
+  call_helper(plugin, "do_save");
 }
 
 static void plugin_configure (XfcePanelPlugin *plugin)
 {
+  call_helper(plugin, "do_configure");
 }
 
 static void plugin_about (XfcePanelPlugin *plugin)
 {
+  call_helper(plugin, "do_about");
 }
 
 static void plugin_set_size (XfcePanelPlugin *plugin, int size)
 {
+/* TODO  call_helper(plugin, "do_plugin_free_data"); */
 }
 
 /* values may be NULL, except api_version */
