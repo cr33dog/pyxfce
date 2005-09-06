@@ -55,7 +55,7 @@ BM_DEPEND_CHECK([MIGHTY_MOUSE], [libxfce4panel-1.0], [4.3.17], [mighty-mouse], [
 BM_DEPEND([XFCE4_MCS_CLIENT], [libxfce4mcs-client-1.0], [4.1.0])
 BM_DEPEND([XFCE4_MCS_MANAGER], [libxfce4mcs-manager-1.0], [4.1.0])
 BM_DEPEND([GTK], [gtk+-2.0], [2.4])
-BM_DEPEND([PYGTK], [pygtk-2.0], [2.4.0])
+BM_DEPEND([PYGTK], [pygtk-2.0], [2.6.0])
 
 BM_DEBUG_SUPPORT
 
