@@ -6,6 +6,12 @@ test -z "$srcdir" && srcdir=.
 
 DIE=0
 
+automake=automake
+aclocal=aclocal
+
+automake=automake-1.8
+aclocal=aclocal-1.8
+
 ACLOCAL_FLAGS="-I m4 $ACLOCAL_FLAGS"
 
 (test -f $srcdir/configure.ac) || {
@@ -61,7 +67,7 @@ ACLOCAL_FLAGS="-I m4 $ACLOCAL_FLAGS"
   }
 }
 
-(automake --version) < /dev/null > /dev/null 2>&1 || {
+(${automake} --version) < /dev/null > /dev/null 2>&1 || {
   echo
   echo "**Error**: You must have \`automake' installed."
   echo "You can get it from: ftp://ftp.gnu.org/pub/gnu/"
@@ -71,7 +77,7 @@ ACLOCAL_FLAGS="-I m4 $ACLOCAL_FLAGS"
 
 
 # if no automake, don't bother testing for aclocal
-test -n "$NO_AUTOMAKE" || (aclocal --version) < /dev/null > /dev/null 2>&1 || {
+test -n "$NO_AUTOMAKE" || (${aclocal} --version) < /dev/null > /dev/null 2>&1 || {
   echo
   echo "**Error**: Missing \`aclocal'.  The version of \`automake'"
   echo "installed doesn't appear recent enough."
@@ -133,7 +139,7 @@ do
 	fi
       fi
       echo "Running aclocal $aclocalinclude ..."
-      aclocal $aclocalinclude
+      ${aclocal} $aclocalinclude
       if grep "^AM_CONFIG_HEADER" configure.ac >/dev/null; then
 	echo "Running autoheader..."
 	autoheader
@@ -143,7 +149,7 @@ grep -v "#undef const" config.h.in >config.h.in.new && mv config.h.in.new config
 # end dannym
 
       echo "Running automake --foreign $am_opt ..."
-      automake --add-missing --foreign  --force --copy $am_opt
+      ${automake} --add-missing --foreign  --force --copy $am_opt
       echo "Running autoconf ..."
       autoconf
     )
