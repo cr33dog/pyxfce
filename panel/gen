@@ -17,6 +17,7 @@ do
 		defs="${defs/xfce_panel_/}"
 		defs="${defs/xfce_/}"
 		[ "${defs}" = "internal_plugin.defs" ] && continue
+		[ "${defs}" = "plugin.defs" ] && continue
 		
 		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
 	fi
