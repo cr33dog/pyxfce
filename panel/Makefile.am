@@ -18,16 +18,27 @@ _panel_la_CFLAGS = $(XFCE4_PANEL_CFLAGS) $(PYTHON_CFLAGS) $(PYGTK_CFLAGS)
 _panel_la_LDFLAGS = $(common_ldflags)
 _panel_la_LIBADD = $(XFCE4_PANEL_LIBS) $(PYTHON_LIBS)
 _panel_la_SOURCES = \
-	icons.c \
-	support.c \
+	arrow_button.c \
+	enums.c \
+	external_plugin.c \
+	itembar.defs.c \
+	plugin.defs.c \
+	plugin_iface.c \
+	window.c \
 	panelmodule.c
 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
-	icons.defs \
-	support.defs
+	arrow_button.defs \
+	enums.defs \
+	external_plugin.defs \
+	itembar.defs \
+	plugin.defs \
+	plugin_iface.defs \
+	window.defs
 
-panel_overrides = icons.override support.override template.override
+panel_overrides = arrow_button.override enums.override external_plugin.override \
+  itembar.override plugin.override plugin_iface.override window.override
 
 EXTRA_DIST = $(defs_DATA) $(panel_overrides) gen
 nodist__panel_la_SOURCES = 

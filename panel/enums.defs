@@ -1,0 +1,31 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum ScreenPosition
+  (in-module "Xfce")
+  (c-name "XfceScreenPosition")
+  (gtype-id "XFCE_TYPE_SCREEN_POSITION")
+  (values
+    '("none" "XFCE_SCREEN_POSITION_NONE")
+    '("nw-h" "XFCE_SCREEN_POSITION_NW_H")
+    '("n" "XFCE_SCREEN_POSITION_N")
+    '("ne-h" "XFCE_SCREEN_POSITION_NE_H")
+    '("nw-v" "XFCE_SCREEN_POSITION_NW_V")
+    '("w" "XFCE_SCREEN_POSITION_W")
+    '("sw-v" "XFCE_SCREEN_POSITION_SW_V")
+    '("ne-v" "XFCE_SCREEN_POSITION_NE_V")
+    '("e" "XFCE_SCREEN_POSITION_E")
+    '("se-v" "XFCE_SCREEN_POSITION_SE_V")
+    '("sw-h" "XFCE_SCREEN_POSITION_SW_H")
+    '("s" "XFCE_SCREEN_POSITION_S")
+    '("se-h" "XFCE_SCREEN_POSITION_SE_H")
+    '("floating-h" "XFCE_SCREEN_POSITION_FLOATING_H")
+    '("floating-v" "XFCE_SCREEN_POSITION_FLOATING_V")
+  )
+)
+
+
+;; From /usr/local/include/xfce4/panel/xfce-panel-enums.h
+
+
