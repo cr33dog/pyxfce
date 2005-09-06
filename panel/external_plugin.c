@@ -74,6 +74,10 @@ call_helper(XfcePanelPlugin* plugin, char const* fn)
       PyErr_Print();
   } else {
     retobj = PyEval_CallObject(py_method, NULL); 
+
+    if (PyErr_Occurred())
+      PyErr_Print();
+
     Py_DECREF(py_method);
 
     if (retobj) {
@@ -82,6 +86,7 @@ call_helper(XfcePanelPlugin* plugin, char const* fn)
   }
   Py_DECREF(py);
 
+  PyErr_Clear();
   pyg_gil_state_release(state);
 }
 
@@ -134,6 +139,9 @@ static void plugin_set_size (XfcePanelPlugin *plugin, int size)
 
     retobj = PyEval_CallObject(py_method, py_args);
 
+    if (PyErr_Occurred())
+      PyErr_Print();
+
     Py_DECREF(py_args);
     Py_DECREF(py_args);
     Py_DECREF(py_method);
@@ -144,6 +152,7 @@ static void plugin_set_size (XfcePanelPlugin *plugin, int size)
   }
   Py_DECREF(py);
 
+  PyErr_Clear();
   pyg_gil_state_release(state);
 }
 
@@ -158,7 +167,7 @@ static XfcePanelPluginInfo info = {
    plugin_set_size   /* adjust to new panel size */
 };
 
-#line 162 "external_plugin.c"
+#line 171 "external_plugin.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -173,13 +182,13 @@ static PyTypeObject *_PyGtkPlug_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceExternalPanelPlugin_Type;
 
-#line 177 "external_plugin.c"
+#line 186 "external_plugin.c"
 
 
 
 /* ----------- XfceExternalPanelPlugin ----------- */
 
-#line 176 "external_plugin.override"
+#line 185 "external_plugin.override"
 static int
 _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -195,7 +204,7 @@ _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *
 
     return 0;
 }
-#line 199 "external_plugin.c"
+#line 208 "external_plugin.c"
 
 
 PyTypeObject PyXfceExternalPanelPlugin_Type = {
@@ -293,6 +302,6 @@ pyexternal_plugin_register_classes(PyObject *d)
     }
 
 
-#line 297 "external_plugin.c"
+#line 306 "external_plugin.c"
     pygobject_register_class(d, "XfceExternalPanelPlugin", XFCE_TYPE_EXTERNAL_PANEL_PLUGIN, &PyXfceExternalPanelPlugin_Type, Py_BuildValue("(O)", &PyGtkPlug_Type));
 }
