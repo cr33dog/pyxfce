@@ -5,18 +5,16 @@
 headers
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/xfce-arrow-button.h>
+#include <panel/xfce-panel-enums.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 
 %%
 include
 %%
-modulename arrowbutton
+modulename enumtypes
 %%
 import gobject.GObject as PyGObject_Type
-import gtk.Widget as PyGtkWidget_Type
-import gtk.ToggleButton as PyGtkToggleButton_Type
 %%
 ignore
 %%

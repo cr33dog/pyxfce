@@ -26,12 +26,6 @@
   )
 )
 
-(define-method get_orientation
-  (of-object "XfceItembar")
-  (c-name "xfce_itembar_get_orientation")
-  (return-type "GtkOrientation")
-)
-
 (define-method set_orientation
   (of-object "XfceItembar")
   (c-name "xfce_itembar_set_orientation")
@@ -39,6 +33,12 @@
   (parameters
     '("GtkOrientation" "orientation")
   )
+)
+
+(define-method get_orientation
+  (of-object "XfceItembar")
+  (c-name "xfce_itembar_get_orientation")
+  (return-type "GtkOrientation")
 )
 
 (define-method insert
@@ -79,15 +79,6 @@
   )
 )
 
-(define-method get_child_expand
-  (of-object "XfceItembar")
-  (c-name "xfce_itembar_get_child_expand")
-  (return-type "gboolean")
-  (parameters
-    '("GtkWidget*" "item")
-  )
-)
-
 (define-method set_child_expand
   (of-object "XfceItembar")
   (c-name "xfce_itembar_set_child_expand")
@@ -95,6 +86,15 @@
   (parameters
     '("GtkWidget*" "item")
     '("gboolean" "expand")
+  )
+)
+
+(define-method get_child_expand
+  (of-object "XfceItembar")
+  (c-name "xfce_itembar_get_child_expand")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWidget*" "item")
   )
 )
 

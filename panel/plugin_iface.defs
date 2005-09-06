@@ -40,6 +40,15 @@
   (return-type "XfceScreenPosition")
 )
 
+(define-method set_expand
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_set_expand")
+  (return-type "none")
+  (parameters
+    '("gboolean" "expand")
+  )
+)
+
 (define-method get_expand
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_get_expand")
@@ -50,15 +59,6 @@
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_get_orientation")
   (return-type "GtkOrientation")
-)
-
-(define-method set_expand
-  (of-object "XfcePanelPlugin")
-  (c-name "xfce_panel_plugin_set_expand")
-  (return-type "none")
-  (parameters
-    '("gboolean" "expand")
-  )
 )
 
 (define-method set_data

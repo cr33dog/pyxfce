@@ -14,12 +14,13 @@ INCLUDES = $(PYTHON_INCLUDES)
 pyxfceexecdir = $(pyexecdir)/xfce4
 pyxfceexec_LTLIBRARIES = _panel.la
 pyxfceexec_PYTHON = panel.py
-_panel_la_CFLAGS = $(XFCE4_PANEL_CFLAGS) $(PYTHON_CFLAGS) $(PYGTK_CFLAGS)
+_panel_la_CFLAGS = $(MIGHTY_MOUSE_CFLAGS) $(PYTHON_CFLAGS) $(PYGTK_CFLAGS)
 _panel_la_LDFLAGS = $(common_ldflags)
-_panel_la_LIBADD = $(XFCE4_PANEL_LIBS) $(PYTHON_LIBS)
+_panel_la_LIBADD = $(MIGHTY_MOUSE_LIBS) $(PYTHON_LIBS)
 _panel_la_SOURCES = \
 	arrow_button.c \
 	enums.c \
+	enum_types.c \
 	external_plugin.c \
 	itembar.defs.c \
 	plugin.defs.c \
@@ -31,6 +32,7 @@ defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
 	arrow_button.defs \
 	enums.defs \
+	enum_types.defs \
 	external_plugin.defs \
 	itembar.defs \
 	plugin.defs \

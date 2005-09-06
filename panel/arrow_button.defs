@@ -26,12 +26,6 @@
   )
 )
 
-(define-method get_arrow_type
-  (of-object "XfceArrowButton")
-  (c-name "xfce_arrow_button_get_arrow_type")
-  (return-type "GtkArrowType")
-)
-
 (define-method set_arrow_type
   (of-object "XfceArrowButton")
   (c-name "xfce_arrow_button_set_arrow_type")
@@ -39,6 +33,12 @@
   (parameters
     '("GtkArrowType" "type")
   )
+)
+
+(define-method get_arrow_type
+  (of-object "XfceArrowButton")
+  (c-name "xfce_arrow_button_get_arrow_type")
+  (return-type "GtkArrowType")
 )
 
 

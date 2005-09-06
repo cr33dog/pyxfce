@@ -35,12 +35,6 @@
   (return-type "GtkWidget*")
 )
 
-(define-method get_orientation
-  (of-object "XfcePanelWindow")
-  (c-name "xfce_panel_window_get_orientation")
-  (return-type "GtkOrientation")
-)
-
 (define-method set_orientation
   (of-object "XfcePanelWindow")
   (c-name "xfce_panel_window_set_orientation")
@@ -50,10 +44,10 @@
   )
 )
 
-(define-method get_handle_style
+(define-method get_orientation
   (of-object "XfcePanelWindow")
-  (c-name "xfce_panel_window_get_handle_style")
-  (return-type "XfceHandleStyle")
+  (c-name "xfce_panel_window_get_orientation")
+  (return-type "GtkOrientation")
 )
 
 (define-method set_handle_style
@@ -61,7 +55,25 @@
   (c-name "xfce_panel_window_set_handle_style")
   (return-type "none")
   (parameters
-    '("XfceHandleStyle" "style")
+    '("XfceHandleStyle" "handle_style")
+  )
+)
+
+(define-method get_handle_style
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_get_handle_style")
+  (return-type "XfceHandleStyle")
+)
+
+(define-method set_show_border
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_set_show_border")
+  (return-type "none")
+  (parameters
+    '("gboolean" "top_border")
+    '("gboolean" "bottom_border")
+    '("gboolean" "left_border")
+    '("gboolean" "right_border")
   )
 )
 
@@ -70,32 +82,10 @@
   (c-name "xfce_panel_window_get_show_border")
   (return-type "none")
   (parameters
-    '("gboolean*" "top")
-    '("gboolean*" "bottom")
-    '("gboolean*" "left")
-    '("gboolean*" "right")
-  )
-)
-
-(define-method set_show_border
-  (of-object "XfcePanelWindow")
-  (c-name "xfce_panel_window_set_show_border")
-  (return-type "none")
-  (parameters
-    '("gboolean" "top")
-    '("gboolean" "bottom")
-    '("gboolean" "left")
-    '("gboolean" "right")
-  )
-)
-
-(define-method set_move_function
-  (of-object "XfcePanelWindow")
-  (c-name "xfce_panel_window_set_move_function")
-  (return-type "none")
-  (parameters
-    '("XfcePanelWindowMoveFunc" "function")
-    '("gpointer" "data")
+    '("gboolean*" "top_border")
+    '("gboolean*" "bottom_border")
+    '("gboolean*" "left_border")
+    '("gboolean*" "right_border")
   )
 )
 
@@ -109,10 +99,14 @@
   )
 )
 
-(define-method get_movable
+(define-method set_move_function
   (of-object "XfcePanelWindow")
-  (c-name "xfce_panel_window_get_movable")
-  (return-type "gboolean")
+  (c-name "xfce_panel_window_set_move_function")
+  (return-type "none")
+  (parameters
+    '("XfcePanelWindowMoveFunc" "function")
+    '("gpointer" "data")
+  )
 )
 
 (define-method set_movable
@@ -122,6 +116,12 @@
   (parameters
     '("gboolean" "movable")
   )
+)
+
+(define-method get_movable
+  (of-object "XfcePanelWindow")
+  (c-name "xfce_panel_window_get_movable")
+  (return-type "gboolean")
 )
 
 
