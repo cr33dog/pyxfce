@@ -22,7 +22,7 @@ static void call_helper(XfcePanelPlugin* plugin, char const* fn)
 
   py = pygobject_new((GObject*) plugin);
 
-  py_method = PyObject_GetAttrString(py, fn);
+  py_method = PyObject_GetAttrString(py, (char*) fn);
   if (!py_method) {
     if (PyErr_Occurred())
       PyErr_Print();
@@ -68,7 +68,37 @@ static void plugin_about (XfcePanelPlugin *plugin)
 
 static void plugin_set_size (XfcePanelPlugin *plugin, int size)
 {
-/* TODO  call_helper(plugin, "do_plugin_free_data"); */
+  PyObject* py;
+  PyGILState_STATE state;
+  PyObject* retobj;
+  PyObject* py_method;
+  PyObject* py_args;
+
+  state = pyg_gil_state_ensure();
+
+  py = pygobject_new((GObject*) plugin);
+
+  py_method = PyObject_GetAttrString(py, "do_set_size");
+  if (!py_method) {
+    if (PyErr_Occurred())
+      PyErr_Print();
+  } else {
+    py_args = PyTuple_New(1);
+    PyTuple_SET_ITEM(py_args, 0, PyInt_FromLong(size));
+
+    retobj = PyEval_CallObject(py_method, py_args);
+
+    Py_DECREF(py_args);
+    Py_DECREF(py_args);
+    Py_DECREF(py_method);
+
+    if (retobj) {
+      Py_DECREF(retobj);
+    }
+  }
+  Py_DECREF(py);
+
+  pyg_gil_state_release(state);
 }
 
 /* values may be NULL, except api_version */
@@ -82,7 +112,7 @@ static XfcePanelPluginInfo info = {
    plugin_set_size   /* adjust to new panel size */
 };
 
-#line 86 "external_plugin.c"
+#line 116 "external_plugin.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -97,13 +127,13 @@ static PyTypeObject *_PyGtkPlug_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceExternalPanelPlugin_Type;
 
-#line 101 "external_plugin.c"
+#line 131 "external_plugin.c"
 
 
 
 /* ----------- XfceExternalPanelPlugin ----------- */
 
-#line 100 "external_plugin.override"
+#line 130 "external_plugin.override"
 static int
 _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -121,7 +151,7 @@ _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *
 
     return 0;
 }
-#line 125 "external_plugin.c"
+#line 155 "external_plugin.c"
 
 
 PyTypeObject PyXfceExternalPanelPlugin_Type = {
@@ -219,6 +249,6 @@ pyexternal_plugin_register_classes(PyObject *d)
     }
 
 
-#line 223 "external_plugin.c"
+#line 253 "external_plugin.c"
     pygobject_register_class(d, "XfceExternalPanelPlugin", XFCE_TYPE_EXTERNAL_PANEL_PLUGIN, &PyXfceExternalPanelPlugin_Type, Py_BuildValue("(O)", &PyGtkPlug_Type));
 }

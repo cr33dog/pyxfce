@@ -20,7 +20,7 @@ static void call_helper(XfcePanelPlugin* plugin, char const* fn)
 
   py = pygobject_new((GObject*) plugin);
 
-  py_method = PyObject_GetAttrString(py, fn);
+  py_method = PyObject_GetAttrString(py, (char*) fn);
   if (!py_method) {
     if (PyErr_Occurred())
       PyErr_Print();
@@ -66,7 +66,37 @@ static void plugin_about (XfcePanelPlugin *plugin)
 
 static void plugin_set_size (XfcePanelPlugin *plugin, int size)
 {
-/* TODO  call_helper(plugin, "do_plugin_free_data"); */
+  PyObject* py;
+  PyGILState_STATE state;
+  PyObject* retobj;
+  PyObject* py_method;
+  PyObject* py_args;
+
+  state = pyg_gil_state_ensure();
+
+  py = pygobject_new((GObject*) plugin);
+
+  py_method = PyObject_GetAttrString(py, "do_set_size");
+  if (!py_method) {
+    if (PyErr_Occurred())
+      PyErr_Print();
+  } else {
+    py_args = PyTuple_New(1);
+    PyTuple_SET_ITEM(py_args, 0, PyInt_FromLong(size));
+
+    retobj = PyEval_CallObject(py_method, py_args);
+
+    Py_DECREF(py_args);
+    Py_DECREF(py_args);
+    Py_DECREF(py_method);
+
+    if (retobj) {
+      Py_DECREF(retobj);
+    }
+  }
+  Py_DECREF(py);
+
+  pyg_gil_state_release(state);
 }
 
 /* values may be NULL, except api_version */
