@@ -6,7 +6,7 @@ headers
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <panel/xfce-panel-window.h>
-#include <panel/xfce-enum-types.h>
+#include <panel/xfce-panel-enum-types.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 
@@ -17,6 +17,7 @@ modulename support
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.Widget as PyGtkWidget_Type
+import gtk.Window as PyGtkWindow_Type
 %%
 ignore
 %%
