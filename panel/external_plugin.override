@@ -13,16 +13,14 @@ static void plugin_construct (XfcePanelPlugin *plugin)
 {
   PyObject* py;
   PyGILState_STATE state;
+  PyObject* retobj;
+  PyObject* py_method;
 
   state = pyg_gil_state_ensure();
 
   py = pygobject_new((GObject*) plugin);
 
-  PyObject* retobj;
-
-  PyObject* py_method;
-
-  py_method = PyObject_GetAttrString(py, "do_connect_widget_destroyed");
+  py_method = PyObject_GetAttrString(py, "do_plugin_construct");
   if (!py_method) {
     if (PyErr_Occurred())
       PyErr_Print();
