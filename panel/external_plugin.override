@@ -74,6 +74,8 @@ call_helper(XfcePanelPlugin* plugin, char const* fn)
     retobj = PyEval_CallObject(py_method, NULL); 
     Py_DECREF(py_method);
 
+/* TODO print+clear exceptions */
+
     if (retobj) {
       Py_DECREF(retobj);
     }
