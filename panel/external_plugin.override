@@ -9,6 +9,41 @@ headers
 
 extern PyTypeObject PyGtkWidget_Type;
 
+static void plugin_construct (XfcePanelPlugin *plugin)
+{
+}
+
+static void plugin_free_data (XfcePanelPlugin *plugin)
+{
+}
+
+static void plugin_save (XfcePanelPlugin *plugin)
+{
+}
+
+static void plugin_configure (XfcePanelPlugin *plugin)
+{
+}
+
+static void plugin_about (XfcePanelPlugin *plugin)
+{
+}
+
+static void plugin_set_size (XfcePanelPlugin *plugin)
+{
+}
+
+/* values may be NULL, except api_version */
+static XfcePanelPluginInfo info = {
+   XFCE_PANEL_PLUGIN_API_VERSION,  /* from header file */
+   plugin_construct, /* create widget content (plugin is a GtkContainer) */
+   plugin_free_data, /* free allocated data */
+   plugin_save,      /* save configuration */
+   plugin_configure, /* run configuration dialog */
+   plugin_about,     /* show about dialog */
+   plugin_set_size   /* adjust to new panel size */
+}
+
 %%
 include
 %%
@@ -25,3 +60,21 @@ ignore-glob
 %%
 ignore-win32
 %%
+override xfce_external_panel_plugin_new kwargs
+static int
+_wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+/*
+    static char *kwlist[] = { "", NULL };
+
+    if (!PyArg_ParseTupleAndKeywords(args,kwargs,
+                                     "O!:XfceExternalPanelPlugin.__init__",
+                                     kwlist, &PyGdkScreen_Type, &gscreen))
+        return -1;
+*/
+    self->obj = (GObject *)xfce_external_panel_plugin_new (,, &info);
+
+    pygobject_register_wrapper((PyObject *)self);
+
+    return 0;
+}
