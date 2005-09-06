@@ -7,14 +7,12 @@ headers
 #include <gtk/gtk.h>
 #include <panel/>
 
-etwe+baba;
-
 extern PyTypeObject PyGtkWidget_Type;
 
 %%
 include
 %%
-modulename support
+modulename plugin
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.Widget as PyGtkWidget_Type

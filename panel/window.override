@@ -5,9 +5,7 @@
 headers
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/>
-
-etwe+baba;
+#include <panel/xfce-panel-window.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 

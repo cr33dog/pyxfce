@@ -5,16 +5,14 @@
 headers
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/>
-
-etwe+baba;
+#include <panel/xfce-itembar.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 
 %%
 include
 %%
-modulename support
+modulename itembar
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.Widget as PyGtkWidget_Type
