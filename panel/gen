@@ -1,35 +1,43 @@
 #!/bin/sh
 
-for s in /usr/include/xfce4/panel/*.h
+inc="`pkg-config --variable=includedir libxfce4panel-1.0`"/xfce4/panel
+
+for s in "${inc}"/*.h
 do
 	t="${s##*/}"
 	
 	t="${t%.h}"
 	
-	if [ "${t#netk-}" = "$t" ]
+	if [ "${t#xfce_panel_}" = "$t" ]
 	then
 		defs="${t/-/_}.defs"
 		defs="${defs/-/_}"
+		defs="${defs/-/_}"
+		defs="${defs/-/_}"
+		defs="${defs/xfce_panel_/}"
+		defs="${defs/xfce_/}"
+		[ "${defs}" = "internal_plugin.defs" ] && continue
+		
 		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
 	fi
 done
-rm -f util.defs
-
-mv xfce_support.defs support.defs
-
-#mmv -o 'xfce-*.defs' '#1.defs'
-#rm -f libxfce4util.defs
-#rm -f libxfce4util-config.defs
-#rm -f generics.defs
-#rm -f debug.defs
-rm -f add_control_dialog.defs # not yet done
-rm -f controls.defs # not yet done
-rm -f global.defs # not yet done
-cp -f icons.defs.manual icons.defs
-rm -f item.defs # not yet done
-rm -f item_dialog.defs # not yet done
-#rm -f main.defs
-rm -f panel_command.defs # not yet done. easy though.
-rm -f panel.defs # not yet done.
-rm -f plugins.defs # not yet done. easy though.
-rm -f xfce.defs # dummy
+##rm -f util.defs
+#
+##mv xfce_support.defs support.defs
+#
+##mmv -o 'xfce-*.defs' '#1.defs'
+##rm -f libxfce4util.defs
+##rm -f libxfce4util-config.defs
+##rm -f generics.defs
+##rm -f debug.defs
+#rm -f add_control_dialog.defs # not yet done
+#rm -f controls.defs # not yet done
+#rm -f global.defs # not yet done
+#cp -f icons.defs.manual icons.defs
+#rm -f item.defs # not yet done
+#rm -f item_dialog.defs # not yet done
+##rm -f main.defs
+#rm -f panel_command.defs # not yet done. easy though.
+#rm -f panel.defs # not yet done.
+#rm -f plugins.defs # not yet done. easy though.
+#rm -f xfce.defs # dummy
