@@ -11,6 +11,41 @@
 
 extern PyTypeObject PyGtkWidget_Type;
 
+int command_line_args_helper(char*** argv)
+{
+  int argc;
+  int i;
+  PyObject* av;
+
+  av = PySys_GetObject("argv");
+  if (!PyList_Check(av)) {
+    PyErr_Warn(PyExc_Warning, "ignoring sys.argv: it must be a list of strings");
+    av = NULL; 
+  }
+
+  if (av != NULL) {
+    argc = PyList_Size(av);
+    for (i = 0; i < argc; i++) {
+      if (!PyString_Check(PyList_GetItem(av, i))) {
+        PyErr_Warn(PyExc_Warning, "ignoring sys.argv: it must be a list of strings");
+        av = NULL;
+        break;
+      }
+    }
+  }
+
+  if (av) {
+    *argv = g_new(char *, argc + 1);
+    for (i = 0; i < argc; i++) {
+      (*argv)[i] = g_strdup(PyString_AsString(PyList_GetItem(av, i)));
+    }
+
+    (*argv)[i] = 0;
+  }
+
+  return argc;
+}
+
 static void call_helper(XfcePanelPlugin* plugin, char const* fn)
 {
   PyObject* py;
@@ -112,7 +147,7 @@ static XfcePanelPluginInfo info = {
    plugin_set_size   /* adjust to new panel size */
 };
 
-#line 116 "external_plugin.c"
+#line 151 "external_plugin.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -127,31 +162,28 @@ static PyTypeObject *_PyGtkPlug_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceExternalPanelPlugin_Type;
 
-#line 131 "external_plugin.c"
+#line 166 "external_plugin.c"
 
 
 
 /* ----------- XfceExternalPanelPlugin ----------- */
 
-#line 130 "external_plugin.override"
+#line 165 "external_plugin.override"
 static int
 _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-/*
-    static char *kwlist[] = { "", NULL };
+    char** argv;
+    int argc;
 
-    if (!PyArg_ParseTupleAndKeywords(args,kwargs,
-                                     "O!:XfceExternalPanelPlugin.__init__",
-                                     kwlist, &PyGdkScreen_Type, &gscreen))
-        return -1;
-*/
-    self->obj = (GObject *)xfce_external_panel_plugin_new (NULL, NULL, &info);
+    argv = NULL;
+    argc = command_line_args_helper(&argv);
+    self->obj = (GObject *)xfce_external_panel_plugin_new (argc, argv, &info);
 
     pygobject_register_wrapper((PyObject *)self);
 
     return 0;
 }
-#line 155 "external_plugin.c"
+#line 187 "external_plugin.c"
 
 
 PyTypeObject PyXfceExternalPanelPlugin_Type = {
@@ -249,6 +281,6 @@ pyexternal_plugin_register_classes(PyObject *d)
     }
 
 
-#line 253 "external_plugin.c"
+#line 285 "external_plugin.c"
     pygobject_register_class(d, "XfceExternalPanelPlugin", XFCE_TYPE_EXTERNAL_PANEL_PLUGIN, &PyXfceExternalPanelPlugin_Type, Py_BuildValue("(O)", &PyGtkPlug_Type));
 }
