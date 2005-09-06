@@ -11,7 +11,8 @@
 
 extern PyTypeObject PyGtkWidget_Type;
 
-int command_line_args_helper(char*** argv)
+static int 
+command_line_args_helper(char*** argv)
 {
   int argc;
   int i;
@@ -46,7 +47,17 @@ int command_line_args_helper(char*** argv)
   return argc;
 }
 
-static void call_helper(XfcePanelPlugin* plugin, char const* fn)
+static void
+command_line_args_free(int count, char** argv)
+{
+  int i;
+  for(i = 0; i < count; i++) {
+    g_free(argv[i]);
+  }
+}
+
+static void 
+call_helper(XfcePanelPlugin* plugin, char const* fn)
 {
   PyObject* py;
   PyGILState_STATE state;
@@ -147,7 +158,7 @@ static XfcePanelPluginInfo info = {
    plugin_set_size   /* adjust to new panel size */
 };
 
-#line 151 "external_plugin.c"
+#line 162 "external_plugin.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -162,13 +173,13 @@ static PyTypeObject *_PyGtkPlug_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceExternalPanelPlugin_Type;
 
-#line 166 "external_plugin.c"
+#line 177 "external_plugin.c"
 
 
 
 /* ----------- XfceExternalPanelPlugin ----------- */
 
-#line 165 "external_plugin.override"
+#line 176 "external_plugin.override"
 static int
 _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -178,12 +189,13 @@ _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *
     argv = NULL;
     argc = command_line_args_helper(&argv);
     self->obj = (GObject *)xfce_external_panel_plugin_new (argc, argv, &info);
+    command_line_args_free(argc, argv);
 
     pygobject_register_wrapper((PyObject *)self);
 
     return 0;
 }
-#line 187 "external_plugin.c"
+#line 199 "external_plugin.c"
 
 
 PyTypeObject PyXfceExternalPanelPlugin_Type = {
@@ -281,6 +293,6 @@ pyexternal_plugin_register_classes(PyObject *d)
     }
 
 
-#line 285 "external_plugin.c"
+#line 297 "external_plugin.c"
     pygobject_register_class(d, "XfceExternalPanelPlugin", XFCE_TYPE_EXTERNAL_PANEL_PLUGIN, &PyXfceExternalPanelPlugin_Type, Py_BuildValue("(O)", &PyGtkPlug_Type));
 }

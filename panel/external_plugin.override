@@ -9,7 +9,8 @@ headers
 
 extern PyTypeObject PyGtkWidget_Type;
 
-int command_line_args_helper(char*** argv)
+static int 
+command_line_args_helper(char*** argv)
 {
   int argc;
   int i;
@@ -44,7 +45,17 @@ int command_line_args_helper(char*** argv)
   return argc;
 }
 
-static void call_helper(XfcePanelPlugin* plugin, char const* fn)
+static void
+command_line_args_free(int count, char** argv)
+{
+  int i;
+  for(i = 0; i < count; i++) {
+    g_free(argv[i]);
+  }
+}
+
+static void 
+call_helper(XfcePanelPlugin* plugin, char const* fn)
 {
   PyObject* py;
   PyGILState_STATE state;
@@ -171,6 +182,7 @@ _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *
     argv = NULL;
     argc = command_line_args_helper(&argv);
     self->obj = (GObject *)xfce_external_panel_plugin_new (argc, argv, &info);
+    command_line_args_free(argc, argv);
 
     pygobject_register_wrapper((PyObject *)self);
 
