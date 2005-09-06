@@ -16,6 +16,7 @@ modulename external
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.Widget as PyGtkWidget_Type
+import gtk.Plug as PyGtkPlug_Type
 %%
 ignore
 %%

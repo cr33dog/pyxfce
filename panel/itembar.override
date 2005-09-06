@@ -16,6 +16,7 @@ modulename itembar
 %%
 import gobject.GObject as PyGObject_Type
 import gtk.Widget as PyGtkWidget_Type
+import gtk.Container as PyGtkContainer_Type
 %%
 ignore
 %%

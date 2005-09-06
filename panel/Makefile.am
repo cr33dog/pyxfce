@@ -22,8 +22,7 @@ _panel_la_SOURCES = \
 	enums.c \
 	enum_types.c \
 	external_plugin.c \
-	itembar.defs.c \
-	plugin.defs.c \
+	itembar.c \
 	plugin_iface.c \
 	window.c \
 	panelmodule.c
@@ -35,12 +34,11 @@ defs_DATA = \
 	enum_types.defs \
 	external_plugin.defs \
 	itembar.defs \
-	plugin.defs \
 	plugin_iface.defs \
 	window.defs
 
 panel_overrides = arrow_button.override enums.override external_plugin.override \
-  itembar.override plugin.override plugin_iface.override window.override
+  itembar.override plugin_iface.override window.override
 
 EXTRA_DIST = $(defs_DATA) $(panel_overrides) gen
 nodist__panel_la_SOURCES = 
