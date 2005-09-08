@@ -7,7 +7,7 @@
 #line 6 "itembar.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/xfce-itembar.h>
+#include <libxfce4panel/xfce-itembar.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 

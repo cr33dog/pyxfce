@@ -7,8 +7,8 @@
 #line 6 "window.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/xfce-panel-window.h>
-#include <panel/xfce-panel-enum-types.h>
+#include <libxfce4panel/xfce-panel-window.h>
+#include <libxfce4panel/xfce-panel-enum-types.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 

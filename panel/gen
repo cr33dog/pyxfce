@@ -1,6 +1,6 @@
 #!/bin/sh
 
-inc="`pkg-config --variable=includedir libxfce4panel-1.0`"/xfce4/panel
+inc="`pkg-config --variable=includedir libxfce4panel-1.0`"/xfce4/libxfce4panel
 
 for s in "${inc}"/*.h
 do

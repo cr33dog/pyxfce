@@ -7,7 +7,7 @@
 #line 6 "plugin_iface.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/xfce-panel-plugin-iface.h>
+#include <libxfce4panel/xfce-panel-plugin-iface.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 

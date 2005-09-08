@@ -7,7 +7,7 @@
 #line 6 "arrow_button.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/xfce-arrow-button.h>
+#include <libxfce4panel/xfce-arrow-button.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 

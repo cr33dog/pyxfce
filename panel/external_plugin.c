@@ -7,7 +7,7 @@
 #line 6 "external_plugin.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/xfce-panel-external-plugin.h>
+#include <libxfce4panel/xfce-panel-external-plugin.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 

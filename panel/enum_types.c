@@ -7,7 +7,7 @@
 #line 6 "enum_types.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/xfce-panel-enums.h>
+#include <libxfce4panel/xfce-panel-enums.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 
