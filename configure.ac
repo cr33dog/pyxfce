@@ -51,6 +51,7 @@ BM_DEPEND([XFCE4_GUI], [libxfcegui4-1.0], [4.3.4])
 # HAVE_MIGHTY_MOUSE
 
 BM_DEPEND_CHECK([MIGHTY_MOUSE], [libxfce4panel-1.0], [4.3.17], [mighty-mouse], [the new panel], [yes])
+AM_CONDITIONAL([HAVE_MIGHTY_MOUSE], [test x"$ac_cv_MIGHTY_MOUSE_check" = x"yes"])
 
 BM_DEPEND([XFCE4_MCS_CLIENT], [libxfce4mcs-client-1.0], [4.1.0])
 BM_DEPEND([XFCE4_MCS_MANAGER], [libxfce4mcs-manager-1.0], [4.1.0])
