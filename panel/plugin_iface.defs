@@ -1,3 +1,9 @@
+(define-interface PanelPlugin
+  (in-module "Xfce")
+  (c-name "XfcePanelPlugin")
+  (gtype-id "XFCE_TYPE_PANEL_PLUGIN")
+)
+      
 ;; -*- scheme -*-
 ; object definitions ...
 ;; Enumerations and flags ...
