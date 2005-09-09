@@ -1,0 +1,14 @@
+  typedef struct _XfcePanelPluginInfo XfcePanelPluginInfo;
+
+  struct _XfcePanelPluginInfo
+  {
+      const char *api_version;
+
+      void (*construct) (XfcePanelPlugin *plugin);
+      void (*free_data) (XfcePanelPlugin *plugin);
+      void (*save)      (XfcePanelPlugin *plugin);
+      void (*configure) (XfcePanelPlugin *plugin);
+      void (*about)     (XfcePanelPlugin *plugin);
+      void (*set_size)  (XfcePanelPlugin *plugin, int size);
+  }
+

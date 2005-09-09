@@ -5,5 +5,11 @@ import util
 import gui
 import netk
 import mcs
-#import panel # doesn't work yet
+import exceptions
+
+try:
+  import panel 
+except exceptions.ImportError, e:
+  pass
+  
 

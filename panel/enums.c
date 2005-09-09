@@ -4,14 +4,15 @@
 
 
 
-#line 6 "support.override"
+#line 6 "enums.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/xfce_support.h>
+#include <libxfce4panel/xfce-panel-enums.h>
+#include <libxfce4panel/xfce-panel-enum-types.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 
-#line 15 "support.c"
+#line 16 "enums.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -23,37 +24,31 @@ static PyTypeObject *_PyGtkWidget_Type;
 
 /* ---------- forward type declarations ---------- */
 
+#line 28 "enums.c"
+
+
 
 /* ----------- functions ----------- */
 
-static PyObject *
-_wrap_select_file_with_preview(PyObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "title", "path", "parent", NULL };
-    char *title, *path;
-    PyGObject *parent;
-    gchar *ret;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ssO!:select_file_with_preview", kwlist, &title, &path, &PyGtkWidget_Type, &parent))
-        return NULL;
-    ret = select_file_with_preview(title, path, GTK_WIDGET(parent->obj));
-    if (ret) {
-        PyObject *py_ret = PyString_FromString(ret);
-        g_free(ret);
-        return py_ret;
-    }
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
-PyMethodDef pysupport_functions[] = {
-    { "select_file_with_preview", (PyCFunction)_wrap_select_file_with_preview, METH_VARARGS|METH_KEYWORDS },
+PyMethodDef pyenums_functions[] = {
     { NULL, NULL, 0 }
 };
 
+
+/* ----------- enums and flags ----------- */
+
+void
+pyenums_add_constants(PyObject *module, const gchar *strip_prefix)
+{
+  pyg_enum_add(module, "ScreenPosition", strip_prefix, XFCE_TYPE_SCREEN_POSITION);
+
+  if (PyErr_Occurred())
+    PyErr_Print();
+}
+
 /* initialise stuff extension classes */
 void
-pysupport_register_classes(PyObject *d)
+pyenums_register_classes(PyObject *d)
 {
     PyObject *module;
 
@@ -87,5 +82,5 @@ pysupport_register_classes(PyObject *d)
     }
 
 
-#line 91 "support.c"
+#line 86 "enums.c"
 }

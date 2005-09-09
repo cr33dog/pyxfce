@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/panel/xfce-panel-external-plugin.h
+;; From /usr/local/include/xfce4/libxfce4panel/xfce-panel-external-plugin.h
 
 (define-function xfce_external_panel_plugin_get_type
   (c-name "xfce_external_panel_plugin_get_type")
@@ -24,7 +24,7 @@
   (parameters
     '("int" "argc")
     '("char**" "argv")
-    '("XfcePanelPluginInfo*" "info")
+    '("XfcePanelPluginFunc" "construct")
   )
 )
 

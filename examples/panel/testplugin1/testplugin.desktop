@@ -1,0 +1,5 @@
+[Xfce Panel]
+Name=pytestme
+Comment=test plugin
+Icon=fancy-icon
+X-XFCE-Exec=/home/dannym/work/src/svn/xfce4/pyxfce/trunk/examples/panel/testplugin1/testplugin.py

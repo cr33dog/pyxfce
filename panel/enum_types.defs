@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/panel/xfce-panel-enum-types.h
+;; From /usr/local/include/xfce4/libxfce4panel/xfce-panel-enum-types.h
 
 (define-function xfce_handle_style_get_type
   (c-name "xfce_handle_style_get_type")

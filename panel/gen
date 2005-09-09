@@ -1,6 +1,6 @@
 #!/bin/sh
 
-inc="`pkg-config --variable=includedir libxfce4panel-1.0`"/xfce4/panel
+inc="`pkg-config --variable=includedir libxfce4panel-1.0`"/xfce4/libxfce4panel
 
 for s in "${inc}"/*.h
 do
@@ -17,10 +17,25 @@ do
 		defs="${defs/xfce_panel_/}"
 		defs="${defs/xfce_/}"
 		[ "${defs}" = "internal_plugin.defs" ] && continue
+		[ "${defs}" = "plugin.defs" ] && continue
 		
 		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
 	fi
 done
+
+cp plugin_iface.defs plugin_iface.defs.o
+
+cat >plugin_iface.defs << EOF
+(define-interface PanelPlugin
+  (in-module "Xfce")
+  (c-name "XfcePanelPlugin")
+  (gtype-id "XFCE_TYPE_PANEL_PLUGIN")
+)
+      
+EOF
+cat plugin_iface.defs.o >> plugin_iface.defs
+rm -f plugin_iface.defs.o
+
 ##rm -f util.defs
 #
 ##mv xfce_support.defs support.defs

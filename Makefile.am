@@ -3,12 +3,14 @@
 ACLOCAL_AMFLAGS = -I m4
 
 AUTOMAKE_OPTIONS = 1.7
-SUBDIRS = gui mcs netk util 
 
 # have new panel
 if HAVE_MIGHTY_MOUSE
-SUBDIRS += panel
+SUBDIR_MIGHTY_MOUSE = panel
 endif
+
+SUBDIRS = gui mcs netk util $(SUBDIR_MIGHTY_MOUSE)
+DIST_SUBDIRS = gui mcs netk util 
 
 PLATFORM_VERSION = 4.2
 PLATFORM_WIN32 =

@@ -69,6 +69,8 @@ my_register1()
 	pyitembar_register_classes(d);
 	pyplugin_iface_register_classes(d);
 	pywindow_register_classes(d);
+	
+	pyenums_add_constants(m, "XFCE_");
 }
 
 DL_EXPORT(void)

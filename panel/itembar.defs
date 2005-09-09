@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/panel/xfce-itembar.h
+;; From /usr/local/include/xfce4/libxfce4panel/xfce-itembar.h
 
 (define-function xfce_itembar_get_type
   (c-name "xfce_itembar_get_type")

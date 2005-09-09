@@ -1,9 +1,15 @@
+(define-interface PanelPlugin
+  (in-module "Xfce")
+  (c-name "XfcePanelPlugin")
+  (gtype-id "XFCE_TYPE_PANEL_PLUGIN")
+)
+      
 ;; -*- scheme -*-
 ; object definitions ...
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/panel/xfce-panel-plugin-iface.h
+;; From /usr/local/include/xfce4/libxfce4panel/xfce-panel-plugin-iface.h
 
 (define-function xfce_panel_plugin_get_type
   (c-name "xfce_panel_plugin_get_type")
@@ -92,6 +98,18 @@
   (parameters
     '("GtkMenuItem*" "item")
   )
+)
+
+(define-method menu_show_about
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_menu_show_about")
+  (return-type "none")
+)
+
+(define-method menu_show_configure
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_menu_show_configure")
+  (return-type "none")
 )
 
 (define-method get_rc_file
