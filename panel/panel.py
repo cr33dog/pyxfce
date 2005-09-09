@@ -46,7 +46,7 @@ class Plugin(ExternalPanelPlugin):
   
   """
   
-  """ properties:
+  """ properties: (obj.props.xyz)
   
   name
   id
