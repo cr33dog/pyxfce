@@ -6,7 +6,6 @@ xfce_setenv?
 
 gtk x11 eventfilter
 mcs stuff
-panel
 
 netk stuff has many undefineds
 
