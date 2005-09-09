@@ -24,7 +24,11 @@ class MyPlugin(xfce4.panel.Plugin):
 		print self.horizontal
 		print self.vertical
 		
+		print dir(self.props)
+		
 		#print self.get_orientation()
+		
+		#print self.
 
 # argc, argv, &info
 plugin = MyPlugin()
