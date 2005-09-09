@@ -6,9 +6,9 @@ import gtk
 
 import xfce4.panel
 
-class MyPlugin(xfce4.panel.ExternalPanelPlugin):
+class MyPlugin(xfce4.panel.Plugin):
 	def __init__(self):
-		xfce4.panel.ExternalPanelPlugin.__init__(self)
+		xfce4.panel.Plugin.__init__(self)
 		
 		label = gtk.Label("test")
 		label.show()

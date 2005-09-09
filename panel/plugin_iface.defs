@@ -94,6 +94,18 @@
   )
 )
 
+(define-method menu_show_about
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_menu_show_about")
+  (return-type "none")
+)
+
+(define-method menu_show_configure
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_menu_show_configure")
+  (return-type "none")
+)
+
 (define-method get_rc_file
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_get_rc_file")

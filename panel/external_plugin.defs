@@ -24,7 +24,7 @@
   (parameters
     '("int" "argc")
     '("char**" "argv")
-    '("XfcePanelPluginInfo*" "info")
+    '("XfcePanelPluginFunc" "construct")
   )
 )
 

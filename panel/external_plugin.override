@@ -56,116 +56,10 @@ command_line_args_free(int count, char** argv)
   }
 }
 
-static void 
-call_helper(XfcePanelPlugin* plugin, char const* fn)
+static void
+panel_plugin_construct(XfcePanelPlugin* plugin)
 {
-  PyObject* py;
-  PyGILState_STATE state;
-  PyObject* retobj;
-  PyObject* py_method;
-
-  state = pyg_gil_state_ensure();
-
-  py = pygobject_new((GObject*) plugin);
-
-  py_method = PyObject_GetAttrString(py, (char*) fn);
-  if (!py_method) {
-    if (PyErr_Occurred())
-      PyErr_Print();
-  } else {
-    retobj = PyEval_CallObject(py_method, NULL); 
-
-    if (PyErr_Occurred())
-      PyErr_Print();
-
-    Py_DECREF(py_method);
-
-    if (retobj) {
-      Py_DECREF(retobj);
-    }
-  }
-  Py_DECREF(py);
-
-  PyErr_Clear();
-  pyg_gil_state_release(state);
 }
-
-static void plugin_construct (XfcePanelPlugin *plugin)
-{
-  /* questionable */
-  call_helper(plugin, "do_construct");
-}
-
-static void plugin_free_data (XfcePanelPlugin *plugin)
-{
-  /* questionable */
-  call_helper(plugin, "do_free_data");
-}
-
-static void plugin_save (XfcePanelPlugin *plugin)
-{
-  call_helper(plugin, "do_save");
-}
-
-static void plugin_configure (XfcePanelPlugin *plugin)
-{
-  call_helper(plugin, "do_configure");
-}
-
-static void plugin_about (XfcePanelPlugin *plugin)
-{
-  call_helper(plugin, "do_about");
-}
-
-static void plugin_set_size (XfcePanelPlugin *plugin, int size)
-{
-  PyObject* py;
-  PyGILState_STATE state;
-  PyObject* retobj;
-  PyObject* py_method;
-  PyObject* py_args;
-
-  state = pyg_gil_state_ensure();
-
-  py = pygobject_new((GObject*) plugin);
-
-  py_method = PyObject_GetAttrString(py, "do_set_size");
-  if (!py_method) {
-    if (PyErr_Occurred())
-      PyErr_Print();
-  } else {
-    py_args = PyTuple_New(1);
-    PyTuple_SET_ITEM(py_args, 0, PyInt_FromLong(size));
-
-    retobj = PyEval_CallObject(py_method, py_args);
-
-    if (PyErr_Occurred())
-      PyErr_Print();
-
-    Py_DECREF(py_args);
-    Py_DECREF(py_args);
-    Py_DECREF(py_method);
-
-    if (retobj) {
-      Py_DECREF(retobj);
-    }
-  }
-  Py_DECREF(py);
-
-  PyErr_Clear();
-  pyg_gil_state_release(state);
-}
-
-/* values may be NULL, except api_version */
-static XfcePanelPluginInfo info = {
-   XFCE_PANEL_PLUGIN_API_VERSION,  /* from header file */
-   plugin_construct, /* create widget content (plugin is a GtkContainer) */
-   plugin_free_data, /* free allocated data */
-   plugin_save,      /* save configuration */
-   plugin_configure, /* run configuration dialog */
-   plugin_about,     /* show about dialog */
-   plugin_set_size   /* adjust to new panel size */
-};
 
 %%
 include
@@ -193,7 +87,7 @@ _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *
 
     argv = NULL;
     argc = command_line_args_helper(&argv);
-    self->obj = (GObject *)xfce_external_panel_plugin_new (argc, argv, &info);
+    self->obj = (GObject *)xfce_external_panel_plugin_new (argc, argv, panel_plugin_construct);
 
     for(i = 0; argv[i]; i++) {
       g_warning("argv %d %s", i, argv[i]);
