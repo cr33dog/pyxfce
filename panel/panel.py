@@ -34,4 +34,25 @@ class Plugin(ExternalPanelPlugin):
   horizontal = property(_get_horizontal)
   vertical = property(_get_vertical)
   
+  """ signals:
+  
+  screen-position-changed
+  orientation-changed
+  size-changed
+  free-data
+  save
+  about
+  configure-plugin
+  
+  """
+  
+  """ properties:
+  
+  name
+  id
+  display-name
+  size
+  screen-position
+  expand
+  """
   
