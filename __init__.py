@@ -7,9 +7,4 @@ import netk
 import mcs
 import exceptions
 
-try:
-  import panel 
-except exceptions.ImportError, e:
-  pass
-  
 
