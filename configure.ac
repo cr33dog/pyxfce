@@ -76,7 +76,6 @@ AC_CONFIG_FILES(
   gui/Makefile
   mcs/Makefile
   netk/Makefile
-  panel/Makefile
   util/Makefile
 )
 AC_OUTPUT
