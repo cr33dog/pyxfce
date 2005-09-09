@@ -14,7 +14,17 @@ class MyPlugin(xfce4.panel.Plugin):
 		label.show()
 		
 		self.add(label)
+		
+		l1 = dir(self)
+		l2 = dir(gtk.Window)
+		for item in l1:
+			if item not in l2:
+				print item
 	
+		print self.horizontal
+		print self.vertical
+		
+		#print self.get_orientation()
 
 # argc, argv, &info
 plugin = MyPlugin()
