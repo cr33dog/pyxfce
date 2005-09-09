@@ -1,5 +1,5 @@
 
-__all__ = [ "gui", "mcs", "netk", "panel", "util" ]
+__all__ = [ "gui", "mcs", "netk", "util" ]
 
 import util
 import gui
