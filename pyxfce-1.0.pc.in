@@ -2,10 +2,9 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 includedir=@includedir@
 datadir=@datadir@
-pyexecdir=@pyexecdir@
 
 Name: PyXfce
 Description: Python bindings for Xfce4 and related libraries
 Requires: pygtk-2.0
 Version: @VERSION@
-Cflags: -I${pygtkincludedir} @THREADING_CFLAGS@
+Cflags: 
