@@ -4,6 +4,10 @@ ACLOCAL_AMFLAGS = -I m4
 
 AUTOMAKE_OPTIONS = 1.7
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = \
+        pyxfce-1.0.pc
+        
 # have new panel
 if HAVE_MIGHTY_MOUSE
 SUBDIR_MIGHTY_MOUSE = panel
@@ -25,7 +29,7 @@ pyxfcedir = $(pyxfceexecdir)
 pyxfce_PYTHON = __init__.py
 
 CLEANFILES =
-EXTRA_DIST = $(defs_DATA) TODO_INFO TODO_WARNINGS update-warnings
+EXTRA_DIST = $(defs_DATA) TODO_INFO TODO_WARNINGS update-warnings pyxfce-1.0.pc.in
 pyexec_LTLIBRARIES = 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = 
