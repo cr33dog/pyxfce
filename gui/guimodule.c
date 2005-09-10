@@ -57,6 +57,14 @@ void pysession_client_register_classes(PyObject *d);
 void pysystemtray_register_classes(PyObject *d);
 void pytogglebutton_register_classes(PyObject *d);
 
+void pyclock_add_constants(PyObject *module, const gchar *strip_prefix);
+void pydecorbutton_add_constants(PyObject *module, const gchar *strip_prefix);
+void pyfilechooser_add_constants(PyObject *module, const gchar *strip_prefix);
+void pygtktoxevent_add_constants(PyObject *module, const gchar *strip_prefix);
+void pyicontheme_add_constants(PyObject *module, const gchar *strip_prefix);
+void pysession_client_add_constants(PyObject *module, const gchar *strip_prefix);
+
+
 static PyMethodDef all_functions[1000];
 
 static PyMethodDef* each_functions[] = {

@@ -64,6 +64,46 @@ AC_HELP_STRING([--with-pluginsdir=DIR], [Install plugins dir DIR]),
 ])
 
 dnl
+dnl XFCE_MIGHTY_MOUSE_PANEL_PLUGIN(var, version)
+dnl
+dnl Sets $var_CFLAGS, $var_LIBS and $var_PLUGINSDIR
+dnl
+AC_DEFUN([XFCE_MIGHTY_MOUSE_PANEL_PLUGIN],
+[
+  BM_DEPEND([$1], [libxfce4panel-1.0], [$2])
+
+  dnl Check where to put the external plugins to
+  AC_ARG_WITH([external-plugindir],
+AC_HELP_STRING([--with-external-plugindir=DIR], [Install external plugins to DIR]),
+[$1_EXTERNALPLUGINDIR=$withval],
+[$1_EXTERNALPLUGINDIR=`$PKG_CONFIG --variable=externalplugindir libxfce4panel-1.0`])
+
+  AC_MSG_CHECKING([where to install external panel plugins])
+  AC_SUBST([$1_EXTERNALPLUGINDIR])
+  AC_MSG_RESULT([$$1_EXTERNALPLUGINDIR])
+
+  dnl Check where to put the internal plugins to
+  AC_ARG_WITH([internal-plugindir],
+AC_HELP_STRING([--with-internal-plugindir=DIR], [Install internal plugins to DIR]),
+[$1_INTERNALPLUGINDIR=$withval],
+[$1_INTERNALPLUGINDIR=`$PKG_CONFIG --variable=internalplugindir libxfce4panel-1.0`])
+
+  AC_MSG_CHECKING([where to install internal panel plugins])
+  AC_SUBST([$1_INTERNALPLUGINDIR])
+  AC_MSG_RESULT([$$1_INTERNALPLUGINDIR])
+
+  dnl Check where to put the desktop file to
+  AC_ARG_WITH([desktopdatadir],
+AC_HELP_STRING([--with-desktopdatadir=DIR], [Install desktop data dir DIR]),
+[$1_DESKTOPDATADIR=$withval],
+[$1_DESKTOPDATADIR=`$PKG_CONFIG --variable=desktopdatadir xfce4-panel-1.0`])
+
+  AC_MSG_CHECKING([where to install desktop files of panel plugins])
+  AC_SUBST([$1_DESKTOPDATADIR])
+  AC_MSG_RESULT([$$1_DESKTOPDATADIR])
+])
+
+dnl
 dnl XFCE_MCS_PLUGIN(var, version)
 dnl
 dnl sets $var_CFLAGS, $var_LIBS and $var_PLUGINSDIR

@@ -36,6 +36,10 @@ void pywindow_register_classes(PyObject *d);
 void pywindow_menu_register_classes(PyObject *d);
 void pyworkspace_register_classes(PyObject *d);
 
+void pywindow_add_constants(PyObject *module, const gchar *strip_prefix);
+void pypager_add_constants(PyObject *module, const gchar *strip_prefix);
+void pytasklist_add_constants(PyObject *module, const gchar *strip_prefix);
+
 static PyMethodDef all_functions[1000];
 
 static PyMethodDef* each_functions[] = {
