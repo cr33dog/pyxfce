@@ -53,7 +53,7 @@ BM_DEPEND([XFCE4_GUI], [libxfcegui4-1.0], [4.3.4])
 BM_DEPEND_CHECK([MIGHTY_MOUSE], [libxfce4panel-1.0], [4.3.17], [mighty-mouse], [the new panel], [yes])
 AM_CONDITIONAL([HAVE_MIGHTY_MOUSE], [test x"$ac_cv_MIGHTY_MOUSE_check" = x"yes"])
 
-XFCE_MIGHTY_MOUSE_PANEL_PLUGIN([PANEL], [4.3])
+dnl XFCE_MIGHTY_MOUSE_PANEL_PLUGIN([PANEL], [4.3])
 dnl PANEL_EXTERNALPLUGINDIR
 dnl PANEL_DESKTOPDATADIR
 
