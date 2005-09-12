@@ -12,6 +12,12 @@ aclocal=aclocal
 automake=automake-1.8
 aclocal=aclocal-1.8
 
+if [ ! -x "`which \"${automake}\"`" ]
+then # not found
+	automake="automake"
+	aclocal="aclocal"
+fi
+
 ACLOCAL_FLAGS="-I m4 $ACLOCAL_FLAGS"
 
 (test -f $srcdir/configure.ac) || {
