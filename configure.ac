@@ -16,8 +16,8 @@ AC_DEFINE(PYXFCE_MAJOR_VERSION, pyxfce_major_version, [pyxfce major version])
 AC_DEFINE(PYXFCE_MINOR_VERSION, pyxfce_minor_version, [pyxfce minor version])
 AC_DEFINE(PYXFCE_MICRO_VERSION, pyxfce_micro_version, [pyxfce micro version])
 
-#AC_CONFIG_SRCDIR([])
-AC_CONFIG_HEADER(config.h)
+dnl AC_CONFIG_SRCDIR([])
+dnl AC_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
 AM_INIT_AUTOMAKE
