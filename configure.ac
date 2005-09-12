@@ -16,8 +16,8 @@ AC_DEFINE(PYXFCE_MAJOR_VERSION, pyxfce_major_version, [pyxfce major version])
 AC_DEFINE(PYXFCE_MINOR_VERSION, pyxfce_minor_version, [pyxfce minor version])
 AC_DEFINE(PYXFCE_MICRO_VERSION, pyxfce_micro_version, [pyxfce micro version])
 
-dnl AC_CONFIG_SRCDIR([])
-dnl AC_CONFIG_HEADER(config.h)
+dnl AC_xCONFIG_SRCDIR([])
+dnl AC_xCONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
 AM_INIT_AUTOMAKE
@@ -51,7 +51,8 @@ BM_DEPEND([XFCE4_GUI], [libxfcegui4-1.0], [4.3.4])
 # HAVE_MIGHTY_MOUSE
 
 BM_DEPEND_CHECK([MIGHTY_MOUSE], [libxfce4panel-1.0], [4.3.17], [mighty-mouse], [the new panel], [yes])
-AM_CONDITIONAL([HAVE_MIGHTY_MOUSE], [test x"$ac_cv_MIGHTY_MOUSE_check" = x"yes"])
+dnl AM_CONDITIONAL([HAVE_MIGHTY_MOUSE], [test x"$ac_cv_MIGHTY_MOUSE_check" = x"yes"])
+AM_CONDITIONAL([HAVE_MIGHTY_MOUSE], [test ! -z "$MIGHTY_MOUSE_FOUND" ])
 
 dnl XFCE_MIGHTY_MOUSE_PANEL_PLUGIN([PANEL], [4.3])
 dnl PANEL_EXTERNALPLUGINDIR
