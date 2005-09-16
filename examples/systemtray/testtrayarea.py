@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 
-import xfce4
+import pygtk
+pygtk.require("2.0")
 import gtk
+
+import xfce4
+import sys
 
 w = gtk.Window()
 h = gtk.HBox()
@@ -43,6 +47,11 @@ t.connect("icon-undocked", icon_undocked_cb)
 t.connect("selection-cleared", selection_cleared_cb)
 t.connect("message-new", message_new_cb)
 t.connect("message-clear", message_clear_cb)
+
+if xfce4.gui.system_tray_check_running(gtk.gdk.screen_get_default()) == True:
+  print "there is already a system tray!"
+  sys.exit(1)
+
 if t.register(gtk.gdk.screen_get_default()) == True:
   print "ok"
 
