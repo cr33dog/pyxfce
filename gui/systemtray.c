@@ -65,7 +65,6 @@ _wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwarg
 				     "O!:XfceSystemTray.register",
                                      kwlist, &PyGdkScreen_Type, &pscreen)
     ) {
-        Py_INCREF(Py_None);
         return NULL;
     }
 
@@ -92,7 +91,7 @@ _wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwarg
       return PyBool_FromLong(0);
     }
 }
-#line 96 "systemtray.c"
+#line 95 "systemtray.c"
 
 
 static PyObject *
@@ -158,7 +157,7 @@ PyTypeObject PyXfceSystemTray_Type = {
 
 /* ----------- functions ----------- */
 
-#line 72 "systemtray.override"
+#line 71 "systemtray.override"
 static PyObject *
 _wrap_xfce_system_tray_check_running(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -172,7 +171,6 @@ _wrap_xfce_system_tray_check_running(PyGObject *self, PyObject *args, PyObject *
 				     "O!:XfceSystemTray.check_running",
                                      kwlist, &PyGdkScreen_Type, &pscreen)
     ) {
-        Py_INCREF(Py_None);
         return NULL;
     }
 
@@ -196,7 +194,7 @@ _wrap_xfce_system_tray_check_running(PyGObject *self, PyObject *args, PyObject *
       return PyBool_FromLong(0);
     }
 }
-#line 200 "systemtray.c"
+#line 198 "systemtray.c"
 
 
 PyMethodDef pysystemtray_functions[] = {
@@ -240,7 +238,7 @@ pysystemtray_register_classes(PyObject *d)
     }
 
 
-#line 244 "systemtray.c"
+#line 242 "systemtray.c"
     pygobject_register_class(d, "XfceSystemTray", XFCE_TYPE_SYSTEM_TRAY, &PyXfceSystemTray_Type, Py_BuildValue("(O)", &PyGObject_Type));
     pyg_set_object_has_new_constructor(XFCE_TYPE_SYSTEM_TRAY);
 }
