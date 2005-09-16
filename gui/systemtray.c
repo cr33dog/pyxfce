@@ -19,12 +19,14 @@
 /* ---------- types from other modules ---------- */
 static PyTypeObject *_PyGObject_Type;
 #define PyGObject_Type (*_PyGObject_Type)
+static PyTypeObject *_PyGdkScreen_Type;
+#define PyGdkScreen_Type (*_PyGdkScreen_Type)
 
 
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceSystemTray_Type;
 
-#line 28 "systemtray.c"
+#line 30 "systemtray.c"
 
 
 
@@ -49,6 +51,45 @@ _wrap_xfce_system_tray_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 }
 
 
+#line 30 "systemtray.override"
+static PyObject *
+_wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *pscreen;
+    GdkScreen* gscreen;
+    Screen* xscreen;
+    GError* error = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+				     "O!:XfceSystemTray.register",
+                                     kwlist, &PyGdkScreen_Type, &pscreen)
+    ) {
+        Py_INCREF(Py_None);
+        return NULL;
+    }
+
+    if (!pscreen || !pscreen->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceSystemTray object");
+        return NULL;
+    }
+
+    gscreen = pscreen->obj;
+
+    xscreen = GDK_SCREEN_XSCREEN(gscreen);
+    
+    if (xfce_system_tray_register((XfceSystemTray*) self->obj, xscreen, &error)) {
+      return PyBool_FromLong(1);
+    } else {
+      if (pyg_error_check(&error))
+        return NULL;
+
+      return PyBool_FromLong(0);
+    }
+}
+#line 91 "systemtray.c"
+
+
 static PyObject *
 _wrap_xfce_system_tray_unregister(PyGObject *self)
 {
@@ -58,6 +99,7 @@ _wrap_xfce_system_tray_unregister(PyGObject *self)
 }
 
 static PyMethodDef _PyXfceSystemTray_methods[] = {
+    { "register", (PyCFunction)_wrap_xfce_system_tray_register, METH_VARARGS|METH_KEYWORDS },
     { "unregister", (PyCFunction)_wrap_xfce_system_tray_unregister, METH_NOARGS },
     { NULL, NULL, 0 }
 };
@@ -135,9 +177,23 @@ pysystemtray_register_classes(PyObject *d)
             "could not import gobject");
         return;
     }
+    if ((module = PyImport_ImportModule("gtk.gdk")) != NULL) {
+        PyObject *moddict = PyModule_GetDict(module);
+
+        _PyGdkScreen_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Screen");
+        if (_PyGdkScreen_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Screen from gtk.gdk");
+            return;
+        }
+    } else {
+        PyErr_SetString(PyExc_ImportError,
+            "could not import gtk.gdk");
+        return;
+    }
 
 
-#line 141 "systemtray.c"
+#line 197 "systemtray.c"
     pygobject_register_class(d, "XfceSystemTray", XFCE_TYPE_SYSTEM_TRAY, &PyXfceSystemTray_Type, Py_BuildValue("(O)", &PyGObject_Type));
     pyg_set_object_has_new_constructor(XFCE_TYPE_SYSTEM_TRAY);
 }

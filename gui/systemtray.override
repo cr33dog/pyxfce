@@ -17,6 +17,7 @@ include
 modulename systemtray
 %%
 import gobject.GObject as PyGObject_Type
+import gtk.gdk.Screen as PyGdkScreen_Type
 %%
 ignore
 %%
@@ -25,3 +26,39 @@ ignore-glob
 %%
 ignore-win32
 %%
+override xfce_system_tray_register kwargs
+static PyObject *
+_wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *pscreen;
+    GdkScreen* gscreen;
+    Screen* xscreen;
+    GError* error = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+				     "O!:XfceSystemTray.register",
+                                     kwlist, &PyGdkScreen_Type, &pscreen)
+    ) {
+        Py_INCREF(Py_None);
+        return NULL;
+    }
+
+    if (!pscreen || !pscreen->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceSystemTray object");
+        return NULL;
+    }
+
+    gscreen = pscreen->obj;
+
+    xscreen = GDK_SCREEN_XSCREEN(gscreen);
+    
+    if (xfce_system_tray_register((XfceSystemTray*) self->obj, xscreen, &error)) {
+      return PyBool_FromLong(1);
+    } else {
+      if (pyg_error_check(&error))
+        return NULL;
+
+      return PyBool_FromLong(0);
+    }
+}
