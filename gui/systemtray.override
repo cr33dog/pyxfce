@@ -40,7 +40,6 @@ _wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwarg
 				     "O!:XfceSystemTray.register",
                                      kwlist, &PyGdkScreen_Type, &pscreen)
     ) {
-        Py_INCREF(Py_None);
         return NULL;
     }
 
@@ -82,7 +81,6 @@ _wrap_xfce_system_tray_check_running(PyGObject *self, PyObject *args, PyObject *
 				     "O!:XfceSystemTray.check_running",
                                      kwlist, &PyGdkScreen_Type, &pscreen)
     ) {
-        Py_INCREF(Py_None);
         return NULL;
     }
 
