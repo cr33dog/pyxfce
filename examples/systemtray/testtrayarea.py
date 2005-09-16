@@ -46,4 +46,6 @@ t.connect("message-clear", message_clear_cb)
 if t.register(gtk.gdk.screen_get_default()) == True:
   print "ok"
 
+# t.unregister()
+
 gtk.main()
