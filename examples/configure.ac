@@ -66,5 +66,6 @@ AC_CONFIG_FILES(
   Makefile
   panel/Makefile
   panel/testplugin1/Makefile
+  systemtray/Makefile
 )
 AC_OUTPUT
