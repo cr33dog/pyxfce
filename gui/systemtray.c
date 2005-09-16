@@ -70,13 +70,18 @@ _wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwarg
     }
 
     if (!pscreen || !pscreen->obj) {
-        PyErr_SetString(PyExc_RuntimeError, "could not create XfceSystemTray object");
+        PyErr_SetString(PyExc_RuntimeError, "could not register XfceSystemTray object");
         return NULL;
     }
 
     gscreen = pscreen->obj;
 
     xscreen = GDK_SCREEN_XSCREEN(gscreen);
+    if (!xscreen) {
+       /* TODO unref gscreen ? */
+       PyErr_SetString(PyExc_RuntimeError, "could not check if any (Xfce or other) system tray is running");
+       return NULL;
+    }
     
     if (xfce_system_tray_register((XfceSystemTray*) self->obj, xscreen, &error)) {
       return PyBool_FromLong(1);
@@ -87,7 +92,7 @@ _wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwarg
       return PyBool_FromLong(0);
     }
 }
-#line 91 "systemtray.c"
+#line 96 "systemtray.c"
 
 
 static PyObject *
@@ -153,7 +158,49 @@ PyTypeObject PyXfceSystemTray_Type = {
 
 /* ----------- functions ----------- */
 
+#line 72 "systemtray.override"
+static PyObject *
+_wrap_xfce_system_tray_check_running(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *pscreen;
+    GdkScreen* gscreen;
+    Screen* xscreen;
+    GError* error = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+				     "O!:XfceSystemTray.check_running",
+                                     kwlist, &PyGdkScreen_Type, &pscreen)
+    ) {
+        Py_INCREF(Py_None);
+        return NULL;
+    }
+
+    if (!pscreen || !pscreen->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not check if any (Xfce or other) system tray is running");
+        return NULL;
+    }
+
+    gscreen = pscreen->obj;
+
+    xscreen = GDK_SCREEN_XSCREEN(gscreen);
+    if (!xscreen) {
+       /* TODO unref gscreen ? */
+       PyErr_SetString(PyExc_RuntimeError, "could not check if any (Xfce or other) system tray is running");
+       return NULL;
+    }
+    
+    if (xfce_system_tray_check_running(xscreen)) {
+      return PyBool_FromLong(1);
+    } else {
+      return PyBool_FromLong(0);
+    }
+}
+#line 200 "systemtray.c"
+
+
 PyMethodDef pysystemtray_functions[] = {
+    { "system_tray_check_running", (PyCFunction)_wrap_xfce_system_tray_check_running, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -193,7 +240,7 @@ pysystemtray_register_classes(PyObject *d)
     }
 
 
-#line 197 "systemtray.c"
+#line 244 "systemtray.c"
     pygobject_register_class(d, "XfceSystemTray", XFCE_TYPE_SYSTEM_TRAY, &PyXfceSystemTray_Type, Py_BuildValue("(O)", &PyGObject_Type));
     pyg_set_object_has_new_constructor(XFCE_TYPE_SYSTEM_TRAY);
 }

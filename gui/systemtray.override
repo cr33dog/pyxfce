@@ -45,13 +45,18 @@ _wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwarg
     }
 
     if (!pscreen || !pscreen->obj) {
-        PyErr_SetString(PyExc_RuntimeError, "could not create XfceSystemTray object");
+        PyErr_SetString(PyExc_RuntimeError, "could not register XfceSystemTray object");
         return NULL;
     }
 
     gscreen = pscreen->obj;
 
     xscreen = GDK_SCREEN_XSCREEN(gscreen);
+    if (!xscreen) {
+       /* TODO unref gscreen ? */
+       PyErr_SetString(PyExc_RuntimeError, "could not check if any (Xfce or other) system tray is running");
+       return NULL;
+    }
     
     if (xfce_system_tray_register((XfceSystemTray*) self->obj, xscreen, &error)) {
       return PyBool_FromLong(1);
@@ -59,6 +64,45 @@ _wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwarg
       if (pyg_error_check(&error))
         return NULL;
 
+      return PyBool_FromLong(0);
+    }
+}
+%%
+override xfce_system_tray_check_running kwargs
+static PyObject *
+_wrap_xfce_system_tray_check_running(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *pscreen;
+    GdkScreen* gscreen;
+    Screen* xscreen;
+    GError* error = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+				     "O!:XfceSystemTray.check_running",
+                                     kwlist, &PyGdkScreen_Type, &pscreen)
+    ) {
+        Py_INCREF(Py_None);
+        return NULL;
+    }
+
+    if (!pscreen || !pscreen->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not check if any (Xfce or other) system tray is running");
+        return NULL;
+    }
+
+    gscreen = pscreen->obj;
+
+    xscreen = GDK_SCREEN_XSCREEN(gscreen);
+    if (!xscreen) {
+       /* TODO unref gscreen ? */
+       PyErr_SetString(PyExc_RuntimeError, "could not check if any (Xfce or other) system tray is running");
+       return NULL;
+    }
+    
+    if (xfce_system_tray_check_running(xscreen)) {
+      return PyBool_FromLong(1);
+    } else {
       return PyBool_FromLong(0);
     }
 }
