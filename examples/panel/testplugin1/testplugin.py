@@ -25,6 +25,12 @@ class MyPlugin(xfce4.panel.Plugin):
 		print self.vertical
 		
 		print dir(self.props)
+		print dir(self)
+		
+		mi = gtk.MenuItem("Hello")
+		mi.show()
+		
+		print self.menu_insert_item(mi)
 		
 		#print self.get_orientation()
 		

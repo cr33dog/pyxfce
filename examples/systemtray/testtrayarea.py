@@ -49,7 +49,7 @@ t.connect("message-new", message_new_cb)
 t.connect("message-clear", message_clear_cb)
 
 if xfce4.gui.system_tray_check_running(gtk.gdk.screen_get_default()) == True:
-  print "there is already a system tray!"
+  print "there already is a system tray!"
   sys.exit(1)
 
 if t.register(gtk.gdk.screen_get_default()) == True:
