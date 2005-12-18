@@ -55,3 +55,11 @@ common_ldflags = -module -avoid-version
 if PLATFORM_WIN32  
 common_ldflags += -no-undefined
 endif
+
+dist-bz2: dist
+	zcat $(PACKAGE)-$(VERSION).tar.gz | \
+           bzip2 --best -c > $(PACKAGE)-$(VERSION).tar.bz2
+
+distcheck-bz2: distcheck
+	zcat $(PACKAGE)-$(VERSION).tar.gz | \
+            bzip2 --best -c > $(PACKAGE)-$(VERSION).tar.bz2
