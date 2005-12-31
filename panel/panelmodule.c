@@ -65,9 +65,9 @@ my_register1()
 	pyarrow_button_register_classes(d);
 	pyenums_register_classes(d);
 	pyenum_types_register_classes(d);
+	pyplugin_iface_register_classes(d);
 	pyexternal_plugin_register_classes(d);
 	pyitembar_register_classes(d);
-	pyplugin_iface_register_classes(d);
 	pywindow_register_classes(d);
 	
 	pyenums_add_constants(m, "XFCE_");
