@@ -10,9 +10,8 @@
 #include <libxfce4panel/xfce-panel-plugin-iface.h>
 
 extern PyTypeObject PyGtkWidget_Type;
-extern PyTypeObject PyGtkMenu_Type;
 
-#line 16 "plugin_iface.c"
+#line 15 "plugin_iface.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -22,12 +21,14 @@ static PyTypeObject *_PyGtkWidget_Type;
 #define PyGtkWidget_Type (*_PyGtkWidget_Type)
 static PyTypeObject *_PyGtkMenuItem_Type;
 #define PyGtkMenuItem_Type (*_PyGtkMenuItem_Type)
+static PyTypeObject *_PyGtkMenu_Type;
+#define PyGtkMenu_Type (*_PyGtkMenu_Type)
 
 
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfcePanelPlugin_Type;
 
-#line 31 "plugin_iface.c"
+#line 32 "plugin_iface.c"
 
 
 
@@ -323,6 +324,12 @@ pyplugin_iface_register_classes(PyObject *d)
                 "cannot import name MenuItem from gtk");
             return;
         }
+        _PyGtkMenu_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Menu");
+        if (_PyGtkMenu_Type == NULL) {
+            PyErr_SetString(PyExc_ImportError,
+                "cannot import name Menu from gtk");
+            return;
+        }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gtk");
@@ -330,6 +337,6 @@ pyplugin_iface_register_classes(PyObject *d)
     }
 
 
-#line 334 "plugin_iface.c"
+#line 341 "plugin_iface.c"
     pyg_register_interface(d, "PanelPlugin", XFCE_TYPE_PANEL_PLUGIN, &PyXfcePanelPlugin_Type);
 }
