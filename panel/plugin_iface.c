@@ -10,8 +10,9 @@
 #include <libxfce4panel/xfce-panel-plugin-iface.h>
 
 extern PyTypeObject PyGtkWidget_Type;
+extern PyTypeObject PyGtkMenu_Type;
 
-#line 15 "plugin_iface.c"
+#line 16 "plugin_iface.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -26,7 +27,7 @@ static PyTypeObject *_PyGtkMenuItem_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfcePanelPlugin_Type;
 
-#line 30 "plugin_iface.c"
+#line 31 "plugin_iface.c"
 
 
 
@@ -151,6 +152,69 @@ _wrap_xfce_panel_plugin_menu_show_configure(PyGObject *self)
     return Py_None;
 }
 
+static PyObject *
+_wrap_xfce_panel_plugin_block_menu(PyGObject *self)
+{
+    xfce_panel_plugin_block_menu(XFCE_PANEL_PLUGIN(self->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_panel_plugin_unblock_menu(PyGObject *self)
+{
+    xfce_panel_plugin_unblock_menu(XFCE_PANEL_PLUGIN(self->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_panel_plugin_register_menu(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "menu", NULL };
+    PyGObject *menu;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfcePanelPlugin.register_menu", kwlist, &PyGtkMenu_Type, &menu))
+        return NULL;
+    xfce_panel_plugin_register_menu(XFCE_PANEL_PLUGIN(self->obj), GTK_MENU(menu->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_panel_plugin_lookup_rc_file(PyGObject *self)
+{
+    gchar *ret;
+
+    ret = xfce_panel_plugin_lookup_rc_file(XFCE_PANEL_PLUGIN(self->obj));
+    if (ret) {
+        PyObject *py_ret = PyString_FromString(ret);
+        g_free(ret);
+        return py_ret;
+    }
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_panel_plugin_save_location(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "create", NULL };
+    int create;
+    gchar *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:XfcePanelPlugin.save_location", kwlist, &create))
+        return NULL;
+    ret = xfce_panel_plugin_save_location(XFCE_PANEL_PLUGIN(self->obj), create);
+    if (ret) {
+        PyObject *py_ret = PyString_FromString(ret);
+        g_free(ret);
+        return py_ret;
+    }
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
 static PyMethodDef _PyXfcePanelPlugin_methods[] = {
     { "get_name", (PyCFunction)_wrap_xfce_panel_plugin_get_name, METH_NOARGS },
     { "get_id", (PyCFunction)_wrap_xfce_panel_plugin_get_id, METH_NOARGS },
@@ -163,6 +227,11 @@ static PyMethodDef _PyXfcePanelPlugin_methods[] = {
     { "menu_insert_item", (PyCFunction)_wrap_xfce_panel_plugin_menu_insert_item, METH_VARARGS|METH_KEYWORDS },
     { "menu_show_about", (PyCFunction)_wrap_xfce_panel_plugin_menu_show_about, METH_NOARGS },
     { "menu_show_configure", (PyCFunction)_wrap_xfce_panel_plugin_menu_show_configure, METH_NOARGS },
+    { "block_menu", (PyCFunction)_wrap_xfce_panel_plugin_block_menu, METH_NOARGS },
+    { "unblock_menu", (PyCFunction)_wrap_xfce_panel_plugin_unblock_menu, METH_NOARGS },
+    { "register_menu", (PyCFunction)_wrap_xfce_panel_plugin_register_menu, METH_VARARGS|METH_KEYWORDS },
+    { "lookup_rc_file", (PyCFunction)_wrap_xfce_panel_plugin_lookup_rc_file, METH_NOARGS },
+    { "save_location", (PyCFunction)_wrap_xfce_panel_plugin_save_location, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -261,6 +330,6 @@ pyplugin_iface_register_classes(PyObject *d)
     }
 
 
-#line 265 "plugin_iface.c"
+#line 334 "plugin_iface.c"
     pyg_register_interface(d, "PanelPlugin", XFCE_TYPE_PANEL_PLUGIN, &PyXfcePanelPlugin_Type);
 }

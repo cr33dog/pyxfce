@@ -10,6 +10,7 @@
 #include <libxfce4panel/xfce-panel-external-plugin.h>
 
 extern PyTypeObject PyGtkWidget_Type;
+extern PyTypeObject PyXfcePanelPlugin_Type;
 
 static int 
 command_line_args_helper(char*** argv)
@@ -61,7 +62,7 @@ panel_plugin_construct(XfcePanelPlugin* plugin)
 {
 }
 
-#line 65 "external_plugin.c"
+#line 66 "external_plugin.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -76,13 +77,13 @@ static PyTypeObject *_PyGtkPlug_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfceExternalPanelPlugin_Type;
 
-#line 80 "external_plugin.c"
+#line 81 "external_plugin.c"
 
 
 
 /* ----------- XfceExternalPanelPlugin ----------- */
 
-#line 79 "external_plugin.override"
+#line 80 "external_plugin.override"
 static int
 _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -105,7 +106,7 @@ _wrap_xfce_external_panel_plugin_new(PyGObject *self, PyObject *args, PyObject *
 
     return 0;
 }
-#line 109 "external_plugin.c"
+#line 110 "external_plugin.c"
 
 
 PyTypeObject PyXfceExternalPanelPlugin_Type = {
@@ -203,6 +204,6 @@ pyexternal_plugin_register_classes(PyObject *d)
     }
 
 
-#line 207 "external_plugin.c"
-    pygobject_register_class(d, "XfceExternalPanelPlugin", XFCE_TYPE_EXTERNAL_PANEL_PLUGIN, &PyXfceExternalPanelPlugin_Type, Py_BuildValue("(O)", &PyGtkPlug_Type));
+#line 208 "external_plugin.c"
+    pygobject_register_class(d, "XfceExternalPanelPlugin", XFCE_TYPE_EXTERNAL_PANEL_PLUGIN, &PyXfceExternalPanelPlugin_Type, Py_BuildValue("(OO)", &PyGtkPlug_Type, &PyXfcePanelPlugin_Type));
 }

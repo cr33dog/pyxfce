@@ -5,6 +5,8 @@
   (parent "GtkPlug")
   (c-name "XfceExternalPanelPlugin")
   (gtype-id "XFCE_TYPE_EXTERNAL_PANEL_PLUGIN")
+  (implements "XfcePanelPlugin")
+
 )
 
 ;; Enumerations and flags ...

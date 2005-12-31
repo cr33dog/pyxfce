@@ -67,21 +67,6 @@
   (return-type "GtkOrientation")
 )
 
-(define-method set_data
-  (of-object "XfcePanelPlugin")
-  (c-name "xfce_panel_plugin_set_data")
-  (return-type "none")
-  (parameters
-    '("gpointer" "data")
-  )
-)
-
-(define-method get_data
-  (of-object "XfcePanelPlugin")
-  (c-name "xfce_panel_plugin_get_data")
-  (return-type "gpointer")
-)
-
 (define-method add_action_widget
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_add_action_widget")
@@ -112,12 +97,39 @@
   (return-type "none")
 )
 
-(define-method get_rc_file
+(define-method block_menu
   (of-object "XfcePanelPlugin")
-  (c-name "xfce_panel_plugin_get_rc_file")
-  (return-type "XfceRc*")
+  (c-name "xfce_panel_plugin_block_menu")
+  (return-type "none")
+)
+
+(define-method unblock_menu
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_unblock_menu")
+  (return-type "none")
+)
+
+(define-method register_menu
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_register_menu")
+  (return-type "none")
   (parameters
-    '("gboolean" "read_only")
+    '("GtkMenu*" "menu")
+  )
+)
+
+(define-method lookup_rc_file
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_lookup_rc_file")
+  (return-type "char*")
+)
+
+(define-method save_location
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_save_location")
+  (return-type "char*")
+  (parameters
+    '("gboolean" "create")
   )
 )
 

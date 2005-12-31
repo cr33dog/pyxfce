@@ -8,6 +8,7 @@ headers
 #include <libxfce4panel/xfce-panel-external-plugin.h>
 
 extern PyTypeObject PyGtkWidget_Type;
+extern PyTypeObject PyXfcePanelPlugin_Type;
 
 static int 
 command_line_args_helper(char*** argv)

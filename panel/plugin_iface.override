@@ -8,6 +8,7 @@ headers
 #include <libxfce4panel/xfce-panel-plugin-iface.h>
 
 extern PyTypeObject PyGtkWidget_Type;
+extern PyTypeObject PyGtkMenu_Type;
 
 %%
 include

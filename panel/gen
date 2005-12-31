@@ -36,6 +36,11 @@ EOF
 cat plugin_iface.defs.o >> plugin_iface.defs
 rm -f plugin_iface.defs.o
 
+sed -e 's;\(XFCE_TYPE_EXTERNAL_PANEL_PLUGIN.*\)$;\1\
+  (implements "XfcePanelPlugin")\
+;' \
+  external_plugin.defs >external_plugin.defs.n && mv external_plugin.defs.n external_plugin.defs
+
 ##rm -f util.defs
 #
 ##mv xfce_support.defs support.defs
