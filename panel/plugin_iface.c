@@ -8,10 +8,11 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfce4panel/xfce-panel-plugin-iface.h>
+#include <libxfce4panel/xfce-panel-enum-types.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 
-#line 15 "plugin_iface.c"
+#line 16 "plugin_iface.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -28,7 +29,7 @@ static PyTypeObject *_PyGtkMenu_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject PyXfcePanelPlugin_Type;
 
-#line 32 "plugin_iface.c"
+#line 33 "plugin_iface.c"
 
 
 
@@ -77,6 +78,15 @@ _wrap_xfce_panel_plugin_get_size(PyGObject *self)
 
     ret = xfce_panel_plugin_get_size(XFCE_PANEL_PLUGIN(self->obj));
     return PyInt_FromLong(ret);
+}
+
+static PyObject *
+_wrap_xfce_panel_plugin_get_screen_position(PyGObject *self)
+{
+    gint ret;
+
+    ret = xfce_panel_plugin_get_screen_position(XFCE_PANEL_PLUGIN(self->obj));
+    return pyg_enum_from_gtype(XFCE_TYPE_SCREEN_POSITION, ret);
 }
 
 static PyObject *
@@ -221,6 +231,7 @@ static PyMethodDef _PyXfcePanelPlugin_methods[] = {
     { "get_id", (PyCFunction)_wrap_xfce_panel_plugin_get_id, METH_NOARGS },
     { "get_display_name", (PyCFunction)_wrap_xfce_panel_plugin_get_display_name, METH_NOARGS },
     { "get_size", (PyCFunction)_wrap_xfce_panel_plugin_get_size, METH_NOARGS },
+    { "get_screen_position", (PyCFunction)_wrap_xfce_panel_plugin_get_screen_position, METH_NOARGS },
     { "set_expand", (PyCFunction)_wrap_xfce_panel_plugin_set_expand, METH_VARARGS|METH_KEYWORDS },
     { "get_expand", (PyCFunction)_wrap_xfce_panel_plugin_get_expand, METH_NOARGS },
     { "get_orientation", (PyCFunction)_wrap_xfce_panel_plugin_get_orientation, METH_NOARGS },
@@ -337,6 +348,6 @@ pyplugin_iface_register_classes(PyObject *d)
     }
 
 
-#line 341 "plugin_iface.c"
+#line 352 "plugin_iface.c"
     pyg_register_interface(d, "PanelPlugin", XFCE_TYPE_PANEL_PLUGIN, &PyXfcePanelPlugin_Type);
 }

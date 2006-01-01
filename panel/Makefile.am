@@ -52,6 +52,7 @@ PYGTK_DEFS="`pkg-config --variable=defsdir pygtk-2.0`"
 	     --override $*.override \
 	     --register $(PYGTK_DEFS)/gtk-types.defs \
 	     --register $(PYGTK_DEFS)/gdk-types.defs \
+	     --register enums.defs \
              --prefix py$* $*.defs) > gen-$*.c \
 	 && cp gen-$*.c $*.c \
 	 && rm -f gen-$*.c

@@ -6,6 +6,7 @@ headers
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfce4panel/xfce-panel-plugin-iface.h>
+#include <libxfce4panel/xfce-panel-enum-types.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 

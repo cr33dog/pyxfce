@@ -25,6 +25,7 @@ void pyexternal_plugin_register_classes(PyObject *d);
 void pyitembar_register_classes(PyObject *d);
 void pyplugin_iface_register_classes(PyObject *d);
 void pywindow_register_classes(PyObject *d);
+void pyenums_add_constants(PyObject *module, const gchar *strip_prefix);
 
 static PyMethodDef all_functions[1000];
 
