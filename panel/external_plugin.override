@@ -17,6 +17,8 @@ command_line_args_helper(char*** argv)
   int i;
   PyObject* av;
 
+  argc = 0;
+
   av = PySys_GetObject("argv");
   if (!PyList_Check(av)) {
     PyErr_Warn(PyExc_Warning, "ignoring sys.argv: it must be a list of strings");
