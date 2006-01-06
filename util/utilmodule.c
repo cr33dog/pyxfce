@@ -11,6 +11,8 @@
 #include <pygobject.h>
 #include <pyerrors.h>
 
+#include <libxfce4util/libxfce4util.h>
+
 extern PyMethodDef pydesktopentry_functions[];
 extern PyMethodDef pyfileutils_functions[];
 extern PyMethodDef pyi18n_functions[];
@@ -65,6 +67,10 @@ my_register1()
 	m = Py_InitModule("_util", all_functions);
 	
 	pyresource_add_constants(m, "XFCE_");
+	
+	PyModule_AddStringConstant(m, "LICENSE_BSD", XFCE_LICENSE_BSD);
+	PyModule_AddStringConstant(m, "LICENSE_GPL", XFCE_LICENSE_GPL);
+	PyModule_AddStringConstant(m, "LICENSE_LGPL", XFCE_LICENSE_LGPL);
 	
 	d = PyModule_GetDict(m);
 
