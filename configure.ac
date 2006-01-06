@@ -8,7 +8,7 @@ m4_define(pyxfce_minor_version, 3)
 m4_define(pyxfce_micro_version, 0)
 m4_define(pyxfce_version, pyxfce_major_version.pyxfce_minor_version.pyxfce_micro_version)
 
-m4_define(xfce_required_version, 4.1.99)
+m4_define(xfce_required_version, 4.3.99)
 
 AC_INIT(pyxfce, pyxfce_version, [])
 

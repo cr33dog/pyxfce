@@ -23,6 +23,7 @@ _gui_la_SOURCES = \
 	aboutdialog.c \
 	appmenuitem.c \
 	clock.c \
+	exec.c \
 	colorbutton.c \
 	decorbutton.c \
 	decortoggle.c \
@@ -42,7 +43,8 @@ _gui_la_SOURCES = \
 	session_client.c \
 	systemtray.c \
 	togglebutton.c \
-	guimodule.c
+	guimodule.c \
+	startup-notification.c
 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
@@ -53,6 +55,7 @@ defs_DATA = \
 	decorbutton.defs \
 	decortoggle.defs \
 	dialogs.defs \
+	exec.defs \
 	filechooser.defs \
 	framebox.defs \
 	gdk_extensions.defs \
@@ -67,7 +70,8 @@ defs_DATA = \
 	scaled_image.defs \
 	session_client.defs \
 	systemtray.defs \
-	togglebutton.defs
+	togglebutton.defs \
+	startup-notification.defs
 
 gui_overrides = aboutdialog.override framebox.override menubutton.override \
 appmenuitem.override  gdk_extensions.override  movehandler.override \
@@ -76,7 +80,8 @@ colorbutton.override  gtk_style.override       session_client.override \
 decorbutton.override  gtktoxevent.override     systemtray.override \
 decortoggle.override  iconbutton.override      template.override \
 dialogs.override      icons.override           togglebutton.override \
-filechooser.override  icontheme.override
+filechooser.override  icontheme.override       exec.override \
+startup-notification.override
 
 EXTRA_DIST = $(defs_DATA) $(gui_overrides) gen
 
