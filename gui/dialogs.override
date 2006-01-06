@@ -23,3 +23,27 @@ ignore-glob
 %%
 ignore-win32
 %%
+override create_header kwargs
+static PyObject *
+_wrap_create_header(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "icon", "text", NULL };
+    PyGObject *icon;
+    char *text;
+    GtkWidget *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Os:create_header", kwlist, &icon, &text)) {
+        return NULL;
+    }
+
+    if (icon != Py_None) {
+        ret = create_header(GDK_PIXBUF(icon->obj), text);
+    } else if (pygobject_check(icon, &PyGdkPixbuf_Type)) {
+        ret = create_header(GDK_PIXBUF(icon->obj), text);
+    } else {
+        PyErr_SetString(PyExc_TypeError, "icon: expected a Pixbuf or None");
+        return NULL;
+    }
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}

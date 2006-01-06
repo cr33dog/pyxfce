@@ -10,8 +10,8 @@
   (return-type "gchar*")
   (parameters
     '("GtkWidget*" "widget")
-    '("gchar*" "name")
-    '("gchar*" "state")
+    '("const-gchar*" "name")
+    '("const-gchar*" "state")
   )
 )
 
@@ -20,8 +20,8 @@
   (return-type "GdkGC*")
   (parameters
     '("GtkWidget*" "widget")
-    '("gchar*" "state")
-    '("gchar*" "style")
+    '("const-gchar*" "state")
+    '("const-gchar*" "style")
   )
 )
 

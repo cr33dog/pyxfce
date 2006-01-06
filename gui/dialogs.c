@@ -67,6 +67,7 @@ _wrap_show_error(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
+#line 27 "dialogs.override"
 static PyObject *
 _wrap_create_header(PyObject *self, PyObject *args, PyObject *kwargs)
 {
@@ -75,12 +76,23 @@ _wrap_create_header(PyObject *self, PyObject *args, PyObject *kwargs)
     char *text;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!s:create_header", kwlist, &PyGdkPixbuf_Type, &icon, &text))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Os:create_header", kwlist, &icon, &text)) {
         return NULL;
-    ret = create_header(GDK_PIXBUF(icon->obj), text);
+    }
+
+    if (icon != Py_None) {
+        ret = create_header(GDK_PIXBUF(icon->obj), text);
+    } else if (pygobject_check(icon, &PyGdkPixbuf_Type)) {
+        ret = create_header(GDK_PIXBUF(icon->obj), text);
+    } else {
+        PyErr_SetString(PyExc_TypeError, "icon: expected a Pixbuf or None");
+        return NULL;
+    }
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
+#line 95 "dialogs.c"
+
 
 static PyObject *
 _wrap_create_header_with_image(PyObject *self, PyObject *args, PyObject *kwargs)
@@ -263,5 +275,5 @@ pydialogs_register_classes(PyObject *d)
     }
 
 
-#line 267 "dialogs.c"
+#line 279 "dialogs.c"
 }
