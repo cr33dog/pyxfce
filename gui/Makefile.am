@@ -23,7 +23,6 @@ _gui_la_SOURCES = \
 	aboutdialog.c \
 	appmenuitem.c \
 	clock.c \
-	exec.c \
 	colorbutton.c \
 	decorbutton.c \
 	decortoggle.c \
@@ -55,7 +54,6 @@ defs_DATA = \
 	decorbutton.defs \
 	decortoggle.defs \
 	dialogs.defs \
-	exec.defs \
 	filechooser.defs \
 	framebox.defs \
 	gdk_extensions.defs \
@@ -80,8 +78,7 @@ colorbutton.override  gtk_style.override       session_client.override \
 decorbutton.override  gtktoxevent.override     systemtray.override \
 decortoggle.override  iconbutton.override      template.override \
 dialogs.override      icons.override           togglebutton.override \
-filechooser.override  icontheme.override       exec.override \
-startup-notification.override
+filechooser.override  icontheme.override       startup-notification.override
 
 EXTRA_DIST = $(defs_DATA) $(gui_overrides) gen
 
