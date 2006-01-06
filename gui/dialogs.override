@@ -36,7 +36,7 @@ _wrap_create_header(PyObject *self, PyObject *args, PyObject *kwargs)
         return NULL;
     }
 
-    if (icon != Py_None) {
+    if ((PyObject*) icon != Py_None) {
         ret = create_header(GDK_PIXBUF(icon->obj), text);
     } else if (pygobject_check(icon, &PyGdkPixbuf_Type)) {
         ret = create_header(GDK_PIXBUF(icon->obj), text);
