@@ -11,6 +11,8 @@
 #include <pygobject.h>
 #include <pyerrors.h>
 
+#include <libxfcegui4/libxfcegui4.h>
+
 extern PyMethodDef pyaboutdialog_functions[];
 extern PyMethodDef pyappmenuitem_functions[];
 extern PyMethodDef pyclock_functions[];
@@ -125,8 +127,7 @@ my_register1()
 	pyicontheme_add_constants(m, "XFCE_");
 	pysession_client_add_constants(m, "XFCE_");
 	
-	
-	d = PyModule_GetDict(m);
+	PyModule_AddStringConstant(m, "STARTUP_NOTIFICATION_ID_KEY", XFCE_STARTUP_NOTIFICATION_ENVIRONMENT_DESKTOP_STARTUP_ID);
 
 	pyaboutdialog_register_classes (d);
 	pyappmenuitem_register_classes (d);
