@@ -22,3 +22,23 @@ ignore-glob
 %%
 ignore-win32
 %%
+override xfce_startup_notification_start kwargs
+static PyObject *
+_wrap_xfce_startup_notification_start(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", "path", NULL };
+    PyGObject *screen;
+    char *path;
+    gchar *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!s:startup_notification_start", kwlist, &PyGdkScreen_Type, &screen, &path))
+        return NULL;
+    ret = xfce_startup_notification_start(GDK_SCREEN(screen->obj), path);
+    if (ret) {
+        PyObject *py_ret = PyString_FromString(ret);
+        g_free(ret);
+        return py_ret;
+    }
+    Py_INCREF(Py_None);
+    return Py_None;
+}

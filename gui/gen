@@ -11,6 +11,7 @@ do
 	if [ "${t#netk-}" = "$t" ]
 	then
 		defs="${t/-/_}.defs"
+		defs="${defs/-/_}"
 		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
 	fi
 done

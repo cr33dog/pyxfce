@@ -98,3 +98,15 @@ PYGTK_DEFS="`pkg-config --variable=defsdir pygtk-2.0`"
 	 && cp gen-$*.c $*.c \
 	 && rm -f gen-$*.c
 
+startup-notification.c: startup-notification.defs
+	(cd $(srcdir) \
+	 && $(PYTHON) $(CODEGEN_PATH)/codegen.py \
+	   $(PYGTK_CODEGEN_DEFINES) \
+	     --override $*.override \
+	     --register $(PYGTK_DEFS)/gtk-types.defs \
+	     --register $(PYGTK_DEFS)/gdk-types.defs \
+	     --register ../util/desktopentry.defs \
+	     --prefix pystartup_notification $*.defs) > gen-$*.c \
+	 && cp gen-$*.c $*.c \
+	 && rm -f gen-$*.c
+
