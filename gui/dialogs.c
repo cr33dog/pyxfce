@@ -152,8 +152,8 @@ _wrap_xfce_create_header(PyObject *self, PyObject *args, PyObject *kwargs)
         return NULL;
     }
 
-    if ((PyObject*) icon != Py_None) {
-        ret = create_header(GDK_PIXBUF(icon->obj), text);
+    if ((PyObject*) icon == Py_None) {
+        ret = create_header(NULL, text);
     } else if (pygobject_check(icon, &PyGdkPixbuf_Type)) {
         ret = create_header(GDK_PIXBUF(icon->obj), text);
     } else {
