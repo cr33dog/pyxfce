@@ -129,6 +129,7 @@ my_register1()
 	
 	PyModule_AddStringConstant(m, "STARTUP_NOTIFICATION_ID_KEY", XFCE_STARTUP_NOTIFICATION_ENVIRONMENT_DESKTOP_STARTUP_ID);
 
+        d = PyModule_GetDict(m);
 	pyaboutdialog_register_classes (d);
 	pyappmenuitem_register_classes (d);
 	pyclock_register_classes (d);
