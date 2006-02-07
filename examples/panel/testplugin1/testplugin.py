@@ -10,10 +10,10 @@ class MyPlugin(xfce4.panel.Plugin):
 	def __init__(self):
 		xfce4.panel.Plugin.__init__(self)
 		
-		label = gtk.Label("test")
-		label.show()
+		button1 = gtk.Button("test")
+		button1.show()
 		
-		self.add(label)
+		self.add(button1)
 		
 		l1 = dir(self)
 		l2 = dir(gtk.Window)
@@ -25,7 +25,8 @@ class MyPlugin(xfce4.panel.Plugin):
 		print self.vertical
 		
 		print dir(self.props)
-		print dir(self)
+		
+		self.add_action_widget(button1)
 		
 		mi = gtk.MenuItem("Hello")
 		mi.show()
