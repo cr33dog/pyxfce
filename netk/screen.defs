@@ -38,6 +38,12 @@
   )
 )
 
+(define-method get_number
+  (of-object "NetkScreen")
+  (c-name "netk_screen_get_number")
+  (return-type "int")
+)
+
 (define-method get_workspace
   (of-object "NetkScreen")
   (c-name "netk_screen_get_workspace")

@@ -27,6 +27,15 @@ PyTypeObject PyNetkScreen_Type;
 /* ----------- NetkScreen ----------- */
 
 static PyObject *
+_wrap_netk_screen_get_number(PyGObject *self)
+{
+    int ret;
+
+    ret = netk_screen_get_number(NETK_SCREEN(self->obj));
+    return PyInt_FromLong(ret);
+}
+
+static PyObject *
 _wrap_netk_screen_get_workspace(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "workspace", NULL };
@@ -95,7 +104,7 @@ _wrap_netk_screen_get_windows(PyGObject *self)
     }
     return py_list;
 }
-#line 99 "screen.c"
+#line 108 "screen.c"
 
 
 #line 63 "screen.override"
@@ -132,7 +141,7 @@ _wrap_netk_screen_get_windows_stacked(PyGObject *self)
     }
     return py_list;
 }
-#line 136 "screen.c"
+#line 145 "screen.c"
 
 
 static PyObject *
@@ -204,7 +213,7 @@ _wrap_netk_screen_get_background_pixmap(PyGObject *self)
        return Py_None;
     }
 }
-#line 208 "screen.c"
+#line 217 "screen.c"
 
 
 static PyObject *
@@ -308,10 +317,11 @@ _wrap_netk_screen_get_workspaces(PyGObject *self)
     }
     return py_list;
 }
-#line 312 "screen.c"
+#line 321 "screen.c"
 
 
 static PyMethodDef _PyNetkScreen_methods[] = {
+    { "get_number", (PyCFunction)_wrap_netk_screen_get_number, METH_NOARGS },
     { "get_workspace", (PyCFunction)_wrap_netk_screen_get_workspace, METH_VARARGS|METH_KEYWORDS },
     { "get_active_workspace", (PyCFunction)_wrap_netk_screen_get_active_workspace, METH_NOARGS },
     { "get_active_window", (PyCFunction)_wrap_netk_screen_get_active_window, METH_NOARGS },
@@ -449,7 +459,7 @@ pyscreen_register_classes(PyObject *d)
     }
 
 
-#line 453 "screen.c"
+#line 463 "screen.c"
     pygobject_register_class(d, "NetkScreen", NETK_TYPE_SCREEN, &PyNetkScreen_Type, Py_BuildValue("(O)", &PyGObject_Type));
     pyg_set_object_has_new_constructor(NETK_TYPE_SCREEN);
 }
