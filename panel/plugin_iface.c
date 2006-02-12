@@ -226,6 +226,19 @@ _wrap_xfce_panel_plugin_save_location(PyGObject *self, PyObject *args, PyObject 
     return Py_None;
 }
 
+static PyObject *
+_wrap_xfce_panel_plugin_focus_widget(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "widget", NULL };
+    PyGObject *widget;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfcePanelPlugin.focus_widget", kwlist, &PyGtkWidget_Type, &widget))
+        return NULL;
+    xfce_panel_plugin_focus_widget(XFCE_PANEL_PLUGIN(self->obj), GTK_WIDGET(widget->obj));
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
 static PyMethodDef _PyXfcePanelPlugin_methods[] = {
     { "get_name", (PyCFunction)_wrap_xfce_panel_plugin_get_name, METH_NOARGS },
     { "get_id", (PyCFunction)_wrap_xfce_panel_plugin_get_id, METH_NOARGS },
@@ -244,6 +257,7 @@ static PyMethodDef _PyXfcePanelPlugin_methods[] = {
     { "register_menu", (PyCFunction)_wrap_xfce_panel_plugin_register_menu, METH_VARARGS|METH_KEYWORDS },
     { "lookup_rc_file", (PyCFunction)_wrap_xfce_panel_plugin_lookup_rc_file, METH_NOARGS },
     { "save_location", (PyCFunction)_wrap_xfce_panel_plugin_save_location, METH_VARARGS|METH_KEYWORDS },
+    { "focus_widget", (PyCFunction)_wrap_xfce_panel_plugin_focus_widget, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -348,6 +362,6 @@ pyplugin_iface_register_classes(PyObject *d)
     }
 
 
-#line 352 "plugin_iface.c"
+#line 366 "plugin_iface.c"
     pyg_register_interface(d, "PanelPlugin", XFCE_TYPE_PANEL_PLUGIN, &PyXfcePanelPlugin_Type);
 }

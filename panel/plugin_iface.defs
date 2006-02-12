@@ -133,4 +133,13 @@
   )
 )
 
+(define-method focus_widget
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_focus_widget")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+  )
+)
+
 
