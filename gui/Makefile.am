@@ -34,6 +34,7 @@ _gui_la_SOURCES = \
 	gtk_style.c \
 	gtktoxevent.c \
 	iconbutton.c \
+	icontheme.c \
 	icons.c \
 	menubutton.c \
 	movehandler.c \
@@ -60,6 +61,7 @@ defs_DATA = \
 	gtk_style.defs \
 	gtktoxevent.defs \
 	iconbutton.defs \
+	icontheme.defs \
 	icons.defs \
 	menubutton.defs \
 	movehandler.defs \
@@ -76,7 +78,7 @@ colorbutton.override  gtk_style.override       session_client.override \
 decorbutton.override  gtktoxevent.override     systemtray.override \
 decortoggle.override  iconbutton.override      template.override \
 dialogs.override      icons.override           togglebutton.override \
-filechooser.override  startup-notification.override
+filechooser.override  startup-notification.override icontheme.override
 
 EXTRA_DIST = $(defs_DATA) $(gui_overrides) gen
 

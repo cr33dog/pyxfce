@@ -2,6 +2,32 @@
 ; object definitions ...
 ;; Enumerations and flags ...
 
+(define-enum IconThemeCategory
+  (in-module "Xfce")
+  (c-name "XfceIconThemeCategory")
+  (gtype-id "XFCE_TYPE_ICON_THEME_CATEGORY")
+  (values
+    '("icon-category-unknown" "XFCE_ICON_CATEGORY_UNKNOWN")
+    '("icon-category-editor" "XFCE_ICON_CATEGORY_EDITOR")
+    '("icon-category-fileman" "XFCE_ICON_CATEGORY_FILEMAN")
+    '("icon-category-utility" "XFCE_ICON_CATEGORY_UTILITY")
+    '("icon-category-game" "XFCE_ICON_CATEGORY_GAME")
+    '("icon-category-help" "XFCE_ICON_CATEGORY_HELP")
+    '("icon-category-multimedia" "XFCE_ICON_CATEGORY_MULTIMEDIA")
+    '("icon-category-network" "XFCE_ICON_CATEGORY_NETWORK")
+    '("icon-category-graphics" "XFCE_ICON_CATEGORY_GRAPHICS")
+    '("icon-category-printer" "XFCE_ICON_CATEGORY_PRINTER")
+    '("icon-category-productivity" "XFCE_ICON_CATEGORY_PRODUCTIVITY")
+    '("icon-category-sound" "XFCE_ICON_CATEGORY_SOUND")
+    '("icon-category-terminal" "XFCE_ICON_CATEGORY_TERMINAL")
+    '("icon-category-development" "XFCE_ICON_CATEGORY_DEVELOPMENT")
+    '("icon-category-settings" "XFCE_ICON_CATEGORY_SETTINGS")
+    '("icon-category-system" "XFCE_ICON_CATEGORY_SYSTEM")
+    '("icon-category-wine" "XFCE_ICON_CATEGORY_WINE")
+    '("n-builtin-icon-categories" "XFCE_N_BUILTIN_ICON_CATEGORIES")
+  )
+)
+
 
 ;; From /usr/local/include/xfce4/libxfcegui4/icons.h
 
@@ -15,11 +41,14 @@
   )
 )
 
-(define-function themed_icon_set_icon_theme
-  (c-name "xfce_set_icon_theme")
-  (return-type "none")
+(define-function pixbuf_new_from_file_at_size
+  (c-name "xfce_pixbuf_new_from_file_at_size")
+  (return-type "GdkPixbuf*")
   (parameters
-    '("const-gchar*" "theme_name")
+    '("const-gchar*" "filename")
+    '("gint" "width")
+    '("gint" "height")
+    '("GError**" "error")
   )
 )
 
@@ -49,14 +78,20 @@
   )
 )
 
-(define-function pixbuf_new_from_file_at_size
-  (c-name "xfce_pixbuf_new_from_file_at_size")
+(define-function themed_icon_load_category
+  (c-name "xfce_themed_icon_load_category")
   (return-type "GdkPixbuf*")
   (parameters
-    '("const-gchar*" "filename")
-    '("gint" "width")
-    '("gint" "height")
-    '("GError**" "error")
+    '("XfceIconThemeCategory" "category")
+    '("gint" "size")
+  )
+)
+
+(define-function themed_icon_set_icon_theme
+  (c-name "xfce_set_icon_theme")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "theme_name")
   )
 )
 

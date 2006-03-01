@@ -8,8 +8,10 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
-#line 13 "icons.c"
+#define XFCE_TYPE_ICON_THEME_CATEGORY GUI_TYPE_ICON_THEME_CATEGORY
+#line 15 "icons.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -21,23 +23,28 @@ static PyTypeObject *_PyGdkPixbuf_Type;
 
 /* ---------- forward type declarations ---------- */
 
-#line 25 "icons.c"
+#line 27 "icons.c"
 
 
 
 /* ----------- functions ----------- */
 
 static PyObject *
-_wrap_xfce_set_icon_theme(PyObject *self, PyObject *args, PyObject *kwargs)
+_wrap_xfce_pixbuf_new_from_file_at_size(PyObject *self, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "theme_name", NULL };
-    char *theme_name;
+    static char *kwlist[] = { "filename", "width", "height", NULL };
+    char *filename;
+    int width, height;
+    GdkPixbuf *ret;
+    GError *error = NULL;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:themed_icon_set_icon_theme", kwlist, &theme_name))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sii:pixbuf_new_from_file_at_size", kwlist, &filename, &width, &height))
         return NULL;
-    xfce_set_icon_theme(theme_name);
-    Py_INCREF(Py_None);
-    return Py_None;
+    ret = xfce_pixbuf_new_from_file_at_size(filename, width, height, &error);
+    if (pyg_error_check(&error))
+        return NULL;
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
 }
 
 static PyObject *
@@ -89,21 +96,34 @@ _wrap_xfce_themed_icon_add_search_path(PyObject *self, PyObject *args, PyObject 
 }
 
 static PyObject *
-_wrap_xfce_pixbuf_new_from_file_at_size(PyObject *self, PyObject *args, PyObject *kwargs)
+_wrap_xfce_themed_icon_load_category(PyObject *self, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "filename", "width", "height", NULL };
-    char *filename;
-    int width, height;
+    static char *kwlist[] = { "category", "size", NULL };
+    PyObject *py_category = NULL;
+    int size;
     GdkPixbuf *ret;
-    GError *error = NULL;
+    XfceIconThemeCategory category;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sii:pixbuf_new_from_file_at_size", kwlist, &filename, &width, &height))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Oi:themed_icon_load_category", kwlist, &py_category, &size))
         return NULL;
-    ret = xfce_pixbuf_new_from_file_at_size(filename, width, height, &error);
-    if (pyg_error_check(&error))
+    if (pyg_enum_get_value(XFCE_TYPE_ICON_THEME_CATEGORY, py_category, (gint *)&category))
         return NULL;
+    ret = xfce_themed_icon_load_category(category, size);
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_xfce_set_icon_theme(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "theme_name", NULL };
+    char *theme_name;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:themed_icon_set_icon_theme", kwlist, &theme_name))
+        return NULL;
+    xfce_set_icon_theme(theme_name);
+    Py_INCREF(Py_None);
+    return Py_None;
 }
 
 static PyObject *
@@ -122,14 +142,27 @@ _wrap_xfce_load_themed_icon(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 PyMethodDef pyicons_functions[] = {
-    { "themed_icon_set_icon_theme", (PyCFunction)_wrap_xfce_set_icon_theme, METH_VARARGS|METH_KEYWORDS },
+    { "pixbuf_new_from_file_at_size", (PyCFunction)_wrap_xfce_pixbuf_new_from_file_at_size, METH_VARARGS|METH_KEYWORDS },
     { "themed_icon_lookup", (PyCFunction)_wrap_xfce_themed_icon_lookup, METH_VARARGS|METH_KEYWORDS },
     { "themed_icon_load", (PyCFunction)_wrap_xfce_themed_icon_load, METH_VARARGS|METH_KEYWORDS },
     { "themed_icon_add_search_path", (PyCFunction)_wrap_xfce_themed_icon_add_search_path, METH_VARARGS|METH_KEYWORDS },
-    { "pixbuf_new_from_file_at_size", (PyCFunction)_wrap_xfce_pixbuf_new_from_file_at_size, METH_VARARGS|METH_KEYWORDS },
+    { "themed_icon_load_category", (PyCFunction)_wrap_xfce_themed_icon_load_category, METH_VARARGS|METH_KEYWORDS },
+    { "themed_icon_set_icon_theme", (PyCFunction)_wrap_xfce_set_icon_theme, METH_VARARGS|METH_KEYWORDS },
     { "load_themed_icon", (PyCFunction)_wrap_xfce_load_themed_icon, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
+
+
+/* ----------- enums and flags ----------- */
+
+void
+pyicons_add_constants(PyObject *module, const gchar *strip_prefix)
+{
+  pyg_enum_add(module, "IconThemeCategory", strip_prefix, XFCE_TYPE_ICON_THEME_CATEGORY);
+
+  if (PyErr_Occurred())
+    PyErr_Print();
+}
 
 /* initialise stuff extension classes */
 void
@@ -167,5 +200,5 @@ pyicons_register_classes(PyObject *d)
     }
 
 
-#line 171 "icons.c"
+#line 204 "icons.c"
 }

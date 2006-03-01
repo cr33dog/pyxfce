@@ -170,6 +170,21 @@
   (varargs #t)
 )
 
+(define-function message_dialog_new
+  (c-name "xfce_message_dialog_new")
+  (is-constructor-of "XfceMessageDialog")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "title")
+    '("const-gchar*" "icon_id")
+    '("const-gchar*" "primary_text")
+    '("const-gchar*" "secondary_text")
+    '("const-gchar*" "first_button_type")
+  )
+  (varargs #t)
+)
+
 (define-function create_header
   (c-name "xfce_create_header")
   (return-type "GtkWidget*")

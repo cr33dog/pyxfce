@@ -12,6 +12,11 @@
 
 ;; From /usr/local/include/xfce4/libxfcegui4/xfce_aboutdialog.h
 
+(define-function about_info_get_type
+  (c-name "xfce_about_info_get_type")
+  (return-type "GType")
+)
+
 (define-function about_info_new
   (c-name "xfce_about_info_new")
   (is-constructor-of "XfceAboutInfo")
@@ -25,19 +30,97 @@
   )
 )
 
-(define-method copy_from
+(define-method copy
   (of-object "XfceAboutInfo")
-  (c-name "xfce_about_info_copy_from")
-  (return-type "none")
-  (parameters
-    '("XfceAboutInfo-const*" "from")
-  )
+  (c-name "xfce_about_info_copy")
+  (return-type "XfceAboutInfo*")
 )
 
 (define-method free
   (of-object "XfceAboutInfo")
   (c-name "xfce_about_info_free")
   (return-type "none")
+)
+
+(define-method get_program
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_get_program")
+  (return-type "const-gchar*")
+)
+
+(define-method set_program
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_set_program")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "program")
+  )
+)
+
+(define-method get_version
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_get_version")
+  (return-type "const-gchar*")
+)
+
+(define-method set_version
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_set_version")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "version")
+  )
+)
+
+(define-method get_description
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_get_description")
+  (return-type "const-gchar*")
+)
+
+(define-method set_description
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_set_description")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "description")
+  )
+)
+
+(define-method get_copyright
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_get_copyright")
+  (return-type "const-gchar*")
+)
+
+(define-method set_copyright
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_set_copyright")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "copyright")
+  )
+)
+
+(define-method get_license
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_get_license")
+  (return-type "const-gchar*")
+)
+
+(define-method set_license
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_set_license")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "license")
+  )
+)
+
+(define-method get_homepage
+  (of-object "XfceAboutInfo")
+  (c-name "xfce_about_info_get_homepage")
+  (return-type "const-gchar*")
 )
 
 (define-method set_homepage

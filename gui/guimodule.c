@@ -65,7 +65,6 @@ void pyclock_add_constants(PyObject *module, const gchar *strip_prefix);
 void pydecorbutton_add_constants(PyObject *module, const gchar *strip_prefix);
 void pyfilechooser_add_constants(PyObject *module, const gchar *strip_prefix);
 void pygtktoxevent_add_constants(PyObject *module, const gchar *strip_prefix);
-void pyicontheme_add_constants(PyObject *module, const gchar *strip_prefix);
 void pysession_client_add_constants(PyObject *module, const gchar *strip_prefix);
 
 
@@ -124,7 +123,6 @@ my_register1()
 	pydecorbutton_add_constants(m, "XFCE_");
 	pyfilechooser_add_constants(m, "XFCE_");
 	pygtktoxevent_add_constants(m, "XFCE_");
-	pyicontheme_add_constants(m, "XFCE_");
 	pysession_client_add_constants(m, "XFCE_");
 	
 	PyModule_AddStringConstant(m, "STARTUP_NOTIFICATION_ID_KEY", XFCE_STARTUP_NOTIFICATION_ENVIRONMENT_DESKTOP_STARTUP_ID);

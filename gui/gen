@@ -33,7 +33,7 @@ rm -f libnetk.defs
 rm -f marshal.defs
 rm -f preview_filesel.* # totally weird
 rm -f xinerama* # obsolete
-rm -f icontheme.defs # obsolete
+# rm -f icontheme.defs # ?
 
 # fix up the enums:
 
