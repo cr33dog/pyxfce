@@ -1,0 +1,128 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
+
+#define XFCE_TYPE_FILE_CHOOSER_ACTION GUI_TYPE_FILE_CHOOSER_ACTION
+#define XFCE_TYPE_ICON_THEME_CATEGORY GUI_TYPE_ICON_THEME_CATEGORY
+
+%%
+include
+%%
+modulename icontheme
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.gdk.Screen as PyGdkScreen_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%
+override xfce_icon_theme_get_search_path noargs
+static PyObject *
+_wrap_xfce_icon_theme_get_search_path(PyGObject *self)
+{
+    gint n_items;
+    PyObject *py_tuple;
+    int i;
+    GList *list;
+    GList *item;
+
+    list = xfce_icon_theme_get_search_path(XFCE_ICON_THEME(self->obj));
+    if (list) 
+        n_items = g_list_length (list);
+    else
+        n_items = 0;
+
+    py_tuple = PyTuple_New(n_items);
+    item = list;
+    for (i = 0; item != NULL; i++)
+	PyTuple_SetItem(py_tuple, i, PyString_FromString((char *)item->data));
+
+    if (list) {
+        g_list_foreach (list, (GFunc) g_free, NULL);
+        g_list_free (list);
+    }
+
+    return py_tuple;
+}
+%%
+override xfce_icon_theme_set_search_path kwargs
+static PyObject *
+_wrap_xfce_icon_theme_set_search_path(PyGObject *self, PyObject *args,
+				     PyObject *kwargs)
+{
+    static char *kwlist[] = { "path", NULL };
+    int i, len;
+    PyObject *py_seq;
+    GList *list;
+
+    if (!PyArg_ParseTupleAndKeywords(args,kwargs,
+				     "O:XfceIconTheme.set_search_path",
+                                     kwlist, &py_seq))
+        return NULL;
+
+    if (!PySequence_Check(py_seq) || (len = PySequence_Size(py_seq)) < 0) {
+	PyErr_SetString(PyExc_ValueError,
+			"path should be a sequence of strings");
+	return NULL;
+    }
+
+    list = NULL;
+
+    for (i = 0; i < len; i++) {
+	PyObject *py_path = PySequence_GetItem(py_seq, i);
+	if (!PyString_Check(py_path)) {
+	    PyErr_SetString(PyExc_ValueError, "path items must be strings");
+	    Py_DECREF(py_path);
+            if (list)
+                g_list_free (list);
+	    return NULL;
+	}
+	list = g_list_append (list, PyString_AsString(py_path));
+	Py_DECREF(py_path);
+    }
+
+    xfce_icon_theme_set_search_path(XFCE_ICON_THEME(self->obj), list);
+
+    if (list)
+       g_list_free (list); /* items are not to be freed by me */
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override xfce_icon_theme_new kwargs
+static int
+_wrap_xfce_icon_theme_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *gscreen;
+
+    if (!PyArg_ParseTupleAndKeywords(args,kwargs,
+				     "O!:XfceIconTheme.__init__",
+                                     kwlist, &PyGdkScreen_Type, &gscreen))
+        return -1;
+
+    if (!gscreen) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceIconTheme object");
+        return -1;
+    }
+
+    self->obj = (GObject *)xfce_icon_theme_get_for_screen (gscreen->obj);
+
+    if (!self->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not create XfceIconTheme object");
+        return -1;
+    }
+    pygobject_register_wrapper((PyObject *)self);
+    return 0;
+}
