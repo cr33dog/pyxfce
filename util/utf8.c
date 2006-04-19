@@ -45,8 +45,29 @@ _wrap_xfce_utf8_remove_controls(PyObject *self, PyObject *args, PyObject *kwargs
     return Py_None;
 }
 
+static PyObject *
+_wrap_xfce_utf8_strndup(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "src", "max_len", NULL };
+    char *src;
+    gchar *ret;
+    gssize max_len;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sl:utf8_strndup", kwlist, &src, &max_len))
+        return NULL;
+    ret = xfce_utf8_strndup(src, max_len);
+    if (ret) {
+        PyObject *py_ret = PyString_FromString(ret);
+        g_free(ret);
+        return py_ret;
+    }
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
 PyMethodDef pyutf8_functions[] = {
     { "utf8_remove_controls", (PyCFunction)_wrap_xfce_utf8_remove_controls, METH_VARARGS|METH_KEYWORDS },
+    { "utf8_strndup", (PyCFunction)_wrap_xfce_utf8_strndup, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -72,5 +93,5 @@ pyutf8_register_classes(PyObject *d)
     }
 
 
-#line 76 "utf8.c"
+#line 97 "utf8.c"
 }

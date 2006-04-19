@@ -37,16 +37,6 @@ pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-_wrap_xfce_desktop_entry_parse(PyGObject *self)
-{
-    int ret;
-
-    ret = xfce_desktop_entry_parse(XFCE_DESKTOP_ENTRY(self->obj));
-    return PyBool_FromLong(ret);
-
-}
-
-static PyObject *
 _wrap_xfce_desktop_entry_get_file(PyGObject *self)
 {
     const gchar *ret;
@@ -57,6 +47,27 @@ _wrap_xfce_desktop_entry_get_file(PyGObject *self)
     Py_INCREF(Py_None);
     return Py_None;
 }
+
+#line 54 "desktopentry.override"
+static PyObject *
+_wrap_xfce_desktop_entry_get_int(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    int value;
+    gchar *key;
+    static char *kwlist[] = { "key", NULL };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_desktop_entry_get_int", kwlist, &key))
+        return NULL;
+
+    if (xfce_desktop_entry_get_int (XFCE_DESKTOP_ENTRY(self->obj), key, &value)) {
+        return PyInt_FromLong((long) value);
+    }
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+#line 70 "desktopentry.c"
+
 
 #line 29 "desktopentry.override"
 static PyObject *
@@ -82,35 +93,28 @@ _wrap_xfce_desktop_entry_get_string(PyGObject *self, PyObject *args, PyObject *k
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 86 "desktopentry.c"
+#line 97 "desktopentry.c"
 
 
-#line 54 "desktopentry.override"
 static PyObject *
-_wrap_xfce_desktop_entry_get_int(PyGObject *self, PyObject *args, PyObject *kwargs)
+_wrap_xfce_desktop_entry_has_translated_entry(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    int value;
-    gchar *key;
     static char *kwlist[] = { "key", NULL };
+    char *key;
+    int ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:xfce_desktop_entry_get_int", kwlist, &key))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceDesktopEntry.has_translated_entry", kwlist, &key))
         return NULL;
+    ret = xfce_desktop_entry_has_translated_entry(XFCE_DESKTOP_ENTRY(self->obj), key);
+    return PyBool_FromLong(ret);
 
-    if (xfce_desktop_entry_get_int (XFCE_DESKTOP_ENTRY(self->obj), key, &value)) {
-        return PyInt_FromLong((long) value);
-    }
-
-    Py_INCREF(Py_None);
-    return Py_None;
 }
-#line 107 "desktopentry.c"
-
 
 static PyMethodDef _PyXfceDesktopEntry_methods[] = {
-    { "parse", (PyCFunction)_wrap_xfce_desktop_entry_parse, METH_NOARGS },
     { "get_file", (PyCFunction)_wrap_xfce_desktop_entry_get_file, METH_NOARGS },
-    { "get_string", (PyCFunction)_wrap_xfce_desktop_entry_get_string, METH_VARARGS|METH_KEYWORDS },
     { "get_int", (PyCFunction)_wrap_xfce_desktop_entry_get_int, METH_VARARGS|METH_KEYWORDS },
+    { "get_string", (PyCFunction)_wrap_xfce_desktop_entry_get_string, METH_VARARGS|METH_KEYWORDS },
+    { "has_translated_entry", (PyCFunction)_wrap_xfce_desktop_entry_has_translated_entry, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -189,6 +193,6 @@ pydesktopentry_register_classes(PyObject *d)
     }
 
 
-#line 193 "desktopentry.c"
+#line 197 "desktopentry.c"
     pygobject_register_class(d, "XfceDesktopEntry", XFCE_TYPE_DESKTOP_ENTRY, &PyXfceDesktopEntry_Type, Py_BuildValue("(O)", &PyGObject_Type));
 }

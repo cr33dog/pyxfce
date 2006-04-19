@@ -8,7 +8,7 @@
 #include "pygobject.h"
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
-#include <libxfce4util/util-enum-types.h>
+#include <libxfce4util/libxfce4util-enum-types.h>
 
 #line 14 "resource.c"
 

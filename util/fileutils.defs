@@ -10,7 +10,7 @@
   (return-type "gboolean")
   (parameters
     '("const-gchar*" "whole_path")
-    '("unsigned-long" "mode")
+    '("gulong" "mode")
     '("GError**" "error")
   )
 )

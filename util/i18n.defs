@@ -3,7 +3,17 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfce4util/i18n.h
+;; From /usr/local/include/xfce4/libxfce4util/xfce-i18n.h
+
+(define-function textdomain
+  (c-name "xfce_textdomain")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "package")
+    '("const-gchar*" "localedir")
+    '("const-gchar*" "encoding")
+  )
+)
 
 (define-function strip_context
   (c-name "xfce_strip_context")
@@ -22,14 +32,6 @@
   )
 )
 
-(define-function get_dir_localized
-  (c-name "xfce_get_dir_localized")
-  (return-type "gchar*")
-  (parameters
-    '("const-gchar*" "directory")
-  )
-)
-
 (define-function get_file_localized_r
   (c-name "xfce_get_file_localized_r")
   (return-type "gchar*")
@@ -37,6 +39,14 @@
     '("gchar*" "buffer")
     '("gsize" "length")
     '("const-gchar*" "filename")
+  )
+)
+
+(define-function get_dir_localized
+  (c-name "xfce_get_dir_localized")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "directory")
   )
 )
 

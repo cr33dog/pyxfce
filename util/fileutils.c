@@ -25,7 +25,26 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ----------- functions ----------- */
 
+static PyObject *
+_wrap_xfce_mkdirhier(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "whole_path", "mode", NULL };
+    char *whole_path;
+    int ret;
+    unsigned long mode;
+    GError *error = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sk:mkdirhier", kwlist, &whole_path, &mode))
+        return NULL;
+    ret = xfce_mkdirhier(whole_path, mode, &error);
+    if (pyg_error_check(&error))
+        return NULL;
+    return PyBool_FromLong(ret);
+
+}
+
 PyMethodDef pyfileutils_functions[] = {
+    { "mkdirhier", (PyCFunction)_wrap_xfce_mkdirhier, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -51,5 +70,5 @@ pyfileutils_register_classes(PyObject *d)
     }
 
 
-#line 55 "fileutils.c"
+#line 74 "fileutils.c"
 }
