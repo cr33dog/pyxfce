@@ -50,3 +50,5 @@ netk window_state_changed_cb: how to check mask and newvalue ? constants ? where
 deprecated (i.e. remove it): XfceFileChooser?no?, XfceColorButton, XfceDecorButton, XfceDecorToggle
 
 http://live.gnome.org/PyGTK/WhatsNew28
+
+Could not write function get_path_localized: No ArgType for 'GFileTest'
