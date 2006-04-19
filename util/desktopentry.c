@@ -26,16 +26,6 @@ PyTypeObject PyXfceDesktopEntry_Type;
 
 /* ----------- XfceDesktopEntry ----------- */
 
-static int
-pygobject_no_constructor(PyObject *self, PyObject *args, PyObject *kwargs)
-{
-    gchar buf[512];
-
-    g_snprintf(buf, sizeof(buf), "%s is an abstract widget", self->ob_type->tp_name);
-    PyErr_SetString(PyExc_NotImplementedError, buf);
-    return -1;
-}
-
 static PyObject *
 _wrap_xfce_desktop_entry_get_file(PyGObject *self)
 {
@@ -66,7 +56,7 @@ _wrap_xfce_desktop_entry_get_int(PyGObject *self, PyObject *args, PyObject *kwar
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 70 "desktopentry.c"
+#line 60 "desktopentry.c"
 
 
 #line 29 "desktopentry.override"
@@ -93,7 +83,7 @@ _wrap_xfce_desktop_entry_get_string(PyGObject *self, PyObject *args, PyObject *k
     Py_INCREF(Py_None);
     return Py_None;
 }
-#line 97 "desktopentry.c"
+#line 87 "desktopentry.c"
 
 
 static PyObject *
@@ -156,7 +146,7 @@ PyTypeObject PyXfceDesktopEntry_Type = {
     (descrgetfunc)0,	/* tp_descr_get */
     (descrsetfunc)0,	/* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)pygobject_no_constructor,		/* tp_init */
+    (initproc)0,		/* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -167,7 +157,99 @@ PyTypeObject PyXfceDesktopEntry_Type = {
 
 /* ----------- functions ----------- */
 
+#line 73 "desktopentry.override"
+static PyObject *
+_wrap_xfce_desktop_entry_new(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    const gchar** categories;
+    const gchar* file_path;
+    XfceDesktopEntry* desktop_entry;
+    PyObject* py_desktop_entry;
+    PyObject* py_categories;
+    PyObject* py_item;
+    int i, count;
+
+    static char *kwlist[] = { "file_path", "categories", NULL };
+
+    categories = NULL;
+    file_path = NULL;
+    py_categories = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, 
+      "s|O!:xfce_desktop_entry_new", kwlist, &file_path, &PyList_Type, &py_categories)) {
+        return NULL;
+    }
+
+    count = 0;
+
+    if (py_categories != NULL) {
+        count = PyList_Size (py_categories);
+        categories = (const gchar**) g_new0 (gchar*, count + 1);
+        for (i = 0; i < count; i++) {
+            py_item = PyList_GetItem (py_categories, i);
+
+            categories[i] = PyString_AsString (py_item);
+            if (categories[i] == NULL) {
+                g_free(categories);
+                PyErr_SetString(PyExc_TypeError, "Type Mismatch: categories should be a list of strings");
+                return NULL;
+            }
+        }
+    }
+
+    if (categories == NULL) {
+        count = 29;
+        categories = (const gchar**) g_new0(gchar*, count + 1);
+        categories[0] = "Name";
+        categories[1] = "GenericName",
+        categories[2] = "Type";
+        categories[3] = "Version";
+        categories[4] = "Encoding";
+        categories[5] = "NoDisplay";
+        categories[6] = "Comment";
+        categories[7] = "Icon";
+        categories[8] = "Hidden";
+        categories[9] = "FilePattern";
+        categories[10] = "TryExec";
+        categories[11] = "Exec";
+        categories[12] = "Path";
+        categories[13] = "Terminal";
+        categories[14] = "SwallowTitle";
+        categories[15] = "SwallowExec";
+        categories[16] = "Actions";
+        categories[17] = "MimeType";
+        categories[18] = "SortOrder";
+        categories[18] = "Dev";
+        categories[19] = "FSType";
+        categories[20] = "MountPoint";
+        categories[21] = "ReadOnly";
+        categories[22] = "UnmountIcon";
+        categories[23] = "URL";
+        categories[24] = "Categories";
+        categories[25] = "OnlyShowIn";
+        categories[26] = "NotShowIn";
+        categories[27] = "StartupNotify";
+        categories[28] = "StartupWMClass";
+    }
+
+    desktop_entry = xfce_desktop_entry_new(file_path, categories, count);
+
+    g_free(categories);
+
+    if (desktop_entry == NULL) {
+        PyErr_SetString(PyExc_OSError, "OSError");
+        return NULL;
+    }
+
+    py_desktop_entry = pygobject_new((GObject *) desktop_entry);
+    g_object_unref(desktop_entry);
+    return py_desktop_entry;
+}
+#line 249 "desktopentry.c"
+
+
 PyMethodDef pydesktopentry_functions[] = {
+    { "desktop_entry_new", (PyCFunction)_wrap_xfce_desktop_entry_new, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -193,6 +275,7 @@ pydesktopentry_register_classes(PyObject *d)
     }
 
 
-#line 197 "desktopentry.c"
+#line 279 "desktopentry.c"
     pygobject_register_class(d, "XfceDesktopEntry", XFCE_TYPE_DESKTOP_ENTRY, &PyXfceDesktopEntry_Type, Py_BuildValue("(O)", &PyGObject_Type));
+    pyg_set_object_has_new_constructor(XFCE_TYPE_DESKTOP_ENTRY);
 }

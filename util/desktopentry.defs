@@ -19,7 +19,6 @@
 
 (define-function desktop_entry_new
   (c-name "xfce_desktop_entry_new")
-  (is-constructor-of "XfceDesktopEntry")
   (return-type "XfceDesktopEntry*")
   (parameters
     '("const-gchar*" "file")

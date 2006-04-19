@@ -32,6 +32,8 @@ do
   sed -e 's;(define-function xfce_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
 done
 
+grep -v "(is-constructor-of \"XfceDesktopEntry\")" desktopentry.defs > desktopentry.defs.new && mv desktopentry.defs.new desktopentry.defs
+  
 cat >>desktopentry.defs << EOF
 (object DesktopEntry
    (in-module (Xfce))
