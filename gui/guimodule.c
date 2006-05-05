@@ -34,6 +34,7 @@ extern PyMethodDef pymovehandler_functions[];
 extern PyMethodDef pyscaled_image_functions[];
 extern PyMethodDef pysession_client_functions[];
 extern PyMethodDef pysystemtray_functions[];
+extern PyMethodDef pytitled_dialog_functions[];
 extern PyMethodDef pytogglebutton_functions[];
 extern PyMethodDef pystartup_notification_functions[];
 
@@ -58,6 +59,7 @@ void pymovehandler_register_classes(PyObject *d);
 void pyscaled_image_register_classes(PyObject *d);
 void pysession_client_register_classes(PyObject *d);
 void pysystemtray_register_classes(PyObject *d);
+void pytitled_dialog_register_classes(PyObject *d);
 void pytogglebutton_register_classes(PyObject *d);
 void pystartup_notification_register_classes(PyObject* d);
 
@@ -92,6 +94,7 @@ static PyMethodDef* each_functions[] = {
 	pyscaled_image_functions,
 	pysession_client_functions,
 	pysystemtray_functions,
+	pytitled_dialog_functions,
 	pytogglebutton_functions,
 	pystartup_notification_functions,
 };
@@ -149,6 +152,7 @@ my_register1()
 	pyscaled_image_register_classes (d);
 	pysession_client_register_classes (d);
 	pysystemtray_register_classes (d);
+	pytitled_dialog_register_classes (d);
 	pytogglebutton_register_classes (d);
 	pystartup_notification_register_classes (d);
 }

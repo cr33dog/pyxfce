@@ -5,18 +5,21 @@
 headers
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <panel/>
+#include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
 
 %%
 include
 %%
-modulename *
+modulename titleddialog
 %%
 import gobject.GObject as PyGObject_Type
+import gtk.Dialog as PyGtkDialog_Type
 %%
 ignore
 %%
 ignore-glob
+  *_get_type
 %%
 ignore-win32
 %%

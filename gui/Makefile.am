@@ -41,6 +41,7 @@ _gui_la_SOURCES = \
 	scaled_image.c \
 	session_client.c \
 	systemtray.c \
+	titled_dialog.c \
 	togglebutton.c \
 	guimodule.c \
 	startup-notification.c
@@ -68,6 +69,7 @@ defs_DATA = \
 	scaled_image.defs \
 	session_client.defs \
 	systemtray.defs \
+	titled_dialog.defs \
 	togglebutton.defs \
 	startup-notification.defs
 
@@ -78,7 +80,9 @@ colorbutton.override  gtk_style.override       session_client.override \
 decorbutton.override  gtktoxevent.override     systemtray.override \
 decortoggle.override  iconbutton.override      template.override \
 dialogs.override      icons.override           togglebutton.override \
-filechooser.override  startup-notification.override icontheme.override
+filechooser.override  startup-notification.override icontheme.override \
+titled_dialog.override
+
 
 EXTRA_DIST = $(defs_DATA) $(gui_overrides) gen
 

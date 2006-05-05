@@ -41,17 +41,6 @@
   )
 )
 
-(define-function pixbuf_new_from_file_at_size
-  (c-name "xfce_pixbuf_new_from_file_at_size")
-  (return-type "GdkPixbuf*")
-  (parameters
-    '("const-gchar*" "filename")
-    '("gint" "width")
-    '("gint" "height")
-    '("GError**" "error")
-  )
-)
-
 (define-function themed_icon_lookup
   (c-name "xfce_themed_icon_lookup")
   (return-type "gchar*")
@@ -70,11 +59,30 @@
   )
 )
 
-(define-function themed_icon_add_search_path
-  (c-name "xfce_themed_icon_add_search_path")
-  (return-type "none")
+(define-function themed_icon_lookup_list
+  (c-name "xfce_themed_icon_lookup_list")
+  (return-type "gchar*")
   (parameters
-    '("const-gchar*" "path")
+    '("GList*" "names")
+    '("gint" "size")
+  )
+)
+
+(define-function themed_icon_load_list
+  (c-name "xfce_themed_icon_load_list")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("GList*" "names")
+    '("gint" "size")
+  )
+)
+
+(define-function themed_icon_lookup_category
+  (c-name "xfce_themed_icon_lookup_category")
+  (return-type "gchar*")
+  (parameters
+    '("XfceIconThemeCategory" "category")
+    '("gint" "size")
   )
 )
 
@@ -84,6 +92,14 @@
   (parameters
     '("XfceIconThemeCategory" "category")
     '("gint" "size")
+  )
+)
+
+(define-function themed_icon_add_search_path
+  (c-name "xfce_themed_icon_add_search_path")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "path")
   )
 )
 
@@ -111,6 +127,17 @@
   (parameters
     '("const-gchar*" "name")
     '("gint" "size")
+  )
+)
+
+(define-function pixbuf_new_from_file_at_size
+  (c-name "xfce_pixbuf_new_from_file_at_size")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("const-gchar*" "filename")
+    '("gint" "width")
+    '("gint" "height")
+    '("GError**" "error")
   )
 )
 

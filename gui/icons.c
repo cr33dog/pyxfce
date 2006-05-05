@@ -30,24 +30,6 @@ static PyTypeObject *_PyGdkPixbuf_Type;
 /* ----------- functions ----------- */
 
 static PyObject *
-_wrap_xfce_pixbuf_new_from_file_at_size(PyObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "filename", "width", "height", NULL };
-    char *filename;
-    int width, height;
-    GdkPixbuf *ret;
-    GError *error = NULL;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sii:pixbuf_new_from_file_at_size", kwlist, &filename, &width, &height))
-        return NULL;
-    ret = xfce_pixbuf_new_from_file_at_size(filename, width, height, &error);
-    if (pyg_error_check(&error))
-        return NULL;
-    /* pygobject_new handles NULL checking */
-    return pygobject_new((GObject *)ret);
-}
-
-static PyObject *
 _wrap_xfce_themed_icon_lookup(PyObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "name", "size", NULL };
@@ -83,14 +65,24 @@ _wrap_xfce_themed_icon_load(PyObject *self, PyObject *args, PyObject *kwargs)
 }
 
 static PyObject *
-_wrap_xfce_themed_icon_add_search_path(PyObject *self, PyObject *args, PyObject *kwargs)
+_wrap_xfce_themed_icon_lookup_category(PyObject *self, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "path", NULL };
-    char *path;
+    static char *kwlist[] = { "category", "size", NULL };
+    PyObject *py_category = NULL;
+    int size;
+    gchar *ret;
+    XfceIconThemeCategory category;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:themed_icon_add_search_path", kwlist, &path))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Oi:themed_icon_lookup_category", kwlist, &py_category, &size))
         return NULL;
-    xfce_themed_icon_add_search_path(path);
+    if (pyg_enum_get_value(XFCE_TYPE_ICON_THEME_CATEGORY, py_category, (gint *)&category))
+        return NULL;
+    ret = xfce_themed_icon_lookup_category(category, size);
+    if (ret) {
+        PyObject *py_ret = PyString_FromString(ret);
+        g_free(ret);
+        return py_ret;
+    }
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -111,6 +103,19 @@ _wrap_xfce_themed_icon_load_category(PyObject *self, PyObject *args, PyObject *k
     ret = xfce_themed_icon_load_category(category, size);
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_xfce_themed_icon_add_search_path(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "path", NULL };
+    char *path;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:themed_icon_add_search_path", kwlist, &path))
+        return NULL;
+    xfce_themed_icon_add_search_path(path);
+    Py_INCREF(Py_None);
+    return Py_None;
 }
 
 static PyObject *
@@ -141,14 +146,33 @@ _wrap_xfce_load_themed_icon(PyObject *self, PyObject *args, PyObject *kwargs)
     return pygobject_new((GObject *)ret);
 }
 
+static PyObject *
+_wrap_xfce_pixbuf_new_from_file_at_size(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "filename", "width", "height", NULL };
+    char *filename;
+    int width, height;
+    GdkPixbuf *ret;
+    GError *error = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sii:pixbuf_new_from_file_at_size", kwlist, &filename, &width, &height))
+        return NULL;
+    ret = xfce_pixbuf_new_from_file_at_size(filename, width, height, &error);
+    if (pyg_error_check(&error))
+        return NULL;
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+
 PyMethodDef pyicons_functions[] = {
-    { "pixbuf_new_from_file_at_size", (PyCFunction)_wrap_xfce_pixbuf_new_from_file_at_size, METH_VARARGS|METH_KEYWORDS },
     { "themed_icon_lookup", (PyCFunction)_wrap_xfce_themed_icon_lookup, METH_VARARGS|METH_KEYWORDS },
     { "themed_icon_load", (PyCFunction)_wrap_xfce_themed_icon_load, METH_VARARGS|METH_KEYWORDS },
-    { "themed_icon_add_search_path", (PyCFunction)_wrap_xfce_themed_icon_add_search_path, METH_VARARGS|METH_KEYWORDS },
+    { "themed_icon_lookup_category", (PyCFunction)_wrap_xfce_themed_icon_lookup_category, METH_VARARGS|METH_KEYWORDS },
     { "themed_icon_load_category", (PyCFunction)_wrap_xfce_themed_icon_load_category, METH_VARARGS|METH_KEYWORDS },
+    { "themed_icon_add_search_path", (PyCFunction)_wrap_xfce_themed_icon_add_search_path, METH_VARARGS|METH_KEYWORDS },
     { "themed_icon_set_icon_theme", (PyCFunction)_wrap_xfce_set_icon_theme, METH_VARARGS|METH_KEYWORDS },
     { "load_themed_icon", (PyCFunction)_wrap_xfce_load_themed_icon, METH_VARARGS|METH_KEYWORDS },
+    { "pixbuf_new_from_file_at_size", (PyCFunction)_wrap_xfce_pixbuf_new_from_file_at_size, METH_VARARGS|METH_KEYWORDS },
     { NULL, NULL, 0 }
 };
 
@@ -200,5 +224,5 @@ pyicons_register_classes(PyObject *d)
     }
 
 
-#line 204 "icons.c"
+#line 228 "icons.c"
 }
