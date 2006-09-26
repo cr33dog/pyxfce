@@ -14,7 +14,7 @@ SUBDIR_MIGHTY_MOUSE = panel
 endif
 
 SUBDIRS = gui mcs netk util $(SUBDIR_MIGHTY_MOUSE)
-DIST_SUBDIRS = gui mcs netk util 
+DIST_SUBDIRS = gui mcs netk util $(SUBDIR_MIGHTY_MOUSE)
 
 PLATFORM_VERSION = 4.2
 PLATFORM_WIN32 =
