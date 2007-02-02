@@ -16,9 +16,6 @@ util: test desktopentry
 
 fix mcs stuff
 
-mask exec_command and friends ?
-
-
    Ex: (object Widget
          (in-module (Gtk))
          (parent Object) ;; could say (parent Object (Gtk))
