@@ -16,6 +16,17 @@ import gtk.gdk.Pixbuf as PyGdkPixbuf_Type
 import gtk.Widget as PyGtkWidget_Type
 %%
 ignore
+  show_info
+  show_warning
+  show_error
+  confirm
+  create_header
+  create_header_with_image
+  small_label
+  mixed_button_new
+  exec_command
+  exec_command_full_with_envp
+
 %%
 ignore-glob
   *_get_type
