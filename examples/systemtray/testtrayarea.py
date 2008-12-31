@@ -5,6 +5,7 @@ pygtk.require("2.0")
 import gtk
 
 import xfce4
+import xfce4.gui
 import sys
 
 w = gtk.Window()
