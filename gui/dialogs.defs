@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/dialogs.h
+;; From dialogs.h
 
 (define-function show_info
   (c-name "show_info")

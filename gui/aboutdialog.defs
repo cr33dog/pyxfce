@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce_aboutdialog.h
+;; From xfce_aboutdialog.h
 
 (define-function about_info_get_type
   (c-name "xfce_about_info_get_type")

@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce-colorbutton.h
+;; From xfce-colorbutton.h
 
 (define-function color_button_new
   (c-name "xfce_color_button_new")

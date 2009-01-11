@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce-gtk-extensions.h
+;; From xfce-gtk-extensions.h
 
 (define-function gtk_window_center_on_monitor
   (c-name "xfce_gtk_window_center_on_monitor")
