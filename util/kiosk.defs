@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfce4util/xfce-kiosk.h
+;; From xfce-kiosk.h
 
 (define-function kiosk_new
   (c-name "xfce_kiosk_new")

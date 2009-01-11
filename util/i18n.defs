@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfce4util/xfce-i18n.h
+;; From xfce-i18n.h
 
 (define-function textdomain
   (c-name "xfce_textdomain")
