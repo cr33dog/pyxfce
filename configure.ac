@@ -4,11 +4,11 @@ AC_PREREQ(2.52)
 ACLOCAL_AMFLAGS = -I m4
 
 m4_define(pyxfce_major_version, 4)
-m4_define(pyxfce_minor_version, 4)
+m4_define(pyxfce_minor_version, 6)
 m4_define(pyxfce_micro_version, 0)
 m4_define(pyxfce_version, pyxfce_major_version.pyxfce_minor_version.pyxfce_micro_version)
 
-m4_define(xfce_required_version, 4.4.0)
+m4_define(xfce_required_version, 4.6.0)
 
 AC_INIT(pyxfce, pyxfce_version, [])
 
