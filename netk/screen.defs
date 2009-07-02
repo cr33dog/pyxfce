@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/netk-screen.h
+;; From netk-screen.h
 
 (define-function screen_get_type
   (c-name "netk_screen_get_type")
@@ -74,6 +74,12 @@
 (define-method get_windows_stacked
   (of-object "NetkScreen")
   (c-name "netk_screen_get_windows_stacked")
+  (return-type "GList*")
+)
+
+(define-method get_workspaces
+  (of-object "NetkScreen")
+  (c-name "netk_screen_get_workspaces")
   (return-type "GList*")
 )
 
@@ -171,10 +177,3 @@
 )
 
 
-(define-method get_workspaces
-  (of-object "NetkScreen")
-  (c-name "netk_screen_get_workspaces")
-  (return-type "GList*")
-  (parameters
-  )
-)
