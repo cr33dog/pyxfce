@@ -22,7 +22,7 @@
 )
 
 
-;; From /usr/local/include/xfce4/libxfce4panel/xfce-panel-window.h
+;; From xfce-panel-window.h
 
 (define-function xfce_panel_window_get_type
   (c-name "xfce_panel_window_get_type")

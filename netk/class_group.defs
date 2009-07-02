@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/netk-class-group.h
+;; From netk-class-group.h
 
 (define-function class_group_get_type
   (c-name "netk_class_group_get_type")

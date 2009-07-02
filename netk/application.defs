@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/netk-application.h
+;; From netk-application.h
 
 (define-function application_get_type
   (c-name "netk_application_get_type")
