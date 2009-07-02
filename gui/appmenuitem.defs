@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce-appmenuitem.h
+;; From xfce-appmenuitem.h
 
 (define-function app_menu_item_get_type
   (c-name "xfce_app_menu_item_get_type")
@@ -148,19 +148,19 @@
   (return-type "gboolean")
 )
 
-(define-function app_menu_item_set_icon_size
-  (c-name "xfce_app_menu_item_set_icon_size")
-  (return-type "none")
-  (parameters
-    '("guint" "icon_size")
-  )
-)
-
 (define-function app_menu_item_set_icon_theme_name
   (c-name "xfce_app_menu_item_set_icon_theme_name")
   (return-type "none")
   (parameters
     '("const-gchar*" "theme_name")
+  )
+)
+
+(define-function app_menu_item_set_icon_size
+  (c-name "xfce_app_menu_item_set_icon_size")
+  (return-type "none")
+  (parameters
+    '("guint" "icon_size")
   )
 )
 
