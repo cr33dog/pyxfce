@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/netk-window-action-menu.h
+;; From netk-window-action-menu.h
 
 (define-function create_window_action_menu
   (c-name "netk_create_window_action_menu")
