@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce_movehandler.h
+;; From xfce_movehandler.h
 
 (define-function void
   (c-name "void")

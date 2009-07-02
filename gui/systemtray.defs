@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce_systemtray.h
+;; From xfce_systemtray.h
 
 (define-function system_tray_error_quark
   (c-name "xfce_system_tray_error_quark")

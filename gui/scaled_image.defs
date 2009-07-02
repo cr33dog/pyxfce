@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce_scaled_image.h
+;; From xfce_scaled_image.h
 
 (define-function scaled_image_get_type
   (c-name "xfce_scaled_image_get_type")

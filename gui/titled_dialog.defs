@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce-titled-dialog.h
+;; From xfce-titled-dialog.h
 
 (define-function titled_dialog_get_type
   (c-name "xfce_titled_dialog_get_type")

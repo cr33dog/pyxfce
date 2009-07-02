@@ -3,7 +3,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce-gdk-extensions.h
+;; From xfce-gdk-extensions.h
 
 (define-function gdk_display_get_fullname
   (c-name "xfce_gdk_display_get_fullname")
