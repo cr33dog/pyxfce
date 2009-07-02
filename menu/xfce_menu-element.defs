@@ -1,0 +1,31 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object MenuElement
+  (in-module "Xfce")
+  (c-name "XfceMenuElement")
+  (gtype-id "XFCE_TYPE_MENU_ELEMENT")
+)
+
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-element.h
+
+(define-function xfce_menu_element_get_type
+  (c-name "xfce_menu_element_get_type")
+  (return-type "GType")
+)
+
+(define-method get_name
+  (of-object "XfceMenuElement")
+  (c-name "xfce_menu_element_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_icon_name
+  (of-object "XfceMenuElement")
+  (c-name "xfce_menu_element_get_icon_name")
+  (return-type "const-gchar*")
+)
+
+

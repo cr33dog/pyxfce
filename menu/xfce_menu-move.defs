@@ -1,0 +1,49 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-move.h
+
+(define-function xfce_menu_move_get_type
+  (c-name "xfce_menu_move_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_move_new
+  (c-name "xfce_menu_move_new")
+  (is-constructor-of "XfceMenuMove")
+  (return-type "XfceMenuMove*")
+)
+
+(define-method get_old
+  (of-object "XfceMenuMove")
+  (c-name "xfce_menu_move_get_old")
+  (return-type "const-gchar*")
+)
+
+(define-method set_old
+  (of-object "XfceMenuMove")
+  (c-name "xfce_menu_move_set_old")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "old")
+  )
+)
+
+(define-method get_new
+  (of-object "XfceMenuMove")
+  (c-name "xfce_menu_move_get_new")
+  (return-type "const-gchar*")
+)
+
+(define-method set_new
+  (of-object "XfceMenuMove")
+  (c-name "xfce_menu_move_set_new")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "new")
+  )
+)
+
+

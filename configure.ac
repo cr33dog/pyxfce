@@ -57,6 +57,7 @@ dnl XFCE_MIGHTY_MOUSE_PANEL_PLUGIN([PANEL], [4.3])
 dnl PANEL_EXTERNALPLUGINDIR
 dnl PANEL_DESKTOPDATADIR
 
+BM_DEPEND([XFCE4_MENU], [libxfce4menu-0.1], [4.5.92])
 BM_DEPEND([GTK], [gtk+-2.0], [2.4])
 BM_DEPEND([PYGTK], [pygtk-2.0], [2.6.0])
 
@@ -84,6 +85,7 @@ AC_CONFIG_FILES(
   Makefile
   pyxfce-1.0.pc
   gui/Makefile
+  menu/Makefile
   netk/Makefile
   panel/Makefile
   util/Makefile

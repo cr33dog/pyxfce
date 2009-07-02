@@ -1,0 +1,61 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object MenuRules
+  (in-module "Xfce")
+  (c-name "XfceMenuRules")
+  (gtype-id "XFCE_TYPE_MENU_RULES")
+)
+
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-rules.h
+
+(define-function xfce_menu_rules_get_type
+  (c-name "xfce_menu_rules_get_type")
+  (return-type "GType")
+)
+
+(define-method match
+  (of-object "XfceMenuRules")
+  (c-name "xfce_menu_rules_match")
+  (return-type "gboolean")
+  (parameters
+    '("XfceMenuItem*" "item")
+  )
+)
+
+(define-method add_all
+  (of-object "XfceMenuRules")
+  (c-name "xfce_menu_rules_add_all")
+  (return-type "none")
+)
+
+(define-method add_rules
+  (of-object "XfceMenuRules")
+  (c-name "xfce_menu_rules_add_rules")
+  (return-type "none")
+  (parameters
+    '("XfceMenuRules*" "additional_rules")
+  )
+)
+
+(define-method add_filename
+  (of-object "XfceMenuRules")
+  (c-name "xfce_menu_rules_add_filename")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method add_category
+  (of-object "XfceMenuRules")
+  (c-name "xfce_menu_rules_add_category")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "category")
+  )
+)
+
+

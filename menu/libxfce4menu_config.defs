@@ -1,0 +1,18 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From libxfce4menu-config.h
+
+(define-function libxfce4menu_check_version
+  (c-name "libxfce4menu_check_version")
+  (return-type "const-gchar*")
+  (parameters
+    '("guint" "required_major")
+    '("guint" "required_minor")
+    '("guint" "required_micro")
+  )
+)
+
+

@@ -1,0 +1,100 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-directory.h
+
+(define-function xfce_menu_directory_get_type
+  (c-name "xfce_menu_directory_get_type")
+  (return-type "GType")
+)
+
+(define-method get_filename
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_get_filename")
+  (return-type "const-gchar*")
+)
+
+(define-method set_filename
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_set_filename")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_name
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method set_name
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_set_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_comment
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_get_comment")
+  (return-type "const-gchar*")
+)
+
+(define-method set_comment
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_set_comment")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "comment")
+  )
+)
+
+(define-method get_icon
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_get_icon")
+  (return-type "const-gchar*")
+)
+
+(define-method set_icon
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_set_icon")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "icon")
+  )
+)
+
+(define-method get_no_display
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_get_no_display")
+  (return-type "gboolean")
+)
+
+(define-method set_no_display
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_set_no_display")
+  (return-type "none")
+  (parameters
+    '("gboolean" "no_display")
+  )
+)
+
+(define-method get_hidden
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_get_hidden")
+  (return-type "gboolean")
+)
+
+(define-method show_in_environment
+  (of-object "XfceMenuDirectory")
+  (c-name "xfce_menu_directory_show_in_environment")
+  (return-type "gboolean")
+)
+
+

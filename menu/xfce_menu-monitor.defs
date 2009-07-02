@@ -1,0 +1,104 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-flags MenuMonitorFlags
+  (in-module "Xfce")
+  (c-name "XfceMenuMonitorFlags")
+  (gtype-id "XFCE_TYPE_MENU_MONITOR_FLAGS")
+  (values
+    '("directories" "XFCE_MENU_MONITOR_DIRECTORIES")
+    '("menu-files" "XFCE_MENU_MONITOR_MENU_FILES")
+    '("directory-files" "XFCE_MENU_MONITOR_DIRECTORY_FILES")
+    '("desktop-files" "XFCE_MENU_MONITOR_DESKTOP_FILES")
+  )
+)
+
+
+;; From xfce-menu-monitor.h
+
+(define-function xfce_menu_monitor_set_vtable
+  (c-name "xfce_menu_monitor_set_vtable")
+  (return-type "none")
+  (parameters
+    '("XfceMenuMonitorVTable*" "vtable")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method monitor_add_item
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_monitor_add_item")
+  (return-type "gpointer")
+  (parameters
+    '("XfceMenuItem*" "item")
+  )
+)
+
+(define-method monitor_remove_item
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_monitor_remove_item")
+  (return-type "none")
+  (parameters
+    '("XfceMenuItem*" "item")
+  )
+)
+
+(define-method monitor_add_directory
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_monitor_add_directory")
+  (return-type "gpointer")
+  (parameters
+    '("const-gchar*" "directory")
+  )
+)
+
+(define-method monitor_remove_directory
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_monitor_remove_directory")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "directory")
+  )
+)
+
+(define-method monitor_add_file
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_monitor_add_file")
+  (return-type "gpointer")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method monitor_remove_file
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_monitor_remove_file")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-function xfce_menu_monitor_set_flags
+  (c-name "xfce_menu_monitor_set_flags")
+  (return-type "none")
+  (parameters
+    '("XfceMenuMonitorFlags" "flags")
+  )
+)
+
+(define-function xfce_menu_monitor_get_flags
+  (c-name "xfce_menu_monitor_get_flags")
+  (return-type "XfceMenuMonitorFlags")
+)
+
+(define-function xfce_menu_monitor_has_flags
+  (c-name "xfce_menu_monitor_has_flags")
+  (return-type "gboolean")
+  (parameters
+    '("XfceMenuMonitorFlags" "flags")
+  )
+)
+
+

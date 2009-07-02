@@ -1,0 +1,44 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-item-cache.h
+
+(define-function xfce_menu_item_cache_get_type
+  (c-name "xfce_menu_item_cache_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_item_cache_get_default
+  (c-name "xfce_menu_item_cache_get_default")
+  (return-type "XfceMenuItemCache*")
+)
+
+(define-method lookup
+  (of-object "XfceMenuItemCache")
+  (c-name "xfce_menu_item_cache_lookup")
+  (return-type "XfceMenuItem*")
+  (parameters
+    '("const-gchar*" "filename")
+    '("const-gchar*" "desktop_id")
+  )
+)
+
+(define-method foreach
+  (of-object "XfceMenuItemCache")
+  (c-name "xfce_menu_item_cache_foreach")
+  (return-type "none")
+  (parameters
+    '("GHFunc" "func")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method invalidate
+  (of-object "XfceMenuItemCache")
+  (c-name "xfce_menu_item_cache_invalidate")
+  (return-type "none")
+)
+
+

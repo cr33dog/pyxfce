@@ -1,0 +1,62 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-item-pool.h
+
+(define-function xfce_menu_item_pool_get_type
+  (c-name "xfce_menu_item_pool_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_item_pool_new
+  (c-name "xfce_menu_item_pool_new")
+  (is-constructor-of "XfceMenuItemPool")
+  (return-type "XfceMenuItemPool*")
+)
+
+(define-method insert
+  (of-object "XfceMenuItemPool")
+  (c-name "xfce_menu_item_pool_insert")
+  (return-type "none")
+  (parameters
+    '("XfceMenuItem*" "item")
+  )
+)
+
+(define-method lookup
+  (of-object "XfceMenuItemPool")
+  (c-name "xfce_menu_item_pool_lookup")
+  (return-type "XfceMenuItem*")
+  (parameters
+    '("const-gchar*" "desktop_id")
+  )
+)
+
+(define-method foreach
+  (of-object "XfceMenuItemPool")
+  (c-name "xfce_menu_item_pool_foreach")
+  (return-type "none")
+  (parameters
+    '("GHFunc" "func")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method apply_exclude_rule
+  (of-object "XfceMenuItemPool")
+  (c-name "xfce_menu_item_pool_apply_exclude_rule")
+  (return-type "none")
+  (parameters
+    '("XfceMenuStandardRules*" "rule")
+  )
+)
+
+(define-method get_empty
+  (of-object "XfceMenuItemPool")
+  (c-name "xfce_menu_item_pool_get_empty")
+  (return-type "gboolean")
+)
+
+

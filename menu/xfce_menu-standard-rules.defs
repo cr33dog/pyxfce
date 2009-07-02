@@ -1,0 +1,35 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object MenuStandardRules
+  (in-module "Xfce")
+  (parent "GObject")
+  (c-name "XfceMenuStandardRules")
+  (gtype-id "XFCE_TYPE_MENU_STANDARD_RULES")
+)
+
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-standard-rules.h
+
+(define-function xfce_menu_standard_rules_get_type
+  (c-name "xfce_menu_standard_rules_get_type")
+  (return-type "GType")
+)
+
+(define-method get_include
+  (of-object "XfceMenuStandardRules")
+  (c-name "xfce_menu_standard_rules_get_include")
+  (return-type "gboolean")
+)
+
+(define-method set_include
+  (of-object "XfceMenuStandardRules")
+  (c-name "xfce_menu_standard_rules_set_include")
+  (return-type "none")
+  (parameters
+    '("gboolean" "include")
+  )
+)
+
+
