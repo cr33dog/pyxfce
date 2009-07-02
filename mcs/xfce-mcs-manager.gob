@@ -1,0 +1,221 @@
+%{
+/* TODO! list_lookup */
+
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+#include <gdk/gdkx.h>
+#include <libxfce4mcs/mcs-common.h>
+
+static void
+weak_notify_cb(gpointer data, GObject *where_the_object_was)
+{
+	xfce_mcs_manager_vanish_object (XFCE_MCS_MANAGER (data), where_the_object_was);
+}
+
+/*
+static void moo
+{
+	GdkWindow *gdkwin;
+         
+	gdkwin = gdk_window_lookup (window);
+                         
+	if (is_start)
+		gdk_window_add_filter (gdkwin, client_event_filter, data);
+	else
+		gdk_window_remove_filter (gdkwin, client_event_filter, data);
+}
+                                                                         
+static GdkFilterReturn
+client_event_filter (GdkXEvent * xevent, GdkEvent * event, gpointer data)
+{
+	if (mcs_manager_process_event ((McsManager*) data, (XEvent *) xevent))
+		return GDK_FILTER_REMOVE;
+	else
+		return GDK_FILTER_CONTINUE;
+}
+*/
+
+static gboolean
+my_ascii_strcasecmp(gconstpointer a, gconstpointer b)
+{
+	return g_ascii_strcasecmp ((gchar const *)a, (gchar const *)b) == 0;
+}
+
+%}
+
+%a{
+#include <gtk/gtk.h>
+#include <libxfce4mcs/mcs-manager.h>
+#include "xfce-mcs-channel.h"
+%}
+
+class Xfce:Mcs:Manager from G:Object {
+	protected McsManager*	low = NULL
+		destroy {
+			/* hrm..... mcs_manager_destroy (VAR);*/
+			VAR = NULL;
+		};
+
+	protected GHashTable	*channels /* name -> obj */
+		destroy {
+			g_hash_table_destroy (VAR);
+		};
+
+	protected GHashTable	*channels_r /* obj -> name */
+		destroy {
+			g_hash_table_destroy (VAR);
+		};
+
+	public Xfce:Mcs:Manager *new(McsManager *manager)
+	{
+		XfceMcsManager *obj;
+		obj = GET_NEW;
+		obj->low = manager;
+		return obj;
+	}
+
+	protected void vanish_object(self, GObject *obj)
+	{
+		gchar*	channel_name;
+		channel_name = g_hash_table_lookup (self->channels_r, obj);
+		g_hash_table_remove (self->channels_r, obj);
+		if (channel_name) {
+			g_hash_table_remove (self->channels, channel_name);
+			/* remove also frees channel_name */
+		}
+	}
+
+	init(self)
+	{
+		self->channels = g_hash_table_new_full (g_str_hash, my_ascii_strcasecmp,
+			g_free, NULL);
+
+		self->channels_r = g_hash_table_new (g_direct_hash, g_direct_equal);
+	}
+
+
+	/* will _weakref, not _ref */
+	public void register_channel(self, XfceMcsChannel *channel)
+	{
+		gpointer	obj;
+		gchar*		xname;
+		gchar const*	name;
+		
+		name = xfce_mcs_channel_get_channel_name (channel);
+		
+		obj = g_hash_table_lookup (self->channels, name);
+
+		g_return_if_fail (obj == NULL);
+			
+		obj = channel;
+		g_object_weak_ref ((GObject *)obj, weak_notify_cb, self);
+		xname = g_strdup (name);
+		g_hash_table_insert (self->channels, xname, obj);
+		g_hash_table_insert (self->channels_r, obj, xname);
+
+		xfce_mcs_channel_add_to_driver (channel, XFCE_MCS_CHANNEL_SIDE_MANAGER, name);
+	}
+
+	public void unregister_channel(self, XfceMcsChannel *channel)
+	{
+		/* untested */
+		gpointer        obj;
+		gchar const*    name;
+		
+		name = xfce_mcs_channel_get_channel_name (channel);
+		
+		obj = g_hash_table_lookup (self->channels, name);
+		if (obj != channel)
+			return;
+			
+		xfce_mcs_channel_remove_from_driver (channel, XFCE_MCS_CHANNEL_SIDE_MANAGER, name);
+		
+		g_hash_table_remove (self->channels_r, obj);
+		g_hash_table_remove (self->channels, name);
+			
+		g_object_weak_unref ((GObject *)obj, weak_notify_cb, self);
+	}
+
+	protected void delete_channel(self, gchar const *name)
+	{
+		if (!self->low) {
+			g_warning ("XfceMcsManager: delete_channel: property screen not set.");
+			return;
+		}
+		mcs_manager_delete_channel (self->low, name);
+	}
+	
+
+	protected McsSetting* get_setting(self, gchar const *channel_name, gchar const *name)
+	{
+		McsSetting*	setting;
+		setting = mcs_manager_setting_lookup (self->low, name, channel_name);
+
+		return setting;
+	}
+	
+	protected void set_setting(self, McsSetting *setting, gchar const *channel_name)
+	{
+		if (mcs_manager_set_setting (self->low, setting, channel_name) != MCS_SUCCESS) {
+			g_warning ("XfceMcsManager: set_setting: could not set");
+		}
+	}
+	
+	protected void delete_setting(self, gchar const *channel_name, gchar const *name)
+	{
+		if (mcs_manager_delete_setting (self->low, name, channel_name) != MCS_SUCCESS) {
+			g_warning ("XfceMcsManager: set_setting: could not delete");
+		}
+	}
+	
+	protected void notify(self, gchar const *channel_name)
+	{
+		if (mcs_manager_notify (self->low, channel_name) != MCS_SUCCESS) {
+			g_warning ("XfceMcsManager: set_setting: could not notify");
+		}
+	}
+	
+	protected void set_setting_string(self, gchar const *channel_name, gchar const *name, gchar const *value)
+	{
+		if (mcs_manager_set_string (self->low, name, channel_name, value) != MCS_SUCCESS) {
+			g_warning ("XfceMcsManager: set_setting: could not set string");
+		}
+	}
+	
+	protected void set_setting_int(self, gchar const *channel_name, gchar const *name, gint value)
+	{
+		if (mcs_manager_set_int (self->low, name, channel_name, value) != MCS_SUCCESS) {
+			g_warning ("XfceMcsManager: set_setting: could not set int");
+		}
+	}
+	
+	protected void set_setting_color(self, gchar const *channel_name, gchar const *name, McsColor const *value)
+	{
+		if (mcs_manager_set_color (self->low, name, channel_name, (McsColor *) value) != MCS_SUCCESS) {
+			g_warning ("XfceMcsManager: set_setting: could not set color");
+		}
+	}
+	
+	protected void add_channel_from_file(self, gchar const *channel_name, gchar const *filename)
+	{
+		if (!self->low) {
+			g_warning ("XfceMcsManager: add_channel_from_file: no manager");
+			return;
+		}
+		mcs_manager_add_channel_from_file (self->low, channel_name, filename);
+	}
+	
+	protected gboolean save_channel_to_file(self, gchar const *channel_name, gchar const *filename)
+	{
+		if (!self->low) {
+			g_warning ("XfceMcsManager: save_channel_to_file: no manager");
+			return FALSE;
+		}
+		return mcs_manager_save_channel_to_file (self->low, channel_name, filename);
+	}
+}
+

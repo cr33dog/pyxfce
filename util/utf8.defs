@@ -1,0 +1,27 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/local/include/xfce4/libxfce4util/xfce-utf8.h
+
+(define-function utf8_remove_controls
+  (c-name "xfce_utf8_remove_controls")
+  (return-type "gchar*")
+  (parameters
+    '("gchar*" "str")
+    '("gssize" "max_len")
+    '("const-gchar*" "end")
+  )
+)
+
+(define-function utf8_strndup
+  (c-name "xfce_utf8_strndup")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "src")
+    '("gssize" "max_len")
+  )
+)
+
+

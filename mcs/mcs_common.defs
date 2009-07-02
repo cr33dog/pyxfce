@@ -1,0 +1,117 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum Type
+  (in-module "Mcs")
+  (c-name "McsType")
+  (values
+    '("int" "MCS_TYPE_INT")
+    '("string" "MCS_TYPE_STRING")
+    '("color" "MCS_TYPE_COLOR")
+  )
+)
+
+(define-enum Result
+  (in-module "Mcs")
+  (c-name "McsResult")
+  (values
+    '("success" "MCS_SUCCESS")
+    '("no-mem" "MCS_NO_MEM")
+    '("access" "MCS_ACCESS")
+    '("failed" "MCS_FAILED")
+    '("no-entry" "MCS_NO_ENTRY")
+    '("duplicate-entry" "MCS_DUPLICATE_ENTRY")
+    '("no-channel" "MCS_NO_CHANNEL")
+  )
+)
+
+(define-enum ManagerCheck
+  (in-module "Mcs")
+  (c-name "McsManagerCheck")
+  (values
+    '("none" "MCS_MANAGER_NONE")
+    '("std" "MCS_MANAGER_STD")
+    '("multi-channel" "MCS_MANAGER_MULTI_CHANNEL")
+    '("both" "MCS_MANAGER_BOTH")
+  )
+)
+
+
+;; From /usr/local/include/xfce4/libxfce4mcs/mcs-common.h
+
+(define-function mcs_manager_check_running
+  (c-name "mcs_manager_check_running")
+  (return-type "McsManagerCheck")
+  (parameters
+    '("Display*" "display")
+    '("int" "screen")
+  )
+)
+
+(define-method copy
+  (of-object "McsSetting")
+  (c-name "mcs_setting_copy")
+  (return-type "McsSetting*")
+)
+
+(define-method free
+  (of-object "McsSetting")
+  (c-name "mcs_setting_free")
+  (return-type "none")
+)
+
+(define-method equal
+  (of-object "McsSetting")
+  (c-name "mcs_setting_equal")
+  (return-type "int")
+  (parameters
+    '("McsSetting*" "setting_b")
+  )
+)
+
+(define-method free
+  (of-object "McsList")
+  (c-name "mcs_list_free")
+  (return-type "none")
+)
+
+(define-method copy
+  (of-object "McsList")
+  (c-name "mcs_list_copy")
+  (return-type "McsList*")
+)
+
+(define-function mcs_list_insert
+  (c-name "mcs_list_insert")
+  (return-type "McsResult")
+  (parameters
+    '("McsList**" "list")
+    '("McsSetting*" "setting")
+  )
+)
+
+(define-method lookup
+  (of-object "McsList")
+  (c-name "mcs_list_lookup")
+  (return-type "McsSetting*")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-function mcs_list_delete
+  (c-name "mcs_list_delete")
+  (return-type "McsResult")
+  (parameters
+    '("McsList**" "list")
+    '("const-gchar*" "name")
+  )
+)
+
+(define-function mcs_byte_order
+  (c-name "mcs_byte_order")
+  (return-type "gchar")
+)
+
+

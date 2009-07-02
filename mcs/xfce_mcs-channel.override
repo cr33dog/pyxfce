@@ -1,0 +1,94 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include <Python.h>
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include "xfce-mcs-channel.h"
+
+%%
+include
+%%
+modulename xfce4.mcs
+%%
+import gobject.GObject as PyGObject_Type
+%%
+ignore
+%%
+ignore-glob
+	*_get_type
+%%
+ignore-win32
+%%
+override xfce_mcs_channel_set_setting_color kwargs
+static PyObject *_wrap_xfce_mcs_channel_set_setting_color(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "name", "color", NULL };
+	char const *name;
+
+	long red;
+	long green;
+	long blue;
+	long alpha;
+	McsColor color;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s(iii):XfceMcsChannel.set_setting_color", kwlist, 
+		&name, &red, &green, &blue, &alpha)
+	)
+		return NULL;
+
+	color.red = (guint16) red;
+	color.green = (guint16) green;
+	color.blue = (guint16) blue;
+	xfce_mcs_channel_set_setting_color((XfceMcsChannel*)self->obj, name, &color);
+
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+%%
+override xfce_mcs_channel_get_setting_color kwargs
+static PyObject *_wrap_xfce_mcs_channel_get_setting_color(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "name", NULL };
+	char const *name;
+	PyObject*	t;
+
+	McsColor color;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.get_setting_color", kwlist, &name))
+		return NULL;
+
+	if (xfce_mcs_channel_get_setting_color((XfceMcsChannel*)self->obj, name, &color)) {
+		t = PyTuple_New (4);
+		PyTuple_SET_ITEM (t, 0, PyInt_FromLong(color.red));
+		PyTuple_SET_ITEM (t, 0, PyInt_FromLong(color.green));
+		PyTuple_SET_ITEM (t, 0, PyInt_FromLong(color.blue));
+		PyTuple_SET_ITEM (t, 0, PyInt_FromLong(color.alpha));
+		return t;
+	}
+
+	Py_INCREF(Py_None);
+	return Py_None;
+}
+%%
+override xfce_mcs_channel_get_setting_int kwargs
+static PyObject *_wrap_xfce_mcs_channel_get_setting_int(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "name", NULL };
+	char const *name;
+	int res;
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceMcsChannel.get_setting_int", kwlist, 
+		&name)
+	)
+		return NULL;
+
+	if (xfce_mcs_channel_get_setting_int ((XfceMcsChannel*)self->obj, name, &res)) {
+		return PyInt_FromLong (res);
+	}
+
+	Py_INCREF(Py_None);
+	return Py_None;
+}

@@ -1,0 +1,28 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
+
+#define SESSION_TYPE_INTERACT_STYLE GUI_TYPE_INTERACT_STYLE
+#define SESSION_TYPE_RESTART_STYLE GUI_TYPE_RESTART_STYLE
+#define SESSION_TYPE_CLIENT_STATE GUI_TYPE_CLIENT_STATE
+
+%%
+include
+%%
+modulename sessionclient
+%%
+import gobject.GObject as PyGObject_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%

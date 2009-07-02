@@ -1,0 +1,44 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfcegui4/libxfcegui4.h>
+
+%%
+include
+%%
+modulename startupnotification
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.gdk.Screen as PyGdkScreen_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%
+override xfce_startup_notification_start kwargs
+static PyObject *
+_wrap_xfce_startup_notification_start(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", "path", NULL };
+    PyGObject *screen;
+    char *path;
+    gchar *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!s:startup_notification_start", kwlist, &PyGdkScreen_Type, &screen, &path))
+        return NULL;
+    ret = xfce_startup_notification_start(GDK_SCREEN(screen->obj), path);
+    if (ret) {
+        PyObject *py_ret = PyString_FromString(ret);
+        g_free(ret);
+        return py_ret;
+    }
+    Py_INCREF(Py_None);
+    return Py_None;
+}

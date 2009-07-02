@@ -1,0 +1,26 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfce4util/libxfce4util.h>
+
+%%
+include
+%%
+modulename miscutils
+%%
+import gobject.GObject as PyGObject_Type
+%%
+ignore
+%%
+ignore
+  xfce_setenv
+  xfce_unsetenv
+  xfce_putenv
+  xfce_gethostname
+%%
+ignore-win32
+%%

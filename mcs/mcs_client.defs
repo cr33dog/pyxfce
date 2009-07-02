@@ -1,0 +1,130 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum Action
+  (in-module "Mcs")
+  (c-name "McsAction")
+  (values
+    '("new" "MCS_ACTION_NEW")
+    '("changed" "MCS_ACTION_CHANGED")
+    '("deleted" "MCS_ACTION_DELETED")
+  )
+)
+
+
+;; From /usr/local/include/xfce4/libxfce4mcs/mcs-client.h
+
+(define-function void
+  (c-name "void")
+  (return-type "typedef")
+  (parameters
+    '("*" "McsNotifyFunc")
+  )
+)
+
+(define-function void
+  (c-name "void")
+  (return-type "typedef")
+  (parameters
+    '("*" "McsWatchFunc")
+  )
+)
+
+(define-function mcs_client_new
+  (c-name "mcs_client_new")
+  (is-constructor-of "McsClient")
+  (return-type "McsClient*")
+  (parameters
+    '("Display*" "display")
+    '("int" "screen")
+    '("McsNotifyFunc" "notify")
+    '("McsWatchFunc" "watch")
+    '("void*" "cb_data")
+  )
+)
+
+(define-method destroy
+  (of-object "McsClient")
+  (c-name "mcs_client_destroy")
+  (return-type "none")
+)
+
+(define-method process_event
+  (of-object "McsClient")
+  (c-name "mcs_client_process_event")
+  (return-type "gboolean")
+  (parameters
+    '("XEvent*" "xev")
+  )
+)
+
+(define-method add_channel
+  (of-object "McsClient")
+  (c-name "mcs_client_add_channel")
+  (return-type "McsChannel*")
+  (parameters
+    '("const-gchar*" "channel_name")
+  )
+)
+
+(define-method delete_channel
+  (of-object "McsClient")
+  (c-name "mcs_client_delete_channel")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "channel_name")
+  )
+)
+
+(define-method set_raw_channel
+  (of-object "McsClient")
+  (c-name "mcs_client_set_raw_channel")
+  (return-type "McsResult")
+  (parameters
+    '("const-gchar*" "channel_name")
+    '("gboolean" "raw")
+  )
+)
+
+(define-method get_setting
+  (of-object "McsClient")
+  (c-name "mcs_client_get_setting")
+  (return-type "McsResult")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-gchar*" "channel_name")
+    '("McsSetting**" "setting")
+  )
+)
+
+(define-function mcs_client_show
+  (c-name "mcs_client_show")
+  (return-type "none")
+  (parameters
+    '("Display*" "display")
+    '("int" "screen")
+    '("const-gchar*" "message")
+  )
+)
+
+(define-method set_callback_userdata
+  (of-object "McsClient")
+  (c-name "mcs_client_set_callback_userdata")
+  (return-type "none")
+  (parameters
+    '("void*" "cb_data")
+  )
+)
+
+(define-function mcs_client_check_manager
+  (c-name "mcs_client_check_manager")
+  (return-type "gboolean")
+  (parameters
+    '("Display*" "display")
+    '("int" "screen")
+    '("const-gchar*" "manager_command")
+  )
+)
+
+

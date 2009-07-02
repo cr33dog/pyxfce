@@ -1,0 +1,55 @@
+--- ../o/xterm-196/charproc.c	2004-08-09 00:36:13.000000000 +0200
++++ charproc.c	2005-04-30 18:50:23.224803936 +0200
+@@ -122,6 +122,7 @@ in this Software without prior written a
+ 
+ #include <stdio.h>
+ #include <ctype.h>
++#include <unistd.h>
+ 
+ #include <VTparse.h>
+ #include <data.h>
+@@ -5308,8 +5309,12 @@ VTRealize(Widget w,
+     unsigned int width, height;
+     register TScreen *screen = &term->screen;
+     int xpos, ypos, pr;
++    int rc;
+     XSizeHints sizehints;
+     int scrollbar_width;
++    pid_t pid;
++    unsigned long pid_l;
++    Atom pid_atom;
+ 
+     TRACE(("VTRealize\n"));
+ 
+@@ -5430,6 +5435,21 @@ VTRealize(Widget w,
+ 	XMoveWindow(XtDisplay(term), XtWindow(XtParent(term)),
+ 		    sizehints.x, sizehints.y);
+ 
++    pid = getpid();
++    pid_l = pid;
++    pid_atom = XInternAtom(XtDisplay(term), "_NET_WM_PID", False);
++    rc = XChangeProperty(XtDisplay(term), XtWindow(XtParent(term)),
++          pid_atom, XA_CARDINAL, 32, PropModeReplace,
++          (unsigned char*)&pid_l, 1);
++    /*
++    if (rc != Success) {
++    	printf("BadRequest:%d BadAlloc:%d BadAtom:%d BadMatch:%d BadPixmap:%d BadValue:%d BadWindow:%d raw:%d\n",
++    	  rc == BadRequest,
++    	  rc == BadAlloc, rc == BadAtom, rc == BadMatch, rc == BadPixmap,
++    	  rc == BadValue, rc == BadWindow, rc
++    	);
++    }*/
++
+     XSetWMNormalHints(XtDisplay(term), XtWindow(XtParent(term)),
+ 		      &sizehints);
+     XFlush(XtDisplay(term));	/* get it out to window manager */
+@@ -5446,6 +5466,9 @@ VTRealize(Widget w,
+ 		      (int) term->core.depth,
+ 		      InputOutput, CopyFromParent,
+ 		      *valuemask | CWBitGravity, values);
++
++
++		      
+     screen->event_mask = values->event_mask;
+ 
+ #ifndef NO_ACTIVE_ICON

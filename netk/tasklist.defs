@@ -1,0 +1,144 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Tasklist
+  (in-module "Netk")
+  (parent "GtkContainer")
+  (c-name "NetkTasklist")
+  (gtype-id "NETK_TYPE_TASKLIST")
+)
+
+;; Enumerations and flags ...
+
+(define-enum TasklistGroupingType
+  (in-module "Netk")
+  (c-name "NetkTasklistGroupingType")
+  (gtype-id "NETK_TYPE_TASKLIST_GROUPING_TYPE")
+  (values
+    '("never-group" "NETK_TASKLIST_NEVER_GROUP")
+    '("auto-group" "NETK_TASKLIST_AUTO_GROUP")
+    '("always-group" "NETK_TASKLIST_ALWAYS_GROUP")
+  )
+)
+
+
+;; From /usr/local/include/xfce4/libxfcegui4/netk-tasklist.h
+
+(define-function tasklist_get_type
+  (c-name "netk_tasklist_get_type")
+  (return-type "GType")
+)
+
+(define-function tasklist_new
+  (c-name "netk_tasklist_new")
+  (is-constructor-of "NetkTasklist")
+  (return-type "GtkWidget*")
+  (parameters
+    '("NetkScreen*" "screen")
+  )
+)
+
+(define-method set_screen
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_screen")
+  (return-type "none")
+  (parameters
+    '("NetkScreen*" "screen")
+  )
+)
+
+(define-method get_size_hint_list
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_size_hint_list")
+  (return-type "const-int*")
+  (parameters
+    '("int*" "n_elements")
+  )
+)
+
+(define-method set_grouping
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_grouping")
+  (return-type "none")
+  (parameters
+    '("NetkTasklistGroupingType" "grouping")
+  )
+)
+
+(define-method set_switch_workspace_on_unminimize
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_switch_workspace_on_unminimize")
+  (return-type "none")
+  (parameters
+    '("gboolean" "switch_workspace_on_unminimize")
+  )
+)
+
+(define-method set_grouping_limit
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_grouping_limit")
+  (return-type "none")
+  (parameters
+    '("gint" "limit")
+  )
+)
+
+(define-method set_include_all_workspaces
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_include_all_workspaces")
+  (return-type "none")
+  (parameters
+    '("gboolean" "include_all_workspaces")
+  )
+)
+
+(define-method set_show_label
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_show_label")
+  (return-type "none")
+  (parameters
+    '("gboolean" "show_label")
+  )
+)
+
+(define-method set_minimum_width
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_minimum_width")
+  (return-type "none")
+  (parameters
+    '("gint" "size")
+  )
+)
+
+(define-method get_minimum_width
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_minimum_width")
+  (return-type "gint")
+)
+
+(define-method set_minimum_height
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_minimum_height")
+  (return-type "none")
+  (parameters
+    '("gint" "size")
+  )
+)
+
+(define-method get_minimum_height
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_minimum_height")
+  (return-type "gint")
+)
+
+(define-method set_icon_loader
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_icon_loader")
+  (return-type "none")
+  (parameters
+    '("NetkLoadIconFunction" "load_icon_func")
+    '("void*" "data")
+    '("GDestroyNotify" "free_data_func")
+  )
+)
+
+

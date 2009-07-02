@@ -1,0 +1,459 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Window
+  (in-module "Netk")
+  (parent "GObject")
+  (c-name "NetkWindow")
+  (gtype-id "NETK_TYPE_WINDOW")
+)
+
+;; Enumerations and flags ...
+
+(define-flags WindowState
+  (in-module "Netk")
+  (c-name "NetkWindowState")
+  (gtype-id "NETK_TYPE_WINDOW_STATE")
+  (values
+    '("minimized" "NETK_WINDOW_STATE_MINIMIZED")
+    '("maximized-horizontally" "NETK_WINDOW_STATE_MAXIMIZED_HORIZONTALLY")
+    '("maximized-vertically" "NETK_WINDOW_STATE_MAXIMIZED_VERTICALLY")
+    '("shaded" "NETK_WINDOW_STATE_SHADED")
+    '("skip-pager" "NETK_WINDOW_STATE_SKIP_PAGER")
+    '("skip-tasklist" "NETK_WINDOW_STATE_SKIP_TASKLIST")
+    '("sticky" "NETK_WINDOW_STATE_STICKY")
+    '("hidden" "NETK_WINDOW_STATE_HIDDEN")
+    '("fullscreen" "NETK_WINDOW_STATE_FULLSCREEN")
+    '("urgent" "NETK_WINDOW_STATE_URGENT")
+  )
+)
+
+(define-flags WindowActions
+  (in-module "Netk")
+  (c-name "NetkWindowActions")
+  (gtype-id "NETK_TYPE_WINDOW_ACTIONS")
+  (values
+    '("move" "NETK_WINDOW_ACTION_MOVE")
+    '("resize" "NETK_WINDOW_ACTION_RESIZE")
+    '("shade" "NETK_WINDOW_ACTION_SHADE")
+    '("stick" "NETK_WINDOW_ACTION_STICK")
+    '("maximize-horizontally" "NETK_WINDOW_ACTION_MAXIMIZE_HORIZONTALLY")
+    '("maximize-vertically" "NETK_WINDOW_ACTION_MAXIMIZE_VERTICALLY")
+    '("change-workspace" "NETK_WINDOW_ACTION_CHANGE_WORKSPACE")
+    '("close" "NETK_WINDOW_ACTION_CLOSE")
+    '("unmaximize-horizontally" "NETK_WINDOW_ACTION_UNMAXIMIZE_HORIZONTALLY")
+    '("unmaximize-vertically" "NETK_WINDOW_ACTION_UNMAXIMIZE_VERTICALLY")
+    '("unshade" "NETK_WINDOW_ACTION_UNSHADE")
+    '("unstick" "NETK_WINDOW_ACTION_UNSTICK")
+    '("minimize" "NETK_WINDOW_ACTION_MINIMIZE")
+    '("unminimize" "NETK_WINDOW_ACTION_UNMINIMIZE")
+    '("maximize" "NETK_WINDOW_ACTION_MAXIMIZE")
+    '("unmaximize" "NETK_WINDOW_ACTION_UNMAXIMIZE")
+  )
+)
+
+(define-enum WindowType
+  (in-module "Netk")
+  (c-name "NetkWindowType")
+  (gtype-id "NETK_TYPE_WINDOW_TYPE")
+  (values
+    '("normal" "NETK_WINDOW_NORMAL")
+    '("desktop" "NETK_WINDOW_DESKTOP")
+    '("dock" "NETK_WINDOW_DOCK")
+    '("dialog" "NETK_WINDOW_DIALOG")
+    '("modal-dialog" "NETK_WINDOW_MODAL_DIALOG")
+    '("toolbar" "NETK_WINDOW_TOOLBAR")
+    '("menu" "NETK_WINDOW_MENU")
+    '("utility" "NETK_WINDOW_UTILITY")
+    '("splashscreen" "NETK_WINDOW_SPLASHSCREEN")
+  )
+)
+
+
+;; From /usr/local/include/xfce4/libxfcegui4/netk-window.h
+
+(define-function window_get_type
+  (c-name "netk_window_get_type")
+  (return-type "GType")
+)
+
+(define-function window_get
+  (c-name "netk_window_get")
+  (return-type "NetkWindow*")
+  (parameters
+    '("gulong" "xwindow")
+  )
+)
+
+(define-method get_screen
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_screen")
+  (return-type "NetkScreen*")
+)
+
+(define-method get_name
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_name")
+  (return-type "const-char*")
+)
+
+(define-method get_icon_name
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_icon_name")
+  (return-type "const-char*")
+)
+
+(define-method get_application
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_application")
+  (return-type "NetkApplication*")
+)
+
+(define-method get_group_leader
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_group_leader")
+  (return-type "gulong")
+)
+
+(define-method get_xid
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_xid")
+  (return-type "gulong")
+)
+
+(define-method get_class_group
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_class_group")
+  (return-type "NetkClassGroup*")
+)
+
+(define-method get_session_id
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_session_id")
+  (return-type "const-char*")
+)
+
+(define-method get_session_id_utf8
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_session_id_utf8")
+  (return-type "const-char*")
+)
+
+(define-method get_pid
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_pid")
+  (return-type "int")
+)
+
+(define-method get_client_machine
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_client_machine")
+  (return-type "const-char*")
+)
+
+(define-method get_window_type
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_window_type")
+  (return-type "NetkWindowType")
+)
+
+(define-method get_resource_class
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_resource_class")
+  (return-type "const-char*")
+)
+
+(define-method get_resource_name
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_resource_name")
+  (return-type "const-char*")
+)
+
+(define-method is_minimized
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_minimized")
+  (return-type "gboolean")
+)
+
+(define-method is_maximized_horizontally
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_maximized_horizontally")
+  (return-type "gboolean")
+)
+
+(define-method is_maximized_vertically
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_maximized_vertically")
+  (return-type "gboolean")
+)
+
+(define-method is_maximized
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_maximized")
+  (return-type "gboolean")
+)
+
+(define-method is_shaded
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_shaded")
+  (return-type "gboolean")
+)
+
+(define-method is_skip_pager
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_skip_pager")
+  (return-type "gboolean")
+)
+
+(define-method is_skip_tasklist
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_skip_tasklist")
+  (return-type "gboolean")
+)
+
+(define-method is_sticky
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_sticky")
+  (return-type "gboolean")
+)
+
+(define-method set_skip_pager
+  (of-object "NetkWindow")
+  (c-name "netk_window_set_skip_pager")
+  (return-type "none")
+  (parameters
+    '("gboolean" "skip")
+  )
+)
+
+(define-method set_skip_tasklist
+  (of-object "NetkWindow")
+  (c-name "netk_window_set_skip_tasklist")
+  (return-type "none")
+  (parameters
+    '("gboolean" "skip")
+  )
+)
+
+(define-method close
+  (of-object "NetkWindow")
+  (c-name "netk_window_close")
+  (return-type "none")
+)
+
+(define-method minimize
+  (of-object "NetkWindow")
+  (c-name "netk_window_minimize")
+  (return-type "none")
+)
+
+(define-method unminimize
+  (of-object "NetkWindow")
+  (c-name "netk_window_unminimize")
+  (return-type "none")
+)
+
+(define-method maximize
+  (of-object "NetkWindow")
+  (c-name "netk_window_maximize")
+  (return-type "none")
+)
+
+(define-method unmaximize
+  (of-object "NetkWindow")
+  (c-name "netk_window_unmaximize")
+  (return-type "none")
+)
+
+(define-method maximize_horizontally
+  (of-object "NetkWindow")
+  (c-name "netk_window_maximize_horizontally")
+  (return-type "none")
+)
+
+(define-method unmaximize_horizontally
+  (of-object "NetkWindow")
+  (c-name "netk_window_unmaximize_horizontally")
+  (return-type "none")
+)
+
+(define-method maximize_vertically
+  (of-object "NetkWindow")
+  (c-name "netk_window_maximize_vertically")
+  (return-type "none")
+)
+
+(define-method unmaximize_vertically
+  (of-object "NetkWindow")
+  (c-name "netk_window_unmaximize_vertically")
+  (return-type "none")
+)
+
+(define-method shade
+  (of-object "NetkWindow")
+  (c-name "netk_window_shade")
+  (return-type "none")
+)
+
+(define-method unshade
+  (of-object "NetkWindow")
+  (c-name "netk_window_unshade")
+  (return-type "none")
+)
+
+(define-method stick
+  (of-object "NetkWindow")
+  (c-name "netk_window_stick")
+  (return-type "none")
+)
+
+(define-method unstick
+  (of-object "NetkWindow")
+  (c-name "netk_window_unstick")
+  (return-type "none")
+)
+
+(define-method keyboard_move
+  (of-object "NetkWindow")
+  (c-name "netk_window_keyboard_move")
+  (return-type "none")
+)
+
+(define-method keyboard_size
+  (of-object "NetkWindow")
+  (c-name "netk_window_keyboard_size")
+  (return-type "none")
+)
+
+(define-method get_workspace
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_workspace")
+  (return-type "NetkWorkspace*")
+)
+
+(define-method move_to_workspace
+  (of-object "NetkWindow")
+  (c-name "netk_window_move_to_workspace")
+  (return-type "none")
+  (parameters
+    '("NetkWorkspace*" "space")
+  )
+)
+
+(define-method is_pinned
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_pinned")
+  (return-type "gboolean")
+)
+
+(define-method pin
+  (of-object "NetkWindow")
+  (c-name "netk_window_pin")
+  (return-type "none")
+)
+
+(define-method unpin
+  (of-object "NetkWindow")
+  (c-name "netk_window_unpin")
+  (return-type "none")
+)
+
+(define-method activate
+  (of-object "NetkWindow")
+  (c-name "netk_window_activate")
+  (return-type "none")
+)
+
+(define-method is_active
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_active")
+  (return-type "gboolean")
+)
+
+(define-method activate_transient
+  (of-object "NetkWindow")
+  (c-name "netk_window_activate_transient")
+  (return-type "none")
+)
+
+(define-method get_icon
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_icon")
+  (return-type "GdkPixbuf*")
+)
+
+(define-method get_mini_icon
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_mini_icon")
+  (return-type "GdkPixbuf*")
+)
+
+(define-method get_icon_is_fallback
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_icon_is_fallback")
+  (return-type "gboolean")
+)
+
+(define-method set_icon_geometry
+  (of-object "NetkWindow")
+  (c-name "netk_window_set_icon_geometry")
+  (return-type "none")
+  (parameters
+    '("int" "x")
+    '("int" "y")
+    '("int" "width")
+    '("int" "height")
+  )
+)
+
+(define-method get_actions
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_actions")
+  (return-type "NetkWindowActions")
+)
+
+(define-method get_state
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_state")
+  (return-type "NetkWindowState")
+)
+
+(define-method get_geometry
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_geometry")
+  (return-type "none")
+  (parameters
+    '("int*" "xp")
+    '("int*" "yp")
+    '("int*" "widthp")
+    '("int*" "heightp")
+  )
+)
+
+(define-method is_visible_on_workspace
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_visible_on_workspace")
+  (return-type "gboolean")
+  (parameters
+    '("NetkWorkspace*" "workspace")
+  )
+)
+
+(define-method is_on_workspace
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_on_workspace")
+  (return-type "gboolean")
+  (parameters
+    '("NetkWorkspace*" "workspace")
+  )
+)
+
+(define-method is_in_viewport
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_in_viewport")
+  (return-type "gboolean")
+  (parameters
+    '("NetkWorkspace*" "workspace")
+  )
+)
+
+

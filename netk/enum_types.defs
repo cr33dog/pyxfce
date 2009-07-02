@@ -1,0 +1,33 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/local/include/xfce4/libxfcegui4/netk-enum-types.h
+
+(define-function window_state_get_type
+  (c-name "netk_window_state_get_type")
+  (return-type "GType")
+)
+
+(define-function window_actions_get_type
+  (c-name "netk_window_actions_get_type")
+  (return-type "GType")
+)
+
+(define-function window_type_get_type
+  (c-name "netk_window_type_get_type")
+  (return-type "GType")
+)
+
+(define-function pager_display_mode_get_type
+  (c-name "netk_pager_display_mode_get_type")
+  (return-type "GType")
+)
+
+(define-function tasklist_grouping_type_get_type
+  (c-name "netk_tasklist_grouping_type_get_type")
+  (return-type "GType")
+)
+
+

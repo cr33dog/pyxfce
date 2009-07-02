@@ -1,0 +1,188 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object Channel
+  (in-module "Xfce")
+  (parent "GObject")
+  (c-name "XfceMcsChannel")
+  (gtype-id "XFCE_TYPE_MCS_CHANNEL")
+)
+
+;; Enumerations and flags ...
+
+(define-enum McsChannelSide
+  (in-module "Xfce")
+  (c-name "XfceMcsChannelSide")
+  (gtype-id "XFCE_TYPE_MCS_CHANNEL_SIDE")
+  (values
+    '("client" "XFCE_MCS_CHANNEL_SIDE_CLIENT")
+    '("manager" "XFCE_MCS_CHANNEL_SIDE_MANAGER")
+  )
+)
+
+
+;; From xfce-mcs-channel.h
+
+(define-function xfce_mcs_channel_side_get_type
+  (c-name "xfce_mcs_channel_side_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_mcs_channel_get_type
+  (c-name "xfce_mcs_channel_get_type")
+  (return-type "GType")
+)
+
+(define-method get_channel_name
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_get_channel_name")
+  (return-type "gchar*")
+)
+
+(define-method setting_changed
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_setting_changed")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method setting_deleted
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_setting_deleted")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method setting_added
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_setting_added")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-function xfce_mcs_channel_new
+  (c-name "xfce_mcs_channel_new")
+  (is-constructor-of "XfceMcsChannel")
+  (return-type "XfceMcsChannel*")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method get_setting
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_get_setting")
+  (return-type "gchar*")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method get_setting_string
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_get_setting_string")
+  (return-type "gchar*")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method get_setting_color
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_get_setting_color")
+  (return-type "gboolean")
+  (parameters
+    '("gchar-const*" "name")
+    '("McsColor*" "color")
+  )
+)
+
+(define-method get_setting_int
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_get_setting_int")
+  (return-type "gboolean")
+  (parameters
+    '("gchar-const*" "name")
+    '("int*" "result")
+  )
+)
+
+(define-method set_setting
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_set_setting")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+    '("gchar-const*" "value")
+  )
+)
+
+(define-method set_setting_string
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_set_setting_string")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+    '("gchar-const*" "value")
+  )
+)
+
+(define-method set_setting_int
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_set_setting_int")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+    '("int" "value")
+  )
+)
+
+(define-method set_setting_color
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_set_setting_color")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+    '("McsColor-const*" "value")
+  )
+)
+
+(define-method delete_setting
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_delete_setting")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "name")
+  )
+)
+
+(define-method delete
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_delete")
+  (return-type "none")
+)
+
+(define-method add_channel_from_file
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_add_channel_from_file")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "filename")
+  )
+)
+
+(define-method save_channel_to_file
+  (of-object "XfceMcsChannel")
+  (c-name "xfce_mcs_channel_save_channel_to_file")
+  (return-type "none")
+  (parameters
+    '("gchar-const*" "filename")
+  )
+)
+
+

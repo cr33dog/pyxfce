@@ -1,0 +1,79 @@
+#!/bin/bash
+
+inc="`pkg-config --variable=includedir libxfcegui4-1.0`"/xfce4
+
+for s in "${inc}"/libxfcegui4/*.h
+do
+	#echo "XX $s"
+	t="${s##*/}"
+	
+	t="${t%.h}"
+	
+	if [ "${t#netk-}" != "$t" ]
+	then
+		defs="${t/-/_}.defs"
+		defs="${defs/-/_}"
+		defs="${defs/-/_}"
+		
+		#echo "${defs}"
+		
+		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
+	fi
+done
+rm -f util.defs
+
+for s in netk_*.defs
+do
+	t="${s#netk_}"
+	mv "$s" "$t"
+done
+
+#mmv -o 'xfce-*.defs' '#1.defs'
+#rm -f libxfce4util.defs
+#rm -f libxfce4util-config.defs
+#rm -f generics.defs
+#rm -f debug.defs
+
+for s in *.defs
+do
+  sed -e 's;(define-function netk_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
+done
+
+#cat >>trayicon.defs << EOF
+#
+#(define-function tray_icon_get_type
+#  (c-name "tray_icon_get_type")
+#  (return-type "GType")
+#)
+#    
+#(define-function tray_icon_new
+#  (c-name "netk_tray_icon_new")
+#  (is-constructor-of "NetkTrayIcon")
+#  (return-type "NetkTrayIcon*")
+#)
+#      
+#(define-method tray_icon_set_screen
+#  (of-object "NetkTrayIcon")
+#  (c-name "netk_tray_icon_set_screen")  
+#  (return-type "none")
+#  (parameters
+#     '("GdkScreen*" "screen")
+#  )
+#)
+#EOF
+# message_new
+# message_cancel 
+
+cat trayicon.defs \
+| awk ' /^\(define-/ { n = 0; } /^\(define-function tray_icon_new/ { n = 1; } /^\)/ { n = 0; } /\(parameters/ { if (n) skip1 = 1; } /\("Screen\*" "screen"\)/ { if (n) skip1 = 1; } /  \)/ { if (n) skip1 = 1; } // { if (skip1 == 1) skip1 = 0; else print $_; } ' >trayicon.defs.new \
+&& mv trayicon.defs.new trayicon.defs
+
+cat >> screen.defs << EOF
+(define-method get_workspaces
+  (of-object "NetkScreen")
+  (c-name "netk_screen_get_workspaces")
+  (return-type "GList*")
+  (parameters
+  )
+)
+EOF

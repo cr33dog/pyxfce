@@ -1,0 +1,51 @@
+
+skip:
+xfce_mkdirhier
+xfce_putenv
+xfce_setenv?
+
+gtk x11 eventfilter
+mcs stuff
+panel
+
+netk stuff has many undefineds
+
+get rid of gtk_style.defs ?
+
+util: test desktopentry
+
+fix mcs stuff
+
+   Ex: (object Widget
+         (in-module (Gtk))
+         (parent Object) ;; could say (parent Object (Gtk))
+         (abstract #t)
+         (c-name GtkWidget)
+         (field (type-and-name GdkWindow* window) (access read)))
+
+   An "object" declaration automatically implies the type definition
+
+(boxed boxed-name
+  (in-module modname)
+  (c-name c-name)
+  (ref-func func-to-increase-refcount)
+  (copy-func func-to-copy)
+  (release-func func-to-destroy-or-decrement-refcount)
+  (field (type-and-name type-alias-of-struct-field name-of-struct-field) (access access-rule)))
+
+(struct Rectangle
+   (in-module (Gdk))
+   (c-name GdkRectangle)
+   (field (type-and-name gint16 x) (access readwrite))
+   (field (type-and-name gint16 y) (access readwrite))
+   (field (type-and-name guint16 width) (access readwrite))
+   (field (type-and-name guint16 height) (access readwrite)))
+
+
+netk window_state_changed_cb: how to check mask and newvalue ? constants ? where ?
+
+deprecated (i.e. remove it): XfceFileChooser?no?, XfceColorButton, XfceDecorButton, XfceDecorToggle
+
+http://live.gnome.org/PyGTK/WhatsNew28
+
+Could not write function get_path_localized: No ArgType for 'GFileTest'

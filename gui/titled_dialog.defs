@@ -1,0 +1,53 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object TitledDialog
+  (in-module "Xfce")
+  (parent "GtkDialog")
+  (c-name "XfceTitledDialog")
+  (gtype-id "XFCE_TYPE_TITLED_DIALOG")
+)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/local/include/xfce4/libxfcegui4/xfce-titled-dialog.h
+
+(define-function titled_dialog_get_type
+  (c-name "xfce_titled_dialog_get_type")
+  (return-type "GType")
+)
+
+(define-function titled_dialog_new
+  (c-name "xfce_titled_dialog_new")
+  (is-constructor-of "XfceTitledDialog")
+  (return-type "GtkWidget*")
+)
+
+(define-function titled_dialog_new_with_buttons
+  (c-name "xfce_titled_dialog_new_with_buttons")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "title")
+    '("GtkWindow*" "parent")
+    '("GtkDialogFlags" "flags")
+    '("const-gchar*" "first_button_text")
+  )
+  (varargs #t)
+)
+
+(define-method get_subtitle
+  (of-object "XfceTitledDialog")
+  (c-name "xfce_titled_dialog_get_subtitle")
+  (return-type "const-gchar*")
+)
+
+(define-method set_subtitle
+  (of-object "XfceTitledDialog")
+  (c-name "xfce_titled_dialog_set_subtitle")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "subtitle")
+  )
+)
+
+

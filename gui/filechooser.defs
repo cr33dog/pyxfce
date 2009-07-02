@@ -1,0 +1,267 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum FileChooserAction
+  (in-module "Xfce")
+  (c-name "XfceFileChooserAction")
+  (gtype-id "XFCE_TYPE_FILE_CHOOSER_ACTION")
+  (values
+    '("open" "XFCE_FILE_CHOOSER_ACTION_OPEN")
+    '("save" "XFCE_FILE_CHOOSER_ACTION_SAVE")
+    '("select-folder" "XFCE_FILE_CHOOSER_ACTION_SELECT_FOLDER")
+    '("create-folder" "XFCE_FILE_CHOOSER_ACTION_CREATE_FOLDER")
+  )
+)
+
+
+;; From /usr/local/include/xfce4/libxfcegui4/xfce-filechooser.h
+
+(define-function file_chooser_new
+  (c-name "xfce_file_chooser_new")
+  (is-constructor-of "XfceFileChooser")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "title")
+    '("GtkWindow*" "parent")
+    '("XfceFileChooserAction" "action")
+    '("const-gchar*" "first_button_text")
+  )
+  (varargs #t)
+)
+
+(define-method set_select_multiple
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_select_multiple")
+  (return-type "none")
+  (parameters
+    '("gboolean" "select_multiple")
+  )
+)
+
+(define-method get_select_multiple
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_get_select_multiple")
+  (return-type "gboolean")
+)
+
+(define-method set_current_name
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_current_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_filename
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_get_filename")
+  (return-type "gchar*")
+)
+
+(define-method set_filename
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_filename")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method get_filenames
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_get_filenames")
+  (return-type "GSList*")
+)
+
+(define-method set_current_folder
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_current_folder")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method get_current_folder
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_get_current_folder")
+  (return-type "gchar*")
+)
+
+(define-method set_preview_widget
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_preview_widget")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "preview_widget")
+  )
+)
+
+(define-method get_preview_widget
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_get_preview_widget")
+  (return-type "GtkWidget*")
+)
+
+(define-method set_preview_callback
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_preview_callback")
+  (return-type "none")
+  (parameters
+    '("PreviewUpdateFunc" "func")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method set_preview_widget_active
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_preview_widget_active")
+  (return-type "none")
+  (parameters
+    '("gboolean" "active")
+  )
+)
+
+(define-method get_preview_widget_active
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_get_preview_widget_active")
+  (return-type "gboolean")
+)
+
+(define-method set_use_preview_label
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_use_preview_label")
+  (return-type "none")
+  (parameters
+    '("gboolean" "use_label")
+  )
+)
+
+(define-method set_extra_widget
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_extra_widget")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "extra_widget")
+  )
+)
+
+(define-method get_extra_widget
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_get_extra_widget")
+  (return-type "GtkWidget*")
+)
+
+(define-method add_filter
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_add_filter")
+  (return-type "none")
+  (parameters
+    '("XfceFileFilter*" "filter")
+  )
+)
+
+(define-method remove_filter
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_remove_filter")
+  (return-type "none")
+  (parameters
+    '("XfceFileFilter*" "filter")
+  )
+)
+
+(define-method set_filter
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_filter")
+  (return-type "none")
+  (parameters
+    '("XfceFileFilter*" "filter")
+  )
+)
+
+(define-method add_shortcut_folder
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_add_shortcut_folder")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "folder")
+    '("GError**" "error")
+  )
+)
+
+(define-method remove_shortcut_folder
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_remove_shortcut_folder")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "folder")
+    '("GError**" "error")
+  )
+)
+
+(define-function file_filter_new
+  (c-name "xfce_file_filter_new")
+  (is-constructor-of "XfceFileFilter")
+  (return-type "XfceFileFilter*")
+  (parameters
+  )
+)
+
+(define-method set_name
+  (of-object "XfceFileFilter")
+  (c-name "xfce_file_filter_set_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method add_mime_type
+  (of-object "XfceFileFilter")
+  (c-name "xfce_file_filter_add_mime_type")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "mime_type")
+  )
+)
+
+(define-method add_pattern
+  (of-object "XfceFileFilter")
+  (c-name "xfce_file_filter_add_pattern")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "pattern")
+  )
+)
+
+(define-function file_chooser_dialog_new
+  (c-name "xfce_file_chooser_dialog_new")
+  (is-constructor-of "XfceFileChooserDialog")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "title")
+    '("GtkWindow*" "parent")
+    '("XfceFileChooserAction" "action")
+    '("const-gchar*" "first_button_text")
+  )
+  (varargs #t)
+)
+
+(define-method set_local_only
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_set_local_only")
+  (return-type "none")
+  (parameters
+    '("gboolean" "local_only")
+  )
+)
+
+(define-method get_local_only
+  (of-object "XfceFileChooser")
+  (c-name "xfce_file_chooser_get_local_only")
+  (return-type "gboolean")
+)
+
+

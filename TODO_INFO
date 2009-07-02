@@ -1,0 +1,325 @@
+Warning: generating old-style constructor for xfce_about_dialog_new
+Could not write constructor for XfceAboutDialog: No ArgType for 'const-XfceAboutInfo*'
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (7/7)
+***INFO*** The coverage of methods is 100.00% (10/10)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 100.00% (18/18)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for xfce_decorbutton_new
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for xfce_decortoggle_new
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 100.00% (4/4)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function exec_command_full_with_envp: No ArgType for 'gchar**'
+Could not write function err: varargs functions not supported
+Could not write function verr: No ArgType for 'va_list'
+Could not write function warn: varargs functions not supported
+Could not write function vwarn: No ArgType for 'va_list'
+Could not write function info: varargs functions not supported
+Could not write function vinfo: No ArgType for 'va_list'
+Could not write function message_dialog: varargs functions not supported
+***INFO*** The coverage of global functions is 60.00% (12/20)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for xfce_framebox_new
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 100.00% (1/1)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function gdk_display_locate_monitor_with_pointer: No ArgType for 'gint*'
+Could not write function gdk_spawn_on_screen: No ArgType for 'gchar**'
+Could not write function gdk_spawn_on_screen_with_pipes: No ArgType for 'gchar**'
+***INFO*** The coverage of global functions is 50.00% (3/6)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (2/2)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function get_font_desc: No ArgType for 'PangoFontDescription*'
+Could not write function pango_get_context: No ArgType for 'PangoContext*'
+***INFO*** The coverage of global functions is 50.00% (2/4)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function push_event_filter: No ArgType for 'XfceFilterSetup*'
+Could not write function pop_event_filter: No ArgType for 'XfceFilterSetup*'
+Could not write function init_event_filter: No ArgType for 'gpointer'
+Could not write function close_event_filter: No ArgType for 'XfceFilterSetup*'
+Could not write function pushEventFilter: No ArgType for 'GtkToXEventFilter'
+Could not write function popEventFilter: No ArgType for 'GtkToXEventFilterStack*'
+Could not write function initEventFilter: No ArgType for 'gpointer'
+Could not write function getDefaultXWindow: No ArgType for 'Window'
+***INFO*** The coverage of global functions is 38.46% (5/13)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** The coverage of methods is 100.00% (1/1)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function inline_icon_at_size: No ArgType for 'const-guint8*'
+***INFO*** The coverage of global functions is 85.71% (6/7)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write method XfceIconTheme.lookup_list: No ArgType for 'GList*'
+Could not write method XfceIconTheme.load_list: No ArgType for 'GList*'
+Could not write method XfceIconTheme.register_category: No ArgType for 'GList*'
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** The coverage of methods is 78.57% (11/14)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for xfce_menubutton_new
+***INFO*** The coverage of global functions is 100.00% (2/2)
+***INFO*** The coverage of methods is 100.00% (3/3)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for xfce_movehandler_new
+Could not write method XfceMovehandler.set_move_func: No ArgType for 'XfceMoveFunc'
+Could not write function void: No ArgType for '*'
+***INFO*** The coverage of global functions is 0.00% (0/1)
+***INFO*** The coverage of methods is 0.00% (0/1)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** The coverage of methods is 100.00% (1/1)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function client_session_new_full: No ArgType for 'gpointer'
+Could not write function session_init: No ArgType for 'SessionClient*'
+Could not write function session_shutdown: No ArgType for 'SessionClient*'
+Could not write function logout_session: No ArgType for 'SessionClient*'
+***INFO*** The coverage of global functions is 0.00% (0/4)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for xfce_togglebutton_new
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 100.00% (2/2)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function void: No ArgType for '*'
+Could not write function void: No ArgType for '*'
+Could not write function mcs_client_show: No ArgType for 'Display*'
+Could not write function mcs_client_check_manager: No ArgType for 'Display*'
+***INFO*** The coverage of global functions is 0.00% (0/4)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function mcs_manager_check_running: No ArgType for 'Display*'
+Could not write function mcs_list_insert: No ArgType for 'McsList**'
+Could not write function mcs_list_delete: No ArgType for 'McsList**'
+***INFO*** The coverage of global functions is 25.00% (1/4)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** The coverage of methods is 100.00% (9/9)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write method NetkClassGroup.get_windows: No ArgType for 'GList*'
+***INFO*** The coverage of global functions is 100.00% (5/5)
+***INFO*** The coverage of methods is 80.00% (4/5)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for netk_pager_new
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 100.00% (6/6)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (3/3)
+***INFO*** The coverage of methods is 100.00% (17/17)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for netk_tasklist_new
+Could not write method NetkTasklist.set_icon_loader: No ArgType for 'NetkLoadIconFunction'
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 91.67% (11/12)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function get_cardinal: No ArgType for 'Window'
+Could not write function get_wm_state: No ArgType for 'Window'
+Could not write function get_window: No ArgType for 'Window'
+Could not write function get_pixmap: No ArgType for 'Window'
+Could not write function get_atom: No ArgType for 'Window'
+Could not write function get_text_property: No ArgType for 'Window'
+Could not write function get_utf8_property: No ArgType for 'Window'
+Could not write function get_window_list: No ArgType for 'Window'
+Could not write function get_atom_list: No ArgType for 'Window'
+Could not write function get_cardinal_list: No ArgType for 'Window'
+Could not write function get_utf8_list: No ArgType for 'Window'
+Could not write function close: No ArgType for 'Screen*'
+Could not write function change_state: No ArgType for 'Screen*'
+Could not write function change_workspace: No ArgType for 'Screen*'
+Could not write function activate: No ArgType for 'Screen*'
+Could not write function activate_workspace: No ArgType for 'Screen*'
+Could not write function get_group_leader: No ArgType for 'Window'
+Could not write function get_session_id: No ArgType for 'Window'
+Could not write function get_pid: No ArgType for 'Window'
+Could not write function get_name: No ArgType for 'Window'
+Could not write function get_res_class_utf8: No ArgType for 'Window'
+Could not write function set_desktop_layout: No ArgType for 'Screen*'
+Could not write function get_desktop_margins: No ArgType for 'Screen*'
+Could not write function set_desktop_margins: No ArgType for 'Window'
+***INFO*** The coverage of global functions is 7.69% (2/26)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** The coverage of methods is 100.00% (56/56)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function create_window_menu: No ArgType for 'GList*'
+***INFO*** The coverage of global functions is 0.00% (0/1)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** The coverage of methods is 100.00% (9/9)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function get_pixbuf_by_id: No ArgType for 'PanelIcon'
+***INFO*** The coverage of global functions is 80.00% (4/5)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Warning: generating old-style constructor for xfce_desktop_entry_new
+Could not write constructor for XfceDesktopEntry: No ArgType for 'const-char**'
+Could not write function desktop_entry_new_from_data: No ArgType for 'const-char**'
+***INFO*** The coverage of global functions is 0.00% (0/1)
+***INFO*** The coverage of methods is 100.00% (4/4)
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function mkdirhier: No ArgType for 'unsigned-long'
+***INFO*** The coverage of global functions is 0.00% (0/1)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function get_path_localized: No ArgType for 'GFileTest'
+***INFO*** The coverage of global functions is 85.71% (6/7)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** There are no declared global functions.
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function get_homefile_r: varargs functions not supported
+Could not write function get_userfile_r: varargs functions not supported
+Could not write function expand_variables: No ArgType for 'gchar**'
+***INFO*** The coverage of global functions is 50.00% (3/6)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function rc_simple_open: No ArgType for 'XfceRc*'
+Could not write function rc_config_open: No ArgType for 'XfceRc*'
+***INFO*** The coverage of global functions is 0.00% (0/2)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+Could not write function resource_dirs: No ArgType for 'gchar**'
+Could not write function resource_lookup_all: No ArgType for 'gchar**'
+Could not write function resource_match: No ArgType for 'gchar**'
+Could not write function resource_match_custom: No ArgType for 'XfceMatchFunc'
+***INFO*** The coverage of global functions is 50.00% (4/8)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.
+***INFO*** The coverage of global functions is 100.00% (1/1)
+***INFO*** There are no declared methods.
+***INFO*** There are no declared virtual proxies.
+***INFO*** There are no declared virtual accessors.
+***INFO*** There are no declared interface proxies.

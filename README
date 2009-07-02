@@ -1,0 +1,33 @@
+
+http://pyxfce.xfce.org/
+
+Provides:
+  - libxfce4util bindings
+      - DesktopEntry
+      - Resource File Handling
+  - libxfce4mcs bindings
+      - settings client:
+          - can read xfce settings 
+          - get notified of changes[done soon]
+  - libxfcegui4 bindings
+      - netk (window managing) bindings
+           - list windows, activate and manipulate windows, application,
+classgroups, screens, workspaces, ...
+      - AboutDialog
+      - SessionClient [done soon]
+      - AppMenuItem
+      - Clock
+      - Decorbutton
+      - Decortoggle
+      - FileChooser (compat to gtk 2.0)
+      - Framebox
+      - Iconbutton
+      - IconTheme (xfceish)
+      - Menubutton
+      - Movehandler
+      - ScaledImage :)
+      - SystemTray
+      - Togglebutton: an arrow that changes direction when clicked O_o
+      - (small gtk and gdk extensions)
+
+File complaints, suggestions, ... to dannym@xfce.org

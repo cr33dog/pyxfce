@@ -1,0 +1,63 @@
+#!/bin/sh
+
+inc="`pkg-config --variable=includedir libxfce4panel-1.0`"/xfce4/libxfce4panel
+
+for s in "${inc}"/*.h
+do
+	t="${s##*/}"
+	
+	t="${t%.h}"
+	
+	if [ "${t#xfce_panel_}" = "$t" ]
+	then
+		defs="${t/-/_}.defs"
+		defs="${defs/-/_}"
+		defs="${defs/-/_}"
+		defs="${defs/-/_}"
+		defs="${defs/xfce_panel_/}"
+		defs="${defs/xfce_/}"
+		[ "${defs}" = "internal_plugin.defs" ] && continue
+		[ "${defs}" = "plugin.defs" ] && continue
+		
+		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
+	fi
+done
+
+cp plugin_iface.defs plugin_iface.defs.o
+
+cat >plugin_iface.defs << EOF
+(define-interface PanelPlugin
+  (in-module "Xfce")
+  (c-name "XfcePanelPlugin")
+  (gtype-id "XFCE_TYPE_PANEL_PLUGIN")
+)
+      
+EOF
+cat plugin_iface.defs.o >> plugin_iface.defs
+rm -f plugin_iface.defs.o
+
+sed -e 's;\(XFCE_TYPE_EXTERNAL_PANEL_PLUGIN.*\)$;\1\
+  (implements "XfcePanelPlugin")\
+;' \
+  external_plugin.defs >external_plugin.defs.n && mv external_plugin.defs.n external_plugin.defs
+
+##rm -f util.defs
+#
+##mv xfce_support.defs support.defs
+#
+##mmv -o 'xfce-*.defs' '#1.defs'
+##rm -f libxfce4util.defs
+##rm -f libxfce4util-config.defs
+##rm -f generics.defs
+##rm -f debug.defs
+#rm -f add_control_dialog.defs # not yet done
+#rm -f controls.defs # not yet done
+#rm -f global.defs # not yet done
+#cp -f icons.defs.manual icons.defs
+#rm -f item.defs # not yet done
+#rm -f item_dialog.defs # not yet done
+##rm -f main.defs
+#rm -f panel_command.defs # not yet done. easy though.
+#rm -f panel.defs # not yet done.
+#rm -f plugins.defs # not yet done. easy though.
+#rm -f xfce.defs # dummy

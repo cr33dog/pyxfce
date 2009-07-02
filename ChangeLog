@@ -1,0 +1,1506 @@
+2006-03-25 16:16  dannym
+
+	* COPYING: swich e-mairl now that it works :)
+
+2006-03-02 08:26  dannym
+
+	* gui/icontheme.override: re-add icontheme.override
+
+2006-03-01 00:28  dannym
+
+	* gui/Makefile.am, gui/aboutdialog.defs, gui/dialogs.defs,
+	  gui/gen, gui/guimodule.c, gui/icons.c, gui/icons.defs,
+	  gui/icons.override, gui/icontheme.defs: re-add icontheme stuff,
+	  made it work again
+
+2006-02-28 22:19  dannym
+
+	* gui/Makefile.am: get rid of icontheme stuff now that brian got
+	  rid of icontheme stuff :)
+
+2006-02-28 22:18  dannym
+
+	* gui/gen, gui/icontheme.c, gui/icontheme.defs,
+	  gui/icontheme.override: get rid of icontheme stuff now that
+	  brian got rid of icontheme stuff :)
+
+2006-02-12 18:13  dannym
+
+	* netk/screen.c, netk/screen.defs: add netk_screen_get_number
+
+2006-02-12 18:12  dannym
+
+	* panel/plugin_iface.c, panel/plugin_iface.defs: jasper added
+	  xfce_panel_plugin_focus_widget () to the plugin library, so me
+	  too :)
+
+2006-02-07 19:21  dannym
+
+	* examples/panel/testplugin1/testplugin.desktop,
+	  examples/panel/testplugin1/testplugin.py: fix test plugin
+
+2006-01-17 22:24  dannym
+
+	* gui/gui.py: use meaningful name
+
+2006-01-07 02:26  dannym
+
+	* gui/guimodule.c: fix #1307
+
+2006-01-07 02:25  dannym
+
+	* gui/startup-notification.defs: add generated defs file
+
+2006-01-06 23:35  dannym
+
+	* util/utilmodule.c: add licenses
+
+2006-01-06 23:25  dannym
+
+	* gui/gui.py: fix in_terminal
+
+2006-01-06 23:21  dannym
+
+	* gui/gui.py, gui/guimodule.c: add spawn_command_line and
+	  spawn_args
+
+2006-01-06 22:40  dannym
+
+	* gui/Makefile.am, gui/gdk_extensions.defs, gui/gen,
+	  gui/gtk_extensions.defs, gui/guimodule.c,
+	  gui/startup-notification.override: add startup notification
+
+2006-01-06 22:26  dannym
+
+	* gui/Makefile.am, gui/exec.override: remove exec (replaced by
+	  startup-notification)
+
+2006-01-06 22:24  dannym
+
+	* configure.ac, gui/Makefile.am, gui/exec.override,
+	  gui/startup-notification.override: add startup-notification
+
+2006-01-06 16:56  dannym
+
+	* gui/dialogs.c: fix
+
+2006-01-06 16:54  dannym
+
+	* gui/dialogs.c, gui/dialogs.override: allow None
+
+2006-01-06 16:52  dannym
+
+	* gui/dialogs.c, gui/dialogs.override: avoid internal compiler
+	  error with gcc 4.0.2
+
+2006-01-06 16:44  dannym
+
+	* gui/dialogs.c, gui/dialogs.override, gui/gtk_style.defs: try
+	  fixing bug 1309
+
+2006-01-01 13:03  dannym
+
+	* panel/Makefile.am, panel/external_plugin.c, panel/panelmodule.c,
+	  panel/plugin_iface.c, panel/plugin_iface.override: add some
+	  panel stuff (get_screen_position, cleanups)
+
+2006-01-01 12:54  dannym
+
+	* panel/external_plugin.override: fix warning
+
+2005-12-31 20:14  dannym
+
+	* panel/panelmodule.c: fix init order
+
+2005-12-31 19:53  dannym
+
+	* panel/plugin_iface.c, panel/plugin_iface.override: not that way
+
+2005-12-31 19:43  dannym
+
+	* panel/external_plugin.c, panel/external_plugin.defs,
+	  panel/external_plugin.override, panel/gen, panel/plugin_iface.c,
+	  panel/plugin_iface.defs, panel/plugin_iface.override: add panel
+	  plugin interface to panel plugin :)
+
+2005-12-18 11:16  pollux
+
+	* Makefile.am: add dist-bz2 and distcheck-bz2 targets in order to
+	  build snapshots
+
+2005-09-27 19:50  dannym
+
+	* examples/panel/testplugin1/testplugin.py,
+	  examples/systemtray/testtrayarea.py: fix examples
+
+2005-09-16 23:38  dannym
+
+	* gui/CHECKRUNNING_MAYBE: integrated
+
+2005-09-16 23:38  dannym
+
+	* gui/CHECKRUNNING_MAYBE: override xfce_system_tray_check_running
+	  so that it works global
+
+2005-09-16 23:35  dannym
+
+	* examples/systemtray/testtrayarea.py: update test
+
+2005-09-16 23:23  dannym
+
+	* gui/systemtray.c: generate
+
+2005-09-16 23:22  dannym
+
+	* gui/systemtray.override: fix unneccessary incref none
+
+2005-09-16 23:18  dannym
+
+	* gui/systemtray.c, gui/systemtray.override: add check_running
+
+2005-09-16 23:02  dannym
+
+	* examples/systemtray/testtrayarea.py: add unregister hint comment
+
+2005-09-16 22:58  dannym
+
+	* examples/Makefile.am, examples/configure.ac,
+	  examples/systemtray, examples/systemtray/testtrayarea.py: add
+	  systemtray example
+
+2005-09-16 22:46  dannym
+
+	* gui/systemtray.c, gui/systemtray.override: add
+	  xfce_system_tray_register (manual override)
+
+2005-09-12 18:12  dannym
+
+	* configure.ac, examples/panel/testplugin1/Makefile.am: fix panel
+	  detection
+
+2005-09-12 16:38  dannym
+
+	* configure.ac: do not use config.h for python
+
+2005-09-12 16:37  dannym
+
+	* autogen.sh: call fallback automake in case the other one is not
+	  found
+
+2005-09-10 12:12  dannym
+
+	* configure.ac, examples/configure.ac: moved panel plugin to
+	  examples subtree
+
+2005-09-10 12:10  dannym
+
+	* pyxfce-1.0.pc.in: fix pkgconfig
+
+2005-09-10 12:08  dannym
+
+	* Makefile.am, configure.ac, examples/Makefile.am,
+	  examples/configure.ac, pyxfce-1.0.pc.in: add pkgconfig in file
+
+2005-09-10 12:01  dannym
+
+	* examples/m4, examples/m4/debug.m4, examples/m4/depends.m4,
+	  examples/m4/jhflags.m4, examples/m4/python.m4: add m4 dir
+
+2005-09-10 12:01  dannym
+
+	* configure.ac, examples/Makefile.am, examples/autogen.sh,
+	  examples/configure.ac, examples/panel/Makefile.am,
+	  examples/panel/testplugin1/Makefile.am, gui/guimodule.c,
+	  m4/depends.m4, netk/netkmodule.c: integrate examples a bit
+
+2005-09-09 21:10  dannym
+
+	* configure.ac: update version, just in case, to signal new panel
+	  support
+
+2005-09-09 21:00  dannym
+
+	* Contributors: fix email
+
+2005-09-09 20:58  dannym
+
+	* Contributors, examples/panel/testplugin1/testplugin.py: some
+	  debugging stuff
+
+2005-09-09 20:56  dannym
+
+	* panel/gen, panel/plugin_iface.c, panel/plugin_iface.defs,
+	  panel/plugin_iface.override: add panel plugin interface
+
+2005-09-09 20:50  dannym
+
+	* panel/panel.py: add more comment
+
+2005-09-09 20:43  dannym
+
+	* panel/panel.py: add some properties comments
+
+2005-09-09 20:39  dannym
+
+	* examples/panel/testplugin1/testplugin.py, panel/panel.py,
+	  panel/panelmodule.c: add orientation
+
+2005-09-09 20:03  dannym
+
+	* panel/external_plugin.c, panel/external_plugin.override: remove
+	  some debugging messages
+
+2005-09-09 20:01  dannym
+
+	* examples/panel/testplugin1/testplugin.py,
+	  panel/external_plugin.c, panel/external_plugin.defs,
+	  panel/external_plugin.override, panel/panel.py,
+	  panel/plugin_iface.defs: fix panel plugin interface (mighty
+	  mouse)
+
+2005-09-09 19:59  dannym
+
+	* examples/panel/testplugin1/testplugin.desktop,
+	  examples/panel/testplugin1/testplugin.py: add testplugin :)
+
+2005-09-08 20:49  dannym
+
+	* panel/external_plugin.c, panel/external_plugin.override: add
+	  debugging stuff
+
+2005-09-08 20:36  dannym
+
+	* panel/arrow_button.c, panel/arrow_button.defs,
+	  panel/arrow_button.override, panel/enum_types.c,
+	  panel/enum_types.defs, panel/enum_types.override, panel/enums.c,
+	  panel/enums.defs, panel/enums.override, panel/external_plugin.c,
+	  panel/external_plugin.defs, panel/external_plugin.override,
+	  panel/gen, panel/itembar.c, panel/itembar.defs,
+	  panel/itembar.override, panel/plugin_iface.c,
+	  panel/plugin_iface.defs, panel/plugin_iface.override,
+	  panel/window.c, panel/window.defs, panel/window.override:
+	  support mighty mouse
+
+2005-09-08 20:36  dannym
+
+	* Makefile.am, configure.ac: add strange workaround to make
+	  BM_DEPEND_CHECK do what I want
+
+2005-09-06 22:00  dannym
+
+	* configure.ac: update requirement, just in case
+
+2005-09-06 21:42  dannym
+
+	* panel/external_plugin.c, panel/external_plugin.override:
+	  print+clear errors
+
+2005-09-06 21:35  dannym
+
+	* panel/external_plugin.override: add todo
+
+2005-09-06 21:32  dannym
+
+	* panel/external_plugin.c, panel/external_plugin.override: free
+	  memory as well after done (args)
+
+2005-09-06 21:27  dannym
+
+	* panel/external_plugin.c, panel/external_plugin.override: get args
+
+2005-09-06 21:08  dannym
+
+	* panel/external_plugin.c, panel/external_plugin.override: call
+	  stuff in python from c:)
+
+2005-09-06 20:58  dannym
+
+	* panel/external_plugin.c, panel/external_plugin.override: call
+	  overridden stuff manually
+
+2005-09-06 20:52  dannym
+
+	* panel/external_plugin.override: update name
+
+2005-09-06 20:51  dannym
+
+	* panel/external_plugin.c, panel/external_plugin.override: try to
+	  manually call method
+
+2005-09-06 20:15  dannym
+
+	* panel/external_plugin.override: start overriding _info
+
+2005-09-06 19:56  dannym
+
+	* panel/TODO: add todo
+
+2005-09-06 19:56  dannym
+
+	* examples, examples/panel, examples/panel/testplugin1: prepare
+	  example
+
+2005-09-06 19:41  dannym
+
+	* __init__.py: use new panel if available :)
+
+2005-09-06 19:33  dannym
+
+	* panel/gen: skip plugin.h
+
+2005-09-06 19:32  dannym
+
+	* panel/oo: delete old dir
+
+2005-09-06 19:32  dannym
+
+	* panel/arrow_button.c, panel/enum_types.c, panel/enums.c,
+	  panel/external_plugin.c, panel/itembar.c, panel/plugin_iface.c,
+	  panel/window.c: add c files (though they can be regenerated by
+	  maintainer, user shouldnt)
+
+2005-09-06 19:31  dannym
+
+	* panel/panelmodule.c: readd panelmodule
+
+2005-09-06 19:29  dannym
+
+	* panel/gen-panel.c, panel/gen-panel_command.c,
+	  panel/gen-plugins.c, panel/gen-xfce.c, panel/icons-h,
+	  panel/icons.c, panel/icons.defs.manual, panel/panelmodule.c,
+	  panel/support.c: fix
+
+2005-09-06 19:12  dannym
+
+	* panel/panelmodule.c: fix registration
+
+2005-09-06 19:09  dannym
+
+	* panel/window.override: fix uses
+
+2005-09-06 19:07  dannym
+
+	* panel/window.override: add missing include
+
+2005-09-06 19:05  dannym
+
+	* Makefile.am, aclocal.m4, configure.ac, panel/Makefile.am,
+	  panel/enums.override, panel/external_plugin.override,
+	  panel/itembar.override, panel/plugin.defs,
+	  panel/plugin.override: fixes in definitions
+
+2005-09-06 18:58  dannym
+
+	* panel/Makefile.am, panel/arrow_button.defs,
+	  panel/arrow_button.override, panel/enum_types.defs,
+	  panel/enum_types.override, panel/itembar.defs,
+	  panel/plugin_iface.defs, panel/window.defs: fix defs for new
+	  panel
+
+2005-09-06 18:42  dannym
+
+	* autogen.sh: ubuntuify
+
+2005-09-06 18:26  dannym
+
+	* configure.ac: update ac for new panel
+
+2005-09-06 18:25  dannym
+
+	* panel/arrow_button.override, panel/enums.override,
+	  panel/external_plugin.override, panel/itembar.override,
+	  panel/plugin.override, panel/plugin_iface.override,
+	  panel/window.override: fix override files
+
+2005-09-06 18:19  dannym
+
+	* panel/Makefile.am, panel/arrow_button.defs,
+	  panel/arrow_button.override, panel/enums.defs,
+	  panel/enums.override, panel/external_plugin.defs,
+	  panel/external_plugin.override, panel/itembar.defs,
+	  panel/itembar.override, panel/plugin.defs,
+	  panel/plugin.override, panel/plugin_iface.defs,
+	  panel/plugin_iface.override, panel/window.defs,
+	  panel/window.override: add overrides (unfinished), regen defs
+
+2005-09-06 18:15  dannym
+
+	* panel/cpart, panel/gen, panel/icons.defs, panel/icons.override,
+	  panel/main.defs, panel/oo, panel/oo/icons.override,
+	  panel/oo/support.override, panel/oo/template.override,
+	  panel/support.defs, panel/support.override,
+	  panel/template.override, panel/xfce_arrow_button.defs,
+	  panel/xfce_item.defs, panel/xfce_itembar.defs,
+	  panel/xfce_panel_window.defs, panel/xfce_separator_item.defs:
+	  prepare for new panel
+
+2005-09-06 18:11  dannym
+
+	* panel.stable: copy panel.stable to support 4.2 panel (well, not
+	  really)
+
+2005-09-03 17:41  dannym
+
+	* gui/aboutdialog.c, gui/aboutdialog.defs,
+	  gui/aboutdialog.override, gui/appmenuitem.c,
+	  gui/appmenuitem.defs, gui/clock.c, gui/clock.defs,
+	  gui/colorbutton.c, gui/colorbutton.defs, gui/decorbutton.c,
+	  gui/decorbutton.defs, gui/decortoggle.c, gui/decortoggle.defs,
+	  gui/dialogs.c, gui/dialogs.defs, gui/filechooser.c,
+	  gui/filechooser.defs, gui/framebox.c, gui/framebox.defs,
+	  gui/gdk-extensions.defs, gui/gdk_extensions.c, gui/gen,
+	  gui/gtk-extensions.defs, gui/gtk_extensions.c, gui/gtk_style.c,
+	  gui/gtk_style.defs, gui/gtktoxevent.c, gui/gtktoxevent.defs,
+	  gui/iconbutton.c, gui/iconbutton.defs, gui/icons.c,
+	  gui/icons.defs, gui/icontheme.c, gui/icontheme.defs,
+	  gui/libxfcegui4.defs, gui/libxfcegui4_config.defs,
+	  gui/menubutton.c, gui/menubutton.defs, gui/movehandler.c,
+	  gui/movehandler.defs, gui/scaled_image.c, gui/scaled_image.defs,
+	  gui/session_client.c, gui/session_client.defs, gui/systemtray.c,
+	  gui/systemtray.defs, gui/togglebutton.c, gui/togglebutton.defs,
+	  mcs/gen, mcs/gen-xfce_mcs-channel.c, mcs/gen-xfce_mcs-client.c,
+	  mcs/gen-xfce_mcs-manager.c, mcs/mcs_client.defs,
+	  mcs/mcs_common.defs, mcs/mcs_manager.defs, netk/application.c,
+	  netk/application.defs, netk/class_group.c,
+	  netk/class_group.defs, netk/enum_types.c, netk/enum_types.defs,
+	  netk/gen, netk/marshal.defs, netk/pager.c, netk/pager.defs,
+	  netk/screen.c, netk/screen.defs, netk/tasklist.c,
+	  netk/tasklist.defs, netk/trayicon.c, netk/trayicon.defs,
+	  netk/trayicon.override, netk/util.c, netk/util.defs,
+	  netk/util.override, netk/window.c, netk/window.defs,
+	  netk/window_action_menu.c, netk/window_action_menu.defs,
+	  netk/window_menu.c, netk/window_menu.defs, netk/workspace.c,
+	  netk/workspace.defs, util/desktopentry.c,
+	  util/desktopentry.defs, util/desktopentry.override,
+	  util/fileutils.c, util/fileutils.defs, util/gen, util/i18n.c,
+	  util/i18n.defs, util/kiosk.c, util/kiosk.defs, util/miscutils.c,
+	  util/miscutils.defs, util/rc.c, util/rc.defs, util/resource.c,
+	  util/resource.defs, util/utf8.c, util/utf8.defs: small xfce svn
+	  trunk / ubuntu hoary / pygtk 2.8 / gcc 4 fixes
+
+2005-09-03 16:26  dannym
+
+	* aclocal.m4, configure.ac: fix required version, now that kelnos
+	  fixed libxfcegui4
+
+2005-09-02 22:50  dannym
+
+	* TODO: update todo
+
+2005-09-02 22:22  dannym
+
+	* TODO: updated todo
+
+2005-09-02 22:20  dannym
+
+	* TODO: update todo (mess)
+
+2005-08-06 21:45  dannym
+
+	* configure.ac: update version
+
+2005-08-06 21:45  dannym
+
+	* util/utilmodule.c: add some constants
+
+2005-08-06 21:42  dannym
+
+	* gui/guimodule.c: add some more constants
+
+2005-08-06 21:40  dannym
+
+	* netk/netkmodule.c: add some more constants
+
+2005-08-06 21:39  dannym
+
+	* netk/netkmodule.c, netk/trayicon.c: hm... if I call the function
+	  to add the constants, it might actually work.
+
+2005-06-23 21:48  dannym
+
+	* Contributors, configure.ac, netk/class-group.defs,
+	  netk/enum-types.defs, netk/gen-class-group.c, netk/screen.c,
+	  netk/window-action-menu.defs, netk/window-menu.defs: apply
+	  Daichi's fix for dynamically determining CODEGEN_PATH
+
+2005-05-30 13:32  dannym
+
+	* netk/screen.override: remove commented out stuff
+
+2005-05-30 13:30  dannym
+
+	* netk/gen, netk/screen.c, netk/screen.defs, netk/screen.override:
+	  add netk_screen_get_workspaces (emulated)
+
+2005-05-29 19:40  dannym
+
+	* config.h.in: add missing config.h.in
+
+2005-05-29 14:35  dannym
+
+	* configure.ac, mcs/tests/testclientaddchannel.py, util/gen,
+	  util/resource.c, util/resource.defs, util/resource.override: use
+	  new util enum type (one, resourcetype :))
+
+2005-05-28 14:45  dannym
+
+	* mcs/tests/testclientaddchannel.py, mcs/xfce-mcs-channel.c,
+	  mcs/xfce-mcs-channel.gob: add assertion, just in case
+
+2005-05-28 14:42  dannym
+
+	* mcs/xfce-mcs-client.c, mcs/xfce-mcs-client.gob: remove debugging
+	  msgs
+
+2005-05-28 14:38  dannym
+
+	* mcs/gen-xfce_mcs-client.c, mcs/xfce-mcs-client.c,
+	  mcs/xfce-mcs-client.gob, mcs/xfce-mcs-client.h,
+	  mcs/xfce_mcs-client.defs: name signal manager_reconnected
+
+2005-05-28 14:35  dannym
+
+	* mcs/gen-xfce_mcs-channel.c, mcs/gen-xfce_mcs-client.c,
+	  mcs/gen-xfce_mcs-manager.c, mcs/tests/testclientaddchannel.py,
+	  mcs/xfce-mcs-channel-private.h, mcs/xfce-mcs-channel.c,
+	  mcs/xfce-mcs-channel.gob, mcs/xfce-mcs-channel.h,
+	  mcs/xfce-mcs-client.c, mcs/xfce-mcs-client.gob,
+	  mcs/xfce-mcs-client.h, mcs/xfce-mcs-manager-private.h,
+	  mcs/xfce-mcs-manager.c, mcs/xfce-mcs-manager.gob,
+	  mcs/xfce-mcs-manager.h, mcs/xfce_mcs-channel.defs,
+	  mcs/xfce_mcs-client.defs, mcs/xfce_mcs-manager.defs: update test
+	  name, rename add_channel -> register_channel, add
+	  unregister_channel, add cleanup stuff
+
+2005-05-28 14:12  dannym
+
+	* mcs/tests/testclientaddchannel.py, mcs/xfce-mcs-client.c,
+	  mcs/xfce-mcs-client.gob, mcs/xfce-mcs-manager.c,
+	  mcs/xfce-mcs-manager.gob: fix return values
+
+2005-05-28 13:50  dannym
+
+	* mcs/gen-xfce_mcs-channel.c, mcs/gen-xfce_mcs-client.c,
+	  mcs/gen-xfce_mcs-manager.c, mcs/mcs_client.override,
+	  mcs/mcsmodule.c, mcs/xfce_mcs-channel.override,
+	  mcs/xfce_mcs-client.override, mcs/xfce_mcs-manager.override: mcs
+	  fixes
+
+2005-05-28 13:34  dannym
+
+	* mcs/gen-xfce_mcs-channel.c, mcs/gen-xfce_mcs-client.c,
+	  mcs/gen-xfce_mcs-manager.c, mcs/tests/test-xfce-mcs-client.c,
+	  mcs/tests/testclientaddchannel.py,
+	  mcs/xfce-mcs-channel-private.h, mcs/xfce-mcs-channel.c,
+	  mcs/xfce-mcs-channel.gob, mcs/xfce-mcs-channel.h,
+	  mcs/xfce-mcs-client.c, mcs/xfce-mcs-client.gob,
+	  mcs/xfce-mcs-client.h, mcs/xfce-mcs-manager.c,
+	  mcs/xfce-mcs-manager.gob, mcs/xfce-mcs-manager.h,
+	  mcs/xfce_mcs-channel.defs, mcs/xfce_mcs-channel.override,
+	  mcs/xfce_mcs-client.defs, mcs/xfce_mcs-client.override,
+	  mcs/xfce_mcs-manager.defs, mcs/xfce_mcs-manager.override: split
+	  mcs channel, not just name
+
+2005-05-28 13:09  dannym
+
+	* mcs/tests/test-xfce-mcs-client.c, mcs/xfce-mcs-client-private.h,
+	  mcs/xfce-mcs-client.c, mcs/xfce-mcs-client.gob: hmm... prepare
+	  channel split
+
+2005-05-28 13:01  dannym
+
+	* mcs/tests/test-xfce-mcs-client.c, mcs/xfce-mcs-client-private.h,
+	  mcs/xfce-mcs-client.c, mcs/xfce-mcs-client.gob: fix segfault
+
+2005-05-28 12:30  dannym
+
+	* mcs/tests/test-xfce-mcs-client.c: xfce mcs client C test program
+
+2005-05-27 16:08  dannym
+
+	* mcs/gen-xfce_mcs-channel.c, mcs/mcs_manager.defs,
+	  mcs/xfce_mcs-channel.defs: update generated files
+
+2005-05-27 16:06  dannym
+
+	* mcs/tests/testclientaddchannel.py: update mcs test a bit, adding
+	  callback
+
+2005-05-27 15:59  dannym
+
+	* mcs/xfce-mcs-channel.c, mcs/xfce-mcs-channel.gob,
+	  mcs/xfce-mcs-channel.h, mcs/xfce-mcs-client.c,
+	  mcs/xfce-mcs-client.gob, mcs/xfce-mcs-manager.c,
+	  mcs/xfce-mcs-manager.gob: split channel signals into
+	  setting-changed, setting-added and setting-deleted
+
+2005-05-27 15:05  dannym
+
+	* aclocal.m4, configure.ac, mcs/Makefile.am: move mcs enums to
+	  libxfce4mcs
+
+2005-05-26 22:25  dannym
+
+	* mcs/Makefile.am: update, add mcs-enum-typse
+
+2005-05-26 22:17  dannym
+
+	* mcs/tests, mcs/tests/testclientaddchannel.py,
+	  mcs/tests/testclientshowdialog.py: add tests for mcs
+
+2005-05-26 22:15  dannym
+
+	* mcs/Makefile.am, mcs/gen-xfce_mcs-client.c,
+	  mcs/gen-xfce_mcs-manager.c, mcs/xfce_mcs-client.override,
+	  mcs/xfce_mcs-manager.override: register McsChannel for McsClient
+	  and McsManager
+
+2005-05-26 22:08  dannym
+
+	* configure.ac: update version to reflect mcs update
+
+2005-05-26 22:06  dannym
+
+	* mcs/xfce-mcs-client.c, mcs/xfce-mcs-client.gob: use default
+	  gdkscreen by default :)
+
+2005-05-26 22:03  dannym
+
+	* mcs/xfce-mcs-client.c, mcs/xfce-mcs-client.gob: add missing
+	  object property attribute
+
+2005-05-26 22:01  dannym
+
+	* mcs/Makefile.am: whoops... fix extra_dist
+
+2005-05-26 22:00  dannym
+
+	* mcs/Makefile.am, mcs/gen-xfce_mcs-channel.c,
+	  mcs/gen-xfce_mcs-client.c, mcs/gen-xfce_mcs-manager.c,
+	  mcs/xfce_mcs-channel.override, mcs/xfce_mcs-client.override,
+	  mcs/xfce_mcs-manager.override: update extra_dist, update module
+	  names
+
+2005-05-26 21:57  dannym
+
+	* mcs/gen, mcs/gen-xfce_mcs-channel.c, mcs/gen-xfce_mcs-client.c,
+	  mcs/gen-xfce_mcs-manager.c, mcs/mcs_client.defs,
+	  mcs/mcs_manager.defs, mcs/xfce_mcs-channel.defs,
+	  mcs/xfce_mcs-client.defs, mcs/xfce_mcs-manager.defs: strip Mcs
+	  from classname
+
+2005-05-26 21:56  dannym
+
+	* mcs/xfce-mcs-channel.c, mcs/xfce-mcs-channel.gob,
+	  mcs/xfce-mcs-channel.h, mcs/xfce-mcs-manager-private.h,
+	  mcs/xfce-mcs-manager.c, mcs/xfce-mcs-manager.gob: add
+	  *channel*file functions
+
+2005-05-26 21:50  dannym
+
+	* mcs/xfce-mcs-client.c, mcs/xfce-mcs-client.gob,
+	  mcs/xfce_mcs-channel.override, mcs/xfce_mcs-client.override,
+	  mcs/xfce_mcs-manager.override: mcs client fixes
+
+2005-05-26 21:46  dannym
+
+	* mcs/xfce-mcs-manager-private.h, mcs/xfce-mcs-manager.c,
+	  mcs/xfce-mcs-manager.gob: add comment about missing functions
+
+2005-05-26 21:42  dannym
+
+	* mcs/Makefile.am, mcs/gen, mcs/gen-xfce_mcs-channel.c,
+	  mcs/gen-xfce_mcs-client.c, mcs/gen-xfce_mcs-manager.c, mcs/gobs,
+	  mcs/mcs_client.defs, mcs/mcsmodule.c,
+	  mcs/xfce-mcs-channel-private.h, mcs/xfce-mcs-channel.c,
+	  mcs/xfce-mcs-channel.gob, mcs/xfce-mcs-channel.h,
+	  mcs/xfce-mcs-client-private.h, mcs/xfce-mcs-client.c,
+	  mcs/xfce-mcs-client.gob, mcs/xfce-mcs-client.h,
+	  mcs/xfce-mcs-manager-private.h, mcs/xfce-mcs-manager.c,
+	  mcs/xfce-mcs-manager.gob, mcs/xfce-mcs-manager.h,
+	  mcs/xfce_mcs-channel.defs, mcs/xfce_mcs-channel.override,
+	  mcs/xfce_mcs-client.defs, mcs/xfce_mcs-client.override,
+	  mcs/xfce_mcs-manager.defs, mcs/xfce_mcs-manager.override: add
+	  mcs highlevel classes
+
+2005-05-20 23:36  dannym
+
+	* netk/window.c, netk/window.defs: regen after gui update
+
+2005-05-20 23:34  dannym
+
+	* Makefile.am: remove panel stuff for now
+
+2005-05-20 23:17  dannym
+
+	* configure.ac: update required version
+
+2005-05-18 05:10  dannym
+
+	* Makefile.in, configure.ac, gui/Makefile.in, mcs/Makefile.in,
+	  netk/Makefile.in, panel/Makefile.in, util/Makefile.in: remove
+	  tempfiles, remove panel dependency until I actually have some
+	  functionality in pyxfce for panel
+
+2005-05-18 04:43  dannym
+
+	* Makefile.am, configure.ac: add ACLOCAL_AMFLAGS to maybe fix the
+	  change configure.ac + make + error issue
+
+2005-05-13 04:27  dannym
+
+	* netk/application.c, netk/application.override,
+	  netk/class_group.c, netk/class_group.override: make class group
+	  and application get_windows return empty list if in doubt
+
+2005-05-13 04:21  dannym
+
+	* netk/screen.c, netk/screen.override: make screen get_windows /
+	  get_windows_stacked return [] when in doubt (NOT None)
+
+2005-05-13 03:55  dannym
+
+	* TODO: update todo
+
+2005-05-06 18:02  dannym
+
+	* gui/tests/testsessionclient.py: update testsessionclient with
+	  intended design
+
+2005-05-06 17:58  dannym
+
+	* README: update sessionclient name
+
+2005-05-06 17:55  dannym
+
+	* README, gui/tests/testcolorbutton.py: skip xfce colorbutton
+
+2005-05-06 15:18  dannym
+
+	* gui/sessionclient.c: add extern decl
+
+2005-05-06 15:17  dannym
+
+	* gui/sessionclient.c: use Py_GetArgcArgv
+
+2005-05-06 14:48  dannym
+
+	* gui/sessionclient.c: prepare sessionclient wrapper
+
+2005-05-06 14:17  dannym
+
+	* README, gui/tests/testcolorbutton.py: fix typo
+
+2005-05-06 14:15  dannym
+
+	* gui/tests/testicontheme.py: fix comments
+
+2005-05-06 07:46  dannym
+
+	* gui/tests/testicontheme.py: use a rodent icon name for now
+
+2005-05-06 07:44  dannym
+
+	* gui/tests/testicontheme.py: add destroy cb
+
+2005-05-06 07:44  dannym
+
+	* gui/gen, gui/icontheme.c, gui/icontheme.defs,
+	  gui/icontheme.override, gui/tests/testicontheme.py: icontheme
+	  fixes
+
+2005-05-06 07:38  dannym
+
+	* gui/tests/testicontheme.py: fix icontheme test
+
+2005-05-06 07:37  dannym
+
+	* gui/gen, gui/icontheme.c, gui/icontheme.defs,
+	  gui/icontheme.override: fix icontheme
+
+2005-05-06 07:28  dannym
+
+	* gui/tests/testicontheme.py: use icontheme load
+
+2005-05-06 07:27  dannym
+
+	* gui/tests/testicontheme.py: add icontheme test
+
+2005-05-06 07:26  dannym
+
+	* gui/tests/testsystemtray.py: add comment
+
+2005-05-06 07:25  dannym
+
+	* gui/tests/testsystemtray.py: add system tray test
+
+2005-05-06 07:17  dannym
+
+	* gui/systemtray.c, gui/systemtray.defs: add systemtray stuff
+
+2005-05-06 07:15  dannym
+
+	* gui/tests/testtogglebutton.py: add togglebutton test
+
+2005-05-06 07:12  dannym
+
+	* README: consistency
+
+2005-05-06 07:07  dannym
+
+	* gui/tests/testscaledimage.py: fix scaledimage test
+
+2005-05-06 07:06  dannym
+
+	* gui/tests/testscaledimage.py: add scaled image
+
+2005-05-06 07:05  dannym
+
+	* gui/tests/testmovehandler.py: fix movehandler test to do what
+	  its supposed to
+
+2005-05-06 07:03  dannym
+
+	* README, gui/tests/testmovehandler.py: add movehandler test
+
+2005-05-06 07:01  dannym
+
+	* README: fix typo
+
+2005-05-06 07:01  dannym
+
+	* gui/tests/testmenubutton.py: add test
+
+2005-05-06 06:57  dannym
+
+	* gui/tests/testiconbutton.py: add test
+
+2005-05-06 06:56  dannym
+
+	* README: fix typo
+
+2005-05-06 06:55  dannym
+
+	* gui/tests/testframebox.py: fix framebox test
+
+2005-05-06 06:54  dannym
+
+	* README: fix typo
+
+2005-05-06 06:53  dannym
+
+	* gui/tests/testframebox.py: add test
+
+2005-05-06 06:52  dannym
+
+	* gui/tests/testfilechooser.py: add test
+
+2005-05-06 06:51  dannym
+
+	* gui/tests/testdecortoggle.py: update test
+
+2005-05-06 06:49  dannym
+
+	* gui/tests/testdecortoggle.py: add test
+
+2005-05-06 06:48  dannym
+
+	* gui/tests/testcolorbutton.py, gui/tests/testdecorbutton.py:
+	  update tests
+
+2005-05-06 06:43  dannym
+
+	* TODO: update todo
+
+2005-05-06 06:43  dannym
+
+	* TODO: update todo
+
+2005-05-06 06:43  dannym
+
+	* TODO: update todo
+
+2005-05-05 16:34  dannym
+
+	* gui/clock.c, gui/clock.override, gui/decorbutton.c,
+	  gui/decorbutton.override, gui/filechooser.c,
+	  gui/filechooser.override, gui/gtktoxevent.c,
+	  gui/gtktoxevent.override, gui/icontheme.c,
+	  gui/icontheme.override, gui/session_client.c,
+	  gui/session_client.override: add gui enums now that they have
+	  rtti
+
+2005-05-05 15:35  dannym
+
+	* configure.ac, gui/clock.defs, gui/decorbutton.defs,
+	  gui/filechooser.defs, gui/gen, gui/gtktoxevent.defs,
+	  gui/icontheme.defs, gui/session_client.defs: use the new gui
+	  enums
+
+2005-05-05 15:15  dannym
+
+	* patches/xfce42-gui-enum-types.c,
+	  patches/xfce42-gui-enum-types.h: add patches for xfce 4.2 to add
+	  the enum rtti for gui stuff
+
+2005-05-04 23:06  dannym
+
+	* netk/trayicon.c: trayicon regen
+
+2005-05-04 23:06  dannym
+
+	* netk/tests/testtrayicon.py, netk/trayicon.c,
+	  netk/trayicon.override: fix netk_tray_icon_set_screen
+
+2005-05-04 22:59  dannym
+
+	* netk/gen: filter netk trayicon constructor
+
+2005-05-04 22:52  dannym
+
+	* netk/tests/testtrayicon.py, netk/trayicon.c, netk/trayicon.defs,
+	  netk/trayicon.override: simplify trayicon constructor, fix test
+
+2005-05-04 22:48  dannym
+
+	* netk/Makefile.am, netk/Makefile.in, netk/class_group.c,
+	  netk/gen, netk/screen.c, netk/screen.override, netk/trayicon.c,
+	  netk/trayicon.defs, netk/trayicon.override: fixes so that it
+	  compiles again with screen extern
+
+2005-05-04 21:37  dannym
+
+	* netk/class_group.override: override class_group_get_windows
+
+2005-05-04 21:34  dannym
+
+	* netk/gen, netk/trayicon.c, netk/trayicon.defs,
+	  netk/trayicon.override: trayicon fixes
+
+2005-05-04 21:23  dannym
+
+	* netk/tests/testtrayicon.py: add missing import
+
+2005-05-04 21:20  dannym
+
+	* netk/tests/testtrayicon.py: add trayicon test
+
+2005-05-04 21:12  dannym
+
+	* netk/gen, netk/tasklist.c, netk/tasklist.override,
+	  netk/trayicon.c, netk/trayicon.defs, netk/trayicon.override: fix
+	  TrayIcon constructor up (thanks Olivier, Brian :))
+
+2005-05-04 19:34  dannym
+
+	* gui/tests/testappmenuitem.py, gui/tests/testsessionclient.py:
+	  add some more tests
+
+2005-05-04 19:26  dannym
+
+	* gui/tests/testaboutdialog.py: fix my mistake
+
+2005-05-04 19:20  dannym
+
+	* gui/tests/testaboutdialog.py: *boom*
+
+2005-05-04 19:19  dannym
+
+	* gui/tests/testaboutdialog.py: extend about dialog test to
+	  include one more credit (almost forgot him :))
+
+2005-05-04 19:03  dannym
+
+	* gui/tests/testaboutdialog.py: add aboutdialog test
+
+2005-05-04 18:58  dannym
+
+	* COPYING, gui/tests: fix copying file to what i think is meant
+
+2005-05-04 18:55  dannym
+
+	* config.h.in: remove everchanging file so it stops spamming the
+	  commit logs
+	  (I'd be grateful if it decided whether to include CODEGEN_PATH
+	  or not for good somewhen *wonders*)
+
+2005-05-04 18:51  dannym
+
+	* README: update readme
+
+2005-05-04 18:43  dannym
+
+	* config.h.in, configure.ac: ok ok, if it insists, let it remove
+	  CODEGEN_PATH.
+	  btw is config.h.in a tempfile given that it changes all the time
+	  ?
+
+2005-05-04 17:48  dannym
+
+	* README, TODO, mcs/gen, mcs/mcs_client.defs,
+	  mcs/mcs_client.override, mcs/mcs_manager.defs,
+	  mcs/mcs_manager.override: mcs fixes, update readme to actually
+	  say something useful
+
+2005-05-03 23:45  dannym
+
+	* gui/aboutdialog.c, gui/aboutdialog.defs,
+	  gui/aboutdialog.override: remove override now that base is
+	  cleaned up
+
+2005-05-03 22:44  dannym
+
+	* config.h.in: er, change config.h.in back just in case
+
+2005-05-03 22:43  dannym
+
+	* config.h.in, gui/aboutdialog.c: aboutdialog -> _empty
+
+2005-05-03 22:39  dannym
+
+	* gui/aboutdialog.defs, gui/gen: use xfce_about_dialog_new_empty
+
+2005-05-03 22:37  dannym
+
+	* aclocal.m4, configure.ac, gui/aboutdialog.c,
+	  gui/aboutdialog.defs, gui/gen: AboutDialog fixes
+
+2005-05-03 21:42  dannym
+
+	* configure.ac, gui/aboutdialog.defs, gui/aboutdialog.override,
+	  gui/appmenuitem.defs, gui/gen, gui/icontheme.defs,
+	  util/desktopentry.defs, util/gen: use new aboutdialog api
+	  
+	  add some "(object" declarations
+
+2005-05-03 16:04  dannym
+
+	* TODO: update todo
+
+2005-05-01 18:12  dannym
+
+	* netk/tests/netkwindowgettwice.py: add missing import
+
+2005-05-01 16:20  dannym
+
+	* netk/tests/getbackground.py: clean up a bit
+
+2005-05-01 16:10  dannym
+
+	* netk/tests/getbackground.py: add getbackground test
+
+2005-05-01 15:55  dannym
+
+	* netk/screen.c, netk/screen.override: override
+	  netk_screen_get_background_pixmap
+
+2005-05-01 15:43  dannym
+
+	* TODO, netk/tests/iwindowlist.py: update todo, test
+
+2005-04-30 19:11  dannym
+
+	* netk/tests/iwindowlist.py: window list test
+
+2005-04-30 19:04  dannym
+
+	* netk/tests/iwindowlist.py: add interactive test
+
+2005-04-30 18:58  dannym
+
+	* __init__.py: remove panel bindings for now since
+	  ImportError:
+	  /usr/local/lib/python2.4/site-packages/xfce4/_panel.so:
+	  undefined symbol: get_scaled_pixbuf
+	  waiting for jasper ...
+
+2005-04-30 18:56  dannym
+
+	* panel/cpart/plugin.c: add set_orientation
+
+2005-04-30 18:26  dannym
+
+	* panel/cpart/Makefile.am: prepare plugin
+
+2005-04-30 18:25  dannym
+
+	* panel/cpart/Makefile.am: prepare C makefile
+
+2005-04-30 18:19  dannym
+
+	* panel/cpart, panel/cpart/Makefile.am, panel/cpart/plugin.c:
+	  prepare c part for panel plugins in python
+
+2005-04-30 17:55  dannym
+
+	* netk/Makefile.am, netk/Makefile.in, netk/class-group.override,
+	  netk/class_group.override: get rid of dashes in filenames, to
+	  make makefile dash handling easier
+
+2005-04-30 17:53  dannym
+
+	* netk/Makefile.am, netk/Makefile.in, netk/class-group.override,
+	  netk/class_group.override, netk/gen: class group stuff
+
+2005-04-30 17:49  dannym
+
+	* netk/class-group.override, netk/class_group.override: class
+	  group fixes
+
+2005-04-30 17:46  dannym
+
+	* netk/Makefile.in, netk/class-group.override,
+	  netk/class_group.override: class_group stuff
+
+2005-04-30 17:42  dannym
+
+	* Makefile.am, Makefile.in, gui/Makefile.am, gui/Makefile.in,
+	  mcs/Makefile.am, mcs/Makefile.in, mcs/guimodule.c,
+	  netk/Makefile.am, netk/Makefile.in, panel/Makefile.am,
+	  panel/Makefile.in, util/Makefile.am, util/Makefile.in: fix make
+	  dist up
+
+2005-04-30 17:05  dannym
+
+	* netk/window.c, netk/window.override: make netk_window_get_pid
+	  return None if there is no pid available
+
+2005-04-30 16:54  dannym
+
+	* patches, patches/xterm-191-pid.patch: add patches dir that
+	  contains patches for external programs
+
+2005-04-30 15:42  dannym
+
+	* netk/application.c: fix get_windows
+
+2005-04-30 15:16  dannym
+
+	* netk/application.override: fix application get_windows list
+	  handling
+
+2005-04-30 15:16  dannym
+
+	* netk/screen.c, netk/screen.override, netk/tests,
+	  netk/tests/netkwindowgettwice.py: netk list fixes
+
+2005-04-28 19:09  dannym
+
+	* netk/application.c, netk/application.override: add comment
+
+2005-04-28 19:09  dannym
+
+	* netk/screen.c, netk/screen.override: add comments so I dont
+	  forget
+
+2005-04-27 22:56  dannym
+
+	* TODO: add comment about how to do new-style objects
+
+2005-04-27 22:52  dannym
+
+	* TODO_INFO, TODO_WARNINGS: updated warnings
+
+2005-04-27 22:49  dannym
+
+	* TODO: exec_command ?
+
+2005-04-27 22:48  dannym
+
+	* __init__.py: sort by importance
+
+2005-04-27 22:46  dannym
+
+	* netk/application.c, netk/class_group.c,
+	  netk/class_group.override, netk/enum_types.c, netk/screen.c,
+	  netk/util.c, netk/window.c, netk/window.override,
+	  netk/window_action_menu.c, netk/window_action_menu.override: fix
+	  some NETK_WINDOW issues (libxfcegui4.h include mismatch / netk
+	  include missing)
+
+2005-04-27 22:38  dannym
+
+	* netk/application.defs, netk/class-group.defs,
+	  netk/class_group.defs, netk/enum-types.defs,
+	  netk/enum_types.defs, netk/gen, netk/pager.defs,
+	  netk/screen.defs, netk/tasklist.defs, netk/util.defs,
+	  netk/window-action-menu.defs, netk/window-menu.defs,
+	  netk/window.defs, netk/window_action_menu.defs,
+	  netk/window_menu.defs, netk/workspace.defs, util/gen: strip netk
+	  netk_ prefix
+
+2005-04-27 22:37  dannym
+
+	* netk/pager.c, netk/pager.override, util/desktopentry.defs,
+	  util/fileutils.defs, util/gen, util/i18n.c, util/i18n.defs,
+	  util/kiosk.defs, util/miscutils.c, util/miscutils.defs,
+	  util/rc.defs, util/resource.c, util/resource.defs, util/utf8.c,
+	  util/utf8.defs: some external fixes, and some name xfce_ strips
+
+2005-04-27 22:35  dannym
+
+	* gui/aboutdialog.defs, gui/appmenuitem.c, gui/appmenuitem.defs,
+	  gui/clock.defs, gui/colorbutton.c, gui/colorbutton.defs,
+	  gui/decorbutton.defs, gui/decortoggle.defs, gui/dialogs.c,
+	  gui/dialogs.defs, gui/filechooser.defs, gui/framebox.defs,
+	  gui/gdk-extensions.defs, gui/gdk_extensions.c,
+	  gui/gdk_extensions.defs, gui/gdk_extensions.override, gui/gen,
+	  gui/gtk-extensions.defs, gui/gtk_extensions.c,
+	  gui/gtk_extensions.defs, gui/gtk_extensions.override,
+	  gui/gtktoxevent.c, gui/gtktoxevent.defs, gui/iconbutton.c,
+	  gui/iconbutton.defs, gui/icons.c, gui/icons.defs,
+	  gui/icontheme.c, gui/icontheme.defs, gui/icontheme.override,
+	  gui/menubutton.c, gui/menubutton.defs, gui/movehandler.defs,
+	  gui/scaled_image.c, gui/scaled_image.defs,
+	  gui/togglebutton.defs: add display and screen workarounds
+
+2005-04-27 22:25  dannym
+
+	* TODO: add mcs todo
+
+2005-04-27 22:19  dannym
+
+	* TODO_INFO, TODO_WARNINGS: update warnings
+
+2005-04-27 22:17  dannym
+
+	* TODO, TODO_INFO, TODO_WARNINGS, netk/tasklist.c: update netk,
+	  warnings
+
+2005-04-27 22:17  dannym
+
+	* netk/Makefile.am, netk/Makefile.in, netk/tasklist.c,
+	  netk/tasklist.override, netk/window.c, netk/window.override:
+	  remove some unneccessary extern declarations
+
+2005-04-27 22:10  dannym
+
+	* gui/Makefile.am, gui/Makefile.in, gui/appmenuitem.c,
+	  gui/appmenuitem.override, gui/dialogs.c, gui/dialogs.override,
+	  gui/framebox.c, gui/framebox.override, gui/gtk_style.c,
+	  gui/gtk_style.override, gui/gtktoxevent.c,
+	  gui/gtktoxevent.override, gui/iconbutton.c,
+	  gui/iconbutton.override, gui/icontheme.c,
+	  gui/icontheme.override, gui/menubutton.c,
+	  gui/menubutton.override, gui/scaled_image.c,
+	  gui/scaled_image.override: remove unneccessary extern
+	  declarations
+
+2005-04-27 21:55  dannym
+
+	* util/Makefile.am, util/Makefile.in, util/desktopentry.c,
+	  util/desktopentry.override, util/utf8.c, util/utf8.override:
+	  remove deprecated functions, fix desktopentry (get_string,
+	  get_int)
+
+2005-04-27 21:00  dannym
+
+	* netk/tasklist.override: add netk_tasklist_get_size_hint_list
+	  override
+
+2005-04-27 20:37  dannym
+
+	* netk/application.c, netk/application.override: add
+	  netk_application_get_windows override
+
+2005-04-27 20:19  dannym
+
+	* netk/window.c, netk/window.override: fix window override
+	  get_geometry
+
+2005-04-27 20:17  dannym
+
+	* TODO_WARNINGS, netk/window.c, netk/window.override,
+	  panel/Makefile.am, panel/Makefile.in, panel/icons.c,
+	  panel/icons.override, panel/support.c, panel/support.override:
+	  wrap panel stuff better (a bit, unfinished)
+
+2005-04-27 20:04  dannym
+
+	* TODO_INFO, TODO_WARNINGS, update-warnings: add warnings update
+	  script
+
+2005-04-27 20:01  dannym
+
+	* util/gen, util/resource.c, util/resource.defs, util/utf8.c: fix
+	  util compilation error
+
+2005-04-27 20:00  dannym
+
+	* TODO_INFO, TODO_WARNINGS, util/desktopentry.c, util/i18n.c,
+	  util/miscutils.c, util/resource.c: update warnings, some util
+	  stuff
+
+2005-04-27 19:56  dannym
+
+	* mcs/gen, mcs/mcs_client.c, mcs/mcs_common.defs: mcs compilation
+	  fixes
+
+2005-04-27 19:53  dannym
+
+	* mcs/gen, mcs/mcs_client.defs: remove gtype because we have none
+
+2005-04-27 19:48  dannym
+
+	* TODO_INFO, TODO_WARNINGS, mcs/mcs_client.c, mcs/mcs_client.defs,
+	  mcs/mcs_common.defs, util/desktopentry.defs,
+	  util/fileutils.defs, util/i18n.defs, util/kiosk.defs,
+	  util/miscutils.defs, util/rc.defs, util/resource.defs,
+	  util/utf8.defs: update defs
+
+2005-04-27 19:41  dannym
+
+	* gui/gtk_style.c, gui/gtk_style.defs, gui/gtktoxevent.c,
+	  gui/gtktoxevent.override, gui/iconbutton.c,
+	  gui/iconbutton.override, gui/icons.c, gui/icontheme.c,
+	  gui/icontheme.override, gui/menubutton.c,
+	  gui/menubutton.override, gui/movehandler.c, gui/scaled_image.c,
+	  gui/scaled_image.override, gui/togglebutton.c: fix cross-header
+	  gui dependencies
+
+2005-04-27 19:16  dannym
+
+	* TODO, gui/Makefile.am, gui/Makefile.in, gui/appmenuitem.c,
+	  gui/colorbutton.c, gui/decortoggle.c, gui/dialogs.c,
+	  gui/dialogs.override, gui/framebox.c, gui/framebox.override,
+	  gui/gtk_style.c, gui/gtk_style.override: fix cross header
+	  dependencies
+
+2005-04-27 13:08  dannym
+
+	* TODO_WARNINGS, netk/Makefile.am, netk/Makefile.in, netk/pager.c,
+	  netk/pager.override, netk/tasklist.c, netk/tasklist.override,
+	  netk/util.c, netk/window.c, netk/window.override: netk fixes
+
+2005-04-27 12:30  dannym
+
+	* netk/Makefile.am, netk/Makefile.in, netk/application.c,
+	  netk/pager.c, netk/screen.c, netk/window.c: prepare for adding
+	  missing netk stuff (cross header usage)
+
+2005-04-27 10:21  dannym
+
+	* panel/O, panel/ODEF: remove unneccessary files
+
+2005-04-27 10:19  dannym
+
+	* gui/_gui_la-gdk-extensions.loT, gui/_gui_la-preview_filesel.loT:
+	  remove weird files
+
+2005-04-27 10:19  dannym
+
+	* gui/ODEF, gui/Q, gui/QQ: remove unneccessary files
+
+2005-04-27 10:01  dannym
+
+	* depcomp: remove unneccessary files
+
+2005-04-27 10:00  dannym
+
+	* autom4te.cache, compile, config.guess, config.sub, configure,
+	  install-sh, ltmain.sh, missing, py-compile, util/ODEF: remove
+	  useless files
+
+2005-04-27 08:37  dannym
+
+	* AUTHORS, COPYING, ChangeLog, FIXTHAT, INSTALL, Makefile.am,
+	  Makefile.in, NEWS, README, TODO, TODO_WARNINGS, __init__.py,
+	  aclocal.m4, autogen.sh, autogen.sh.OLD, autom4te.cache,
+	  autom4te.cache/output.0, autom4te.cache/output.1,
+	  autom4te.cache/requests, autom4te.cache/traces.0,
+	  autom4te.cache/traces.1, compile, config.guess, config.h.in,
+	  config.sub, configure, configure.ac, depcomp, gui,
+	  gui/GET_FUNCTIONS, gui/Makefile.am, gui/Makefile.in, gui/ODEF,
+	  gui/Q, gui/QQ, gui/TODO, gui/_gui_la-gdk-extensions.loT,
+	  gui/_gui_la-preview_filesel.loT, gui/aboutdialog.c,
+	  gui/aboutdialog.defs, gui/aboutdialog.override,
+	  gui/appmenuitem.c, gui/appmenuitem.defs,
+	  gui/appmenuitem.override, gui/clock-types.defs, gui/clock.c,
+	  gui/clock.defs, gui/clock.override, gui/colorbutton.c,
+	  gui/colorbutton.defs, gui/colorbutton.override,
+	  gui/decorbutton.c, gui/decorbutton.defs,
+	  gui/decorbutton.override, gui/decortoggle.c,
+	  gui/decortoggle.defs, gui/decortoggle.override, gui/dialogs.c,
+	  gui/dialogs.defs, gui/dialogs.override, gui/filechooser.c,
+	  gui/filechooser.defs, gui/filechooser.override, gui/framebox.c,
+	  gui/framebox.defs, gui/framebox.override,
+	  gui/gdk-extensions.defs, gui/gdk_extensions.c,
+	  gui/gdk_extensions.defs, gui/gdk_extensions.override, gui/gen,
+	  gui/gen-libnetk.c, gui/gen-marshal.c, gui/gen-session-client.c,
+	  gui/gtk-extensions.defs, gui/gtk_extensions.c,
+	  gui/gtk_extensions.defs, gui/gtk_extensions.override,
+	  gui/gtk_style.c, gui/gtk_style.defs, gui/gtk_style.override,
+	  gui/gtktoxevent.c, gui/gtktoxevent.defs,
+	  gui/gtktoxevent.override, gui/gui.py, gui/guimodule.c,
+	  gui/iconbutton.c, gui/iconbutton.defs, gui/iconbutton.override,
+	  gui/icons.c, gui/icons.defs, gui/icons.override,
+	  gui/icontheme.c, gui/icontheme.defs, gui/icontheme.override,
+	  gui/libxfcegui4-config.defs, gui/libxfcegui4.defs,
+	  gui/libxfcegui4_config.defs, gui/menubutton.c,
+	  gui/menubutton.defs, gui/menubutton.override, gui/movehandler.c,
+	  gui/movehandler.defs, gui/movehandler.override,
+	  gui/scaled_image.c, gui/scaled_image.defs,
+	  gui/scaled_image.override, gui/session_client.c,
+	  gui/session_client.defs, gui/session_client.override,
+	  gui/systemtray.c, gui/systemtray.defs, gui/systemtray.override,
+	  gui/template.override, gui/togglebutton.c,
+	  gui/togglebutton.defs, gui/togglebutton.override, install-sh,
+	  ltmain.sh, m4, m4/debug.m4, m4/depends.m4, m4/jhflags.m4,
+	  m4/python.m4, mcs, mcs/GET_FUNCTIONS, mcs/Makefile.am,
+	  mcs/Makefile.in, mcs/gen, mcs/gen-mcs-client.c, mcs/guimodule.c,
+	  mcs/mcs.py, mcs/mcs_client.c, mcs/mcs_client.defs,
+	  mcs/mcs_client.override, mcs/mcs_common.c, mcs/mcs_common.defs,
+	  mcs/mcs_common.override, mcs/mcs_manager.c,
+	  mcs/mcs_manager.defs, mcs/mcs_manager.override, mcs/mcsmodule.c,
+	  mcs/template.override, missing, netk, netk/GET_FUNCTIONS,
+	  netk/Makefile.am, netk/Makefile.in, netk/application.c,
+	  netk/application.defs, netk/application.override,
+	  netk/class-group.defs, netk/class_group.c,
+	  netk/class_group.defs, netk/class_group.override,
+	  netk/enum-types.defs, netk/enum_types.c, netk/enum_types.defs,
+	  netk/enum_types.override, netk/gen, netk/gen-class-group.c,
+	  netk/gen-window-menu.c, netk/marshal.defs, netk/netk.py,
+	  netk/netkmodule.c, netk/pager.c, netk/pager.defs,
+	  netk/pager.override, netk/screen.c, netk/screen.defs,
+	  netk/screen.override, netk/tasklist.c, netk/tasklist.defs,
+	  netk/tasklist.override, netk/template.override, netk/trayicon.c,
+	  netk/trayicon.defs, netk/trayicon.override, netk/util.c,
+	  netk/util.defs, netk/util.override,
+	  netk/window-action-menu.defs, netk/window-menu.defs,
+	  netk/window.c, netk/window.defs, netk/window.override,
+	  netk/window_action_menu.c, netk/window_action_menu.defs,
+	  netk/window_action_menu.override, netk/window_menu.c,
+	  netk/window_menu.defs, netk/window_menu.override,
+	  netk/workspace.c, netk/workspace.defs, netk/workspace.override,
+	  panel, panel/GET_FUNCTIONS, panel/Makefile.am,
+	  panel/Makefile.in, panel/O, panel/O/add-control-dialog.defs,
+	  panel/O/controls.defs, panel/O/global.defs, panel/O/icons.defs,
+	  panel/O/item.defs, panel/O/item_dialog.defs, panel/O/main.defs,
+	  panel/O/panel-command.defs, panel/O/panel.defs,
+	  panel/O/plugins.defs, panel/O/support.defs, panel/O/xfce.defs,
+	  panel/ODEF, panel/gen, panel/gen-panel.c,
+	  panel/gen-panel_command.c, panel/gen-plugins.c,
+	  panel/gen-xfce.c, panel/icons-h, panel/icons.c,
+	  panel/icons.defs, panel/icons.defs.manual, panel/icons.override,
+	  panel/main.defs, panel/panel.py, panel/panelmodule.c,
+	  panel/support.c, panel/support.defs, panel/support.override,
+	  panel/template.override, panel/xfce_arrow_button.defs,
+	  panel/xfce_item.defs, panel/xfce_itembar.defs,
+	  panel/xfce_panel_window.defs, panel/xfce_separator_item.defs,
+	  py-compile, util, util/GET_FUNCTIONS, util/Makefile.am,
+	  util/Makefile.in, util/ODEF, util/desktopentry.c,
+	  util/desktopentry.defs, util/desktopentry.override,
+	  util/fileutils.c, util/fileutils.defs, util/fileutils.override,
+	  util/gen, util/i18n.c, util/i18n.defs, util/i18n.override,
+	  util/kiosk.c, util/kiosk.defs, util/kiosk.override,
+	  util/miscutils.c, util/miscutils.defs, util/miscutils.override,
+	  util/rc.c, util/rc.defs, util/rc.override, util/resource.c,
+	  util/resource.defs, util/resource.override,
+	  util/template.override, util/utf8.c, util/utf8.defs,
+	  util/utf8.override, util/util.py, util/utilmodule.c: Merged
+	  pyxfce code into /trunk/ =^D
+
+2005-04-27 08:36  dannym
+
+	* .: Adding pyxfce trunk!
+

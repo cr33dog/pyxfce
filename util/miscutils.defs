@@ -1,0 +1,85 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/local/include/xfce4/libxfce4util/xfce-miscutils.h
+
+(define-function version_string
+  (c-name "xfce_version_string")
+  (return-type "const-gchar*")
+)
+
+(define-function get_homedir
+  (c-name "xfce_get_homedir")
+  (return-type "const-gchar*")
+)
+
+(define-function get_homefile_r
+  (c-name "xfce_get_homefile_r")
+  (return-type "gchar*")
+  (parameters
+    '("gchar*" "buffer")
+    '("size_t" "length")
+    '("const-gchar*" "format")
+  )
+  (varargs #t)
+)
+
+(define-function get_userdir
+  (c-name "xfce_get_userdir")
+  (return-type "const-gchar*")
+)
+
+(define-function get_userfile_r
+  (c-name "xfce_get_userfile_r")
+  (return-type "gchar*")
+  (parameters
+    '("gchar*" "buffer")
+    '("size_t" "length")
+    '("const-gchar*" "format")
+  )
+  (varargs #t)
+)
+
+(define-function gethostname
+  (c-name "xfce_gethostname")
+  (return-type "gchar*")
+)
+
+(define-function putenv
+  (c-name "xfce_putenv")
+  (return-type "gint")
+  (parameters
+    '("const-gchar*" "string")
+  )
+)
+
+(define-function setenv
+  (c-name "xfce_setenv")
+  (return-type "gint")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-gchar*" "value")
+    '("gboolean" "overwrite")
+  )
+)
+
+(define-function unsetenv
+  (c-name "xfce_unsetenv")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-function expand_variables
+  (c-name "xfce_expand_variables")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "command")
+    '("gchar**" "envp")
+  )
+)
+
+

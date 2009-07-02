@@ -1,0 +1,106 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfcegui4/libxfcegui4.h>
+
+#ifndef XFCE_TYPE_SYSTEM_TRAY
+#define XFCE_TYPE_SYSTEM_TRAY (xfce_system_tray_get_type ())
+#endif
+
+%%
+include
+%%
+modulename systemtray
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.gdk.Screen as PyGdkScreen_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%
+override xfce_system_tray_register kwargs
+static PyObject *
+_wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *pscreen;
+    GdkScreen* gscreen;
+    Screen* xscreen;
+    GError* error = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+				     "O!:XfceSystemTray.register",
+                                     kwlist, &PyGdkScreen_Type, &pscreen)
+    ) {
+        return NULL;
+    }
+
+    if (!pscreen || !pscreen->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not register XfceSystemTray object");
+        return NULL;
+    }
+
+    gscreen = pscreen->obj;
+
+    xscreen = GDK_SCREEN_XSCREEN(gscreen);
+    if (!xscreen) {
+       /* TODO unref gscreen ? */
+       PyErr_SetString(PyExc_RuntimeError, "could not check if any (Xfce or other) system tray is running");
+       return NULL;
+    }
+    
+    if (xfce_system_tray_register((XfceSystemTray*) self->obj, xscreen, &error)) {
+      return PyBool_FromLong(1);
+    } else {
+      if (pyg_error_check(&error))
+        return NULL;
+
+      return PyBool_FromLong(0);
+    }
+}
+%%
+override xfce_system_tray_check_running kwargs
+static PyObject *
+_wrap_xfce_system_tray_check_running(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", NULL };
+    PyGObject *pscreen;
+    GdkScreen* gscreen;
+    Screen* xscreen;
+    GError* error = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+				     "O!:XfceSystemTray.check_running",
+                                     kwlist, &PyGdkScreen_Type, &pscreen)
+    ) {
+        return NULL;
+    }
+
+    if (!pscreen || !pscreen->obj) {
+        PyErr_SetString(PyExc_RuntimeError, "could not check if any (Xfce or other) system tray is running");
+        return NULL;
+    }
+
+    gscreen = pscreen->obj;
+
+    xscreen = GDK_SCREEN_XSCREEN(gscreen);
+    if (!xscreen) {
+       /* TODO unref gscreen ? */
+       PyErr_SetString(PyExc_RuntimeError, "could not check if any (Xfce or other) system tray is running");
+       return NULL;
+    }
+    
+    if (xfce_system_tray_check_running(xscreen)) {
+      return PyBool_FromLong(1);
+    } else {
+      return PyBool_FromLong(0);
+    }
+}

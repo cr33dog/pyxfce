@@ -1,0 +1,44 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/local/include/xfce4/libxfcegui4/gtk_style.h
+
+(define-function get_style
+  (c-name "get_style")
+  (return-type "gchar*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "name")
+    '("const-gchar*" "state")
+  )
+)
+
+(define-function get_style_gc
+  (c-name "get_style_gc")
+  (return-type "GdkGC*")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "state")
+    '("const-gchar*" "style")
+  )
+)
+
+(define-function get_font_desc
+  (c-name "get_font_desc")
+  (return-type "PangoFontDescription*")
+  (parameters
+    '("GtkWidget*" "widget")
+  )
+)
+
+(define-function pango_get_context
+  (c-name "pango_get_context")
+  (return-type "PangoContext*")
+  (parameters
+    '("GtkWidget*" "widget")
+  )
+)
+
+

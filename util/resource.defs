@@ -1,0 +1,95 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum ResourceType
+  (in-module "Xfce")
+  (c-name "XfceResourceType")
+  (gtype-id "XFCE_TYPE_RESOURCE_TYPE")
+  (values
+    '("data" "XFCE_RESOURCE_DATA")
+    '("config" "XFCE_RESOURCE_CONFIG")
+    '("cache" "XFCE_RESOURCE_CACHE")
+    '("icons" "XFCE_RESOURCE_ICONS")
+    '("themes" "XFCE_RESOURCE_THEMES")
+  )
+)
+
+
+;; From /usr/local/include/xfce4/libxfce4util/xfce-resource.h
+
+(define-function resource_dirs
+  (c-name "xfce_resource_dirs")
+  (return-type "gchar**")
+  (parameters
+    '("XfceResourceType" "type")
+  )
+)
+
+(define-function resource_lookup
+  (c-name "xfce_resource_lookup")
+  (return-type "gchar*")
+  (parameters
+    '("XfceResourceType" "type")
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-function resource_lookup_all
+  (c-name "xfce_resource_lookup_all")
+  (return-type "gchar**")
+  (parameters
+    '("XfceResourceType" "type")
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-function resource_match
+  (c-name "xfce_resource_match")
+  (return-type "gchar**")
+  (parameters
+    '("XfceResourceType" "type")
+    '("const-gchar*" "pattern")
+    '("gboolean" "unique")
+  )
+)
+
+(define-function resource_match_custom
+  (c-name "xfce_resource_match_custom")
+  (return-type "gchar**")
+  (parameters
+    '("XfceResourceType" "type")
+    '("gboolean" "unique")
+    '("XfceMatchFunc" "func")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-function resource_push_path
+  (c-name "xfce_resource_push_path")
+  (return-type "none")
+  (parameters
+    '("XfceResourceType" "type")
+    '("const-gchar*" "path")
+  )
+)
+
+(define-function resource_pop_path
+  (c-name "xfce_resource_pop_path")
+  (return-type "none")
+  (parameters
+    '("XfceResourceType" "type")
+  )
+)
+
+(define-function resource_save_location
+  (c-name "xfce_resource_save_location")
+  (return-type "gchar*")
+  (parameters
+    '("XfceResourceType" "type")
+    '("const-gchar*" "relpath")
+    '("gboolean" "create")
+  )
+)
+
+

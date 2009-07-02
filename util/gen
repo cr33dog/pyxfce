@@ -1,0 +1,44 @@
+#!/bin/sh
+
+inc="`pkg-config --variable=includedir libxfce4util-1.0`"/xfce4
+
+for s in "${inc}"/libxfce4util/*.h
+do
+	t="${s##*/}"
+	
+	t="${t%.h}"
+
+	defs="${t}.defs"
+	python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
+done
+rm -f util.defs
+
+for s in xfce-*.defs
+do
+	t="${s#xfce-}"
+	mv "$s" "$t"
+done
+
+#mmv -o 'xfce-*.defs' '#1.defs'
+rm -f libxfce4util.defs
+rm -f libxfce4util-config.defs
+rm -f generics.defs
+rm -f debug.defs
+
+# added with 4.2.3: cat resource.defs |grep -v '(gtype-id "XFCE_TYPE_RESOURCE_TYPE")' >resource.defs.new && mv resource.defs.new resource.defs
+
+for s in *.defs
+do
+  sed -e 's;(define-function xfce_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
+done
+
+grep -v "(is-constructor-of \"XfceDesktopEntry\")" desktopentry.defs > desktopentry.defs.new && mv desktopentry.defs.new desktopentry.defs
+  
+cat >>desktopentry.defs << EOF
+(object DesktopEntry
+   (in-module (Xfce))
+   (parent Object)
+   (abstract #t)
+   (c-name XfceDesktopEntry))
+EOF
+

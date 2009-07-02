@@ -1,0 +1,250 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/local/include/xfce4/libxfcegui4/netk-util.h
+
+(define-function gtk_window_set_type
+  (c-name "netk_gtk_window_set_type")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "window")
+    '("NetkWindowType" "type")
+  )
+)
+
+(define-function gtk_window_avoid_input
+  (c-name "netk_gtk_window_avoid_input")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "window")
+  )
+)
+
+(define-function get_cardinal
+  (c-name "netk_get_cardinal")
+  (return-type "gboolean")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+    '("int*" "val")
+  )
+)
+
+(define-function get_wm_state
+  (c-name "netk_get_wm_state")
+  (return-type "int")
+  (parameters
+    '("Window" "xwindow")
+  )
+)
+
+(define-function get_window
+  (c-name "netk_get_window")
+  (return-type "gboolean")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+    '("Window*" "val")
+  )
+)
+
+(define-function get_pixmap
+  (c-name "netk_get_pixmap")
+  (return-type "gboolean")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+    '("Pixmap*" "val")
+  )
+)
+
+(define-function get_atom
+  (c-name "netk_get_atom")
+  (return-type "gboolean")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+    '("Atom*" "val")
+  )
+)
+
+(define-function get_text_property
+  (c-name "netk_get_text_property")
+  (return-type "char*")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+  )
+)
+
+(define-function get_utf8_property
+  (c-name "netk_get_utf8_property")
+  (return-type "char*")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+  )
+)
+
+(define-function get_window_list
+  (c-name "netk_get_window_list")
+  (return-type "gboolean")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+    '("Window**" "windows")
+    '("int*" "len")
+  )
+)
+
+(define-function get_atom_list
+  (c-name "netk_get_atom_list")
+  (return-type "gboolean")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+    '("Atom**" "atoms")
+    '("int*" "len")
+  )
+)
+
+(define-function get_cardinal_list
+  (c-name "netk_get_cardinal_list")
+  (return-type "gboolean")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+    '("gulong**" "cardinals")
+    '("int*" "len")
+  )
+)
+
+(define-function get_utf8_list
+  (c-name "netk_get_utf8_list")
+  (return-type "char**")
+  (parameters
+    '("Window" "xwindow")
+    '("Atom" "atom")
+  )
+)
+
+(define-function close
+  (c-name "netk_close")
+  (return-type "none")
+  (parameters
+    '("Screen*" "screen")
+    '("Window" "xwindow")
+  )
+)
+
+(define-function change_state
+  (c-name "netk_change_state")
+  (return-type "none")
+  (parameters
+    '("Screen*" "screen")
+    '("Window" "xwindow")
+    '("gboolean" "add")
+    '("Atom" "state1")
+    '("Atom" "state2")
+  )
+)
+
+(define-function change_workspace
+  (c-name "netk_change_workspace")
+  (return-type "none")
+  (parameters
+    '("Screen*" "screen")
+    '("Window" "xwindow")
+    '("int" "new_space")
+  )
+)
+
+(define-function activate
+  (c-name "netk_activate")
+  (return-type "none")
+  (parameters
+    '("Screen*" "screen")
+    '("Window" "xwindow")
+  )
+)
+
+(define-function activate_workspace
+  (c-name "netk_activate_workspace")
+  (return-type "none")
+  (parameters
+    '("Screen*" "screen")
+    '("int" "new_active_space")
+  )
+)
+
+(define-function get_group_leader
+  (c-name "netk_get_group_leader")
+  (return-type "Window")
+  (parameters
+    '("Window" "xwindow")
+  )
+)
+
+(define-function get_session_id
+  (c-name "netk_get_session_id")
+  (return-type "char*")
+  (parameters
+    '("Window" "xwindow")
+  )
+)
+
+(define-function get_pid
+  (c-name "netk_get_pid")
+  (return-type "int")
+  (parameters
+    '("Window" "xwindow")
+  )
+)
+
+(define-function get_name
+  (c-name "netk_get_name")
+  (return-type "char*")
+  (parameters
+    '("Window" "xwindow")
+  )
+)
+
+(define-function get_res_class_utf8
+  (c-name "netk_get_res_class_utf8")
+  (return-type "char*")
+  (parameters
+    '("Window" "xwindow")
+  )
+)
+
+(define-function set_desktop_layout
+  (c-name "netk_set_desktop_layout")
+  (return-type "none")
+  (parameters
+    '("Screen*" "xscreen")
+    '("int" "rows")
+    '("int" "columns")
+  )
+)
+
+(define-function get_desktop_margins
+  (c-name "netk_get_desktop_margins")
+  (return-type "gboolean")
+  (parameters
+    '("Screen*" "xscreen")
+    '("DesktopMargins*" "margins")
+  )
+)
+
+(define-function set_desktop_margins
+  (c-name "netk_set_desktop_margins")
+  (return-type "none")
+  (parameters
+    '("Window" "xwindow")
+    '("DesktopMargins*" "margins")
+  )
+)
+
+

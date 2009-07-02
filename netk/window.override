@@ -1,0 +1,55 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/netk-window.h> /* sigh */
+
+extern PyTypeObject PyNetkWorkspace_Type;
+
+%%
+include
+%%
+modulename window
+%%
+import gobject.GObject as PyGObject_Type
+import application as PyNetkApplication_Type
+import classgroup as PyNetkClassGroup_Type
+import workspace as PyNetkWorkspace_Type
+import screen as PyNetkScreen_Type
+import gtk.gdk.Pixbuf as PyGdkPixbuf_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%
+override netk_window_get_geometry noargs
+static PyObject *
+_wrap_netk_window_get_geometry(PyGObject *self)
+{
+    gint x, y, width, height;
+
+    netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
+    return Py_BuildValue("(iiii)", x, y, width, height);
+}
+%%
+override netk_window_get_pid noargs
+static PyObject *
+_wrap_netk_window_get_pid(PyGObject *self)
+{
+    int ret;
+
+    ret = netk_window_get_pid(NETK_WINDOW(self->obj));
+    if (ret == 0) {
+       Py_INCREF(Py_None);
+       return Py_None;
+    }
+
+    return PyInt_FromLong(ret);
+}

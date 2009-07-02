@@ -1,0 +1,222 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From /usr/local/include/xfce4/libxfce4util/xfce-rc.h
+
+(define-function rc_simple_open
+  (c-name "xfce_rc_simple_open")
+  (return-type "XfceRc*")
+  (parameters
+    '("const-gchar*" "filename")
+    '("gboolean" "readonly")
+  )
+)
+
+(define-function rc_config_open
+  (c-name "xfce_rc_config_open")
+  (return-type "XfceRc*")
+  (parameters
+    '("XfceResourceType" "type")
+    '("const-gchar*" "resource")
+    '("gboolean" "readonly")
+  )
+)
+
+(define-method close
+  (of-object "XfceRc")
+  (c-name "xfce_rc_close")
+  (return-type "none")
+)
+
+(define-method flush
+  (of-object "XfceRc")
+  (c-name "xfce_rc_flush")
+  (return-type "none")
+)
+
+(define-method rollback
+  (of-object "XfceRc")
+  (c-name "xfce_rc_rollback")
+  (return-type "none")
+)
+
+(define-method is_dirty
+  (of-object "XfceRc")
+  (c-name "xfce_rc_is_dirty")
+  (return-type "gboolean")
+)
+
+(define-method is_readonly
+  (of-object "XfceRc")
+  (c-name "xfce_rc_is_readonly")
+  (return-type "gboolean")
+)
+
+(define-method get_locale
+  (of-object "XfceRc")
+  (c-name "xfce_rc_get_locale")
+  (return-type "const-gchar*")
+)
+
+(define-method get_groups
+  (of-object "XfceRc")
+  (c-name "xfce_rc_get_groups")
+  (return-type "gchar**")
+)
+
+(define-method get_entries
+  (of-object "XfceRc")
+  (c-name "xfce_rc_get_entries")
+  (return-type "gchar**")
+  (parameters
+    '("const-gchar*" "group")
+  )
+)
+
+(define-method delete_group
+  (of-object "XfceRc")
+  (c-name "xfce_rc_delete_group")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "group")
+    '("gboolean" "global")
+  )
+)
+
+(define-method get_group
+  (of-object "XfceRc")
+  (c-name "xfce_rc_get_group")
+  (return-type "const-gchar*")
+)
+
+(define-method has_group
+  (of-object "XfceRc")
+  (c-name "xfce_rc_has_group")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "group")
+  )
+)
+
+(define-method set_group
+  (of-object "XfceRc")
+  (c-name "xfce_rc_set_group")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "group")
+  )
+)
+
+(define-method delete_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_delete_entry")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("gboolean" "global")
+  )
+)
+
+(define-method has_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_has_entry")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "key")
+  )
+)
+
+(define-method read_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_read_entry")
+  (return-type "const-gchar*")
+  (parameters
+    '("const-gchar*" "key")
+    '("const-gchar*" "fallback")
+  )
+)
+
+(define-method read_entry_untranslated
+  (of-object "XfceRc")
+  (c-name "xfce_rc_read_entry_untranslated")
+  (return-type "const-gchar*")
+  (parameters
+    '("const-gchar*" "key")
+    '("const-gchar*" "fallback")
+  )
+)
+
+(define-method read_bool_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_read_bool_entry")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "key")
+    '("gboolean" "fallback")
+  )
+)
+
+(define-method read_int_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_read_int_entry")
+  (return-type "gint")
+  (parameters
+    '("const-gchar*" "key")
+    '("gint" "fallback")
+  )
+)
+
+(define-method read_list_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_read_list_entry")
+  (return-type "gchar**")
+  (parameters
+    '("const-gchar*" "key")
+    '("const-gchar*" "delimiter")
+  )
+)
+
+(define-method write_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_write_entry")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method write_bool_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_write_bool_entry")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("gboolean" "value")
+  )
+)
+
+(define-method write_int_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_write_int_entry")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("gint" "value")
+  )
+)
+
+(define-method write_list_entry
+  (of-object "XfceRc")
+  (c-name "xfce_rc_write_list_entry")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "key")
+    '("gchar**" "value")
+    '("const-gchar*" "separator")
+  )
+)
+
+

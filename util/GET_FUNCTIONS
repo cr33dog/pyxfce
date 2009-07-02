@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cat *.c |grep _functions |grep "{" |sed 's; = {;;'  |sed 's@^\(.*\)$@extern \1;@'  
+cat *.c |grep _classes |grep -v ";" |sed 's@^\(.*\)$@void \1;@' |grep -v "/\*"
+
+
+

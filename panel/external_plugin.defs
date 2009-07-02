@@ -1,0 +1,33 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object ExternalPanelPlugin
+  (in-module "Xfce")
+  (parent "GtkPlug")
+  (c-name "XfceExternalPanelPlugin")
+  (gtype-id "XFCE_TYPE_EXTERNAL_PANEL_PLUGIN")
+  (implements "XfcePanelPlugin")
+
+)
+
+;; Enumerations and flags ...
+
+
+;; From /usr/local/include/xfce4/libxfce4panel/xfce-panel-external-plugin.h
+
+(define-function xfce_external_panel_plugin_get_type
+  (c-name "xfce_external_panel_plugin_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_external_panel_plugin_new
+  (c-name "xfce_external_panel_plugin_new")
+  (is-constructor-of "XfceExternalPanelPlugin")
+  (return-type "GtkWidget*")
+  (parameters
+    '("int" "argc")
+    '("char**" "argv")
+    '("XfcePanelPluginFunc" "construct")
+  )
+)
+
+

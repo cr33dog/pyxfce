@@ -1,0 +1,302 @@
+%{
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+#include <stdlib.h>
+#include "xfce-mcs-manager-private.h"
+#include "xfce-mcs-client-private.h"
+%}
+
+%a{
+#include <gtk/gtk.h>
+#include <libxfce4mcs/mcs-common.h>
+#include <libxfce4mcs/mcs-client.h>
+
+#ifndef __TYPEDEF_XFCE_MCS_CLIENT__
+#define __TYPEDEF_XFCE_MCS_CLIENT__
+typedef struct _XfceMcsClient XfceMcsClient;
+#endif
+
+#ifndef __TYPEDEF_XFCE_MCS_MANAGER__
+#define __TYPEDEF_XFCE_MCS_MANAGER__
+typedef struct _XfceMcsManager XfceMcsManager;
+#endif
+
+%}
+
+enum XFCE_MCS_CHANNEL {
+	SIDE_CLIENT,
+	SIDE_MANAGER,
+} Xfce:Mcs:Channel:Side;
+
+/* from ... */
+class Xfce:Mcs:Channel from G:Object {
+	protected gchar *channel_name = NULL
+		destroy {
+			g_free (VAR);
+			VAR = NULL;
+		};
+
+	protected XfceMcsClient *client = NULL
+		destroy {
+			if (VAR) {
+				g_object_unref ((GObject *) VAR);
+				VAR = NULL;
+			}
+		};
+
+	protected XfceMcsManager *manager = NULL
+		destroy {
+			if (VAR) {
+				g_object_unref ((GObject *) VAR);
+				VAR = NULL;
+			}
+		};
+
+	property STRING channel_name 
+		(nick = "channel name",
+		blurb = "The MCS channel name",
+		export)
+		get {
+			g_value_set_string (VAL, self->channel_name);
+		};
+
+	/* TODO protected manager */
+
+	signal first NONE (STRING)
+	void setting_changed (self, gchar const *name)
+	{
+	}
+	
+	signal first NONE (STRING)
+	void setting_deleted (self, gchar const *name)
+	{
+	}
+	
+	signal first NONE (STRING)
+	void setting_added (self, gchar const *name)
+	{
+	}
+
+	public Xfce:Mcs:Channel *new(gchar const* name)
+	{
+		XfceMcsChannel* channel;
+		channel = GET_NEW;
+
+		channel->channel_name = g_strdup (name);
+
+		return channel;
+	}
+	
+	protected void add_to_driver(self, gpointer actor, XfceMcsChannelSide side)
+	{
+		g_return_if_fail(self->client == NULL && self->manager == NULL);
+		if (side == XFCE_MCS_CHANNEL_SIDE_CLIENT)
+			self->client = (XfceMcsClient*)g_object_ref ((GObject *) actor);
+		else if (side == XFCE_MCS_CHANNEL_SIDE_MANAGER)
+			self->manager = (XfceMcsManager*)g_object_ref ((GObject *) actor);
+			
+	}
+	
+	protected void remove_from_driver(self, gpointer actor, XfceMcsChannelSide side)
+	{
+		if (self->client == NULL && self->manager == NULL)
+			return;
+		
+		if (self->client) {
+			g_return_if_fail(self->client == actor);
+			g_object_unref (self->client);
+		}
+					
+		if (self->manager) {
+			g_return_if_fail(self->manager == actor);
+			g_object_unref (self->manager);
+		}
+					
+		self->client = NULL;
+		self->manager = NULL;
+	}
+
+	private McsSetting*	get_setting_low(self, gchar const *name)
+	{
+		McsSetting*	setting;
+		setting = NULL;
+		if (self->client) {
+			setting = xfce_mcs_client_get_setting (self->client, self->channel_name, name);
+		} else if (self->manager) {
+			setting = xfce_mcs_manager_get_setting (self->manager, self->channel_name, name);
+		}
+
+		return setting;
+	}
+	
+	public gchar*	get_setting(self, gchar const *name)
+	{
+		McsSetting*	setting;
+		setting = self_get_setting_low (self, name);
+		if (setting) {
+			switch (setting->type) {
+			case MCS_TYPE_INT:
+				return g_strdup_printf ("%d", setting->data.v_int);
+
+			case MCS_TYPE_STRING:
+				if (setting->data.v_string)
+					return g_strdup (setting->data.v_string);
+				break;
+			case MCS_TYPE_COLOR:
+				return g_strdup_printf ("(%d,%d,%d,%d)", 
+					setting->data.v_color.red, 
+					setting->data.v_color.green,
+					setting->data.v_color.blue,
+					setting->data.v_color.alpha
+				);
+			}
+		}
+
+		return NULL;
+	}
+
+	public gchar*	get_setting_string(self, gchar const *name)
+	{
+		McsSetting*	setting;
+		setting = self_get_setting_low (self, name);
+		if (setting) {
+			if (setting->data.v_string)
+				return g_strdup (setting->data.v_string);
+		}
+		return NULL;
+	}
+	
+	public gboolean get_setting_color(self, gchar const *name, McsColor *color)
+	{
+		McsSetting*	setting;
+		
+		(*color).red = 0;
+		(*color).green = 0;
+		(*color).blue = 0;
+		(*color).alpha = 0;
+		
+		
+		setting = self_get_setting_low (self, name);
+		if (setting) {
+			if (setting->type == MCS_TYPE_COLOR) {
+				*color = setting->data.v_color;
+				return TRUE;
+			}
+		}
+		return FALSE;
+	}
+
+	public gboolean	get_setting_int(self, gchar const *name, int *result)
+	{
+		McsSetting*	setting;
+		setting = self_get_setting_low (self, name);
+		if (setting) {
+			if (setting->type == MCS_TYPE_INT) {
+				*result = setting->data.v_int;
+				return TRUE;
+			}
+		}
+
+		return FALSE;
+	}
+
+	init(self)
+	{
+	}
+
+	public void set_setting(self, gchar const *name, gchar const *value)
+	{ /* only mcs manager */
+		McsSetting*	setting;
+		McsColor	color;
+		if (!self->manager) {
+			g_warning ("XfceMcsChannel: cannot set setting. I'm not a mcs manager plugin.");
+			return;
+		}
+		setting = xfce_mcs_manager_get_setting (self->manager, self->channel_name, name);
+		if (setting) {
+			switch (setting->type) {
+			case MCS_TYPE_INT:
+				xfce_mcs_channel_set_setting_int (self, name, atoi (value));
+				break;
+			case MCS_TYPE_COLOR:
+				if (sscanf (value, "(%hd,%hd,%hd,%hd)", &color.red, &color.green, 
+					&color.blue, &color.alpha) != 4) 
+				{
+					g_warning ("color format was wrong, expected (red,green,blue,alpha)");
+					return;
+				}
+				xfce_mcs_channel_set_setting_color (self, name, &color);
+				/* FIXME memory management ? */
+				break;
+			default: /* case MCS_TYPE_STRING: */
+				xfce_mcs_channel_set_setting_string (self, name, value);
+				break;
+			}
+		} else {
+			xfce_mcs_channel_set_setting_string (self, name, value);
+		}
+
+		self_delay_notify (self);
+	}
+	
+	protected void delay_notify (self)
+	{
+		/* todo delay that a bit */
+		if (self->manager)
+			xfce_mcs_manager_notify (self->manager, self->channel_name);
+	}
+	
+	public void set_setting_string(self, gchar const *name, gchar const *value)
+	{ /* only mcs manager */
+		if (self->manager)
+			xfce_mcs_manager_set_setting_string (self->manager, self->channel_name, name, value);
+
+		self_delay_notify (self);
+	}
+	
+	public void set_setting_int(self, gchar const *name, int value)
+	{ /* only mcs manager */
+		if (self->manager)
+			xfce_mcs_manager_set_setting_int (self->manager, self->channel_name, name, value);
+		self_delay_notify (self);
+	}
+	
+	public void set_setting_color(self, gchar const *name, McsColor const *value)
+	{ /* only mcs manager */
+		if (self->manager)
+			xfce_mcs_manager_set_setting_color (self->manager, self->channel_name, name, value);
+			
+		self_delay_notify (self);
+	}
+	
+	public void delete_setting(self, gchar const *name)
+	{ /* only mcs manager */
+		if (self->manager)
+			xfce_mcs_manager_delete_setting (self->manager, self->channel_name, name);
+	}
+	
+	
+	/* deletes from the mcs pool */
+	public void delete(self)
+	{
+		if (self->manager)
+			xfce_mcs_manager_delete_channel (self->manager, self->channel_name);
+	}
+	
+	public void add_channel_from_file(self, gchar const *filename)
+	{ /* only mcs manager */
+		if (self->manager)
+			xfce_mcs_manager_add_channel_from_file (self->manager, self->channel_name, filename);
+	}
+	
+	public void save_channel_to_file(self, gchar const *filename)
+	{ /* only mcs manager */
+		if (self->manager)
+			xfce_mcs_manager_save_channel_to_file (self->manager, self->channel_name, filename);
+	}
+}
+

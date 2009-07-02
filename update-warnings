@@ -1,0 +1,7 @@
+#!/bin/sh
+
+make clean
+for s in * ; do if [ -d "$s" ] ; then cd "$s" ; ./gen ; cd .. ; fi ; done
+make >/dev/null 2>TODO_WARNINGS
+cp TODO_WARNINGS TODO_INFO
+cat TODO_INFO |grep -v "\*INFO" >TODO_WARNINGS

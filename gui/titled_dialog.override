@@ -1,0 +1,124 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/gui-enum-types.h>
+
+%%
+include
+%%
+modulename titleddialog
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.Dialog as PyGtkDialog_Type
+import gtk.Window as PyGtkWindow_Type
+%%
+ignore
+  xfce_titled_dialog_new
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%
+override xfce_titled_dialog_new_with_buttons kwargs
+static int
+_wrap_xfce_titled_dialog_new_with_buttons(PyGObject *self, PyObject *args,
+                                  PyObject *kwargs)
+{
+    gchar *title = NULL;
+    PyGObject *py_window = NULL;
+    PyObject *py_flags = NULL, *py_buttons = Py_None;
+    GtkDialogFlags flags = 0;
+    int len, i;
+    GtkWindow *parent;
+    
+    static char *kwlist[] = { "title", "parent", "flags", "buttons", NULL };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "|zOOO:XfceTitledDialog.__init__", kwlist,
+                                     &title, &py_window, &py_flags,
+                                     &py_buttons))
+        return -1;
+
+    if (py_window == NULL || (PyObject*)py_window == Py_None)
+	parent = NULL;
+    else if (pygobject_check(py_window, &PyGtkWindow_Type))
+	parent = GTK_WINDOW(py_window->obj);
+    else {
+        PyErr_SetString(PyExc_TypeError, "parent must be a GtkWindow or None");
+        return -1;
+    }
+
+    if (pyg_flags_get_value(GTK_TYPE_DIALOG_FLAGS, py_flags, (gint *)&flags))
+        return -1;
+    if (py_buttons == Py_None)
+        len = 0;
+    else if (PyTuple_Check(py_buttons))
+        len = PyTuple_Size(py_buttons);
+    else {
+        PyErr_SetString(PyExc_TypeError, "buttons must be a tuple containing text/response pairs or None");
+        return -1;
+    }
+
+    if (len % 2) {
+        PyErr_SetString(PyExc_RuntimeError,
+                        "buttons tuple must contain text/response id pairs");
+        return -1;
+    }
+
+    if (pygobject_constructv(self, 0, NULL)) {
+        PyErr_SetString(PyExc_RuntimeError,
+                        "could not create GtkDialog object");
+        return -1;
+    }
+
+  if (title)
+    gtk_window_set_title (GTK_WINDOW (self->obj), title);
+
+  if (parent)
+    gtk_window_set_transient_for (GTK_WINDOW (self->obj), parent);
+
+  if (flags & GTK_DIALOG_MODAL)
+    gtk_window_set_modal (GTK_WINDOW (self->obj), TRUE);
+  
+  if (flags & GTK_DIALOG_DESTROY_WITH_PARENT)
+    gtk_window_set_destroy_with_parent (GTK_WINDOW (self->obj), TRUE);
+
+  if (flags & GTK_DIALOG_NO_SEPARATOR)
+    gtk_dialog_set_has_separator (GTK_DIALOG (self->obj), FALSE);
+    
+    for (i = 0; i < len; i += 2) {
+        PyObject *text = PyTuple_GetItem(py_buttons, i);
+        PyObject *id = PyTuple_GetItem(py_buttons, i + 1);
+        if (!PyString_Check(text)) {
+            gtk_object_destroy(GTK_OBJECT(self->obj));
+            self->obj = NULL;
+            PyErr_SetString(PyExc_RuntimeError,
+                            "first member of each text/response id pair "
+                            "must be a string");
+            return -1;
+        }
+        if (!PyInt_Check(id)) {
+            gtk_object_destroy(GTK_OBJECT(self->obj));
+            self->obj = NULL;
+            PyErr_SetString(PyExc_RuntimeError,
+                            "second member of each text/response id pair "
+                            "must be a number");
+            return -1;
+        }
+        gtk_dialog_add_button(GTK_DIALOG(self->obj), PyString_AsString(text),
+                              PyInt_AsLong(id));
+    }
+    
+    g_object_ref(self->obj);
+
+    return 0;
+}
+%%
+new-constructor XFCE_TYPE_TITLED_DIALOG
+%%
