@@ -11,6 +11,7 @@ class MyPlugin(xfce4.panel.Plugin):
 		xfce4.panel.Plugin.__init__(self)
 		
 		button1 = gtk.Button("test")
+		button1.set_relief(gtk.RELIEF_NONE)
 		button1.show()
 		
 		self.add(button1)
