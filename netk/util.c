@@ -27,8 +27,8 @@ static PyTypeObject *_PyGtkWindow_Type;
 
 /* ----------- functions ----------- */
 
-PyMethodDef pyutil_functions[] = {
-    { NULL, NULL, 0 }
+const PyMethodDef pyutil_functions[] = {
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -38,34 +38,30 @@ pyutil_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
     if ((module = PyImport_ImportModule("gtk")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGtkWindow_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Window");
+        _PyGtkWindow_Type = (PyTypeObject *)PyObject_GetAttrString(module, "Window");
         if (_PyGtkWindow_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name Window from gtk");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gtk");
-        return;
+        return ;
     }
 
 
-#line 71 "util.c"
+#line 67 "util.c"
 }

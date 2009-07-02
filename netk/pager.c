@@ -22,7 +22,7 @@ static PyTypeObject *_PyGtkContainer_Type;
 
 
 /* ---------- forward type declarations ---------- */
-PyTypeObject PyNetkPager_Type;
+PyTypeObject G_GNUC_INTERNAL PyNetkPager_Type;
 
 #line 28 "pager.c"
 
@@ -36,7 +36,7 @@ _wrap_netk_pager_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     static char *kwlist[] = { "screen", NULL };
     PyGObject *screen;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkPager.__init__", kwlist, &PyNetkScreen_Type, &screen))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!:NetkPager.__init__", kwlist, &PyNetkScreen_Type, &screen))
         return -1;
     self->obj = (GObject *)netk_pager_new(NETK_SCREEN(screen->obj));
 
@@ -54,9 +54,11 @@ _wrap_netk_pager_set_screen(PyGObject *self, PyObject *args, PyObject *kwargs)
     static char *kwlist[] = { "screen", NULL };
     PyGObject *screen;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:NetkPager.set_screen", kwlist, &PyNetkScreen_Type, &screen))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!:NetkPager.set_screen", kwlist, &PyNetkScreen_Type, &screen))
         return NULL;
+    
     netk_pager_set_screen(NETK_PAGER(self->obj), NETK_SCREEN(screen->obj));
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -68,11 +70,13 @@ _wrap_netk_pager_set_orientation(PyGObject *self, PyObject *args, PyObject *kwar
     GtkOrientation orientation;
     PyObject *py_orientation = NULL;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:NetkPager.set_orientation", kwlist, &py_orientation))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:NetkPager.set_orientation", kwlist, &py_orientation))
         return NULL;
-    if (pyg_enum_get_value(GTK_TYPE_ORIENTATION, py_orientation, (gint *)&orientation))
+    if (pyg_enum_get_value(GTK_TYPE_ORIENTATION, py_orientation, (gpointer)&orientation))
         return NULL;
+    
     netk_pager_set_orientation(NETK_PAGER(self->obj), orientation);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -83,9 +87,11 @@ _wrap_netk_pager_set_n_rows(PyGObject *self, PyObject *args, PyObject *kwargs)
     static char *kwlist[] = { "n_rows", NULL };
     int n_rows;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:NetkPager.set_n_rows", kwlist, &n_rows))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"i:NetkPager.set_n_rows", kwlist, &n_rows))
         return NULL;
+    
     netk_pager_set_n_rows(NETK_PAGER(self->obj), n_rows);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -97,11 +103,13 @@ _wrap_netk_pager_set_display_mode(PyGObject *self, PyObject *args, PyObject *kwa
     NetkPagerDisplayMode mode;
     PyObject *py_mode = NULL;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:NetkPager.set_display_mode", kwlist, &py_mode))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:NetkPager.set_display_mode", kwlist, &py_mode))
         return NULL;
-    if (pyg_enum_get_value(NETK_TYPE_PAGER_DISPLAY_MODE, py_mode, (gint *)&mode))
+    if (pyg_enum_get_value(NETK_TYPE_PAGER_DISPLAY_MODE, py_mode, (gpointer)&mode))
         return NULL;
+    
     netk_pager_set_display_mode(NETK_PAGER(self->obj), mode);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -112,9 +120,26 @@ _wrap_netk_pager_set_show_all(PyGObject *self, PyObject *args, PyObject *kwargs)
     static char *kwlist[] = { "show_all_workspaces", NULL };
     int show_all_workspaces;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:NetkPager.set_show_all", kwlist, &show_all_workspaces))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"i:NetkPager.set_show_all", kwlist, &show_all_workspaces))
         return NULL;
+    
     netk_pager_set_show_all(NETK_PAGER(self->obj), show_all_workspaces);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_netk_pager_set_workspace_scrolling(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "workspace_scrolling", NULL };
+    int workspace_scrolling;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"i:NetkPager.set_workspace_scrolling", kwlist, &workspace_scrolling))
+        return NULL;
+    
+    netk_pager_set_workspace_scrolling(NETK_PAGER(self->obj), workspace_scrolling);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -126,64 +151,74 @@ _wrap_netk_pager_set_shadow_type(PyGObject *self, PyObject *args, PyObject *kwar
     PyObject *py_shadow_type = NULL;
     GtkShadowType shadow_type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:NetkPager.set_shadow_type", kwlist, &py_shadow_type))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:NetkPager.set_shadow_type", kwlist, &py_shadow_type))
         return NULL;
-    if (pyg_enum_get_value(GTK_TYPE_SHADOW_TYPE, py_shadow_type, (gint *)&shadow_type))
+    if (pyg_enum_get_value(GTK_TYPE_SHADOW_TYPE, py_shadow_type, (gpointer)&shadow_type))
         return NULL;
+    
     netk_pager_set_shadow_type(NETK_PAGER(self->obj), shadow_type);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
 
-static PyMethodDef _PyNetkPager_methods[] = {
-    { "set_screen", (PyCFunction)_wrap_netk_pager_set_screen, METH_VARARGS|METH_KEYWORDS },
-    { "set_orientation", (PyCFunction)_wrap_netk_pager_set_orientation, METH_VARARGS|METH_KEYWORDS },
-    { "set_n_rows", (PyCFunction)_wrap_netk_pager_set_n_rows, METH_VARARGS|METH_KEYWORDS },
-    { "set_display_mode", (PyCFunction)_wrap_netk_pager_set_display_mode, METH_VARARGS|METH_KEYWORDS },
-    { "set_show_all", (PyCFunction)_wrap_netk_pager_set_show_all, METH_VARARGS|METH_KEYWORDS },
-    { "set_shadow_type", (PyCFunction)_wrap_netk_pager_set_shadow_type, METH_VARARGS|METH_KEYWORDS },
-    { NULL, NULL, 0 }
+static const PyMethodDef _PyNetkPager_methods[] = {
+    { "set_screen", (PyCFunction)_wrap_netk_pager_set_screen, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_orientation", (PyCFunction)_wrap_netk_pager_set_orientation, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_n_rows", (PyCFunction)_wrap_netk_pager_set_n_rows, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_display_mode", (PyCFunction)_wrap_netk_pager_set_display_mode, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_show_all", (PyCFunction)_wrap_netk_pager_set_show_all, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_workspace_scrolling", (PyCFunction)_wrap_netk_pager_set_workspace_scrolling, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_shadow_type", (PyCFunction)_wrap_netk_pager_set_shadow_type, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
-PyTypeObject PyNetkPager_Type = {
+PyTypeObject G_GNUC_INTERNAL PyNetkPager_Type = {
     PyObject_HEAD_INIT(NULL)
-    0,					/* ob_size */
-    "pager.Pager",			/* tp_name */
-    sizeof(PyGObject),	        /* tp_basicsize */
-    0,					/* tp_itemsize */
+    0,                                 /* ob_size */
+    "pager.Pager",                   /* tp_name */
+    sizeof(PyGObject),          /* tp_basicsize */
+    0,                                 /* tp_itemsize */
     /* methods */
-    (destructor)0,	/* tp_dealloc */
-    (printfunc)0,			/* tp_print */
-    (getattrfunc)0,	/* tp_getattr */
-    (setattrfunc)0,	/* tp_setattr */
-    (cmpfunc)0,		/* tp_compare */
-    (reprfunc)0,		/* tp_repr */
+    (destructor)0,        /* tp_dealloc */
+    (printfunc)0,                      /* tp_print */
+    (getattrfunc)0,       /* tp_getattr */
+    (setattrfunc)0,       /* tp_setattr */
+    (cmpfunc)0,           /* tp_compare */
+    (reprfunc)0,             /* tp_repr */
     (PyNumberMethods*)0,     /* tp_as_number */
     (PySequenceMethods*)0, /* tp_as_sequence */
     (PyMappingMethods*)0,   /* tp_as_mapping */
-    (hashfunc)0,		/* tp_hash */
-    (ternaryfunc)0,		/* tp_call */
-    (reprfunc)0,		/* tp_str */
-    (getattrofunc)0,	/* tp_getattro */
-    (setattrofunc)0,	/* tp_setattro */
-    (PyBufferProcs*)0,	/* tp_as_buffer */
+    (hashfunc)0,             /* tp_hash */
+    (ternaryfunc)0,          /* tp_call */
+    (reprfunc)0,              /* tp_str */
+    (getattrofunc)0,     /* tp_getattro */
+    (setattrofunc)0,     /* tp_setattro */
+    (PyBufferProcs*)0,  /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,                      /* tp_flags */
-    NULL, 				/* Documentation string */
-    (traverseproc)0,	/* tp_traverse */
-    (inquiry)0,		/* tp_clear */
-    (richcmpfunc)0,	/* tp_richcompare */
+    NULL,                        /* Documentation string */
+    (traverseproc)0,     /* tp_traverse */
+    (inquiry)0,             /* tp_clear */
+    (richcmpfunc)0,   /* tp_richcompare */
     offsetof(PyGObject, weakreflist),             /* tp_weaklistoffset */
-    (getiterfunc)0,		/* tp_iter */
-    (iternextfunc)0,	/* tp_iternext */
-    _PyNetkPager_methods,			/* tp_methods */
-    0,					/* tp_members */
-    0,		       	/* tp_getset */
-    NULL,				/* tp_base */
-    NULL,				/* tp_dict */
-    (descrgetfunc)0,	/* tp_descr_get */
-    (descrsetfunc)0,	/* tp_descr_set */
+    (getiterfunc)0,          /* tp_iter */
+    (iternextfunc)0,     /* tp_iternext */
+    (struct PyMethodDef*)_PyNetkPager_methods, /* tp_methods */
+    (struct PyMemberDef*)0,              /* tp_members */
+    (struct PyGetSetDef*)0,  /* tp_getset */
+    NULL,                              /* tp_base */
+    NULL,                              /* tp_dict */
+    (descrgetfunc)0,    /* tp_descr_get */
+    (descrsetfunc)0,    /* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)_wrap_netk_pager_new,		/* tp_init */
+    (initproc)_wrap_netk_pager_new,             /* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -194,8 +229,8 @@ PyTypeObject PyNetkPager_Type = {
 
 /* ----------- functions ----------- */
 
-PyMethodDef pypager_functions[] = {
-    { NULL, NULL, 0 }
+const PyMethodDef pypager_functions[] = {
+    { NULL, NULL, 0, NULL }
 };
 
 
@@ -204,6 +239,9 @@ PyMethodDef pypager_functions[] = {
 void
 pypager_add_constants(PyObject *module, const gchar *strip_prefix)
 {
+#ifdef VERSION
+    PyModule_AddStringConstant(module, "__version__", VERSION);
+#endif
   pyg_enum_add(module, "PagerDisplayMode", strip_prefix, NETK_TYPE_PAGER_DISPLAY_MODE);
 
   if (PyErr_Occurred())
@@ -217,35 +255,31 @@ pypager_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
     if ((module = PyImport_ImportModule("gtk")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGtkContainer_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Container");
+        _PyGtkContainer_Type = (PyTypeObject *)PyObject_GetAttrString(module, "Container");
         if (_PyGtkContainer_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name Container from gtk");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gtk");
-        return;
+        return ;
     }
 
 
-#line 250 "pager.c"
+#line 284 "pager.c"
     pygobject_register_class(d, "NetkPager", NETK_TYPE_PAGER, &PyNetkPager_Type, Py_BuildValue("(O)", &PyGtkContainer_Type));
 }

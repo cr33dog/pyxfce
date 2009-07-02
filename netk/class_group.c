@@ -21,7 +21,7 @@ static PyTypeObject *_PyGObject_Type;
 
 
 /* ---------- forward type declarations ---------- */
-PyTypeObject PyNetkClassGroup_Type;
+PyTypeObject G_GNUC_INTERNAL PyNetkClassGroup_Type;
 
 #line 27 "class_group.c"
 
@@ -72,7 +72,9 @@ _wrap_netk_class_group_get_res_class(PyGObject *self)
 {
     const gchar *ret;
 
+    
     ret = netk_class_group_get_res_class(NETK_CLASS_GROUP(self->obj));
+    
     if (ret)
         return PyString_FromString(ret);
     Py_INCREF(Py_None);
@@ -84,7 +86,9 @@ _wrap_netk_class_group_get_name(PyGObject *self)
 {
     const gchar *ret;
 
+    
     ret = netk_class_group_get_name(NETK_CLASS_GROUP(self->obj));
+    
     if (ret)
         return PyString_FromString(ret);
     Py_INCREF(Py_None);
@@ -96,7 +100,9 @@ _wrap_netk_class_group_get_icon(PyGObject *self)
 {
     GdkPixbuf *ret;
 
+    
     ret = netk_class_group_get_icon(NETK_CLASS_GROUP(self->obj));
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -106,59 +112,66 @@ _wrap_netk_class_group_get_mini_icon(PyGObject *self)
 {
     GdkPixbuf *ret;
 
+    
     ret = netk_class_group_get_mini_icon(NETK_CLASS_GROUP(self->obj));
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
 
-static PyMethodDef _PyNetkClassGroup_methods[] = {
-    { "get_windows", (PyCFunction)_wrap_netk_class_group_get_windows, METH_NOARGS },
-    { "get_res_class", (PyCFunction)_wrap_netk_class_group_get_res_class, METH_NOARGS },
-    { "get_name", (PyCFunction)_wrap_netk_class_group_get_name, METH_NOARGS },
-    { "get_icon", (PyCFunction)_wrap_netk_class_group_get_icon, METH_NOARGS },
-    { "get_mini_icon", (PyCFunction)_wrap_netk_class_group_get_mini_icon, METH_NOARGS },
-    { NULL, NULL, 0 }
+static const PyMethodDef _PyNetkClassGroup_methods[] = {
+    { "get_windows", (PyCFunction)_wrap_netk_class_group_get_windows, METH_NOARGS,
+      NULL },
+    { "get_res_class", (PyCFunction)_wrap_netk_class_group_get_res_class, METH_NOARGS,
+      NULL },
+    { "get_name", (PyCFunction)_wrap_netk_class_group_get_name, METH_NOARGS,
+      NULL },
+    { "get_icon", (PyCFunction)_wrap_netk_class_group_get_icon, METH_NOARGS,
+      NULL },
+    { "get_mini_icon", (PyCFunction)_wrap_netk_class_group_get_mini_icon, METH_NOARGS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
-PyTypeObject PyNetkClassGroup_Type = {
+PyTypeObject G_GNUC_INTERNAL PyNetkClassGroup_Type = {
     PyObject_HEAD_INIT(NULL)
-    0,					/* ob_size */
-    "classgroup.ClassGroup",			/* tp_name */
-    sizeof(PyGObject),	        /* tp_basicsize */
-    0,					/* tp_itemsize */
+    0,                                 /* ob_size */
+    "classgroup.ClassGroup",                   /* tp_name */
+    sizeof(PyGObject),          /* tp_basicsize */
+    0,                                 /* tp_itemsize */
     /* methods */
-    (destructor)0,	/* tp_dealloc */
-    (printfunc)0,			/* tp_print */
-    (getattrfunc)0,	/* tp_getattr */
-    (setattrfunc)0,	/* tp_setattr */
-    (cmpfunc)0,		/* tp_compare */
-    (reprfunc)0,		/* tp_repr */
+    (destructor)0,        /* tp_dealloc */
+    (printfunc)0,                      /* tp_print */
+    (getattrfunc)0,       /* tp_getattr */
+    (setattrfunc)0,       /* tp_setattr */
+    (cmpfunc)0,           /* tp_compare */
+    (reprfunc)0,             /* tp_repr */
     (PyNumberMethods*)0,     /* tp_as_number */
     (PySequenceMethods*)0, /* tp_as_sequence */
     (PyMappingMethods*)0,   /* tp_as_mapping */
-    (hashfunc)0,		/* tp_hash */
-    (ternaryfunc)0,		/* tp_call */
-    (reprfunc)0,		/* tp_str */
-    (getattrofunc)0,	/* tp_getattro */
-    (setattrofunc)0,	/* tp_setattro */
-    (PyBufferProcs*)0,	/* tp_as_buffer */
+    (hashfunc)0,             /* tp_hash */
+    (ternaryfunc)0,          /* tp_call */
+    (reprfunc)0,              /* tp_str */
+    (getattrofunc)0,     /* tp_getattro */
+    (setattrofunc)0,     /* tp_setattro */
+    (PyBufferProcs*)0,  /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,                      /* tp_flags */
-    NULL, 				/* Documentation string */
-    (traverseproc)0,	/* tp_traverse */
-    (inquiry)0,		/* tp_clear */
-    (richcmpfunc)0,	/* tp_richcompare */
+    NULL,                        /* Documentation string */
+    (traverseproc)0,     /* tp_traverse */
+    (inquiry)0,             /* tp_clear */
+    (richcmpfunc)0,   /* tp_richcompare */
     offsetof(PyGObject, weakreflist),             /* tp_weaklistoffset */
-    (getiterfunc)0,		/* tp_iter */
-    (iternextfunc)0,	/* tp_iternext */
-    _PyNetkClassGroup_methods,			/* tp_methods */
-    0,					/* tp_members */
-    0,		       	/* tp_getset */
-    NULL,				/* tp_base */
-    NULL,				/* tp_dict */
-    (descrgetfunc)0,	/* tp_descr_get */
-    (descrsetfunc)0,	/* tp_descr_set */
+    (getiterfunc)0,          /* tp_iter */
+    (iternextfunc)0,     /* tp_iternext */
+    (struct PyMethodDef*)_PyNetkClassGroup_methods, /* tp_methods */
+    (struct PyMemberDef*)0,              /* tp_members */
+    (struct PyGetSetDef*)0,  /* tp_getset */
+    NULL,                              /* tp_base */
+    NULL,                              /* tp_dict */
+    (descrgetfunc)0,    /* tp_descr_get */
+    (descrsetfunc)0,    /* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)0,		/* tp_init */
+    (initproc)0,             /* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -176,9 +189,11 @@ _wrap_netk_class_group_get(PyObject *self, PyObject *args, PyObject *kwargs)
     char *res_class;
     NetkClassGroup *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:class_group_get", kwlist, &res_class))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s:class_group_get", kwlist, &res_class))
         return NULL;
+    
     ret = netk_class_group_get(res_class);
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -190,9 +205,11 @@ _wrap_p_netk_class_group_create(PyObject *self, PyObject *args, PyObject *kwargs
     char *res_class;
     NetkClassGroup *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:p_netk_class_group_create", kwlist, &res_class))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s:p_netk_class_group_create", kwlist, &res_class))
         return NULL;
+    
     ret = p_netk_class_group_create(res_class);
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -203,9 +220,11 @@ _wrap_p_netk_class_group_destroy(PyObject *self, PyObject *args, PyObject *kwarg
     static char *kwlist[] = { "class_group", NULL };
     PyGObject *class_group;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:p_netk_class_group_destroy", kwlist, &PyNetkClassGroup_Type, &class_group))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!:p_netk_class_group_destroy", kwlist, &PyNetkClassGroup_Type, &class_group))
         return NULL;
+    
     p_netk_class_group_destroy(NETK_CLASS_GROUP(class_group->obj));
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -216,9 +235,11 @@ _wrap_p_netk_class_group_add_window(PyObject *self, PyObject *args, PyObject *kw
     static char *kwlist[] = { "class_group", "window", NULL };
     PyGObject *class_group, *window;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!O!:p_netk_class_group_add_window", kwlist, &PyNetkClassGroup_Type, &class_group, &PyNetkWindow_Type, &window))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!O!:p_netk_class_group_add_window", kwlist, &PyNetkClassGroup_Type, &class_group, &PyNetkWindow_Type, &window))
         return NULL;
+    
     p_netk_class_group_add_window(NETK_CLASS_GROUP(class_group->obj), NETK_WINDOW(window->obj));
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -229,20 +250,27 @@ _wrap_p_netk_class_group_remove_window(PyObject *self, PyObject *args, PyObject 
     static char *kwlist[] = { "class_group", "window", NULL };
     PyGObject *class_group, *window;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!O!:p_netk_class_group_remove_window", kwlist, &PyNetkClassGroup_Type, &class_group, &PyNetkWindow_Type, &window))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!O!:p_netk_class_group_remove_window", kwlist, &PyNetkClassGroup_Type, &class_group, &PyNetkWindow_Type, &window))
         return NULL;
+    
     p_netk_class_group_remove_window(NETK_CLASS_GROUP(class_group->obj), NETK_WINDOW(window->obj));
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
 
-PyMethodDef pyclass_group_functions[] = {
-    { "class_group_get", (PyCFunction)_wrap_netk_class_group_get, METH_VARARGS|METH_KEYWORDS },
-    { "p_netk_class_group_create", (PyCFunction)_wrap_p_netk_class_group_create, METH_VARARGS|METH_KEYWORDS },
-    { "p_netk_class_group_destroy", (PyCFunction)_wrap_p_netk_class_group_destroy, METH_VARARGS|METH_KEYWORDS },
-    { "p_netk_class_group_add_window", (PyCFunction)_wrap_p_netk_class_group_add_window, METH_VARARGS|METH_KEYWORDS },
-    { "p_netk_class_group_remove_window", (PyCFunction)_wrap_p_netk_class_group_remove_window, METH_VARARGS|METH_KEYWORDS },
-    { NULL, NULL, 0 }
+const PyMethodDef pyclass_group_functions[] = {
+    { "class_group_get", (PyCFunction)_wrap_netk_class_group_get, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "p_netk_class_group_create", (PyCFunction)_wrap_p_netk_class_group_create, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "p_netk_class_group_destroy", (PyCFunction)_wrap_p_netk_class_group_destroy, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "p_netk_class_group_add_window", (PyCFunction)_wrap_p_netk_class_group_add_window, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "p_netk_class_group_remove_window", (PyCFunction)_wrap_p_netk_class_group_remove_window, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -252,22 +280,20 @@ pyclass_group_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
 
 
-#line 271 "class_group.c"
+#line 297 "class_group.c"
     pygobject_register_class(d, "NetkClassGroup", NETK_TYPE_CLASS_GROUP, &PyNetkClassGroup_Type, Py_BuildValue("(O)", &PyGObject_Type));
     pyg_set_object_has_new_constructor(NETK_TYPE_CLASS_GROUP);
 }
