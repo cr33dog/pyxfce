@@ -19,7 +19,8 @@ do
 		[ "${defs}" = "internal_plugin.defs" ] && continue
 		[ "${defs}" = "plugin.defs" ] && continue
 		
-		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
+		python /usr/lib/python2.6/site-packages/gtk-2.0/codegen/h2def.py "$s" >"${defs}"
+		#python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
 	fi
 done
 

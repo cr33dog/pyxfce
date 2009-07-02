@@ -9,7 +9,8 @@ do
 	t="${t%.h}"
 
 	defs="${t}.defs"
-	python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
+	python /usr/lib/python2.6/site-packages/gtk-2.0/codegen/h2def.py "$s" >"${defs}"
+	#python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
 done
 rm -f util.defs
 
