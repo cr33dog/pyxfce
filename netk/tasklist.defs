@@ -21,7 +21,7 @@
 )
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/netk-tasklist.h
+;; From netk-tasklist.h
 
 (define-function tasklist_get_type
   (c-name "netk_tasklist_get_type")
@@ -139,6 +139,57 @@
     '("void*" "data")
     '("GDestroyNotify" "free_data_func")
   )
+)
+
+(define-method set_button_relief
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_set_button_relief")
+  (return-type "none")
+  (parameters
+    '("GtkReliefStyle" "relief")
+  )
+)
+
+(define-method get_screen
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_screen")
+  (return-type "NetkScreen*")
+)
+
+(define-method get_grouping
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_grouping")
+  (return-type "NetkTasklistGroupingType")
+)
+
+(define-method get_switch_workspace_on_unminimize
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_switch_workspace_on_unminimize")
+  (return-type "gboolean")
+)
+
+(define-method get_grouping_limit
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_grouping_limit")
+  (return-type "gint")
+)
+
+(define-method get_include_all_workspaces
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_include_all_workspaces")
+  (return-type "gboolean")
+)
+
+(define-method get_show_label
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_show_label")
+  (return-type "gboolean")
+)
+
+(define-method get_button_relief
+  (of-object "NetkTasklist")
+  (c-name "netk_tasklist_get_button_relief")
+  (return-type "GtkReliefStyle")
 )
 
 
