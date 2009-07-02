@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce_framebox.h
+;; From xfce_framebox.h
 
 (define-function framebox_get_type
   (c-name "xfce_framebox_get_type")

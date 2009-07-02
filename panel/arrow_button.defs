@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfce4panel/xfce-arrow-button.h
+;; From xfce-arrow-button.h
 
 (define-function xfce_arrow_button_get_type
   (c-name "xfce_arrow_button_get_type")
