@@ -24,6 +24,7 @@
     '("hidden" "NETK_WINDOW_STATE_HIDDEN")
     '("fullscreen" "NETK_WINDOW_STATE_FULLSCREEN")
     '("urgent" "NETK_WINDOW_STATE_URGENT")
+    '("demands-attention" "NETK_WINDOW_STATE_DEMANDS_ATTENTION")
   )
 )
 
@@ -69,7 +70,7 @@
 )
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/netk-window.h
+;; From netk-window.h
 
 (define-function window_get_type
   (c-name "netk_window_get_type")
@@ -216,6 +217,24 @@
   (return-type "gboolean")
 )
 
+(define-method is_fullscreen
+  (of-object "NetkWindow")
+  (c-name "netk_window_is_fullscreen")
+  (return-type "gboolean")
+)
+
+(define-method demands_attention
+  (of-object "NetkWindow")
+  (c-name "netk_window_demands_attention")
+  (return-type "gboolean")
+)
+
+(define-method or_transient_demands_attention
+  (of-object "NetkWindow")
+  (c-name "netk_window_or_transient_demands_attention")
+  (return-type "gboolean")
+)
+
 (define-method set_skip_pager
   (of-object "NetkWindow")
   (c-name "netk_window_set_skip_pager")
@@ -231,6 +250,15 @@
   (return-type "none")
   (parameters
     '("gboolean" "skip")
+  )
+)
+
+(define-method set_fullscreen
+  (of-object "NetkWindow")
+  (c-name "netk_window_set_fullscreen")
+  (return-type "none")
+  (parameters
+    '("gboolean" "fullscreen")
   )
 )
 
@@ -402,6 +430,18 @@
     '("int" "y")
     '("int" "width")
     '("int" "height")
+  )
+)
+
+(define-method get_icon_geometry
+  (of-object "NetkWindow")
+  (c-name "netk_window_get_icon_geometry")
+  (return-type "gboolean")
+  (parameters
+    '("int*" "xp")
+    '("int*" "yp")
+    '("int*" "widthp")
+    '("int*" "heightp")
   )
 )
 
