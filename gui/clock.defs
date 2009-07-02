@@ -33,7 +33,7 @@
 )
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/xfce_clock.h
+;; From xfce_clock.h
 
 (define-function clock_get_type
   (c-name "xfce_clock_get_type")
@@ -164,6 +164,30 @@
   (of-object "XfceClock")
   (c-name "xfce_clock_toggle_mode")
   (return-type "none")
+)
+
+(define-method set_format
+  (of-object "XfceClock")
+  (c-name "xfce_clock_set_format")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "format")
+  )
+)
+
+(define-method set_formatted_view
+  (of-object "XfceClock")
+  (c-name "xfce_clock_set_formatted_view")
+  (return-type "none")
+  (parameters
+    '("gboolean" "formatted")
+  )
+)
+
+(define-method get_formatted_view
+  (of-object "XfceClock")
+  (c-name "xfce_clock_get_formatted_view")
+  (return-type "gboolean")
 )
 
 (define-method get_mode
