@@ -24,7 +24,7 @@ static PyTypeObject *_PyGdkScreen_Type;
 
 
 /* ---------- forward type declarations ---------- */
-PyTypeObject PyXfceSystemTray_Type;
+PyTypeObject G_GNUC_INTERNAL PyXfceSystemTray_Type;
 
 #line 30 "systemtray.c"
 
@@ -37,19 +37,20 @@ _wrap_xfce_system_tray_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char* kwlist[] = { NULL };
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":systemtray.SystemTray.__init__", kwlist))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     ":systemtray.SystemTray.__init__",
+                                     kwlist))
         return -1;
 
     pygobject_constructv(self, 0, NULL);
-
     if (!self->obj) {
-        PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
+        PyErr_SetString(
+            PyExc_RuntimeError, 
+            "could not create systemtray.SystemTray object");
         return -1;
     }
-
     return 0;
 }
-
 
 #line 30 "systemtray.override"
 static PyObject *
@@ -91,62 +92,66 @@ _wrap_xfce_system_tray_register(PyGObject *self, PyObject *args, PyObject *kwarg
       return PyBool_FromLong(0);
     }
 }
-#line 95 "systemtray.c"
+#line 96 "systemtray.c"
 
 
 static PyObject *
 _wrap_xfce_system_tray_unregister(PyGObject *self)
 {
+    
     xfce_system_tray_unregister(XFCE_SYSTEM_TRAY(self->obj));
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
 
-static PyMethodDef _PyXfceSystemTray_methods[] = {
-    { "register", (PyCFunction)_wrap_xfce_system_tray_register, METH_VARARGS|METH_KEYWORDS },
-    { "unregister", (PyCFunction)_wrap_xfce_system_tray_unregister, METH_NOARGS },
-    { NULL, NULL, 0 }
+static const PyMethodDef _PyXfceSystemTray_methods[] = {
+    { "register", (PyCFunction)_wrap_xfce_system_tray_register, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "unregister", (PyCFunction)_wrap_xfce_system_tray_unregister, METH_NOARGS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
-PyTypeObject PyXfceSystemTray_Type = {
+PyTypeObject G_GNUC_INTERNAL PyXfceSystemTray_Type = {
     PyObject_HEAD_INIT(NULL)
-    0,					/* ob_size */
-    "systemtray.SystemTray",			/* tp_name */
-    sizeof(PyGObject),	        /* tp_basicsize */
-    0,					/* tp_itemsize */
+    0,                                 /* ob_size */
+    "systemtray.SystemTray",                   /* tp_name */
+    sizeof(PyGObject),          /* tp_basicsize */
+    0,                                 /* tp_itemsize */
     /* methods */
-    (destructor)0,	/* tp_dealloc */
-    (printfunc)0,			/* tp_print */
-    (getattrfunc)0,	/* tp_getattr */
-    (setattrfunc)0,	/* tp_setattr */
-    (cmpfunc)0,		/* tp_compare */
-    (reprfunc)0,		/* tp_repr */
+    (destructor)0,        /* tp_dealloc */
+    (printfunc)0,                      /* tp_print */
+    (getattrfunc)0,       /* tp_getattr */
+    (setattrfunc)0,       /* tp_setattr */
+    (cmpfunc)0,           /* tp_compare */
+    (reprfunc)0,             /* tp_repr */
     (PyNumberMethods*)0,     /* tp_as_number */
     (PySequenceMethods*)0, /* tp_as_sequence */
     (PyMappingMethods*)0,   /* tp_as_mapping */
-    (hashfunc)0,		/* tp_hash */
-    (ternaryfunc)0,		/* tp_call */
-    (reprfunc)0,		/* tp_str */
-    (getattrofunc)0,	/* tp_getattro */
-    (setattrofunc)0,	/* tp_setattro */
-    (PyBufferProcs*)0,	/* tp_as_buffer */
+    (hashfunc)0,             /* tp_hash */
+    (ternaryfunc)0,          /* tp_call */
+    (reprfunc)0,              /* tp_str */
+    (getattrofunc)0,     /* tp_getattro */
+    (setattrofunc)0,     /* tp_setattro */
+    (PyBufferProcs*)0,  /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,                      /* tp_flags */
-    NULL, 				/* Documentation string */
-    (traverseproc)0,	/* tp_traverse */
-    (inquiry)0,		/* tp_clear */
-    (richcmpfunc)0,	/* tp_richcompare */
+    NULL,                        /* Documentation string */
+    (traverseproc)0,     /* tp_traverse */
+    (inquiry)0,             /* tp_clear */
+    (richcmpfunc)0,   /* tp_richcompare */
     offsetof(PyGObject, weakreflist),             /* tp_weaklistoffset */
-    (getiterfunc)0,		/* tp_iter */
-    (iternextfunc)0,	/* tp_iternext */
-    _PyXfceSystemTray_methods,			/* tp_methods */
-    0,					/* tp_members */
-    0,		       	/* tp_getset */
-    NULL,				/* tp_base */
-    NULL,				/* tp_dict */
-    (descrgetfunc)0,	/* tp_descr_get */
-    (descrsetfunc)0,	/* tp_descr_set */
+    (getiterfunc)0,          /* tp_iter */
+    (iternextfunc)0,     /* tp_iternext */
+    (struct PyMethodDef*)_PyXfceSystemTray_methods, /* tp_methods */
+    (struct PyMemberDef*)0,              /* tp_members */
+    (struct PyGetSetDef*)0,  /* tp_getset */
+    NULL,                              /* tp_base */
+    NULL,                              /* tp_dict */
+    (descrgetfunc)0,    /* tp_descr_get */
+    (descrsetfunc)0,    /* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)_wrap_xfce_system_tray_new,		/* tp_init */
+    (initproc)_wrap_xfce_system_tray_new,             /* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -194,12 +199,13 @@ _wrap_xfce_system_tray_check_running(PyGObject *self, PyObject *args, PyObject *
       return PyBool_FromLong(0);
     }
 }
-#line 198 "systemtray.c"
+#line 203 "systemtray.c"
 
 
-PyMethodDef pysystemtray_functions[] = {
-    { "system_tray_check_running", (PyCFunction)_wrap_xfce_system_tray_check_running, METH_VARARGS|METH_KEYWORDS },
-    { NULL, NULL, 0 }
+const PyMethodDef pysystemtray_functions[] = {
+    { "system_tray_check_running", (PyCFunction)_wrap_xfce_system_tray_check_running, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -209,36 +215,32 @@ pysystemtray_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
     if ((module = PyImport_ImportModule("gtk.gdk")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGdkScreen_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Screen");
+        _PyGdkScreen_Type = (PyTypeObject *)PyObject_GetAttrString(module, "Screen");
         if (_PyGdkScreen_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name Screen from gtk.gdk");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gtk.gdk");
-        return;
+        return ;
     }
 
 
-#line 242 "systemtray.c"
+#line 244 "systemtray.c"
     pygobject_register_class(d, "XfceSystemTray", XFCE_TYPE_SYSTEM_TRAY, &PyXfceSystemTray_Type, Py_BuildValue("(O)", &PyGObject_Type));
     pyg_set_object_has_new_constructor(XFCE_TYPE_SYSTEM_TRAY);
 }

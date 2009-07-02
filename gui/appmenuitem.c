@@ -23,7 +23,7 @@ static PyTypeObject *_PyXfceDesktopEntry_Type;
 
 
 /* ---------- forward type declarations ---------- */
-PyTypeObject PyXfceAppMenuItem_Type;
+PyTypeObject G_GNUC_INTERNAL PyXfceAppMenuItem_Type;
 
 #line 29 "appmenuitem.c"
 
@@ -36,19 +36,20 @@ _wrap_xfce_app_menu_item_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char* kwlist[] = { NULL };
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":appmenuitem.AppMenuItem.__init__", kwlist))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     ":appmenuitem.AppMenuItem.__init__",
+                                     kwlist))
         return -1;
 
     pygobject_constructv(self, 0, NULL);
-
     if (!self->obj) {
-        PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
+        PyErr_SetString(
+            PyExc_RuntimeError, 
+            "could not create appmenuitem.AppMenuItem object");
         return -1;
     }
-
     return 0;
 }
-
 
 static PyObject *
 _wrap_xfce_app_menu_item_set_name(PyGObject *self, PyObject *args, PyObject *kwargs)
@@ -56,9 +57,11 @@ _wrap_xfce_app_menu_item_set_name(PyGObject *self, PyObject *args, PyObject *kwa
     static char *kwlist[] = { "name", NULL };
     char *name;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceAppMenuItem.set_name", kwlist, &name))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s:XfceAppMenuItem.set_name", kwlist, &name))
         return NULL;
+    
     xfce_app_menu_item_set_name(XFCE_APP_MENU_ITEM(self->obj), name);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -69,9 +72,11 @@ _wrap_xfce_app_menu_item_set_icon_name(PyGObject *self, PyObject *args, PyObject
     static char *kwlist[] = { "filename", NULL };
     char *filename;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceAppMenuItem.set_icon_name", kwlist, &filename))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s:XfceAppMenuItem.set_icon_name", kwlist, &filename))
         return NULL;
+    
     xfce_app_menu_item_set_icon_name(XFCE_APP_MENU_ITEM(self->obj), filename);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -82,9 +87,11 @@ _wrap_xfce_app_menu_item_set_command(PyGObject *self, PyObject *args, PyObject *
     static char *kwlist[] = { "command", NULL };
     char *command;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfceAppMenuItem.set_command", kwlist, &command))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s:XfceAppMenuItem.set_command", kwlist, &command))
         return NULL;
+    
     xfce_app_menu_item_set_command(XFCE_APP_MENU_ITEM(self->obj), command);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -95,9 +102,11 @@ _wrap_xfce_app_menu_item_set_needs_term(PyGObject *self, PyObject *args, PyObjec
     static char *kwlist[] = { "needs_term", NULL };
     int needs_term;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:XfceAppMenuItem.set_needs_term", kwlist, &needs_term))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"i:XfceAppMenuItem.set_needs_term", kwlist, &needs_term))
         return NULL;
+    
     xfce_app_menu_item_set_needs_term(XFCE_APP_MENU_ITEM(self->obj), needs_term);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -108,9 +117,11 @@ _wrap_xfce_app_menu_item_set_startup_notification(PyGObject *self, PyObject *arg
     static char *kwlist[] = { "snotify", NULL };
     int snotify;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:XfceAppMenuItem.set_startup_notification", kwlist, &snotify))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"i:XfceAppMenuItem.set_startup_notification", kwlist, &snotify))
         return NULL;
+    
     xfce_app_menu_item_set_startup_notification(XFCE_APP_MENU_ITEM(self->obj), snotify);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -120,7 +131,9 @@ _wrap_xfce_app_menu_item_get_name(PyGObject *self)
 {
     const gchar *ret;
 
+    
     ret = xfce_app_menu_item_get_name(XFCE_APP_MENU_ITEM(self->obj));
+    
     if (ret)
         return PyString_FromString(ret);
     Py_INCREF(Py_None);
@@ -132,7 +145,9 @@ _wrap_xfce_app_menu_item_get_icon_name(PyGObject *self)
 {
     const gchar *ret;
 
+    
     ret = xfce_app_menu_item_get_icon_name(XFCE_APP_MENU_ITEM(self->obj));
+    
     if (ret)
         return PyString_FromString(ret);
     Py_INCREF(Py_None);
@@ -144,7 +159,9 @@ _wrap_xfce_app_menu_item_get_command(PyGObject *self)
 {
     const gchar *ret;
 
+    
     ret = xfce_app_menu_item_get_command(XFCE_APP_MENU_ITEM(self->obj));
+    
     if (ret)
         return PyString_FromString(ret);
     Py_INCREF(Py_None);
@@ -156,7 +173,9 @@ _wrap_xfce_app_menu_item_get_needs_term(PyGObject *self)
 {
     int ret;
 
+    
     ret = xfce_app_menu_item_get_needs_term(XFCE_APP_MENU_ITEM(self->obj));
+    
     return PyBool_FromLong(ret);
 
 }
@@ -166,64 +185,76 @@ _wrap_xfce_app_menu_item_get_startup_notification(PyGObject *self)
 {
     int ret;
 
+    
     ret = xfce_app_menu_item_get_startup_notification(XFCE_APP_MENU_ITEM(self->obj));
+    
     return PyBool_FromLong(ret);
 
 }
 
-static PyMethodDef _PyXfceAppMenuItem_methods[] = {
-    { "set_name", (PyCFunction)_wrap_xfce_app_menu_item_set_name, METH_VARARGS|METH_KEYWORDS },
-    { "set_icon_name", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_name, METH_VARARGS|METH_KEYWORDS },
-    { "set_command", (PyCFunction)_wrap_xfce_app_menu_item_set_command, METH_VARARGS|METH_KEYWORDS },
-    { "set_needs_term", (PyCFunction)_wrap_xfce_app_menu_item_set_needs_term, METH_VARARGS|METH_KEYWORDS },
-    { "set_startup_notification", (PyCFunction)_wrap_xfce_app_menu_item_set_startup_notification, METH_VARARGS|METH_KEYWORDS },
-    { "get_name", (PyCFunction)_wrap_xfce_app_menu_item_get_name, METH_NOARGS },
-    { "get_icon_name", (PyCFunction)_wrap_xfce_app_menu_item_get_icon_name, METH_NOARGS },
-    { "get_command", (PyCFunction)_wrap_xfce_app_menu_item_get_command, METH_NOARGS },
-    { "get_needs_term", (PyCFunction)_wrap_xfce_app_menu_item_get_needs_term, METH_NOARGS },
-    { "get_startup_notification", (PyCFunction)_wrap_xfce_app_menu_item_get_startup_notification, METH_NOARGS },
-    { NULL, NULL, 0 }
+static const PyMethodDef _PyXfceAppMenuItem_methods[] = {
+    { "set_name", (PyCFunction)_wrap_xfce_app_menu_item_set_name, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_icon_name", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_name, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_command", (PyCFunction)_wrap_xfce_app_menu_item_set_command, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_needs_term", (PyCFunction)_wrap_xfce_app_menu_item_set_needs_term, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "set_startup_notification", (PyCFunction)_wrap_xfce_app_menu_item_set_startup_notification, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "get_name", (PyCFunction)_wrap_xfce_app_menu_item_get_name, METH_NOARGS,
+      NULL },
+    { "get_icon_name", (PyCFunction)_wrap_xfce_app_menu_item_get_icon_name, METH_NOARGS,
+      NULL },
+    { "get_command", (PyCFunction)_wrap_xfce_app_menu_item_get_command, METH_NOARGS,
+      NULL },
+    { "get_needs_term", (PyCFunction)_wrap_xfce_app_menu_item_get_needs_term, METH_NOARGS,
+      NULL },
+    { "get_startup_notification", (PyCFunction)_wrap_xfce_app_menu_item_get_startup_notification, METH_NOARGS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
-PyTypeObject PyXfceAppMenuItem_Type = {
+PyTypeObject G_GNUC_INTERNAL PyXfceAppMenuItem_Type = {
     PyObject_HEAD_INIT(NULL)
-    0,					/* ob_size */
-    "appmenuitem.AppMenuItem",			/* tp_name */
-    sizeof(PyGObject),	        /* tp_basicsize */
-    0,					/* tp_itemsize */
+    0,                                 /* ob_size */
+    "appmenuitem.AppMenuItem",                   /* tp_name */
+    sizeof(PyGObject),          /* tp_basicsize */
+    0,                                 /* tp_itemsize */
     /* methods */
-    (destructor)0,	/* tp_dealloc */
-    (printfunc)0,			/* tp_print */
-    (getattrfunc)0,	/* tp_getattr */
-    (setattrfunc)0,	/* tp_setattr */
-    (cmpfunc)0,		/* tp_compare */
-    (reprfunc)0,		/* tp_repr */
+    (destructor)0,        /* tp_dealloc */
+    (printfunc)0,                      /* tp_print */
+    (getattrfunc)0,       /* tp_getattr */
+    (setattrfunc)0,       /* tp_setattr */
+    (cmpfunc)0,           /* tp_compare */
+    (reprfunc)0,             /* tp_repr */
     (PyNumberMethods*)0,     /* tp_as_number */
     (PySequenceMethods*)0, /* tp_as_sequence */
     (PyMappingMethods*)0,   /* tp_as_mapping */
-    (hashfunc)0,		/* tp_hash */
-    (ternaryfunc)0,		/* tp_call */
-    (reprfunc)0,		/* tp_str */
-    (getattrofunc)0,	/* tp_getattro */
-    (setattrofunc)0,	/* tp_setattro */
-    (PyBufferProcs*)0,	/* tp_as_buffer */
+    (hashfunc)0,             /* tp_hash */
+    (ternaryfunc)0,          /* tp_call */
+    (reprfunc)0,              /* tp_str */
+    (getattrofunc)0,     /* tp_getattro */
+    (setattrofunc)0,     /* tp_setattro */
+    (PyBufferProcs*)0,  /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,                      /* tp_flags */
-    NULL, 				/* Documentation string */
-    (traverseproc)0,	/* tp_traverse */
-    (inquiry)0,		/* tp_clear */
-    (richcmpfunc)0,	/* tp_richcompare */
+    NULL,                        /* Documentation string */
+    (traverseproc)0,     /* tp_traverse */
+    (inquiry)0,             /* tp_clear */
+    (richcmpfunc)0,   /* tp_richcompare */
     offsetof(PyGObject, weakreflist),             /* tp_weaklistoffset */
-    (getiterfunc)0,		/* tp_iter */
-    (iternextfunc)0,	/* tp_iternext */
-    _PyXfceAppMenuItem_methods,			/* tp_methods */
-    0,					/* tp_members */
-    0,		       	/* tp_getset */
-    NULL,				/* tp_base */
-    NULL,				/* tp_dict */
-    (descrgetfunc)0,	/* tp_descr_get */
-    (descrsetfunc)0,	/* tp_descr_set */
+    (getiterfunc)0,          /* tp_iter */
+    (iternextfunc)0,     /* tp_iternext */
+    (struct PyMethodDef*)_PyXfceAppMenuItem_methods, /* tp_methods */
+    (struct PyMemberDef*)0,              /* tp_members */
+    (struct PyGetSetDef*)0,  /* tp_getset */
+    NULL,                              /* tp_base */
+    NULL,                              /* tp_dict */
+    (descrgetfunc)0,    /* tp_descr_get */
+    (descrsetfunc)0,    /* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)_wrap_xfce_app_menu_item_new,		/* tp_init */
+    (initproc)_wrap_xfce_app_menu_item_new,             /* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -241,9 +272,11 @@ _wrap_xfce_app_menu_item_new_with_label(PyObject *self, PyObject *args, PyObject
     char *label;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:app_menu_item_new_with_label", kwlist, &label))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s:app_menu_item_new_with_label", kwlist, &label))
         return NULL;
+    
     ret = xfce_app_menu_item_new_with_label(label);
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -255,9 +288,11 @@ _wrap_xfce_app_menu_item_new_with_mnemonic(PyObject *self, PyObject *args, PyObj
     char *label;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:app_menu_item_new_with_mnemonic", kwlist, &label))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s:app_menu_item_new_with_mnemonic", kwlist, &label))
         return NULL;
+    
     ret = xfce_app_menu_item_new_with_mnemonic(label);
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -269,9 +304,11 @@ _wrap_xfce_app_menu_item_new_with_command(PyObject *self, PyObject *args, PyObje
     char *label, *command;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ss:app_menu_item_new_with_command", kwlist, &label, &command))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ss:app_menu_item_new_with_command", kwlist, &label, &command))
         return NULL;
+    
     ret = xfce_app_menu_item_new_with_command(label, command);
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -284,9 +321,11 @@ _wrap_xfce_app_menu_item_new_full(PyObject *self, PyObject *args, PyObject *kwar
     int needs_term, snotify;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sssii:app_menu_item_new_full", kwlist, &label, &command, &icon_filename, &needs_term, &snotify))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"sssii:app_menu_item_new_full", kwlist, &label, &command, &icon_filename, &needs_term, &snotify))
         return NULL;
+    
     ret = xfce_app_menu_item_new_full(label, command, icon_filename, needs_term, snotify);
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -299,11 +338,28 @@ _wrap_xfce_app_menu_item_new_from_desktop_entry(PyObject *self, PyObject *args, 
     int show_icon;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i:app_menu_item_new_from_desktop_entry", kwlist, &PyXfceDesktopEntry_Type, &entry, &show_icon))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!i:app_menu_item_new_from_desktop_entry", kwlist, &PyXfceDesktopEntry_Type, &entry, &show_icon))
         return NULL;
+    
     ret = xfce_app_menu_item_new_from_desktop_entry(XFCE_DESKTOP_ENTRY(entry->obj), show_icon);
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
+}
+
+static PyObject *
+_wrap_xfce_app_menu_item_set_icon_theme_name(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "theme_name", NULL };
+    char *theme_name;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"s:app_menu_item_set_icon_theme_name", kwlist, &theme_name))
+        return NULL;
+    
+    xfce_app_menu_item_set_icon_theme_name(theme_name);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
 }
 
 static PyObject *
@@ -313,7 +369,7 @@ _wrap_xfce_app_menu_item_set_icon_size(PyObject *self, PyObject *args, PyObject 
     PyObject *py_icon_size = NULL;
     guint icon_size = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:app_menu_item_set_icon_size", kwlist, &py_icon_size))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:app_menu_item_set_icon_size", kwlist, &py_icon_size))
         return NULL;
     if (py_icon_size) {
         if (PyLong_Check(py_icon_size))
@@ -325,33 +381,29 @@ _wrap_xfce_app_menu_item_set_icon_size(PyObject *self, PyObject *args, PyObject 
         if (PyErr_Occurred())
             return NULL;
     }
+    
     xfce_app_menu_item_set_icon_size(icon_size);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
 
-static PyObject *
-_wrap_xfce_app_menu_item_set_icon_theme_name(PyObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "theme_name", NULL };
-    char *theme_name;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:app_menu_item_set_icon_theme_name", kwlist, &theme_name))
-        return NULL;
-    xfce_app_menu_item_set_icon_theme_name(theme_name);
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
-PyMethodDef pyappmenuitem_functions[] = {
-    { "app_menu_item_new_with_label", (PyCFunction)_wrap_xfce_app_menu_item_new_with_label, METH_VARARGS|METH_KEYWORDS },
-    { "app_menu_item_new_with_mnemonic", (PyCFunction)_wrap_xfce_app_menu_item_new_with_mnemonic, METH_VARARGS|METH_KEYWORDS },
-    { "app_menu_item_new_with_command", (PyCFunction)_wrap_xfce_app_menu_item_new_with_command, METH_VARARGS|METH_KEYWORDS },
-    { "app_menu_item_new_full", (PyCFunction)_wrap_xfce_app_menu_item_new_full, METH_VARARGS|METH_KEYWORDS },
-    { "app_menu_item_new_from_desktop_entry", (PyCFunction)_wrap_xfce_app_menu_item_new_from_desktop_entry, METH_VARARGS|METH_KEYWORDS },
-    { "app_menu_item_set_icon_size", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_size, METH_VARARGS|METH_KEYWORDS },
-    { "app_menu_item_set_icon_theme_name", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_theme_name, METH_VARARGS|METH_KEYWORDS },
-    { NULL, NULL, 0 }
+const PyMethodDef pyappmenuitem_functions[] = {
+    { "app_menu_item_new_with_label", (PyCFunction)_wrap_xfce_app_menu_item_new_with_label, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "app_menu_item_new_with_mnemonic", (PyCFunction)_wrap_xfce_app_menu_item_new_with_mnemonic, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "app_menu_item_new_with_command", (PyCFunction)_wrap_xfce_app_menu_item_new_with_command, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "app_menu_item_new_full", (PyCFunction)_wrap_xfce_app_menu_item_new_full, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "app_menu_item_new_from_desktop_entry", (PyCFunction)_wrap_xfce_app_menu_item_new_from_desktop_entry, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "app_menu_item_set_icon_theme_name", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_theme_name, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "app_menu_item_set_icon_size", (PyCFunction)_wrap_xfce_app_menu_item_set_icon_size, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -361,50 +413,44 @@ pyappmenuitem_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
     if ((module = PyImport_ImportModule("xfce4.util")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyXfceDesktopEntry_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "DesktopEntry");
+        _PyXfceDesktopEntry_Type = (PyTypeObject *)PyObject_GetAttrString(module, "DesktopEntry");
         if (_PyXfceDesktopEntry_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name DesktopEntry from xfce4.util");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import xfce4.util");
-        return;
+        return ;
     }
     if ((module = PyImport_ImportModule("gtk")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGtkImageMenuItem_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "ImageMenuItem");
+        _PyGtkImageMenuItem_Type = (PyTypeObject *)PyObject_GetAttrString(module, "ImageMenuItem");
         if (_PyGtkImageMenuItem_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name ImageMenuItem from gtk");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gtk");
-        return;
+        return ;
     }
 
 
-#line 408 "appmenuitem.c"
+#line 454 "appmenuitem.c"
     pygobject_register_class(d, "XfceAppMenuItem", XFCE_TYPE_APP_MENU_ITEM, &PyXfceAppMenuItem_Type, Py_BuildValue("(O)", &PyGtkImageMenuItem_Type));
     pyg_set_object_has_new_constructor(XFCE_TYPE_APP_MENU_ITEM);
 }

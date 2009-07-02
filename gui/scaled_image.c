@@ -27,7 +27,7 @@ static PyTypeObject *_PyGdkPixbuf_Type;
 
 
 /* ---------- forward type declarations ---------- */
-PyTypeObject PyXfceScaledImage_Type;
+PyTypeObject G_GNUC_INTERNAL PyXfceScaledImage_Type;
 
 #line 33 "scaled_image.c"
 
@@ -40,19 +40,20 @@ _wrap_xfce_scaled_image_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char* kwlist[] = { NULL };
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":scaledimage.ScaledImage.__init__", kwlist))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     ":scaledimage.ScaledImage.__init__",
+                                     kwlist))
         return -1;
 
     pygobject_constructv(self, 0, NULL);
-
     if (!self->obj) {
-        PyErr_SetString(PyExc_RuntimeError, "could not create %(typename)s object");
+        PyErr_SetString(
+            PyExc_RuntimeError, 
+            "could not create scaledimage.ScaledImage object");
         return -1;
     }
-
     return 0;
 }
-
 
 static PyObject *
 _wrap_xfce_scaled_image_set_from_pixbuf(PyGObject *self, PyObject *args, PyObject *kwargs)
@@ -60,57 +61,60 @@ _wrap_xfce_scaled_image_set_from_pixbuf(PyGObject *self, PyObject *args, PyObjec
     static char *kwlist[] = { "pixbuf", NULL };
     PyGObject *pixbuf;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:XfceScaledImage.set_from_pixbuf", kwlist, &PyGdkPixbuf_Type, &pixbuf))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!:XfceScaledImage.set_from_pixbuf", kwlist, &PyGdkPixbuf_Type, &pixbuf))
         return NULL;
+    
     xfce_scaled_image_set_from_pixbuf(XFCE_SCALED_IMAGE(self->obj), GDK_PIXBUF(pixbuf->obj));
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
 
-static PyMethodDef _PyXfceScaledImage_methods[] = {
-    { "set_from_pixbuf", (PyCFunction)_wrap_xfce_scaled_image_set_from_pixbuf, METH_VARARGS|METH_KEYWORDS },
-    { NULL, NULL, 0 }
+static const PyMethodDef _PyXfceScaledImage_methods[] = {
+    { "set_from_pixbuf", (PyCFunction)_wrap_xfce_scaled_image_set_from_pixbuf, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
-PyTypeObject PyXfceScaledImage_Type = {
+PyTypeObject G_GNUC_INTERNAL PyXfceScaledImage_Type = {
     PyObject_HEAD_INIT(NULL)
-    0,					/* ob_size */
-    "scaledimage.ScaledImage",			/* tp_name */
-    sizeof(PyGObject),	        /* tp_basicsize */
-    0,					/* tp_itemsize */
+    0,                                 /* ob_size */
+    "scaledimage.ScaledImage",                   /* tp_name */
+    sizeof(PyGObject),          /* tp_basicsize */
+    0,                                 /* tp_itemsize */
     /* methods */
-    (destructor)0,	/* tp_dealloc */
-    (printfunc)0,			/* tp_print */
-    (getattrfunc)0,	/* tp_getattr */
-    (setattrfunc)0,	/* tp_setattr */
-    (cmpfunc)0,		/* tp_compare */
-    (reprfunc)0,		/* tp_repr */
+    (destructor)0,        /* tp_dealloc */
+    (printfunc)0,                      /* tp_print */
+    (getattrfunc)0,       /* tp_getattr */
+    (setattrfunc)0,       /* tp_setattr */
+    (cmpfunc)0,           /* tp_compare */
+    (reprfunc)0,             /* tp_repr */
     (PyNumberMethods*)0,     /* tp_as_number */
     (PySequenceMethods*)0, /* tp_as_sequence */
     (PyMappingMethods*)0,   /* tp_as_mapping */
-    (hashfunc)0,		/* tp_hash */
-    (ternaryfunc)0,		/* tp_call */
-    (reprfunc)0,		/* tp_str */
-    (getattrofunc)0,	/* tp_getattro */
-    (setattrofunc)0,	/* tp_setattro */
-    (PyBufferProcs*)0,	/* tp_as_buffer */
+    (hashfunc)0,             /* tp_hash */
+    (ternaryfunc)0,          /* tp_call */
+    (reprfunc)0,              /* tp_str */
+    (getattrofunc)0,     /* tp_getattro */
+    (setattrofunc)0,     /* tp_setattro */
+    (PyBufferProcs*)0,  /* tp_as_buffer */
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,                      /* tp_flags */
-    NULL, 				/* Documentation string */
-    (traverseproc)0,	/* tp_traverse */
-    (inquiry)0,		/* tp_clear */
-    (richcmpfunc)0,	/* tp_richcompare */
+    NULL,                        /* Documentation string */
+    (traverseproc)0,     /* tp_traverse */
+    (inquiry)0,             /* tp_clear */
+    (richcmpfunc)0,   /* tp_richcompare */
     offsetof(PyGObject, weakreflist),             /* tp_weaklistoffset */
-    (getiterfunc)0,		/* tp_iter */
-    (iternextfunc)0,	/* tp_iternext */
-    _PyXfceScaledImage_methods,			/* tp_methods */
-    0,					/* tp_members */
-    0,		       	/* tp_getset */
-    NULL,				/* tp_base */
-    NULL,				/* tp_dict */
-    (descrgetfunc)0,	/* tp_descr_get */
-    (descrsetfunc)0,	/* tp_descr_set */
+    (getiterfunc)0,          /* tp_iter */
+    (iternextfunc)0,     /* tp_iternext */
+    (struct PyMethodDef*)_PyXfceScaledImage_methods, /* tp_methods */
+    (struct PyMemberDef*)0,              /* tp_members */
+    (struct PyGetSetDef*)0,  /* tp_getset */
+    NULL,                              /* tp_base */
+    NULL,                              /* tp_dict */
+    (descrgetfunc)0,    /* tp_descr_get */
+    (descrsetfunc)0,    /* tp_descr_set */
     offsetof(PyGObject, inst_dict),                 /* tp_dictoffset */
-    (initproc)_wrap_xfce_scaled_image_new,		/* tp_init */
+    (initproc)_wrap_xfce_scaled_image_new,             /* tp_init */
     (allocfunc)0,           /* tp_alloc */
     (newfunc)0,               /* tp_new */
     (freefunc)0,             /* tp_free */
@@ -128,16 +132,19 @@ _wrap_xfce_scaled_image_new_from_pixbuf(PyObject *self, PyObject *args, PyObject
     PyGObject *pb;
     GtkWidget *ret;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!:scaled_image_new_from_pixbuf", kwlist, &PyGdkPixbuf_Type, &pb))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!:scaled_image_new_from_pixbuf", kwlist, &PyGdkPixbuf_Type, &pb))
         return NULL;
+    
     ret = xfce_scaled_image_new_from_pixbuf(GDK_PIXBUF(pb->obj));
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
 
-PyMethodDef pyscaled_image_functions[] = {
-    { "scaled_image_new_from_pixbuf", (PyCFunction)_wrap_xfce_scaled_image_new_from_pixbuf, METH_VARARGS|METH_KEYWORDS },
-    { NULL, NULL, 0 }
+const PyMethodDef pyscaled_image_functions[] = {
+    { "scaled_image_new_from_pixbuf", (PyCFunction)_wrap_xfce_scaled_image_new_from_pixbuf, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -147,50 +154,44 @@ pyscaled_image_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
     if ((module = PyImport_ImportModule("gtk")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGtkImage_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Image");
+        _PyGtkImage_Type = (PyTypeObject *)PyObject_GetAttrString(module, "Image");
         if (_PyGtkImage_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name Image from gtk");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gtk");
-        return;
+        return ;
     }
     if ((module = PyImport_ImportModule("gtk.gdk")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGdkPixbuf_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Pixbuf");
+        _PyGdkPixbuf_Type = (PyTypeObject *)PyObject_GetAttrString(module, "Pixbuf");
         if (_PyGdkPixbuf_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name Pixbuf from gtk.gdk");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gtk.gdk");
-        return;
+        return ;
     }
 
 
-#line 194 "scaled_image.c"
+#line 195 "scaled_image.c"
     pygobject_register_class(d, "XfceScaledImage", XFCE_TYPE_SCALED_IMAGE, &PyXfceScaledImage_Type, Py_BuildValue("(O)", &PyGtkImage_Type));
     pyg_set_object_has_new_constructor(XFCE_TYPE_SCALED_IMAGE);
 }

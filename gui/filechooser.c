@@ -28,8 +28,8 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ----------- functions ----------- */
 
-PyMethodDef pyfilechooser_functions[] = {
-    { NULL, NULL, 0 }
+const PyMethodDef pyfilechooser_functions[] = {
+    { NULL, NULL, 0, NULL }
 };
 
 
@@ -38,6 +38,9 @@ PyMethodDef pyfilechooser_functions[] = {
 void
 pyfilechooser_add_constants(PyObject *module, const gchar *strip_prefix)
 {
+#ifdef VERSION
+    PyModule_AddStringConstant(module, "__version__", VERSION);
+#endif
   pyg_enum_add(module, "FileChooserAction", strip_prefix, XFCE_TYPE_FILE_CHOOSER_ACTION);
 
   if (PyErr_Occurred())
@@ -51,20 +54,18 @@ pyfilechooser_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
 
 
-#line 70 "filechooser.c"
+#line 71 "filechooser.c"
 }

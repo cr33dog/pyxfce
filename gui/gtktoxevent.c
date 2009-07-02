@@ -38,9 +38,11 @@ _wrap_xfce_add_event_win(PyObject *self, PyObject *args, PyObject *kwargs)
     GdkWindow *ret;
     long event_mask;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!l:add_event_win", kwlist, &PyGdkScreen_Type, &gscr, &event_mask))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!l:add_event_win", kwlist, &PyGdkScreen_Type, &gscr, &event_mask))
         return NULL;
+    
     ret = xfce_add_event_win(GDK_SCREEN(gscr->obj), event_mask);
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -48,7 +50,9 @@ _wrap_xfce_add_event_win(PyObject *self, PyObject *args, PyObject *kwargs)
 static PyObject *
 _wrap_closeEventFilter(PyObject *self)
 {
+    
     closeEventFilter();
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -58,7 +62,9 @@ _wrap_getDefaultGtkWidget(PyObject *self)
 {
     GtkWidget *ret;
 
+    
     ret = getDefaultGtkWidget();
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -68,7 +74,9 @@ _wrap_getGdkEventWindow(PyObject *self)
 {
     GdkWindow *ret;
 
+    
     ret = getGdkEventWindow();
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
@@ -78,18 +86,25 @@ _wrap_getDefaultGdkWindow(PyObject *self)
 {
     GdkWindow *ret;
 
+    
     ret = getDefaultGdkWindow();
+    
     /* pygobject_new handles NULL checking */
     return pygobject_new((GObject *)ret);
 }
 
-PyMethodDef pygtktoxevent_functions[] = {
-    { "add_event_win", (PyCFunction)_wrap_xfce_add_event_win, METH_VARARGS|METH_KEYWORDS },
-    { "closeEventFilter", (PyCFunction)_wrap_closeEventFilter, METH_NOARGS },
-    { "getDefaultGtkWidget", (PyCFunction)_wrap_getDefaultGtkWidget, METH_NOARGS },
-    { "getGdkEventWindow", (PyCFunction)_wrap_getGdkEventWindow, METH_NOARGS },
-    { "getDefaultGdkWindow", (PyCFunction)_wrap_getDefaultGdkWindow, METH_NOARGS },
-    { NULL, NULL, 0 }
+const PyMethodDef pygtktoxevent_functions[] = {
+    { "add_event_win", (PyCFunction)_wrap_xfce_add_event_win, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "closeEventFilter", (PyCFunction)_wrap_closeEventFilter, METH_NOARGS,
+      NULL },
+    { "getDefaultGtkWidget", (PyCFunction)_wrap_getDefaultGtkWidget, METH_NOARGS,
+      NULL },
+    { "getGdkEventWindow", (PyCFunction)_wrap_getGdkEventWindow, METH_NOARGS,
+      NULL },
+    { "getDefaultGdkWindow", (PyCFunction)_wrap_getDefaultGdkWindow, METH_NOARGS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
 
@@ -98,6 +113,9 @@ PyMethodDef pygtktoxevent_functions[] = {
 void
 pygtktoxevent_add_constants(PyObject *module, const gchar *strip_prefix)
 {
+#ifdef VERSION
+    PyModule_AddStringConstant(module, "__version__", VERSION);
+#endif
   pyg_enum_add(module, "FilterStatus", strip_prefix, XFCE_TYPE_FILTER_STATUS);
 
   if (PyErr_Occurred())
@@ -111,34 +129,30 @@ pygtktoxevent_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
     if ((module = PyImport_ImportModule("gtk.gdk")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGdkScreen_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "Screen");
+        _PyGdkScreen_Type = (PyTypeObject *)PyObject_GetAttrString(module, "Screen");
         if (_PyGdkScreen_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name Screen from gtk.gdk");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gtk.gdk");
-        return;
+        return ;
     }
 
 
-#line 144 "gtktoxevent.c"
+#line 158 "gtktoxevent.c"
 }

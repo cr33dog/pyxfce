@@ -30,8 +30,8 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ----------- functions ----------- */
 
-PyMethodDef pysession_client_functions[] = {
-    { NULL, NULL, 0 }
+const PyMethodDef pysession_client_functions[] = {
+    { NULL, NULL, 0, NULL }
 };
 
 
@@ -40,6 +40,9 @@ PyMethodDef pysession_client_functions[] = {
 void
 pysession_client_add_constants(PyObject *module, const gchar *strip_prefix)
 {
+#ifdef VERSION
+    PyModule_AddStringConstant(module, "__version__", VERSION);
+#endif
   pyg_enum_add(module, "InteractStyle", strip_prefix, SESSION_TYPE_INTERACT_STYLE);
   pyg_enum_add(module, "RestartStyle", strip_prefix, SESSION_TYPE_RESTART_STYLE);
   pyg_enum_add(module, "ClientState", strip_prefix, SESSION_TYPE_CLIENT_STATE);
@@ -55,20 +58,18 @@ pysession_client_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
 
 
-#line 74 "session_client.c"
+#line 75 "session_client.c"
 }
