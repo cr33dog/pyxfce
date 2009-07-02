@@ -18,18 +18,20 @@
     '("icon-category-graphics" "XFCE_ICON_CATEGORY_GRAPHICS")
     '("icon-category-printer" "XFCE_ICON_CATEGORY_PRINTER")
     '("icon-category-productivity" "XFCE_ICON_CATEGORY_PRODUCTIVITY")
+    '("icon-category-office" "XFCE_ICON_CATEGORY_OFFICE")
     '("icon-category-sound" "XFCE_ICON_CATEGORY_SOUND")
     '("icon-category-terminal" "XFCE_ICON_CATEGORY_TERMINAL")
     '("icon-category-development" "XFCE_ICON_CATEGORY_DEVELOPMENT")
     '("icon-category-settings" "XFCE_ICON_CATEGORY_SETTINGS")
     '("icon-category-system" "XFCE_ICON_CATEGORY_SYSTEM")
     '("icon-category-wine" "XFCE_ICON_CATEGORY_WINE")
+    '("icon-category-accessories" "XFCE_ICON_CATEGORY_ACCESSORIES")
     '("n-builtin-icon-categories" "XFCE_N_BUILTIN_ICON_CATEGORIES")
   )
 )
 
 
-;; From /usr/local/include/xfce4/libxfcegui4/icons.h
+;; From icons.h
 
 (define-function inline_icon_at_size
   (c-name "xfce_inline_icon_at_size")
