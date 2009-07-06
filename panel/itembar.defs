@@ -10,7 +10,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfce4panel/xfce-itembar.h
+;; From xfce-itembar.h
 
 (define-function xfce_itembar_get_type
   (c-name "xfce_itembar_get_type")
@@ -23,6 +23,24 @@
   (return-type "GtkWidget*")
   (parameters
     '("GtkOrientation" "orientation")
+  )
+)
+
+(define-method set_maximum_size
+  (of-object "XfceItembar")
+  (c-name "xfce_itembar_set_maximum_size")
+  (return-type "none")
+  (parameters
+    '("gint" "size")
+  )
+)
+
+(define-method set_allow_expand
+  (of-object "XfceItembar")
+  (c-name "xfce_itembar_set_allow_expand")
+  (return-type "none")
+  (parameters
+    '("gboolean" "allow")
   )
 )
 
@@ -47,7 +65,7 @@
   (return-type "none")
   (parameters
     '("GtkWidget*" "item")
-    '("int" "position")
+    '("gint" "position")
   )
 )
 
@@ -75,7 +93,7 @@
   (return-type "none")
   (parameters
     '("GtkWidget*" "item")
-    '("int" "position")
+    '("gint" "position")
   )
 )
 
@@ -101,13 +119,13 @@
 (define-method get_n_items
   (of-object "XfceItembar")
   (c-name "xfce_itembar_get_n_items")
-  (return-type "int")
+  (return-type "gint")
 )
 
 (define-method get_item_index
   (of-object "XfceItembar")
   (c-name "xfce_itembar_get_item_index")
-  (return-type "int")
+  (return-type "gint")
   (parameters
     '("GtkWidget*" "item")
   )
@@ -118,7 +136,7 @@
   (c-name "xfce_itembar_get_nth_item")
   (return-type "GtkWidget*")
   (parameters
-    '("int" "n")
+    '("gint" "n")
   )
 )
 
@@ -145,18 +163,18 @@
   (c-name "xfce_itembar_get_item_at_point")
   (return-type "GtkWidget*")
   (parameters
-    '("int" "x")
-    '("int" "y")
+    '("gint" "x")
+    '("gint" "y")
   )
 )
 
 (define-method get_drop_index
   (of-object "XfceItembar")
   (c-name "xfce_itembar_get_drop_index")
-  (return-type "int")
+  (return-type "gint")
   (parameters
-    '("int" "x")
-    '("int" "y")
+    '("gint" "x")
+    '("gint" "y")
   )
 )
 
