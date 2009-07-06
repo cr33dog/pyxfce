@@ -35,11 +35,13 @@ _wrap_xfce_resource_lookup(PyObject *self, PyObject *args, PyObject *kwargs)
     gchar *ret;
     XfceResourceType type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Os:resource_lookup", kwlist, &py_type, &filename))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Os:resource_lookup", kwlist, &py_type, &filename))
         return NULL;
-    if (pyg_enum_get_value(XFCE_TYPE_RESOURCE_TYPE, py_type, (gint *)&type))
+    if (pyg_enum_get_value(XFCE_TYPE_RESOURCE_TYPE, py_type, (gpointer)&type))
         return NULL;
+    
     ret = xfce_resource_lookup(type, filename);
+    
     if (ret) {
         PyObject *py_ret = PyString_FromString(ret);
         g_free(ret);
@@ -57,11 +59,13 @@ _wrap_xfce_resource_push_path(PyObject *self, PyObject *args, PyObject *kwargs)
     char *path;
     XfceResourceType type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Os:resource_push_path", kwlist, &py_type, &path))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Os:resource_push_path", kwlist, &py_type, &path))
         return NULL;
-    if (pyg_enum_get_value(XFCE_TYPE_RESOURCE_TYPE, py_type, (gint *)&type))
+    if (pyg_enum_get_value(XFCE_TYPE_RESOURCE_TYPE, py_type, (gpointer)&type))
         return NULL;
+    
     xfce_resource_push_path(type, path);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -73,11 +77,13 @@ _wrap_xfce_resource_pop_path(PyObject *self, PyObject *args, PyObject *kwargs)
     PyObject *py_type = NULL;
     XfceResourceType type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O:resource_pop_path", kwlist, &py_type))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:resource_pop_path", kwlist, &py_type))
         return NULL;
-    if (pyg_enum_get_value(XFCE_TYPE_RESOURCE_TYPE, py_type, (gint *)&type))
+    if (pyg_enum_get_value(XFCE_TYPE_RESOURCE_TYPE, py_type, (gpointer)&type))
         return NULL;
+    
     xfce_resource_pop_path(type);
+    
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -92,11 +98,13 @@ _wrap_xfce_resource_save_location(PyObject *self, PyObject *args, PyObject *kwar
     gchar *ret;
     XfceResourceType type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Osi:resource_save_location", kwlist, &py_type, &relpath, &create))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Osi:resource_save_location", kwlist, &py_type, &relpath, &create))
         return NULL;
-    if (pyg_enum_get_value(XFCE_TYPE_RESOURCE_TYPE, py_type, (gint *)&type))
+    if (pyg_enum_get_value(XFCE_TYPE_RESOURCE_TYPE, py_type, (gpointer)&type))
         return NULL;
+    
     ret = xfce_resource_save_location(type, relpath, create);
+    
     if (ret) {
         PyObject *py_ret = PyString_FromString(ret);
         g_free(ret);
@@ -106,12 +114,16 @@ _wrap_xfce_resource_save_location(PyObject *self, PyObject *args, PyObject *kwar
     return Py_None;
 }
 
-PyMethodDef pyresource_functions[] = {
-    { "resource_lookup", (PyCFunction)_wrap_xfce_resource_lookup, METH_VARARGS|METH_KEYWORDS },
-    { "resource_push_path", (PyCFunction)_wrap_xfce_resource_push_path, METH_VARARGS|METH_KEYWORDS },
-    { "resource_pop_path", (PyCFunction)_wrap_xfce_resource_pop_path, METH_VARARGS|METH_KEYWORDS },
-    { "resource_save_location", (PyCFunction)_wrap_xfce_resource_save_location, METH_VARARGS|METH_KEYWORDS },
-    { NULL, NULL, 0 }
+const PyMethodDef pyresource_functions[] = {
+    { "resource_lookup", (PyCFunction)_wrap_xfce_resource_lookup, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "resource_push_path", (PyCFunction)_wrap_xfce_resource_push_path, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "resource_pop_path", (PyCFunction)_wrap_xfce_resource_pop_path, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "resource_save_location", (PyCFunction)_wrap_xfce_resource_save_location, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
 
@@ -120,6 +132,9 @@ PyMethodDef pyresource_functions[] = {
 void
 pyresource_add_constants(PyObject *module, const gchar *strip_prefix)
 {
+#ifdef VERSION
+    PyModule_AddStringConstant(module, "__version__", VERSION);
+#endif
   pyg_enum_add(module, "ResourceType", strip_prefix, XFCE_TYPE_RESOURCE_TYPE);
 
   if (PyErr_Occurred())
@@ -133,20 +148,18 @@ pyresource_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
 
 
-#line 152 "resource.c"
+#line 165 "resource.c"
 }

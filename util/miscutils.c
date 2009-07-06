@@ -30,7 +30,9 @@ _wrap_xfce_version_string(PyObject *self)
 {
     const gchar *ret;
 
+    
     ret = xfce_version_string();
+    
     if (ret)
         return PyString_FromString(ret);
     Py_INCREF(Py_None);
@@ -42,7 +44,9 @@ _wrap_xfce_get_homedir(PyObject *self)
 {
     const gchar *ret;
 
+    
     ret = xfce_get_homedir();
+    
     if (ret)
         return PyString_FromString(ret);
     Py_INCREF(Py_None);
@@ -54,18 +58,23 @@ _wrap_xfce_get_userdir(PyObject *self)
 {
     const gchar *ret;
 
+    
     ret = xfce_get_userdir();
+    
     if (ret)
         return PyString_FromString(ret);
     Py_INCREF(Py_None);
     return Py_None;
 }
 
-PyMethodDef pymiscutils_functions[] = {
-    { "version_string", (PyCFunction)_wrap_xfce_version_string, METH_NOARGS },
-    { "get_homedir", (PyCFunction)_wrap_xfce_get_homedir, METH_NOARGS },
-    { "get_userdir", (PyCFunction)_wrap_xfce_get_userdir, METH_NOARGS },
-    { NULL, NULL, 0 }
+const PyMethodDef pymiscutils_functions[] = {
+    { "version_string", (PyCFunction)_wrap_xfce_version_string, METH_NOARGS,
+      NULL },
+    { "get_homedir", (PyCFunction)_wrap_xfce_get_homedir, METH_NOARGS,
+      NULL },
+    { "get_userdir", (PyCFunction)_wrap_xfce_get_userdir, METH_NOARGS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -75,20 +84,18 @@ pymiscutils_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
 
 
-#line 94 "miscutils.c"
+#line 101 "miscutils.c"
 }

@@ -34,18 +34,21 @@ _wrap_xfce_mkdirhier(PyObject *self, PyObject *args, PyObject *kwargs)
     unsigned long mode;
     GError *error = NULL;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sk:mkdirhier", kwlist, &whole_path, &mode))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"sk:mkdirhier", kwlist, &whole_path, &mode))
         return NULL;
+    
     ret = xfce_mkdirhier(whole_path, mode, &error);
+    
     if (pyg_error_check(&error))
         return NULL;
     return PyBool_FromLong(ret);
 
 }
 
-PyMethodDef pyfileutils_functions[] = {
-    { "mkdirhier", (PyCFunction)_wrap_xfce_mkdirhier, METH_VARARGS|METH_KEYWORDS },
-    { NULL, NULL, 0 }
+const PyMethodDef pyfileutils_functions[] = {
+    { "mkdirhier", (PyCFunction)_wrap_xfce_mkdirhier, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -55,20 +58,18 @@ pyfileutils_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
 
 
-#line 74 "fileutils.c"
+#line 75 "fileutils.c"
 }

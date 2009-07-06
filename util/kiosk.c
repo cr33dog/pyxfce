@@ -25,8 +25,8 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ----------- functions ----------- */
 
-PyMethodDef pykiosk_functions[] = {
-    { NULL, NULL, 0 }
+const PyMethodDef pykiosk_functions[] = {
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -36,20 +36,18 @@ pykiosk_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
 
 
-#line 55 "kiosk.c"
+#line 53 "kiosk.c"
 }

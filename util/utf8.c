@@ -33,9 +33,11 @@ _wrap_xfce_utf8_remove_controls(PyObject *self, PyObject *args, PyObject *kwargs
     gchar *ret;
     gssize max_len;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sls:utf8_remove_controls", kwlist, &str, &max_len, &end))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"sls:utf8_remove_controls", kwlist, &str, &max_len, &end))
         return NULL;
+    
     ret = xfce_utf8_remove_controls(str, max_len, end);
+    
     if (ret) {
         PyObject *py_ret = PyString_FromString(ret);
         g_free(ret);
@@ -53,9 +55,11 @@ _wrap_xfce_utf8_strndup(PyObject *self, PyObject *args, PyObject *kwargs)
     gchar *ret;
     gssize max_len;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "sl:utf8_strndup", kwlist, &src, &max_len))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"sl:utf8_strndup", kwlist, &src, &max_len))
         return NULL;
+    
     ret = xfce_utf8_strndup(src, max_len);
+    
     if (ret) {
         PyObject *py_ret = PyString_FromString(ret);
         g_free(ret);
@@ -65,10 +69,12 @@ _wrap_xfce_utf8_strndup(PyObject *self, PyObject *args, PyObject *kwargs)
     return Py_None;
 }
 
-PyMethodDef pyutf8_functions[] = {
-    { "utf8_remove_controls", (PyCFunction)_wrap_xfce_utf8_remove_controls, METH_VARARGS|METH_KEYWORDS },
-    { "utf8_strndup", (PyCFunction)_wrap_xfce_utf8_strndup, METH_VARARGS|METH_KEYWORDS },
-    { NULL, NULL, 0 }
+const PyMethodDef pyutf8_functions[] = {
+    { "utf8_remove_controls", (PyCFunction)_wrap_xfce_utf8_remove_controls, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "utf8_strndup", (PyCFunction)_wrap_xfce_utf8_strndup, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -78,20 +84,18 @@ pyutf8_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
 
 
-#line 97 "utf8.c"
+#line 101 "utf8.c"
 }
