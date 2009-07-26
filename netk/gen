@@ -17,7 +17,8 @@ do
 		
 		#echo "${defs}"
 		
-		python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
+		python /usr/lib/python2.6/site-packages/gtk-2.0/codegen/h2def.py "$s" >"${defs}"
+		#python /usr/share/pygtk/2.0/codegen/h2def.py "$s" >"${defs}"
 	fi
 done
 rm -f util.defs
@@ -77,3 +78,17 @@ cat >> screen.defs << EOF
   )
 )
 EOF
+
+cat >>window.defs << EXF
+(define-method set_geometry
+  (of-object "NetkWindow")
+  (c-name "netk_window_set_geometry")
+  (return-type "none")
+  (parameters
+    '("int" "xp")
+    '("int" "yp")
+    '("int" "widthp")
+    '("int" "heightp")
+  )
+)
+EXF

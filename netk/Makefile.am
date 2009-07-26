@@ -30,7 +30,8 @@ _netk_la_SOURCES = \
 	window.c \
 	window_menu.c \
 	workspace.c \
-	netkmodule.c
+	netkmodule.c \
+	set_geometry.c
 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
