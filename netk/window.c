@@ -12,7 +12,9 @@
 
 extern PyTypeObject PyNetkWorkspace_Type;
 
-#line 16 "window.c"
+void netk_window_set_geometry(NetkWindow* window, int x, int y, int width, int height);
+
+#line 18 "window.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -25,7 +27,7 @@ static PyTypeObject *_PyGdkPixbuf_Type;
 /* ---------- forward type declarations ---------- */
 PyTypeObject G_GNUC_INTERNAL PyNetkWindow_Type;
 
-#line 29 "window.c"
+#line 31 "window.c"
 
 
 
@@ -147,7 +149,7 @@ _wrap_netk_window_get_session_id_utf8(PyGObject *self)
     return Py_None;
 }
 
-#line 43 "window.override"
+#line 45 "window.override"
 static PyObject *
 _wrap_netk_window_get_pid(PyGObject *self)
 {
@@ -161,7 +163,7 @@ _wrap_netk_window_get_pid(PyGObject *self)
 
     return PyInt_FromLong(ret);
 }
-#line 165 "window.c"
+#line 167 "window.c"
 
 
 static PyObject *
@@ -708,7 +710,7 @@ _wrap_netk_window_get_state(PyGObject *self)
     return pyg_flags_from_gtype(NETK_TYPE_WINDOW_STATE, ret);
 }
 
-#line 33 "window.override"
+#line 35 "window.override"
 static PyObject *
 _wrap_netk_window_get_geometry(PyGObject *self)
 {
@@ -717,7 +719,7 @@ _wrap_netk_window_get_geometry(PyGObject *self)
     netk_window_get_geometry(NETK_WINDOW(self->obj), &x, &y, &width, &height);
     return Py_BuildValue("(iiii)", x, y, width, height);
 }
-#line 721 "window.c"
+#line 723 "window.c"
 
 
 static PyObject *
@@ -766,6 +768,21 @@ _wrap_netk_window_is_in_viewport(PyGObject *self, PyObject *args, PyObject *kwar
     
     return PyBool_FromLong(ret);
 
+}
+
+static PyObject *
+_wrap_netk_window_set_geometry(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "xp", "yp", "widthp", "heightp", NULL };
+    int xp, yp, widthp, heightp;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"iiii:NetkWindow.set_geometry", kwlist, &xp, &yp, &widthp, &heightp))
+        return NULL;
+    
+    netk_window_set_geometry(NETK_WINDOW(self->obj), xp, yp, widthp, heightp);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
 }
 
 static const PyMethodDef _PyNetkWindow_methods[] = {
@@ -891,6 +908,8 @@ static const PyMethodDef _PyNetkWindow_methods[] = {
       NULL },
     { "is_in_viewport", (PyCFunction)_wrap_netk_window_is_in_viewport, METH_VARARGS|METH_KEYWORDS,
       NULL },
+    { "set_geometry", (PyCFunction)_wrap_netk_window_set_geometry, METH_VARARGS|METH_KEYWORDS,
+      NULL },
     { NULL, NULL, 0, NULL }
 };
 
@@ -1014,7 +1033,7 @@ pywindow_register_classes(PyObject *d)
     }
 
 
-#line 1018 "window.c"
+#line 1037 "window.c"
     pygobject_register_class(d, "NetkWindow", NETK_TYPE_WINDOW, &PyNetkWindow_Type, Py_BuildValue("(O)", &PyGObject_Type));
     pyg_set_object_has_new_constructor(NETK_TYPE_WINDOW);
 }
