@@ -1,5 +1,6 @@
 -*- mode: m4 -*-
 AC_PREREQ(2.52)
+AC_CONFIG_MACRO_DIR([m4])
 
 ACLOCAL_AMFLAGS = -I m4
 
@@ -57,8 +58,6 @@ dnl XFCE_MIGHTY_MOUSE_PANEL_PLUGIN([PANEL], [4.3])
 dnl PANEL_EXTERNALPLUGINDIR
 dnl PANEL_DESKTOPDATADIR
 
-BM_DEPEND([XFCE4_MCS_CLIENT], [libxfce4mcs-client-1.0], [4.1.0])
-BM_DEPEND([XFCE4_MCS_MANAGER], [libxfce4mcs-manager-1.0], [4.1.0])
 BM_DEPEND([GTK], [gtk+-2.0], [2.4])
 BM_DEPEND([PYGTK], [pygtk-2.0], [2.6.0])
 
@@ -86,7 +85,6 @@ AC_CONFIG_FILES(
   Makefile
   pyxfce-1.0.pc
   gui/Makefile
-  mcs/Makefile
   netk/Makefile
   panel/Makefile
   util/Makefile

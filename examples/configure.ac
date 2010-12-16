@@ -37,8 +37,6 @@ XFCE_MIGHTY_MOUSE_PANEL_PLUGIN([PANEL], [4.3])
 dnl PANEL_EXTERNALPLUGINDIR
 dnl PANEL_DESKTOPDATADIR
 
-BM_DEPEND([XFCE4_MCS_CLIENT], [libxfce4mcs-client-1.0], [4.1.0])
-BM_DEPEND([XFCE4_MCS_MANAGER], [libxfce4mcs-manager-1.0], [4.1.0])
 dnl BM_DEPEND([GTK], [gtk+-2.0], [2.4])
 dnl BM_DEPEND([PYGTK], [pygtk-2.0], [2.6.0])
 
