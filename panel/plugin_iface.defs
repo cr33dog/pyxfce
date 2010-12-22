@@ -9,7 +9,7 @@
 ;; Enumerations and flags ...
 
 
-;; From /usr/local/include/xfce4/libxfce4panel/xfce-panel-plugin-iface.h
+;; From xfce-panel-plugin-iface.h
 
 (define-function xfce_panel_plugin_get_type
   (c-name "xfce_panel_plugin_get_type")
@@ -19,25 +19,25 @@
 (define-method get_name
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_get_name")
-  (return-type "const-char*")
+  (return-type "gchar*")
 )
 
 (define-method get_id
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_get_id")
-  (return-type "const-char*")
+  (return-type "gchar*")
 )
 
 (define-method get_display_name
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_get_display_name")
-  (return-type "const-char*")
+  (return-type "gchar*")
 )
 
 (define-method get_size
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_get_size")
-  (return-type "int")
+  (return-type "gint")
 )
 
 (define-method get_screen_position
@@ -118,16 +118,46 @@
   )
 )
 
+(define-method arrow_type
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_arrow_type")
+  (return-type "GtkArrowType")
+)
+
+(define-method position_widget
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_position_widget")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "menu_widget")
+    '("GtkWidget*" "attach_widget")
+    '("gint*" "x")
+    '("gint*" "y")
+  )
+)
+
+(define-function xfce_panel_plugin_position_menu
+  (c-name "xfce_panel_plugin_position_menu")
+  (return-type "none")
+  (parameters
+    '("GtkMenu*" "menu")
+    '("gint*" "x")
+    '("gint*" "y")
+    '("gboolean*" "push_in")
+    '("gpointer" "panel_plugin")
+  )
+)
+
 (define-method lookup_rc_file
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_lookup_rc_file")
-  (return-type "char*")
+  (return-type "gchar*")
 )
 
 (define-method save_location
   (of-object "XfcePanelPlugin")
   (c-name "xfce_panel_plugin_save_location")
-  (return-type "char*")
+  (return-type "gchar*")
   (parameters
     '("gboolean" "create")
   )
@@ -139,6 +169,15 @@
   (return-type "none")
   (parameters
     '("GtkWidget*" "widget")
+  )
+)
+
+(define-method set_panel_hidden
+  (of-object "XfcePanelPlugin")
+  (c-name "xfce_panel_plugin_set_panel_hidden")
+  (return-type "none")
+  (parameters
+    '("gboolean" "hidden")
   )
 )
 
