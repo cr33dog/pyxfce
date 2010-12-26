@@ -20,7 +20,6 @@ _panel_la_LIBADD = $(MIGHTY_MOUSE_LIBS) $(PYTHON_LIBS)
 _panel_la_SOURCES = \
 	arrow_button.c \
 	enums.c \
-	enum_types.c \
 	external_plugin.c \
 	itembar.c \
 	plugin_iface.c \
@@ -31,7 +30,6 @@ defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
 	arrow_button.defs \
 	enums.defs \
-	enum_types.defs \
 	external_plugin.defs \
 	itembar.defs \
 	plugin_iface.defs \
