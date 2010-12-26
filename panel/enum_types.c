@@ -7,7 +7,7 @@
 #line 6 "enum_types.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <libxfce4panel/xfce-panel-enums.h>
+#include <libxfce4panel/libxfce4panel-enum-types.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 
@@ -27,8 +27,8 @@ static PyTypeObject *_PyGObject_Type;
 
 /* ----------- functions ----------- */
 
-PyMethodDef pyenum_types_functions[] = {
-    { NULL, NULL, 0 }
+const PyMethodDef pyenum_types_functions[] = {
+    { NULL, NULL, 0, NULL }
 };
 
 /* initialise stuff extension classes */
@@ -38,20 +38,18 @@ pyenum_types_register_classes(PyObject *d)
     PyObject *module;
 
     if ((module = PyImport_ImportModule("gobject")) != NULL) {
-        PyObject *moddict = PyModule_GetDict(module);
-
-        _PyGObject_Type = (PyTypeObject *)PyDict_GetItemString(moddict, "GObject");
+        _PyGObject_Type = (PyTypeObject *)PyObject_GetAttrString(module, "GObject");
         if (_PyGObject_Type == NULL) {
             PyErr_SetString(PyExc_ImportError,
                 "cannot import name GObject from gobject");
-            return;
+            return ;
         }
     } else {
         PyErr_SetString(PyExc_ImportError,
             "could not import gobject");
-        return;
+        return ;
     }
 
 
-#line 57 "enum_types.c"
+#line 55 "enum_types.c"
 }
