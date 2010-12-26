@@ -7,12 +7,11 @@
 #line 6 "enums.override"
 #include "pygobject.h"
 #include <gtk/gtk.h>
-#include <libxfce4panel/xfce-panel-enums.h>
 #include <libxfce4panel/libxfce4panel-enum-types.h>
 
 extern PyTypeObject PyGtkWidget_Type;
 
-#line 16 "enums.c"
+#line 15 "enums.c"
 
 
 /* ---------- types from other modules ---------- */
@@ -24,7 +23,7 @@ static PyTypeObject *_PyGtkWidget_Type;
 
 /* ---------- forward type declarations ---------- */
 
-#line 28 "enums.c"
+#line 27 "enums.c"
 
 
 
@@ -81,5 +80,5 @@ pyenums_register_classes(PyObject *d)
     }
 
 
-#line 85 "enums.c"
+#line 84 "enums.c"
 }

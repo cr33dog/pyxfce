@@ -232,6 +232,17 @@ _wrap_xfce_panel_plugin_register_menu(PyGObject *self, PyObject *args, PyObject 
 }
 
 static PyObject *
+_wrap_xfce_panel_plugin_arrow_type(PyGObject *self)
+{
+    gint ret;
+
+    
+    ret = xfce_panel_plugin_arrow_type(XFCE_PANEL_PLUGIN(self->obj));
+    
+    return pyg_enum_from_gtype(GTK_TYPE_ARROW_TYPE, ret);
+}
+
+static PyObject *
 _wrap_xfce_panel_plugin_lookup_rc_file(PyGObject *self)
 {
     gchar *ret;
@@ -329,6 +340,8 @@ static const PyMethodDef _PyXfcePanelPlugin_methods[] = {
     { "unblock_menu", (PyCFunction)_wrap_xfce_panel_plugin_unblock_menu, METH_NOARGS,
       NULL },
     { "register_menu", (PyCFunction)_wrap_xfce_panel_plugin_register_menu, METH_VARARGS|METH_KEYWORDS,
+      NULL },
+    { "arrow_type", (PyCFunction)_wrap_xfce_panel_plugin_arrow_type, METH_NOARGS,
       NULL },
     { "lookup_rc_file", (PyCFunction)_wrap_xfce_panel_plugin_lookup_rc_file, METH_NOARGS,
       NULL },
@@ -438,6 +451,6 @@ pyplugin_iface_register_classes(PyObject *d)
     }
 
 
-#line 442 "plugin_iface.c"
+#line 455 "plugin_iface.c"
     pyg_register_interface(d, "PanelPlugin", XFCE_TYPE_PANEL_PLUGIN, &PyXfcePanelPlugin_Type);
 }
