@@ -1,0 +1,55 @@
+#!/bin/bash
+
+inc="`pkg-config --variable=includedir libxfconf-0`"/xfce4
+
+for s in "${inc}"/xfconf-0/xfconf/*.h
+do
+	#echo "XX $s"
+	t="${s##*/}"
+	
+	t="${t%.h}"
+	
+	if [ "${t#xfconf-}" != "$t" ]
+	then
+		defs="${t/-/_}.defs"
+		defs="${defs/-/_}"
+		defs="${defs/-/_}"
+		
+		#echo "${defs}"
+		
+		python2 /usr/lib/python2.6/site-packages/gtk-2.0/codegen/h2def.py "$s" >"${defs}"
+	fi
+done
+rm -f util.defs
+
+for s in xfconf_*.defs
+do
+	t="${s#xfconf_}"
+	mv "$s" "$t"
+done
+
+#mmv -o 'xfce-*.defs' '#1.defs'
+#rm -f libxfce4util.defs
+#rm -f libxfce4util-config.defs
+#rm -f generics.defs
+#rm -f debug.defs
+
+cat >P  << EOF
+(define-object Channel
+  (in-module "Xfce")
+  (parent "GObject")
+  (c-name "XfconfChannel")
+  (gtype-id "XFCONF_TYPE_CHANNEL")
+)
+EOF
+cat P channel.defs > channel.defs.new && mv channel.defs.new channel.defs
+
+
+for s in *.defs
+do
+  if [ "$s" != "*.defs" ]
+  then
+    sed -e 's;(define-function xfconf_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
+  fi
+done
+

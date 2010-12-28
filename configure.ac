@@ -43,7 +43,7 @@ dnl get rid of the -export-dynamic stuff from the configure flags ...
 export_dynamic=`(./libtool --config; echo eval echo \\$export_dynamic_flag_spec) | sh`
 
 BM_DEPEND([XFCE4_UTIL], [libxfce4util-1.0], [4.1.0])
-
+BM_DEPEND([XFCE4_XFCONF], [libxfconf-0], [4.6.2])
 BM_DEPEND([XFCE4_GUI], [libxfcegui4-1.0], [4.3.90])
 
 # new panel
@@ -88,5 +88,6 @@ AC_CONFIG_FILES(
   netk/Makefile
   panel/Makefile
   util/Makefile
+  xfconf/Makefile
 )
 AC_OUTPUT
