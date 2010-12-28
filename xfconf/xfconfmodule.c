@@ -11,6 +11,8 @@
 #include <pygobject.h>
 #include <pyerrors.h>
 
+#include <xfconf/xfconf.h>
+
 extern const PyMethodDef pybinding_functions[];
 extern const PyMethodDef pychannel_functions[];
 extern const PyMethodDef pyerrors_functions[];
@@ -71,8 +73,9 @@ init_xfconf(void)
 
 	init_pygobject ();
 	if(!xfconf_init(&error)) {
-		fprintf (stderr, "Unable to initialize xfconf: %s\n", error->message);
-		g_error_free(error);
+		fprintf(stderr, "Unable to initialize xfconf: %s\n", error->message);
+		if(pyg_error_check(&error))
+			return;
 	}
 
 	my_register1 ();

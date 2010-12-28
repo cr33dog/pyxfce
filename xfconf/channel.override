@@ -44,3 +44,30 @@ _wrap_xfconf_list_channels(PyObject *self, PyObject *args, PyObject *kwargs)
     Py_INCREF(Py_None);
     return Py_None;
 }
+%%
+override xfconf_channel_get_properties kwargs
+static PyObject *
+_wrap_xfconf_channel_get_properties(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "property_base", NULL };
+    GHashTable *ret;
+    char* path;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:XfconfChannel.get_properties", kwlist, &path))
+        return NULL;
+    ret = xfconf_channel_get_properties(XFCONF_CHANNEL(self->obj), path);
+    if (ret) {
+        GHashTableIter iter;
+        gpointer key, value;
+        PyObject* py_ret;
+        py_ret = PyDict_New();
+        g_hash_table_iter_init(&iter, ret);
+        while(g_hash_table_iter_next(&iter, &key, &value)) {
+            PyDict_SetItem(py_ret, PyString_FromString((const char*) key), pyg_value_as_pyobject((GValue*) value, TRUE));
+        }
+        g_hash_table_destroy(ret);
+        return py_ret;
+    }
+    Py_INCREF(Py_None);
+    return Py_None;
+}
