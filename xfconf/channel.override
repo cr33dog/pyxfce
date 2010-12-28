@@ -21,3 +21,26 @@ ignore-glob
 %%
 ignore-win32
 %%
+override xfconf_list_channels kwargs
+static PyObject *
+_wrap_xfconf_list_channels(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { NULL };
+    gchar **ret;
+    int i;
+    int count;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, ":list_channels", kwlist))
+        return NULL;
+    ret = xfconf_list_channels();
+    if (ret) {
+        count = g_strv_length(ret);
+        PyObject *py_ret = PyList_New(count);
+        for(i = 0; i < count; ++i)
+            PyList_SetItem(py_ret, i, PyString_FromString(ret[i]));
+        g_strfreev(ret);
+        return py_ret;
+    }
+    Py_INCREF(Py_None);
+    return Py_None;
+}

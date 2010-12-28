@@ -64,10 +64,16 @@ my_register1()
 DL_EXPORT(void)
 init_xfconf(void)
 {
+	GError* error = NULL;
+
 	/* set the default python encoding to utf-8 */
 	PyUnicode_SetDefaultEncoding("utf-8");
 
 	init_pygobject ();
+	if(!xfconf_init(&error)) {
+		fprintf (stderr, "Unable to initialize xfconf: %s\n", error->message);
+		g_error_free(error);
+	}
 
 	my_register1 ();
 }

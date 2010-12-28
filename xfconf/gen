@@ -41,6 +41,14 @@ cat >P  << EOF
   (c-name "XfconfChannel")
   (gtype-id "XFCONF_TYPE_CHANNEL")
 )
+
+(define-function list_channels
+  (c-name "xfconf_list_channels")
+  (return-type "gchar**")
+  (parameters
+  )
+)
+
 EOF
 cat P channel.defs > channel.defs.new && mv channel.defs.new channel.defs
 
