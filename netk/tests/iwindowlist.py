@@ -3,7 +3,7 @@
 import pygtk
 pygtk.require("2.0")
 import gtk
-import xfce4
+import xfce4.netk
 
 screen = xfce4.netk.screen_get_default()
 
