@@ -1,0 +1,40 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum Error
+  (in-module "Xfconf")
+  (c-name "XfconfError")
+  (gtype-id "XFCONF_TYPE_ERROR")
+  (values
+    '("unknown" "XFCONF_ERROR_UNKNOWN")
+    '("channel-not-found" "XFCONF_ERROR_CHANNEL_NOT_FOUND")
+    '("property-not-found" "XFCONF_ERROR_PROPERTY_NOT_FOUND")
+    '("read-failure" "XFCONF_ERROR_READ_FAILURE")
+    '("write-failure" "XFCONF_ERROR_WRITE_FAILURE")
+    '("permission-denied" "XFCONF_ERROR_PERMISSION_DENIED")
+    '("internal-error" "XFCONF_ERROR_INTERNAL_ERROR")
+    '("no-backend" "XFCONF_ERROR_NO_BACKEND")
+    '("invalid-property" "XFCONF_ERROR_INVALID_PROPERTY")
+    '("invalid-channel" "XFCONF_ERROR_INVALID_CHANNEL")
+  )
+)
+
+
+;; From xfconf-errors.h
+
+(define-function error_get_type
+  (c-name "xfconf_error_get_type")
+  (return-type "GType")
+  (parameters
+  )
+)
+
+(define-function get_error_quark
+  (c-name "xfconf_get_error_quark")
+  (return-type "GQuark")
+  (parameters
+  )
+)
+
+
