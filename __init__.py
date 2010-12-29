@@ -1,5 +1,5 @@
 
-__all__ = [ "gui", "menu", "netk", "panel", "util" ]
+__all__ = [ "gui", "menu", "netk", "panel", "util", "xfconf" ]
 
 #import util
 #import gui

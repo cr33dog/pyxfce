@@ -12,6 +12,7 @@ m4_define(pyxfce_version, pyxfce_major_version.pyxfce_minor_version.pyxfce_micro
 m4_define(xfce_required_version, 4.4.0)
 
 AC_INIT(pyxfce, pyxfce_version, [])
+AC_CONFIG_MACRO_DIR([m4])
 
 AC_DEFINE(PYXFCE_MAJOR_VERSION, pyxfce_major_version, [pyxfce major version])
 AC_DEFINE(PYXFCE_MINOR_VERSION, pyxfce_minor_version, [pyxfce minor version])
