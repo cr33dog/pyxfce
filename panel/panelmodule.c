@@ -25,7 +25,7 @@ void pyenums_add_constants(PyObject *module, const gchar *strip_prefix);
 
 static PyMethodDef all_functions[1000];
 
-static PyMethodDef* each_functions[] = {
+static const PyMethodDef* each_functions[] = {
   pyarrow_button_functions,
   pyenums_functions,
   pyexternal_plugin_functions,

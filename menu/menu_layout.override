@@ -1,0 +1,25 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <glib.h>
+#include <libxfce4menu/libxfce4menu.h>
+#define XFCE_TYPE_MENU_LAYOUT_TYPE XFCE_TYPE_MENU_LAYOUT
+#define XFCE_MENU_LAYOUT_TYPE XFCE_MENU_LAYOUT
+
+%%
+include
+%%
+modulename menu_layout
+%%
+import gobject.GObject as PyGObject_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%

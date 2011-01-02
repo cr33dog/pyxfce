@@ -1,0 +1,23 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <glib.h>
+#include <libxfce4menu/libxfce4menu.h>
+
+%%
+include
+%%
+modulename config
+%%
+import gobject.GObject as PyGObject_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%
