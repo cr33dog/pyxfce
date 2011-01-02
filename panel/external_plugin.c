@@ -17,7 +17,6 @@ static PyObject *
 register_external_full_constructor(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "socket_ID", "plugin", NULL };
-    GtkOrientation orientation;
     int socket_ID;
     PyGObject *py_plugin = NULL;
     XfcePanelPlugin* plugin = NULL;

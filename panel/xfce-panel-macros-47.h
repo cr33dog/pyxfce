@@ -375,12 +375,12 @@ G_BEGIN_DECLS
                         "display-name", argv[PLUGIN_ARGV_DISPLAY_NAME], \
                         "comment", argv[PLUGIN_ARGV_COMMENT],  \
                         "arguments", argv + PLUGIN_ARGV_ARGUMENTS, NULL); \
-    gtk_container_add (GTK_CONTAINER (plug), xpp); \
+    gtk_container_add (GTK_CONTAINER (plug), GTK_WIDGET(xpp)); \
     g_signal_connect_after (G_OBJECT (xpp), "realize", \
         G_CALLBACK (_xpp_realize), plug); \
     g_signal_connect_after (G_OBJECT (xpp), "destroy", \
         G_CALLBACK (_xpp_quit_main_loop), NULL); \
-    gtk_widget_show (xpp); \
+    gtk_widget_show (GTK_WIDGET(xpp)); \
     \
     if (*argv[PLUGIN_ARGV_BACKGROUND_IMAGE] != '\0') \
       { \
@@ -427,12 +427,12 @@ G_BEGIN_DECLS
       colormap = gdk_screen_get_rgb_colormap (screen); \
     if (colormap != NULL) \
       gtk_widget_set_colormap (plug, colormap); \
-    gtk_container_add (GTK_CONTAINER (plug), xpp); \
+    gtk_container_add (GTK_CONTAINER (plug), GTK_WIDGET(xpp)); \
     g_signal_connect_after (G_OBJECT (xpp), "realize", \
         G_CALLBACK (_xpp_realize), plug); \
     g_signal_connect_after (G_OBJECT (xpp), "destroy", \
         G_CALLBACK (_xpp_quit_main_loop), NULL); \
-    gtk_widget_show (xpp); \
+    gtk_widget_show (GTK_WIDGET(xpp)); \
     \
     if (0) \
       { \
