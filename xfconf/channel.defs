@@ -1,0 +1,408 @@
+(define-object Channel
+  (in-module "Xfce")
+  (parent "GObject")
+  (c-name "XfconfChannel")
+  (gtype-id "XFCONF_TYPE_CHANNEL")
+)
+
+(define-function list_channels
+  (c-name "xfconf_list_channels")
+  (return-type "gchar**")
+  (parameters
+  )
+)
+
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfconf-channel.h
+
+(define-function channel_get_type
+  (c-name "xfconf_channel_get_type")
+  (return-type "GType")
+  (parameters
+  )
+)
+
+(define-function channel_get
+  (c-name "xfconf_channel_get")
+  (return-type "XfconfChannel*")
+  (parameters
+    '("const-gchar*" "channel_name")
+  )
+)
+
+(define-function channel_new
+  (c-name "xfconf_channel_new")
+  (is-constructor-of "XfconfChannel")
+  (return-type "XfconfChannel*")
+  (parameters
+    '("const-gchar*" "channel_name")
+  )
+)
+
+(define-function channel_new_with_property_base
+  (c-name "xfconf_channel_new_with_property_base")
+  (return-type "XfconfChannel*")
+  (parameters
+    '("const-gchar*" "channel_name")
+    '("const-gchar*" "property_base")
+  )
+)
+
+(define-method has_property
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_has_property")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+  )
+)
+
+(define-method is_property_locked
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_is_property_locked")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+  )
+)
+
+(define-method reset_property
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_reset_property")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property_base")
+    '("gboolean" "recursive")
+  )
+)
+
+(define-method get_properties
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_properties")
+  (return-type "GHashTable*")
+  (parameters
+    '("const-gchar*" "property_base")
+  )
+)
+
+(define-method get_string
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_string")
+  (return-type "gchar*")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-gchar*" "default_value")
+  )
+)
+
+(define-method set_string
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_string")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-gchar*" "value")
+  )
+)
+
+(define-method get_int
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_int")
+  (return-type "gint32")
+  (parameters
+    '("const-gchar*" "property")
+    '("gint32" "default_value")
+  )
+)
+
+(define-method set_int
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_int")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("gint32" "value")
+  )
+)
+
+(define-method get_uint
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_uint")
+  (return-type "guint32")
+  (parameters
+    '("const-gchar*" "property")
+    '("guint32" "default_value")
+  )
+)
+
+(define-method set_uint
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_uint")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("guint32" "value")
+  )
+)
+
+(define-method get_uint64
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_uint64")
+  (return-type "guint64")
+  (parameters
+    '("const-gchar*" "property")
+    '("guint64" "default_value")
+  )
+)
+
+(define-method set_uint64
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_uint64")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("guint64" "value")
+  )
+)
+
+(define-method get_double
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_double")
+  (return-type "gdouble")
+  (parameters
+    '("const-gchar*" "property")
+    '("gdouble" "default_value")
+  )
+)
+
+(define-method set_double
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_double")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("gdouble" "value")
+  )
+)
+
+(define-method get_bool
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_bool")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("gboolean" "default_value")
+  )
+)
+
+(define-method set_bool
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_bool")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("gboolean" "value")
+  )
+)
+
+(define-method get_string_list
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_string_list")
+  (return-type "gchar**")
+  (parameters
+    '("const-gchar*" "property")
+  )
+)
+
+(define-method set_string_list
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_string_list")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-gchar*-const*" "values")
+  )
+)
+
+(define-method get_property
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_property")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("GValue*" "value")
+  )
+)
+
+(define-method set_property
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_property")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-GValue*" "value")
+  )
+)
+
+(define-method get_array
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_array")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("GType" "first_value_type")
+  )
+  (varargs #t)
+)
+
+(define-method get_array_valist
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_array_valist")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("GType" "first_value_type")
+    '("va_list" "var_args")
+  )
+)
+
+(define-method get_arrayv
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_arrayv")
+  (return-type "GPtrArray*")
+  (parameters
+    '("const-gchar*" "property")
+  )
+)
+
+(define-method set_array
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_array")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("GType" "first_value_type")
+  )
+  (varargs #t)
+)
+
+(define-method set_array_valist
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_array_valist")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("GType" "first_value_type")
+    '("va_list" "var_args")
+  )
+)
+
+(define-method set_arrayv
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_arrayv")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("GPtrArray*" "values")
+  )
+)
+
+(define-method get_named_struct
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_named_struct")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-gchar*" "struct_name")
+    '("gpointer" "value_struct")
+  )
+)
+
+(define-method set_named_struct
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_named_struct")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-gchar*" "struct_name")
+    '("gpointer" "value_struct")
+  )
+)
+
+(define-method get_struct
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_struct")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("gpointer" "value_struct")
+    '("GType" "first_member_type")
+  )
+  (varargs #t)
+)
+
+(define-method get_struct_valist
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_struct_valist")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("gpointer" "value_struct")
+    '("GType" "first_member_type")
+    '("va_list" "var_args")
+  )
+)
+
+(define-method get_structv
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_get_structv")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("gpointer" "value_struct")
+    '("guint" "n_members")
+    '("GType*" "member_types")
+  )
+)
+
+(define-method set_struct
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_struct")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-gpointer" "value_struct")
+    '("GType" "first_member_type")
+  )
+  (varargs #t)
+)
+
+(define-method set_struct_valist
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_struct_valist")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-gpointer" "value_struct")
+    '("GType" "first_member_type")
+    '("va_list" "var_args")
+  )
+)
+
+(define-method set_structv
+  (of-object "XfconfChannel")
+  (c-name "xfconf_channel_set_structv")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property")
+    '("const-gpointer" "value_struct")
+    '("guint" "n_members")
+    '("GType*" "member_types")
+  )
+)
+
+

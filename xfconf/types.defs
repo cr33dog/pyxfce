@@ -1,0 +1,56 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfconf-types.h
+
+(define-function uint16_get_type
+  (c-name "xfconf_uint16_get_type")
+  (return-type "GType")
+  (parameters
+  )
+)
+
+(define-function g_value_get_uint16
+  (c-name "xfconf_g_value_get_uint16")
+  (return-type "guint16")
+  (parameters
+    '("const-GValue*" "value")
+  )
+)
+
+(define-function g_value_set_uint16
+  (c-name "xfconf_g_value_set_uint16")
+  (return-type "none")
+  (parameters
+    '("GValue*" "value")
+    '("guint16" "v_uint16")
+  )
+)
+
+(define-function int16_get_type
+  (c-name "xfconf_int16_get_type")
+  (return-type "GType")
+  (parameters
+  )
+)
+
+(define-function g_value_get_int16
+  (c-name "xfconf_g_value_get_int16")
+  (return-type "gint16")
+  (parameters
+    '("const-GValue*" "value")
+  )
+)
+
+(define-function g_value_set_int16
+  (c-name "xfconf_g_value_set_int16")
+  (return-type "none")
+  (parameters
+    '("GValue*" "value")
+    '("gint16" "v_int16")
+  )
+)
+
+
