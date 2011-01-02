@@ -1,0 +1,124 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum MenuLayoutMergeType
+  (in-module "Xfce")
+  (c-name "XfceMenuLayoutMergeType")
+  (gtype-id "XFCE_TYPE_MENU_LAYOUT_MERGE_TYPE")
+  (values
+    '("menus" "XFCE_MENU_LAYOUT_MERGE_MENUS")
+    '("files" "XFCE_MENU_LAYOUT_MERGE_FILES")
+    '("all" "XFCE_MENU_LAYOUT_MERGE_ALL")
+  )
+)
+
+(define-enum MenuLayoutNodeType
+  (in-module "Xfce")
+  (c-name "XfceMenuLayoutNodeType")
+  (gtype-id "XFCE_TYPE_MENU_LAYOUT_NODE_TYPE")
+  (values
+    '("invalid" "XFCE_MENU_LAYOUT_NODE_INVALID")
+    '("filename" "XFCE_MENU_LAYOUT_NODE_FILENAME")
+    '("menuname" "XFCE_MENU_LAYOUT_NODE_MENUNAME")
+    '("separator" "XFCE_MENU_LAYOUT_NODE_SEPARATOR")
+    '("merge" "XFCE_MENU_LAYOUT_NODE_MERGE")
+  )
+)
+
+
+;; From xfce-menu-layout.h
+
+(define-function xfce_menu_layout_get_type
+  (c-name "xfce_menu_layout_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_layout_new
+  (c-name "xfce_menu_layout_new")
+  (is-constructor-of "XfceMenuLayout")
+  (return-type "XfceMenuLayout*")
+)
+
+(define-method add_filename
+  (of-object "XfceMenuLayout")
+  (c-name "xfce_menu_layout_add_filename")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method add_menuname
+  (of-object "XfceMenuLayout")
+  (c-name "xfce_menu_layout_add_menuname")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "menuname")
+  )
+)
+
+(define-method add_separator
+  (of-object "XfceMenuLayout")
+  (c-name "xfce_menu_layout_add_separator")
+  (return-type "none")
+)
+
+(define-method add_merge
+  (of-object "XfceMenuLayout")
+  (c-name "xfce_menu_layout_add_merge")
+  (return-type "none")
+  (parameters
+    '("XfceMenuLayoutMergeType" "type")
+  )
+)
+
+(define-method get_nodes
+  (of-object "XfceMenuLayout")
+  (c-name "xfce_menu_layout_get_nodes")
+  (return-type "GSList*")
+)
+
+(define-method get_filename_used
+  (of-object "XfceMenuLayout")
+  (c-name "xfce_menu_layout_get_filename_used")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method get_menuname_used
+  (of-object "XfceMenuLayout")
+  (c-name "xfce_menu_layout_get_menuname_used")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "menuname")
+  )
+)
+
+(define-method get_type
+  (of-object "XfceMenuLayoutNode")
+  (c-name "xfce_menu_layout_node_get_type")
+  (return-type "XfceMenuLayoutNodeType")
+)
+
+(define-method get_filename
+  (of-object "XfceMenuLayoutNode")
+  (c-name "xfce_menu_layout_node_get_filename")
+  (return-type "const-gchar*")
+)
+
+(define-method get_menuname
+  (of-object "XfceMenuLayoutNode")
+  (c-name "xfce_menu_layout_node_get_menuname")
+  (return-type "const-gchar*")
+)
+
+(define-method get_merge_type
+  (of-object "XfceMenuLayoutNode")
+  (c-name "xfce_menu_layout_node_get_merge_type")
+  (return-type "XfceMenuLayoutMergeType")
+)
+
+

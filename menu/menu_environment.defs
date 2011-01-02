@@ -1,0 +1,21 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-environment.h
+
+(define-function xfce_menu_set_environment
+  (c-name "xfce_menu_set_environment")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "env")
+  )
+)
+
+(define-function xfce_menu_get_environment
+  (c-name "xfce_menu_get_environment")
+  (return-type "const-gchar*")
+)
+
+

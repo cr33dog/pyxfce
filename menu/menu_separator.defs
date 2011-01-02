@@ -1,0 +1,18 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-separator.h
+
+(define-function xfce_menu_separator_get_type
+  (c-name "xfce_menu_separator_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_separator_get_default
+  (c-name "xfce_menu_separator_get_default")
+  (return-type "XfceMenuSeparator*")
+)
+
+

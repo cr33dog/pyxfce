@@ -1,0 +1,191 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-menu.h
+
+(define-function xfce_menu_init
+  (c-name "xfce_menu_init")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "env")
+  )
+)
+
+(define-function xfce_menu_shutdown
+  (c-name "xfce_menu_shutdown")
+  (return-type "none")
+)
+
+(define-function xfce_menu_get_type
+  (c-name "xfce_menu_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_get_root
+  (c-name "xfce_menu_get_root")
+  (return-type "XfceMenu*")
+  (parameters
+    '("GError**" "error")
+  )
+)
+
+(define-function xfce_menu_new
+  (c-name "xfce_menu_new")
+  (is-constructor-of "XfceMenu")
+  (return-type "XfceMenu*")
+  (parameters
+    '("const-gchar*" "filename")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_filename
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_filename")
+  (return-type "const-gchar*")
+)
+
+(define-method set_filename
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_set_filename")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method get_name
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method set_name
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_set_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_directory
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_directory")
+  (return-type "XfceMenuDirectory*")
+)
+
+(define-method set_directory
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_set_directory")
+  (return-type "none")
+  (parameters
+    '("XfceMenuDirectory*" "directory")
+  )
+)
+
+(define-method get_directory_dirs
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_directory_dirs")
+  (return-type "GSList*")
+)
+
+(define-method get_legacy_dirs
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_legacy_dirs")
+  (return-type "GSList*")
+)
+
+(define-method get_app_dirs
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_app_dirs")
+  (return-type "GSList*")
+)
+
+(define-method get_only_unallocated
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_only_unallocated")
+  (return-type "gboolean")
+)
+
+(define-method set_only_unallocated
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_set_only_unallocated")
+  (return-type "none")
+  (parameters
+    '("gboolean" "only_unallocated")
+  )
+)
+
+(define-method get_deleted
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_deleted")
+  (return-type "gboolean")
+)
+
+(define-method set_deleted
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_set_deleted")
+  (return-type "none")
+  (parameters
+    '("gboolean" "deleted")
+  )
+)
+
+(define-method get_menus
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_menus")
+  (return-type "GSList*")
+)
+
+(define-method add_menu
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_add_menu")
+  (return-type "none")
+  (parameters
+    '("XfceMenu*" "submenu")
+  )
+)
+
+(define-method get_menu_with_name
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_menu_with_name")
+  (return-type "XfceMenu*")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_parent
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_parent")
+  (return-type "XfceMenu*")
+)
+
+(define-method get_item_pool
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_item_pool")
+  (return-type "XfceMenuItemPool*")
+)
+
+(define-method get_items
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_items")
+  (return-type "GSList*")
+)
+
+(define-method has_layout
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_has_layout")
+  (return-type "gboolean")
+)
+
+(define-method get_layout_elements
+  (of-object "XfceMenu")
+  (c-name "xfce_menu_get_layout_elements")
+  (return-type "GSList*")
+)
+
+

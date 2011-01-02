@@ -1,0 +1,19 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-not-rules.h
+
+(define-function xfce_menu_not_rules_get_type
+  (c-name "xfce_menu_not_rules_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_not_rules_new
+  (c-name "xfce_menu_not_rules_new")
+  (is-constructor-of "XfceMenuNotRules")
+  (return-type "XfceMenuNotRules*")
+)
+
+

@@ -1,0 +1,268 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-menu-item.h
+
+(define-function xfce_menu_item_get_type
+  (c-name "xfce_menu_item_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_item_new
+  (c-name "xfce_menu_item_new")
+  (is-constructor-of "XfceMenuItem")
+  (return-type "XfceMenuItem*")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method get_desktop_id
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_desktop_id")
+  (return-type "const-gchar*")
+)
+
+(define-method set_desktop_id
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_desktop_id")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "desktop_id")
+  )
+)
+
+(define-method get_filename
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_filename")
+  (return-type "const-gchar*")
+)
+
+(define-method set_filename
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_filename")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+(define-method get_command
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_command")
+  (return-type "const-gchar*")
+)
+
+(define-method set_command
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_command")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "command")
+  )
+)
+
+(define-method get_try_exec
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_try_exec")
+  (return-type "const-gchar*")
+)
+
+(define-method set_try_exec
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_try_exec")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "try_exec")
+  )
+)
+
+(define-method get_name
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method set_name
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_generic_name
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_generic_name")
+  (return-type "const-gchar*")
+)
+
+(define-method set_generic_name
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_generic_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "generic_name")
+  )
+)
+
+(define-method get_comment
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_comment")
+  (return-type "const-gchar*")
+)
+
+(define-method set_comment
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_comment")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "comment")
+  )
+)
+
+(define-method get_icon_name
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_icon_name")
+  (return-type "const-gchar*")
+)
+
+(define-method set_icon_name
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_icon_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "icon_name")
+  )
+)
+
+(define-method get_path
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_path")
+  (return-type "const-gchar*")
+)
+
+(define-method set_path
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_path")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "path")
+  )
+)
+
+(define-method requires_terminal
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_requires_terminal")
+  (return-type "gboolean")
+)
+
+(define-method set_requires_terminal
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_requires_terminal")
+  (return-type "none")
+  (parameters
+    '("gboolean" "requires_terminal")
+  )
+)
+
+(define-method get_no_display
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_no_display")
+  (return-type "gboolean")
+)
+
+(define-method set_no_display
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_no_display")
+  (return-type "none")
+  (parameters
+    '("gboolean" "no_display")
+  )
+)
+
+(define-method supports_startup_notification
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_supports_startup_notification")
+  (return-type "gboolean")
+)
+
+(define-method set_supports_startup_notification
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_supports_startup_notification")
+  (return-type "none")
+  (parameters
+    '("gboolean" "supports_startup_notification")
+  )
+)
+
+(define-method get_categories
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_categories")
+  (return-type "GList*")
+)
+
+(define-method set_categories
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_set_categories")
+  (return-type "none")
+  (parameters
+    '("GList*" "categories")
+  )
+)
+
+(define-method has_category
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_has_category")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "category")
+  )
+)
+
+(define-method show_in_environment
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_show_in_environment")
+  (return-type "gboolean")
+)
+
+(define-method only_show_in_environment
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_only_show_in_environment")
+  (return-type "gboolean")
+)
+
+(define-method ref
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_ref")
+  (return-type "none")
+)
+
+(define-method unref
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_unref")
+  (return-type "none")
+)
+
+(define-method get_allocated
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_get_allocated")
+  (return-type "gint")
+)
+
+(define-method increment_allocated
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_increment_allocated")
+  (return-type "none")
+)
+
+(define-method decrement_allocated
+  (of-object "XfceMenuItem")
+  (c-name "xfce_menu_item_decrement_allocated")
+  (return-type "none")
+)
+
+

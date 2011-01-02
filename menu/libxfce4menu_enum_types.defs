@@ -1,0 +1,23 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From libxfce4menu-enum-types.h
+
+(define-function xfce_menu_layout_merge_type_get_type
+  (c-name "xfce_menu_layout_merge_type_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_layout_node_type_get_type
+  (c-name "xfce_menu_layout_node_type_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_menu_monitor_flags_get_type
+  (c-name "xfce_menu_monitor_flags_get_type")
+  (return-type "GType")
+)
+
+
