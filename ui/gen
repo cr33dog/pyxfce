@@ -1,0 +1,61 @@
+#!/bin/bash
+
+inc="`pkg-config --variable=includedir libxfce4ui-1`"/xfce4
+if [ "${inc}" = "/xfce4" ]
+then
+	echo "error: could not find include dir.">&2
+	exit 1
+fi
+
+for s in "${inc}"/libxfce4ui-1/libxfce4ui/*.h
+do
+	t="${s##*/}"
+	
+	t="${t%.h}"
+	
+	if [ "${t#netk-}" = "$t" ]
+	then
+		defs="${t/-/_}.defs"
+		defs="${defs/-/_}"
+		python2 /usr/lib/python2.6/site-packages/gtk-2.0/codegen/h2def.py "$s" >"${defs}"
+	fi
+done
+rm -f util.defs
+
+for s in xfce_*.defs
+do
+	t="${s#xfce_}"
+	mv "$s" "$t"
+done
+
+sed \
+  -e 's;(define-function xfce_confirm;(define-function confirm;' \
+  dialogs.defs > dialogs.defs.new && mv dialogs.defs.new dialogs.defs
+
+#remove
+#(define-enum SMClientPriority
+#...
+#)
+
+in_prio=
+IFS="
+"
+while read line
+do
+  if [ "${line}" = "(define-enum SMClientPriority" ]
+  then
+    in_prio=1
+  elif [ -z "${in_prio}" ]
+  then
+    echo "${line}"
+  elif [ "${line}" = ")" ]
+  then
+    in_prio=
+  fi
+done < sm_client.defs > sm_client.defs.new && mv sm_client.defs.new sm_client.defs
+
+for s in *.defs
+do
+  sed -e 's;(define-function xfce_;(define-function ;' "$s" >"${s}.new" && mv "${s}.new" "$s"
+done
+

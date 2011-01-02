@@ -21,22 +21,26 @@ _panel_la_SOURCES = \
 	arrow_button.c \
 	enums.c \
 	external_plugin.c \
-	itembar.c \
-	plugin_iface.c \
-	window.c \
-	panelmodule.c
+	panelmodule.c \
+	convenience.c \
+	plugin.c \
+	hvbox.c \
+	xfce-panel-macros-47.h
 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
 	arrow_button.defs \
 	enums.defs \
-	external_plugin.defs \
-	itembar.defs \
-	plugin_iface.defs \
-	window.defs
+	convenience.defs \
+	plugin.defs \
+	hvbox.defs
 
-panel_overrides = arrow_button.override enums.override external_plugin.override \
-  itembar.override plugin_iface.override window.override
+panel_overrides = \
+	arrow_button.override \
+	enums.override \
+	convenience.override \
+	plugin.override \
+	hvbox.override
 
 EXTRA_DIST = $(defs_DATA) $(panel_overrides) gen
 nodist__panel_la_SOURCES = 

@@ -44,13 +44,13 @@ export_dynamic=`(./libtool --config; echo eval echo \\$export_dynamic_flag_spec)
 
 BM_DEPEND([XFCE4_UTIL], [libxfce4util-1.0], [4.1.0])
 BM_DEPEND([XFCE4_XFCONF], [libxfconf-0], [4.6.2])
-BM_DEPEND([XFCE4_GUI], [libxfcegui4-1.0], [4.3.90])
+BM_DEPEND([XFCE4_UI], [libxfce4ui-1], [4.7.5])
 
-# new panel
+dnl new panel
 
-# HAVE_MIGHTY_MOUSE
+dnl HAVE_MIGHTY_MOUSE
 
-BM_DEPEND_CHECK([MIGHTY_MOUSE], [libxfce4panel-1.0], [4.3.17], [mighty-mouse], [the new panel], [yes])
+BM_DEPEND_CHECK([MIGHTY_MOUSE], [libxfce4panel-1.0], [4.7.6], [mighty-mouse], [the new panel], [yes])
 dnl AM_CONDITIONAL([HAVE_MIGHTY_MOUSE], [test x"$ac_cv_MIGHTY_MOUSE_check" = x"yes"])
 AM_CONDITIONAL([HAVE_MIGHTY_MOUSE], [test ! -z "$MIGHTY_MOUSE_FOUND" ])
 
@@ -84,8 +84,7 @@ dnl codegen/Makefile
 AC_CONFIG_FILES(
   Makefile
   pyxfce-1.0.pc
-  gui/Makefile
-  netk/Makefile
+  ui/Makefile
   panel/Makefile
   util/Makefile
   xfconf/Makefile

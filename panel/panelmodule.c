@@ -11,20 +11,16 @@
 #include <pygobject.h>
 #include <pyerrors.h>
 
-extern PyMethodDef pyarrow_button_functions[];
-extern PyMethodDef pyenums_functions[];
-extern PyMethodDef pyenum_types_functions[];
-extern PyMethodDef pyexternal_plugin_functions[];
-extern PyMethodDef pyitembar_functions[];
-extern PyMethodDef pyplugin_iface_functions[];
-extern PyMethodDef pywindow_functions[];
+extern const PyMethodDef pyarrow_button_functions[];
+extern const PyMethodDef pyenums_functions[];
+extern const PyMethodDef pyexternal_plugin_functions[];
+extern const PyMethodDef pyconvenience_functions[];
+extern const PyMethodDef pyplugin_functions[];
 void pyarrow_button_register_classes(PyObject *d);
 void pyenums_register_classes(PyObject *d);
-void pyenum_types_register_classes(PyObject *d);
 void pyexternal_plugin_register_classes(PyObject *d);
-void pyitembar_register_classes(PyObject *d);
-void pyplugin_iface_register_classes(PyObject *d);
-void pywindow_register_classes(PyObject *d);
+void pyplugin_register_classes(PyObject *d);
+void pyconvenience_register_classes(PyObject *d);
 void pyenums_add_constants(PyObject *module, const gchar *strip_prefix);
 
 static PyMethodDef all_functions[1000];
@@ -32,11 +28,9 @@ static PyMethodDef all_functions[1000];
 static PyMethodDef* each_functions[] = {
   pyarrow_button_functions,
   pyenums_functions,
-  pyenum_types_functions,
   pyexternal_plugin_functions,
-  pyitembar_functions,
-  pyplugin_iface_functions,
-  pywindow_functions,
+  pyplugin_functions,
+  pyconvenience_functions,
 };
 
 static void
@@ -65,11 +59,9 @@ my_register1()
 
 	pyarrow_button_register_classes(d);
 	pyenums_register_classes(d);
-	pyenum_types_register_classes(d);
-	pyplugin_iface_register_classes(d);
 	pyexternal_plugin_register_classes(d);
-	pyitembar_register_classes(d);
-	pywindow_register_classes(d);
+	pyplugin_register_classes(d);
+	pyconvenience_register_classes(d);
 	
 	pyenums_add_constants(m, "XFCE_");
 }

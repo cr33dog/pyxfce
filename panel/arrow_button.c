@@ -35,15 +35,15 @@ PyTypeObject G_GNUC_INTERNAL PyXfceArrowButton_Type;
 static int
 _wrap_xfce_arrow_button_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "type", NULL };
-    PyObject *py_type = NULL;
-    GtkArrowType type;
+    static char *kwlist[] = { "arrow_type", NULL };
+    PyObject *py_arrow_type = NULL;
+    GtkArrowType arrow_type;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:XfceArrowButton.__init__", kwlist, &py_type))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:XfceArrowButton.__init__", kwlist, &py_arrow_type))
         return -1;
-    if (pyg_enum_get_value(GTK_TYPE_ARROW_TYPE, py_type, (gpointer)&type))
+    if (pyg_enum_get_value(GTK_TYPE_ARROW_TYPE, py_arrow_type, (gpointer)&arrow_type))
         return -1;
-    self->obj = (GObject *)xfce_arrow_button_new(type);
+    self->obj = (GObject *)xfce_arrow_button_new(arrow_type);
 
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create XfceArrowButton object");
@@ -51,24 +51,6 @@ _wrap_xfce_arrow_button_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     }
     pygobject_register_wrapper((PyObject *)self);
     return 0;
-}
-
-static PyObject *
-_wrap_xfce_arrow_button_set_arrow_type(PyGObject *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "type", NULL };
-    PyObject *py_type = NULL;
-    GtkArrowType type;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:XfceArrowButton.set_arrow_type", kwlist, &py_type))
-        return NULL;
-    if (pyg_enum_get_value(GTK_TYPE_ARROW_TYPE, py_type, (gpointer)&type))
-        return NULL;
-    
-    xfce_arrow_button_set_arrow_type(XFCE_ARROW_BUTTON(self->obj), type);
-    
-    Py_INCREF(Py_None);
-    return Py_None;
 }
 
 static PyObject *
@@ -82,10 +64,59 @@ _wrap_xfce_arrow_button_get_arrow_type(PyGObject *self)
     return pyg_enum_from_gtype(GTK_TYPE_ARROW_TYPE, ret);
 }
 
+static PyObject *
+_wrap_xfce_arrow_button_set_arrow_type(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "arrow_type", NULL };
+    PyObject *py_arrow_type = NULL;
+    GtkArrowType arrow_type;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:XfceArrowButton.set_arrow_type", kwlist, &py_arrow_type))
+        return NULL;
+    if (pyg_enum_get_value(GTK_TYPE_ARROW_TYPE, py_arrow_type, (gpointer)&arrow_type))
+        return NULL;
+    
+    xfce_arrow_button_set_arrow_type(XFCE_ARROW_BUTTON(self->obj), arrow_type);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+static PyObject *
+_wrap_xfce_arrow_button_get_blinking(PyGObject *self)
+{
+    int ret;
+
+    
+    ret = xfce_arrow_button_get_blinking(XFCE_ARROW_BUTTON(self->obj));
+    
+    return PyBool_FromLong(ret);
+
+}
+
+static PyObject *
+_wrap_xfce_arrow_button_set_blinking(PyGObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "blinking", NULL };
+    int blinking;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"i:XfceArrowButton.set_blinking", kwlist, &blinking))
+        return NULL;
+    
+    xfce_arrow_button_set_blinking(XFCE_ARROW_BUTTON(self->obj), blinking);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
 static const PyMethodDef _PyXfceArrowButton_methods[] = {
+    { "get_arrow_type", (PyCFunction)_wrap_xfce_arrow_button_get_arrow_type, METH_NOARGS,
+      NULL },
     { "set_arrow_type", (PyCFunction)_wrap_xfce_arrow_button_set_arrow_type, METH_VARARGS|METH_KEYWORDS,
       NULL },
-    { "get_arrow_type", (PyCFunction)_wrap_xfce_arrow_button_get_arrow_type, METH_NOARGS,
+    { "get_blinking", (PyCFunction)_wrap_xfce_arrow_button_get_blinking, METH_NOARGS,
+      NULL },
+    { "set_blinking", (PyCFunction)_wrap_xfce_arrow_button_set_blinking, METH_VARARGS|METH_KEYWORDS,
       NULL },
     { NULL, NULL, 0, NULL }
 };
@@ -181,6 +212,6 @@ pyarrow_button_register_classes(PyObject *d)
     }
 
 
-#line 185 "arrow_button.c"
+#line 216 "arrow_button.c"
     pygobject_register_class(d, "XfceArrowButton", XFCE_TYPE_ARROW_BUTTON, &PyXfceArrowButton_Type, Py_BuildValue("(O)", &PyGtkToggleButton_Type));
 }

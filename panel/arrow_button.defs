@@ -22,16 +22,7 @@
   (is-constructor-of "XfceArrowButton")
   (return-type "GtkWidget*")
   (parameters
-    '("GtkArrowType" "type")
-  )
-)
-
-(define-method set_arrow_type
-  (of-object "XfceArrowButton")
-  (c-name "xfce_arrow_button_set_arrow_type")
-  (return-type "none")
-  (parameters
-    '("GtkArrowType" "type")
+    '("GtkArrowType" "arrow_type")
   )
 )
 
@@ -39,6 +30,30 @@
   (of-object "XfceArrowButton")
   (c-name "xfce_arrow_button_get_arrow_type")
   (return-type "GtkArrowType")
+)
+
+(define-method set_arrow_type
+  (of-object "XfceArrowButton")
+  (c-name "xfce_arrow_button_set_arrow_type")
+  (return-type "none")
+  (parameters
+    '("GtkArrowType" "arrow_type")
+  )
+)
+
+(define-method get_blinking
+  (of-object "XfceArrowButton")
+  (c-name "xfce_arrow_button_get_blinking")
+  (return-type "gboolean")
+)
+
+(define-method set_blinking
+  (of-object "XfceArrowButton")
+  (c-name "xfce_arrow_button_set_blinking")
+  (return-type "none")
+  (parameters
+    '("gboolean" "blinking")
+  )
 )
 
 

@@ -2,7 +2,43 @@
 
 from _panel import *
 
-class Plugin(ExternalPanelPlugin):
+import pygtk
+pygtk.require("2.0")
+import gtk
+import sys
+
+PLUGIN_ARGV_0, \
+PLUGIN_ARGV_FILENAME, \
+PLUGIN_ARGV_UNIQUE_ID, \
+PLUGIN_ARGV_SOCKET_ID, \
+PLUGIN_ARGV_NAME, \
+PLUGIN_ARGV_DISPLAY_NAME, \
+PLUGIN_ARGV_COMMENT, \
+PLUGIN_ARGV_BACKGROUND_IMAGE, \
+PLUGIN_ARGV_ARGUMENTS = range(9)
+
+# and the other arguments are appended (at and including position PLUGIN_ARGV_ARGUMENTS).
+
+PLUGIN_EXIT_SUCCESS, \
+PLUGIN_EXIT_FAILURE, \
+PLUGIN_EXIT_ARGUMENTS_FAILED, \
+PLUGIN_EXIT_PREINIT_FAILED, \
+PLUGIN_EXIT_CHECK_FAILED, \
+PLUGIN_EXIT_NO_PROVIDER, \
+PLUGIN_EXIT_SUCCESS_AND_RESTART = range(7)
+
+class Plugin(PanelPlugin):
+  def __init__(self):
+    PanelPlugin.__init__(self)
+    self.props.name = sys.argv[PLUGIN_ARGV_NAME]
+    self.props.unique_id = sys.argv[PLUGIN_ARGV_UNIQUE_ID]
+    self.props.display_name = sys.argv[PLUGIN_ARGV_DISPLAY_NAME]
+    self.props.comment = sys.argv[PLUGIN_ARGV_COMMENT]
+    self.props.arguments = sys.argv[PLUGIN_ARGV_ARGUMENTS : ]
+    socket_id = int(sys.argv[PLUGIN_ARGV_SOCKET_ID])
+    register_external_full_constructor(socket_id, self)
+    # #define XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL_FULL_CONSTRUCTOR(socket_id, xpp)
+
   def _get_horizontal(self):
     position = self.get_property("screen-position")
     return position in (

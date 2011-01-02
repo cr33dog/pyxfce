@@ -1,0 +1,30 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfce4panel/libxfce4panel.h>
+#define XFCE_TYPE_HV_BOX XFCE_TYPE_HVBOX
+#define XFCE_HV_BOX XFCE_HVBOX
+
+extern PyTypeObject PyGtkWidget_Type;
+
+%%
+include
+%%
+modulename hvbox
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.Widget as PyGtkWidget_Type
+import gtk.ToggleButton as PyGtkToggleButton_Type
+import gtk.Box as PyGtkBox_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%

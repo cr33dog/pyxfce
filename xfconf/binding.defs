@@ -1,0 +1,58 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfconf-binding.h
+
+(define-function g_property_bind
+  (c-name "xfconf_g_property_bind")
+  (return-type "gulong")
+  (parameters
+    '("XfconfChannel*" "channel")
+    '("const-gchar*" "xfconf_property")
+    '("GType" "xfconf_property_type")
+    '("gpointer" "object")
+    '("const-gchar*" "object_property")
+  )
+)
+
+(define-function g_property_bind_gdkcolor
+  (c-name "xfconf_g_property_bind_gdkcolor")
+  (return-type "gulong")
+  (parameters
+    '("XfconfChannel*" "channel")
+    '("const-gchar*" "xfconf_property")
+    '("gpointer" "object")
+    '("const-gchar*" "object_property")
+  )
+)
+
+(define-function g_property_unbind
+  (c-name "xfconf_g_property_unbind")
+  (return-type "none")
+  (parameters
+    '("gulong" "id")
+  )
+)
+
+(define-function g_property_unbind_by_property
+  (c-name "xfconf_g_property_unbind_by_property")
+  (return-type "none")
+  (parameters
+    '("XfconfChannel*" "channel")
+    '("const-gchar*" "xfconf_property")
+    '("gpointer" "object")
+    '("const-gchar*" "object_property")
+  )
+)
+
+(define-function g_property_unbind_all
+  (c-name "xfconf_g_property_unbind_all")
+  (return-type "none")
+  (parameters
+    '("gpointer" "channel_or_object")
+  )
+)
+
+

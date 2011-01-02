@@ -1,0 +1,27 @@
+/* -*- Mode: C; c-basic-offset: 4 -*-
+ *
+ */
+%%
+headers
+#include "pygobject.h"
+#include <gtk/gtk.h>
+#include <libxfce4panel/libxfce4panel.h>
+
+extern PyTypeObject PyGtkWidget_Type;
+
+%%
+include
+%%
+modulename convenience
+%%
+import gobject.GObject as PyGObject_Type
+import gtk.Widget as PyGtkWidget_Type
+import gtk.ToggleButton as PyGtkToggleButton_Type
+%%
+ignore
+%%
+ignore-glob
+  *_get_type
+%%
+ignore-win32
+%%
