@@ -1,0 +1,16 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-gdk-extensions.h
+
+(define-function gdk_screen_get_active
+  (c-name "xfce_gdk_screen_get_active")
+  (return-type "GdkScreen*")
+  (parameters
+    '("gint*" "monitor_return")
+  )
+)
+
+

@@ -1,0 +1,191 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum SMClientRestartStyle
+  (in-module "Xfce")
+  (c-name "XfceSMClientRestartStyle")
+  (gtype-id "XFCE_TYPE_SM_CLIENT_RESTART_STYLE")
+  (values
+    '("normal" "XFCE_SM_CLIENT_RESTART_NORMAL")
+    '("immediately" "XFCE_SM_CLIENT_RESTART_IMMEDIATELY")
+  )
+)
+
+
+(define-enum SMClientShutdownHint
+  (in-module "Xfce")
+  (c-name "XfceSMClientShutdownHint")
+  (gtype-id "XFCE_TYPE_SM_CLIENT_SHUTDOWN_HINT")
+  (values
+    '("ask" "XFCE_SM_CLIENT_SHUTDOWN_HINT_ASK")
+    '("logout" "XFCE_SM_CLIENT_SHUTDOWN_HINT_LOGOUT")
+    '("halt" "XFCE_SM_CLIENT_SHUTDOWN_HINT_HALT")
+    '("reboot" "XFCE_SM_CLIENT_SHUTDOWN_HINT_REBOOT")
+  )
+)
+
+
+;; From xfce-sm-client.h
+
+(define-function sm_client_get_type
+  (c-name "xfce_sm_client_get_type")
+  (return-type "GType")
+)
+
+(define-function sm_client_get_option_group
+  (c-name "xfce_sm_client_get_option_group")
+  (return-type "GOptionGroup*")
+  (parameters
+    '("gint" "argc")
+    '("gchar**" "argv")
+  )
+)
+
+(define-function sm_client_get
+  (c-name "xfce_sm_client_get")
+  (return-type "XfceSMClient*")
+)
+
+(define-function sm_client_get_with_argv
+  (c-name "xfce_sm_client_get_with_argv")
+  (return-type "XfceSMClient*")
+  (parameters
+    '("gint" "argc")
+    '("gchar**" "argv")
+    '("XfceSMClientRestartStyle" "restart_style")
+    '("guchar" "priority")
+  )
+)
+
+(define-function sm_client_get_full
+  (c-name "xfce_sm_client_get_full")
+  (return-type "XfceSMClient*")
+  (parameters
+    '("XfceSMClientRestartStyle" "restart_style")
+    '("guchar" "priority")
+    '("const-gchar*" "resumed_client_id")
+    '("const-gchar*" "current_directory")
+    '("const-gchar**" "restart_command")
+    '("const-gchar*" "desktop_file")
+  )
+)
+
+(define-method connect
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_connect")
+  (return-type "gboolean")
+  (parameters
+    '("GError**" "error")
+  )
+)
+
+(define-method disconnect
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_disconnect")
+  (return-type "none")
+)
+
+(define-method request_shutdown
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_request_shutdown")
+  (return-type "none")
+  (parameters
+    '("XfceSMClientShutdownHint" "shutdown_hint")
+  )
+)
+
+(define-method is_connected
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_is_connected")
+  (return-type "gboolean")
+)
+
+(define-method is_resumed
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_is_resumed")
+  (return-type "gboolean")
+)
+
+(define-method set_desktop_file
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_set_desktop_file")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "desktop_file")
+  )
+)
+
+(define-method get_client_id
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_get_client_id")
+  (return-type "const-gchar*")
+)
+
+(define-method get_state_file
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_get_state_file")
+  (return-type "const-gchar*")
+)
+
+(define-method set_restart_style
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_set_restart_style")
+  (return-type "none")
+  (parameters
+    '("XfceSMClientRestartStyle" "restart_style")
+  )
+)
+
+(define-method get_restart_style
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_get_restart_style")
+  (return-type "XfceSMClientRestartStyle")
+)
+
+(define-method set_priority
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_set_priority")
+  (return-type "none")
+  (parameters
+    '("guint8" "priority")
+  )
+)
+
+(define-method get_priority
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_get_priority")
+  (return-type "guint8")
+)
+
+(define-method set_current_directory
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_set_current_directory")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "current_directory")
+  )
+)
+
+(define-method get_current_directory
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_get_current_directory")
+  (return-type "const-gchar*")
+)
+
+(define-method set_restart_command
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_set_restart_command")
+  (return-type "none")
+  (parameters
+    '("gchar**" "restart_command")
+  )
+)
+
+(define-method get_restart_command
+  (of-object "XfceSMClient")
+  (c-name "xfce_sm_client_get_restart_command")
+  (return-type "const-gchar**")
+)
+
+

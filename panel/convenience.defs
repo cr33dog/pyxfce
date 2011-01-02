@@ -1,0 +1,23 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-panel-convenience.h
+
+(define-function xfce_panel_create_button
+  (c-name "xfce_panel_create_button")
+  (return-type "GtkWidget*")
+)
+
+(define-function xfce_panel_create_toggle_button
+  (c-name "xfce_panel_create_toggle_button")
+  (return-type "GtkWidget*")
+)
+
+(define-function xfce_panel_get_channel_name
+  (c-name "xfce_panel_get_channel_name")
+  (return-type "const-gchar*")
+)
+
+

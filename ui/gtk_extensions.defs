@@ -1,0 +1,44 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-gtk-extensions.h
+
+(define-function gtk_button_new_mixed
+  (c-name "xfce_gtk_button_new_mixed")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "stock_id")
+    '("const-gchar*" "label")
+  )
+)
+
+(define-function gtk_frame_box_new
+  (c-name "xfce_gtk_frame_box_new")
+  (is-constructor-of "XfceGtkFrameBox")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+    '("GtkWidget**" "container_return")
+  )
+)
+
+(define-function gtk_frame_box_new_with_content
+  (c-name "xfce_gtk_frame_box_new_with_content")
+  (return-type "GtkWidget*")
+  (parameters
+    '("const-gchar*" "label")
+    '("GtkWidget*" "content")
+  )
+)
+
+(define-function gtk_window_center_on_active_screen
+  (c-name "xfce_gtk_window_center_on_active_screen")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "window")
+  )
+)
+
+

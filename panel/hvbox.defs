@@ -1,0 +1,46 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object HVBox
+  (in-module "Xfce")
+  (parent "GtkBox")
+  (c-name "XfceHVBox")
+  (gtype-id "XFCE_TYPE_HV_BOX")
+)
+
+;; Enumerations and flags ...
+
+
+;; From xfce-hvbox.h
+
+(define-function xfce_hvbox_get_type
+  (c-name "xfce_hvbox_get_type")
+  (return-type "GType")
+)
+
+(define-function xfce_hvbox_new
+  (c-name "xfce_hvbox_new")
+  (is-constructor-of "XfceHvbox")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkOrientation" "orientation")
+    '("gboolean" "homogeneous")
+    '("gint" "spacing")
+  )
+)
+
+(define-method set_orientation
+  (of-object "XfceHVBox")
+  (c-name "xfce_hvbox_set_orientation")
+  (return-type "none")
+  (parameters
+    '("GtkOrientation" "orientation")
+  )
+)
+
+(define-method get_orientation
+  (of-object "XfceHVBox")
+  (c-name "xfce_hvbox_get_orientation")
+  (return-type "GtkOrientation")
+)
+
+

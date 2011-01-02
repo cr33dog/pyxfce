@@ -1,0 +1,13 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From libxfce4panel-enum-types.h
+
+(define-function xfce_screen_position_get_type
+  (c-name "xfce_screen_position_get_type")
+  (return-type "GType")
+)
+
+

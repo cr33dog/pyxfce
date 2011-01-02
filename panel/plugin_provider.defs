@@ -1,0 +1,164 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+(define-enum PanelPluginProviderSignal
+  (in-module "Xfce")
+  (c-name "XfcePanelPluginProviderSignal")
+  (gtype-id "XFCE_TYPE_PANEL_PLUGIN_PROVIDER_SIGNAL")
+  (values
+    '("move-plugin" "PROVIDER_SIGNAL_MOVE_PLUGIN")
+    '("expand-plugin" "PROVIDER_SIGNAL_EXPAND_PLUGIN")
+    '("collapse-plugin" "PROVIDER_SIGNAL_COLLAPSE_PLUGIN")
+    '("wrap-plugin" "PROVIDER_SIGNAL_WRAP_PLUGIN")
+    '("unwrap-plugin" "PROVIDER_SIGNAL_UNWRAP_PLUGIN")
+    '("lock-panel" "PROVIDER_SIGNAL_LOCK_PANEL")
+    '("unlock-panel" "PROVIDER_SIGNAL_UNLOCK_PANEL")
+    '("remove-plugin" "PROVIDER_SIGNAL_REMOVE_PLUGIN")
+    '("add-new-items" "PROVIDER_SIGNAL_ADD_NEW_ITEMS")
+    '("panel-preferences" "PROVIDER_SIGNAL_PANEL_PREFERENCES")
+    '("panel-logout" "PROVIDER_SIGNAL_PANEL_LOGOUT")
+    '("panel-about" "PROVIDER_SIGNAL_PANEL_ABOUT")
+    '("panel-help" "PROVIDER_SIGNAL_PANEL_HELP")
+    '("show-configure" "PROVIDER_SIGNAL_SHOW_CONFIGURE")
+    '("show-about" "PROVIDER_SIGNAL_SHOW_ABOUT")
+    '("focus-plugin" "PROVIDER_SIGNAL_FOCUS_PLUGIN")
+  )
+)
+
+(define-enum PanelPluginProviderPropType
+  (in-module "Xfce")
+  (c-name "XfcePanelPluginProviderPropType")
+  (gtype-id "XFCE_TYPE_PANEL_PLUGIN_PROVIDER_PROP_TYPE")
+  (values
+    '("set-size" "PROVIDER_PROP_TYPE_SET_SIZE")
+    '("set-orientation" "PROVIDER_PROP_TYPE_SET_ORIENTATION")
+    '("set-screen-position" "PROVIDER_PROP_TYPE_SET_SCREEN_POSITION")
+    '("set-background-alpha" "PROVIDER_PROP_TYPE_SET_BACKGROUND_ALPHA")
+    '("set-locked" "PROVIDER_PROP_TYPE_SET_LOCKED")
+    '("set-sensitive" "PROVIDER_PROP_TYPE_SET_SENSITIVE")
+    '("set-background-color" "PROVIDER_PROP_TYPE_SET_BACKGROUND_COLOR")
+    '("set-background-image" "PROVIDER_PROP_TYPE_SET_BACKGROUND_IMAGE")
+    '("action-removed" "PROVIDER_PROP_TYPE_ACTION_REMOVED")
+    '("action-save" "PROVIDER_PROP_TYPE_ACTION_SAVE")
+    '("action-quit" "PROVIDER_PROP_TYPE_ACTION_QUIT")
+    '("action-quit-for-restart" "PROVIDER_PROP_TYPE_ACTION_QUIT_FOR_RESTART")
+    '("action-background-unset" "PROVIDER_PROP_TYPE_ACTION_BACKGROUND_UNSET")
+    '("action-show-configure" "PROVIDER_PROP_TYPE_ACTION_SHOW_CONFIGURE")
+    '("action-show-about" "PROVIDER_PROP_TYPE_ACTION_SHOW_ABOUT")
+  )
+)
+
+
+;; From xfce-panel-plugin-provider.h
+
+(define-function xfce_panel_plugin_provider_get_type
+  (c-name "xfce_panel_plugin_provider_get_type")
+  (return-type "GType")
+)
+
+(define-method get_name
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_unique_id
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_get_unique_id")
+  (return-type "gint")
+)
+
+(define-method set_size
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_set_size")
+  (return-type "none")
+  (parameters
+    '("gint" "size")
+  )
+)
+
+(define-method set_orientation
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_set_orientation")
+  (return-type "none")
+  (parameters
+    '("GtkOrientation" "orientation")
+  )
+)
+
+(define-method set_screen_position
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_set_screen_position")
+  (return-type "none")
+  (parameters
+    '("XfceScreenPosition" "screen_position")
+  )
+)
+
+(define-method save
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_save")
+  (return-type "none")
+)
+
+(define-method emit_signal
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_emit_signal")
+  (return-type "none")
+  (parameters
+    '("XfcePanelPluginProviderSignal" "provider_signal")
+  )
+)
+
+(define-method get_show_configure
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_get_show_configure")
+  (return-type "gboolean")
+)
+
+(define-method show_configure
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_show_configure")
+  (return-type "none")
+)
+
+(define-method get_show_about
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_get_show_about")
+  (return-type "gboolean")
+)
+
+(define-method show_about
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_show_about")
+  (return-type "none")
+)
+
+(define-method removed
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_removed")
+  (return-type "none")
+)
+
+(define-method remote_event
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_remote_event")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-GValue*" "value")
+    '("guint*" "handle")
+  )
+)
+
+(define-method set_locked
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_set_locked")
+  (return-type "none")
+  (parameters
+    '("gboolean" "locked")
+  )
+)
+
+

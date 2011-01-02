@@ -1,0 +1,97 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From xfce-dialogs.h
+
+(define-function dialog_show_info
+  (c-name "xfce_dialog_show_info")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "secondary_text")
+    '("const-gchar*" "primary_format")
+  )
+  (varargs #t)
+)
+
+(define-function dialog_show_warning
+  (c-name "xfce_dialog_show_warning")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "secondary_text")
+    '("const-gchar*" "primary_format")
+  )
+  (varargs #t)
+)
+
+(define-function dialog_show_error
+  (c-name "xfce_dialog_show_error")
+  (return-type "none")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-GError*" "error")
+    '("const-gchar*" "primary_format")
+  )
+  (varargs #t)
+)
+
+(define-function dialog_confirm
+  (c-name "xfce_dialog_confirm")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "stock_id")
+    '("const-gchar*" "confirm_label")
+    '("const-gchar*" "secondary_text")
+    '("const-gchar*" "primary_format")
+  )
+  (varargs #t)
+)
+
+(define-function message_dialog_new_valist
+  (c-name "xfce_message_dialog_new_valist")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "title")
+    '("const-gchar*" "icon_stock_id")
+    '("const-gchar*" "primary_text")
+    '("const-gchar*" "secondary_text")
+    '("const-gchar*" "first_button_text")
+    '("va_list" "args")
+  )
+)
+
+(define-function message_dialog_new
+  (c-name "xfce_message_dialog_new")
+  (is-constructor-of "XfceMessageDialog")
+  (return-type "GtkWidget*")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "title")
+    '("const-gchar*" "stock_id")
+    '("const-gchar*" "primary_text")
+    '("const-gchar*" "secondary_text")
+    '("const-gchar*" "first_button_text")
+  )
+  (varargs #t)
+)
+
+(define-function message_dialog
+  (c-name "xfce_message_dialog")
+  (return-type "gint")
+  (parameters
+    '("GtkWindow*" "parent")
+    '("const-gchar*" "title")
+    '("const-gchar*" "stock_id")
+    '("const-gchar*" "primary_text")
+    '("const-gchar*" "secondary_text")
+    '("const-gchar*" "first_button_text")
+  )
+  (varargs #t)
+)
+
+

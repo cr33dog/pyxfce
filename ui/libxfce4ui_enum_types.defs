@@ -1,0 +1,18 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From libxfce4ui-enum-types.h
+
+(define-function sm_client_restart_style_get_type
+  (c-name "xfce_sm_client_restart_style_get_type")
+  (return-type "GType")
+)
+
+(define-function sm_client_shutdown_hint_get_type
+  (c-name "xfce_sm_client_shutdown_hint_get_type")
+  (return-type "GType")
+)
+
+
