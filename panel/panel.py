@@ -36,6 +36,7 @@ class Plugin(PanelPlugin):
                          unique_id = int(sys.argv[PLUGIN_ARGV_UNIQUE_ID]),
                          display_name = sys.argv[PLUGIN_ARGV_DISPLAY_NAME],
                          comment = sys.argv[PLUGIN_ARGV_COMMENT])
+    PanelPlugin.__init__(self)
     socket_id = int(sys.argv[PLUGIN_ARGV_SOCKET_ID])
     register_external_full_constructor(socket_id, self)
     # #define XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL_FULL_CONSTRUCTOR(socket_id, xpp)
