@@ -5,6 +5,7 @@ from _panel import *
 import pygtk
 pygtk.require("2.0")
 import gtk
+import gobject
 import sys
 
 PLUGIN_ARGV_0, \
@@ -29,12 +30,12 @@ PLUGIN_EXIT_SUCCESS_AND_RESTART = range(7)
 
 class Plugin(PanelPlugin):
   def __init__(self):
-    PanelPlugin.__init__(self)
-    self.props.name = sys.argv[PLUGIN_ARGV_NAME]
-    self.props.unique_id = sys.argv[PLUGIN_ARGV_UNIQUE_ID]
-    self.props.display_name = sys.argv[PLUGIN_ARGV_DISPLAY_NAME]
-    self.props.comment = sys.argv[PLUGIN_ARGV_COMMENT]
-    self.props.arguments = sys.argv[PLUGIN_ARGV_ARGUMENTS : ]
+    # FIXME
+    gobject.GObject.__init__(self,
+                         name = sys.argv[PLUGIN_ARGV_NAME],
+                         unique_id = int(sys.argv[PLUGIN_ARGV_UNIQUE_ID]),
+                         display_name = sys.argv[PLUGIN_ARGV_DISPLAY_NAME],
+                         comment = sys.argv[PLUGIN_ARGV_COMMENT])
     socket_id = int(sys.argv[PLUGIN_ARGV_SOCKET_ID])
     register_external_full_constructor(socket_id, self)
     # #define XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL_FULL_CONSTRUCTOR(socket_id, xpp)
