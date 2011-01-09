@@ -17,6 +17,7 @@ modulename convenience
 import gobject.GObject as PyGObject_Type
 import gtk.Widget as PyGtkWidget_Type
 import gtk.ToggleButton as PyGtkToggleButton_Type
+import gtk.IconTheme as PyGtkIconTheme_Type
 %%
 ignore
 %%

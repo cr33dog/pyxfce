@@ -20,4 +20,14 @@
   (return-type "const-gchar*")
 )
 
+(define-function xfce_panel_pixbuf_from_source
+  (c-name "xfce_panel_pixbuf_from_source")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("const-gchar*" "source")
+    '("GtkIconTheme*" "icon_theme")
+    '("gint" "size")
+  )
+)
+
 

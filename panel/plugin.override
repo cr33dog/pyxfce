@@ -29,3 +29,4 @@ ignore-glob
 %%
 ignore-win32
 %%
+new-constructor XFCE_TYPE_PANEL_PLUGIN

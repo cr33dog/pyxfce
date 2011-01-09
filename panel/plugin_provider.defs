@@ -46,6 +46,7 @@
     '("action-background-unset" "PROVIDER_PROP_TYPE_ACTION_BACKGROUND_UNSET")
     '("action-show-configure" "PROVIDER_PROP_TYPE_ACTION_SHOW_CONFIGURE")
     '("action-show-about" "PROVIDER_PROP_TYPE_ACTION_SHOW_ABOUT")
+    '("action-ask-remove" "PROVIDER_PROP_TYPE_ACTION_ASK_REMOVE")
   )
 )
 
@@ -159,6 +160,12 @@
   (parameters
     '("gboolean" "locked")
   )
+)
+
+(define-method ask_remove
+  (of-object "XfcePanelPluginProvider")
+  (c-name "xfce_panel_plugin_provider_ask_remove")
+  (return-type "none")
 )
 
 
