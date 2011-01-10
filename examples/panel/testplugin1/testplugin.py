@@ -1,8 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import pygtk
 pygtk.require("2.0")
 import gtk
+import sys
 
 import xfce4.panel
 
