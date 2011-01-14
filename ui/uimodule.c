@@ -18,12 +18,14 @@ extern PyMethodDef pygdk_extensions_functions[];
 extern PyMethodDef pygtk_extensions_functions[];
 extern PyMethodDef pysm_client_functions[];
 extern PyMethodDef pytitled_dialog_functions[];
+extern PyMethodDef pyspawn_functions[];
 
 void pydialogs_register_classes(PyObject *d);
 void pygdk_extensions_register_classes(PyObject *d);
 void pygtk_extensions_register_classes(PyObject *d);
 void pysm_client_register_classes(PyObject *d);
 void pytitled_dialog_register_classes(PyObject *d);
+void pyspawn_register_classes(PyObject *d);
 
 void pysm_client_add_constants(PyObject *module, const gchar *strip_prefix);
 
@@ -36,6 +38,7 @@ static PyMethodDef* each_functions[] = {
 	pygtk_extensions_functions,
 	pysm_client_functions,
 	pytitled_dialog_functions,
+	pyspawn_functions,
 };
 
 static void
@@ -71,6 +74,7 @@ my_register1()
 	pygtk_extensions_register_classes (d);
 	pysm_client_register_classes (d);
 	pytitled_dialog_register_classes (d);
+	pyspawn_register_classes (d);
 }
 
 DL_EXPORT(void)

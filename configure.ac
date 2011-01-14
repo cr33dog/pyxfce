@@ -46,7 +46,7 @@ export_dynamic=`(./libtool --config; echo eval echo \\$export_dynamic_flag_spec)
 BM_DEPEND([XFCE4_UTIL], [libxfce4util-1.0], [4.1.0])
 BM_DEPEND([XFCE4_XFCONF], [libxfconf-0], [4.6.2])
 BM_DEPEND([XFCE4_UI], [libxfce4ui-1], [4.7.5])
-BM_DEPEND([XFCE4_MENU], [libxfce4menu-0.1], [4.6.2])
+BM_DEPEND([XFCE4_MENU], [libxfce4menu-0.1], [4.6.1])
 
 dnl new panel
 

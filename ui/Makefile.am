@@ -25,7 +25,8 @@ _ui_la_SOURCES = \
 	gtk_extensions.c \
 	sm_client.c \
 	titled_dialog.c \
-	uimodule.c
+	uimodule.c \
+	spawn.c
 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
@@ -33,14 +34,16 @@ defs_DATA = \
 	gdk_extensions.defs \
 	gtk_extensions.defs \
 	sm_client.defs \
-	titled_dialog.defs
+	titled_dialog.defs \
+	spawn.defs
 
 ui_overrides = \
 	dialogs.override \
 	gdk_extensions.override \
 	gtk_extensions.override \
 	sm_client.override \
-	titled_dialog.override
+	titled_dialog.override \
+	spawn.override
 
 EXTRA_DIST = $(defs_DATA) $(ui_overrides) gen
 

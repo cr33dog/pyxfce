@@ -10,11 +10,9 @@ headers
 %%
 include
 %%
-modulename gtkextensions
+modulename spawn
 %%
 import gobject.GObject as PyGObject_Type
-import gtk.Window as PyGtkWindow_Type
-import gtk.Widget as PyGtkWidget_Type
 import gtk.gdk.Screen as PyGdkScreen_Type
 %%
 ignore
