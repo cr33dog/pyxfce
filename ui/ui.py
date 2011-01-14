@@ -14,21 +14,27 @@ SPAWN_STDERR_TO_DEV_NULL     = 1 << 4
 SPAWN_CHILD_INHERITS_STDIN   = 1 << 5
 SPAWN_FILE_AND_ARGV_ZERO     = 1 << 6
 
+def to_c_envp(source):
+	if hasattr(source, "items"):
+		return ["%s=%s" % (key, value) for key, value in source.items()]
+	else:
+		return source
+
+def to_c_flags(source):
+	if isinstance(source, int):
+		return(source)
+	else:
+		result = 0
+		bits = ["leave_descriptors_open", "do_not_reap_child", "search_path", "stdout_to_dev_null", "stderr_to_dev_null", "child_inherits_stdin", "file_and_argv_zero"]
+		for i, name in enumerate(bits):
+			if name in source:
+				result |= 1 << i
+		return result
+
 def spawn_on_screen(screen, working_directory, argv, envp, flags, startup_notify, startup_timestamp, startup_icon_name):
-	def to_c_envp(source):
-		if hasattr(source, "items"):
-			return ["%s=%s" % (key, value) for key, value in source.items()]
-		else:
-			return source
-	def to_c_flags(source):
-		if isinstance(source, int):
-			return(source)
-		else:
-			result = 0
-			bits = ["leave_descriptors_open", "do_not_reap_child", "search_path", "stdout_to_dev_null", "stderr_to_dev_null", "child_inherits_stdin", "file_and_argv_zero"]
-			for i, name in enumerate(bits):
-				if name in source:
-					result |= 1 << i
-			return result
 	import _ui
 	return(_ui.spawn_on_screen(screen, working_directory, argv, to_c_envp(envp), to_c_flags(flags), startup_notify, startup_timestamp, startup_icon_name))
+
+def spawn_on_screen_with_child_watch(screen, working_directory, argv, envp, flags, startup_notify, startup_timestamp, startup_icon_name, callback):
+	import _ui
+	return(_ui.spawn_on_screen_with_child_watch(screen, working_directory, argv, to_c_envp(envp), to_c_flags(flags), startup_notify, startup_timestamp, startup_icon_name, callback))

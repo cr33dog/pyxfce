@@ -70,3 +70,49 @@ _wrap_xfce_spawn_on_screen(PyObject *self, PyObject *args, PyObject *kwargs)
         return NULL;
     return PyBool_FromLong(ret);
 }
+%%
+override xfce_spawn_on_screen_with_child_watch kwargs
+static PyObject *
+_wrap_xfce_spawn_on_screen_with_child_watch(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "screen", "working_directory", "argv", "envp", "flags", "startup_notify", "startup_timestamp", "startup_icon_name", "callback", NULL };
+    PyGObject *screen;
+    char *working_directory, *startup_icon_name;
+    char** c_argv;
+    char** c_envp;
+    PyObject* argv;
+    PyObject* envp;
+    int flags, startup_notify, ret;
+    unsigned long startup_timestamp;
+    GError *error = NULL;
+    PyObject* py_callback;
+    GClosure *closure;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!sOOiiksO:spawn_on_screen", kwlist, &PyGdkScreen_Type, &screen, &working_directory, &argv, &envp, &flags, &startup_notify, &startup_timestamp, &startup_icon_name, &py_callback))
+        return NULL;
+
+    if (!PyCallable_Check(py_callback)) {
+        PyErr_SetString(PyExc_TypeError, "callback argument not callable");
+        return NULL;
+    }
+    if(!PySequence_Check(argv)) {
+        PyErr_SetObject(PyExc_TypeError, argv);
+        return NULL;
+    }
+    if(!PySequence_Check(envp)) {
+        PyErr_SetObject(PyExc_TypeError, envp);
+        return NULL;
+    }
+    c_envp = PyStringList_AsStrv(envp);
+    c_argv = PyStringList_AsStrv(argv);
+    closure = pyg_closure_new(py_callback, NULL, NULL);
+    ret = xfce_spawn_on_screen_with_child_watch(GDK_SCREEN(screen->obj), working_directory, c_argv, c_envp, flags, startup_notify, startup_timestamp, startup_icon_name, closure, &error);
+    /* FIXME does this leak? pygobject_watch_closure((PyObject *)self, closure); */
+    /*g_closure_set_marshal (spawn_data->closure, g_cclosure_marshal_VOID__INT);*/
+    g_strfreev(c_envp);
+    g_strfreev(c_argv);
+    
+    if (pyg_error_check(&error))
+        return NULL;
+    return PyBool_FromLong(ret);
+}
